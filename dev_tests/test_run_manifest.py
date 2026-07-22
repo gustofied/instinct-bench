@@ -170,7 +170,17 @@ class ManifestBuildTests(unittest.TestCase):
                 trial_dir / "verifier" / "details.json",
                 {"source_sequence": []},
             )
-            write_json(trial_dir / "agent" / "trajectory.json", {"steps": []})
+            write_json(
+                trial_dir / "agent" / "trajectory.json",
+                {
+                    "steps": [
+                        {
+                            "source": "user",
+                            "message": "Harness prompt\n\nTask Description:\nTask text",
+                        }
+                    ]
+                },
+            )
             args = argparse.Namespace(
                 job_dir=job_dir,
                 lifecycle=None,
@@ -192,6 +202,7 @@ class ManifestBuildTests(unittest.TestCase):
         self.assertEqual(manifest["counts"]["task_pass"], 1)
         self.assertEqual(manifest["costs_usd"]["model"], 0.001)
         self.assertEqual(manifest["runner"]["model"], "openrouter/example/model")
+        self.assertTrue(manifest["runner"]["prompt_digest"].startswith("sha256:"))
         trial = manifest["trials"][0]
         self.assertEqual(trial["trial_name"], "answer-now__abc1234")
         self.assertEqual(trial["attempt"], 1)

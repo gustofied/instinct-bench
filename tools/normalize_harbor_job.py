@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -239,6 +240,35 @@ def unique(values: list[Any]) -> list[Any]:
     return output
 
 
+def prompt_digest(result_paths: list[Path]) -> str | None:
+    digests: list[str] = []
+    for result_path in result_paths:
+        trajectory_path = result_path.parent / "agent" / "trajectory.json"
+        if not trajectory_path.is_file():
+            continue
+        trajectory = read_json(trajectory_path)
+        steps = trajectory.get("steps", []) if isinstance(trajectory, dict) else []
+        first_user_message = next(
+            (
+                step.get("message")
+                for step in steps
+                if isinstance(step, dict)
+                and step.get("source") == "user"
+                and isinstance(step.get("message"), str)
+            ),
+            None,
+        )
+        if first_user_message is None:
+            continue
+        harness_prompt = first_user_message.split("\n\nTask Description:\n", 1)[0]
+        digest = "sha256:" + hashlib.sha256(harness_prompt.encode()).hexdigest()
+        if digest not in digests:
+            digests.append(digest)
+    if len(digests) > 1:
+        raise ValueError(f"Harness prompt drift detected within one job: {digests}")
+    return digests[0] if digests else None
+
+
 def build_manifest(args: argparse.Namespace) -> dict[str, Any]:
     job_dir = args.job_dir.resolve()
     job_result = read_json(job_dir / "result.json")
@@ -392,7 +422,7 @@ def build_manifest(args: argparse.Namespace) -> dict[str, Any]:
             "agent": agent_names[0],
             "harness_version": harness_version,
             "skills": first_lock.get("agent", {}).get("skills", []),
-            "prompt_digest": None,
+            "prompt_digest": prompt_digest(result_paths),
             "environment": first_lock["environment"]["type"],
             "sandbox_config": redact(first_lock["environment"]),
             "provider": provider,
