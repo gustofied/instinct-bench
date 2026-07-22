@@ -173,18 +173,20 @@ export default function Home() {
                 </strong>
               </div>
 
-              <div className="col-start-2 row-start-3 flex min-h-14 items-center justify-between gap-2 border-r border-b border-line px-3 sm:col-start-4 sm:row-start-2 sm:gap-4 sm:px-4">
-                <span className="whitespace-nowrap font-mono text-[9px] text-muted">
-                  $ on agent
-                </span>
-                <span className="grid min-w-0 gap-0.5">
-                  {mockAgentCostSplit.map(({ label, value }) => (
+              <div className="col-start-2 row-start-3 flex min-h-14 flex-col justify-center gap-1 border-r border-b border-line px-3 sm:col-start-4 sm:row-start-2 sm:px-4">
+                <span className="font-mono text-[9px] text-muted">$ on agent</span>
+                <span className="grid min-w-0 grid-cols-3">
+                  {mockAgentCostSplit.map(({ label, value }, index) => (
                     <span
-                      className="flex items-baseline justify-between gap-2 font-mono text-[9px]"
+                      className={cn(
+                        "grid min-w-0 gap-0.5 px-2 font-mono",
+                        index === 0 ? "pl-0" : "border-l border-line",
+                        index === mockAgentCostSplit.length - 1 && "pr-0",
+                      )}
                       key={label}
                     >
-                      <span className="text-muted">{label}</span>
-                      <strong className="font-medium">{value}%</strong>
+                      <span className="text-[8px] text-muted">{label}</span>
+                      <strong className="text-[10px] font-medium">{value}%</strong>
                     </span>
                   ))}
                 </span>
