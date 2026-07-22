@@ -96,8 +96,8 @@ export default function Home() {
                   restraint, context judgment, craft, and control.
                 </p>
                 <a
-                  aria-label="Made by gustofied on X"
-                  className="group mt-5 inline-flex items-center gap-2 border-t border-line pt-3"
+                  aria-label="Made by gustofied"
+                  className="group mt-5 inline-flex items-center border-t border-line pt-3"
                   href="https://x.com/gustofied"
                   rel="noreferrer"
                   target="_blank"
@@ -105,14 +105,6 @@ export default function Home() {
                   <span className="font-signature text-[18px] leading-none text-marker group-hover:underline">
                     made by @gustofied
                   </span>
-                  <svg
-                    aria-hidden="true"
-                    className="size-3 shrink-0 -translate-y-px text-ink"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
                 </a>
               </div>
             </div>
