@@ -1,0 +1,31 @@
+{
+  "task_id": "instinct-bench/answer-now",
+  "state_schema_version": 4,
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "scorer_version": "0.2.1",
+  "evaluation_protocol_version": "0.2.1",
+  "expected_answer": "billing-api-2026.07.22.7",
+  "required_sources": [],
+  "hindsight_minimum_cost": 0,
+  "task_cost_cap": 14150,
+  "source_order": ["record-b", "record-c", "record-d", "record-a"],
+  "source_costs": {
+    "record-a": 9000,
+    "record-b": 450,
+    "record-c": 1500,
+    "record-d": 3200
+  },
+  "source_payload_bytes": {
+    "record-a": 195,
+    "record-b": 184,
+    "record-c": 158,
+    "record-d": 168
+  },
+  "source_token_proxy": {
+    "record-a": 49,
+    "record-b": 46,
+    "record-c": 40,
+    "record-d": 42
+  }
+}

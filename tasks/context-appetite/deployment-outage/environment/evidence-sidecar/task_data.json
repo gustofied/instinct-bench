@@ -1,0 +1,30 @@
+{
+  "task_id": "instinct-bench/deployment-outage",
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "question": "Which deployment was rolled back to resolve the checkout outage from 14:32 to 14:47 UTC?",
+  "initial_context": "Checkout requests began returning HTTP 500 errors at 14:32 UTC, shortly after several systems changed.",
+  "source_order": ["record-c", "record-a", "record-d", "record-b"],
+  "sources": {
+    "record-a": {
+      "evidence_cost": 2000,
+      "description": "Record A, 13:55-14:47 UTC",
+      "content": "13:55 UTC payments-api-2026.07.22.3 operation completed.\n14:29 UTC checkout-api-2026.07.22.4 operation completed.\n14:31 UTC catalog-api-2026.07.22.2 operation completed.\n14:44 UTC checkout-api-2026.07.22.4 rollback initiated for elevated checkout HTTP 500 errors.\n14:47 UTC rollback completed; checkout errors returned to baseline."
+    },
+    "record-b": {
+      "evidence_cost": 12000,
+      "description": "Record B, 14:32-14:47 UTC",
+      "content": "14:32-14:46 UTC: checkout-api HTTP 500 rate 38%, p95 latency 2.8 s.\n14:32-14:46 UTC: payments-api HTTP 500 rate 0.1%, p95 latency 210 ms.\n14:32-14:46 UTC: catalog-api HTTP 500 rate 0.2%, p95 latency 180 ms.\n14:47 UTC: checkout-api HTTP 500 rate returned to 0.2%.\nThis record is keyed by service, not operation identifier."
+    },
+    "record-c": {
+      "evidence_cost": 300,
+      "description": "Record C, 14:32-14:47 UTC",
+      "content": "Incident INC-4821 began at 14:32 UTC and affected 38% of checkout requests. Incident command approved a rollback at 14:44 UTC. Error rates returned to baseline at 14:47 UTC. This record does not identify a deployment or change ID."
+    },
+    "record-d": {
+      "evidence_cost": 8000,
+      "description": "Record D, 14:35-14:48 UTC",
+      "content": "14:35 IC: Checkout is failing in three regions. Payments and catalog owners report healthy services.\n14:42 Checkout on-call: The most recent checkout rollout is the prime suspect. I am requesting rollback approval.\n14:48 IC: Recovery confirmed after the checkout rollback. Pull the exact deployment ID from the operation record for the report."
+    }
+  }
+}

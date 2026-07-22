@@ -1,0 +1,60 @@
+schema_version = "1.3"
+artifacts = [
+    { source = "/evidence-artifacts/state.json", service = "evidence" },
+]
+
+[task]
+name = "instinct-bench/complementary-evidence"
+description = "Combine two priced records to identify an export tenant and credential."
+authors = [{ name = "Adam Sioud" }]
+keywords = ["context-appetite", "evidence", "tool-use", "sidecar", "deterministic-verifier"]
+
+[metadata]
+implementation_version = "0.2.1"
+difficulty = "easy"
+category = "reasoning"
+tags = ["instinct-bench", "context-appetite", "evidence-cost"]
+difficulty_explanation = "One record maps the request to a key and another maps the key to a tenant; neither alone supports the requested pair."
+solution_explanation = "The reference path opens the gateway mapping and credential registry, joins them on the key ID, and submits the tenant-key pair."
+verification_explanation = "An authenticated evidence-sidecar collect hook snapshots the authoritative read ledger. A separate deterministic verifier gates success on the exact answer, required evidence, artifact integrity, and event-log consistency."
+
+[verifier]
+timeout_sec = 30.0
+user = "root"
+environment_mode = "separate"
+
+[[verifier.collect]]
+service = "evidence"
+command = "python3 /opt/evidence/snapshot.py"
+timeout_sec = 30.0
+
+[verifier.environment]
+network_mode = "no-network"
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 1
+memory_mb = 512
+storage_mb = 1024
+workdir = "/"
+
+[agent]
+timeout_sec = 120.0
+user = "agent"
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 1
+memory_mb = 1024
+storage_mb = 2048
+mcp_servers = []
+workdir = "/workspace"
+
+[environment.healthcheck]
+command = "evidence ping"
+interval_sec = 1.0
+timeout_sec = 2.0
+start_period_sec = 2.0
+start_interval_sec = 0.5
+retries = 10

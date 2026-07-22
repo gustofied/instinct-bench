@@ -1,0 +1,31 @@
+{
+  "task_id": "instinct-bench/complementary-evidence",
+  "state_schema_version": 4,
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "scorer_version": "0.2.1",
+  "evaluation_protocol_version": "0.2.1",
+  "expected_answer": "tenant-orchid:key-prod-19",
+  "required_sources": ["record-d", "record-b"],
+  "hindsight_minimum_cost": 2500,
+  "task_cost_cap": 8800,
+  "source_order": ["record-a", "record-d", "record-b", "record-c"],
+  "source_costs": {
+    "record-a": 300,
+    "record-b": 1800,
+    "record-c": 6000,
+    "record-d": 700
+  },
+  "source_payload_bytes": {
+    "record-a": 135,
+    "record-b": 132,
+    "record-c": 155,
+    "record-d": 134
+  },
+  "source_token_proxy": {
+    "record-a": 34,
+    "record-b": 33,
+    "record-c": 39,
+    "record-d": 34
+  }
+}

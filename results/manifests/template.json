@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "run_id": "replace-me",
+  "harbor_job_uuid": null,
+  "raw_job_path": "jobs-scratch/replace-me",
+  "hub_url": null,
+  "run_kind": "model-canary",
+  "lifecycle": "planned",
+  "publication": "scratch",
+  "supersedes": [],
+  "status_reason": null,
+  "started_at": null,
+  "finished_at": null,
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "replace-me",
+    "task_checksums": {}
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": null,
+    "skills": [],
+    "prompt_digest": null,
+    "environment": "modal",
+    "sandbox_config": {},
+    "provider": "openrouter",
+    "provider_routing": {},
+    "model": "replace-me",
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 1,
+    "n_concurrent": 1,
+    "command": "replace-me"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 0,
+    "completed": 0,
+    "valid": 0,
+    "task_pass": 0,
+    "task_fail": 0,
+    "infrastructure_error": 0,
+    "cancelled": 0,
+    "not_started": 0
+  },
+  "costs_usd": {
+    "model": null,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": []
+}

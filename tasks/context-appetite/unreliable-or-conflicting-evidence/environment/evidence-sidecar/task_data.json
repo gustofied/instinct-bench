@@ -1,0 +1,30 @@
+{
+  "task_id": "instinct-bench/unreliable-or-conflicting-evidence",
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "question": "Which upstream capacity feed produced quote Q-884's incorrect H100 availability?",
+  "initial_context": "Quote Q-884 reported 512 available H100s, while reconciliation established that only 128 were available.",
+  "source_order": ["record-a", "record-c", "record-d", "record-b"],
+  "sources": {
+    "record-a": {
+      "evidence_cost": 300,
+      "description": "Record A, unsigned broker note",
+      "content": "A broker wrote that Q-884 probably came from feed-north. The note says this attribution was copied from a forwarded message and was not checked against ingestion records."
+    },
+    "record-b": {
+      "evidence_cost": 1700,
+      "description": "Record B, signed ingestion receipt",
+      "content": "Signed receipt IR-441 maps payload hash 7c91 to upstream source feed-west. The receipt does not contain a desk quote ID."
+    },
+    "record-c": {
+      "evidence_cost": 2400,
+      "description": "Record C, generated desk summary",
+      "content": "The generated summary attributes Q-884 to feed-north. Its provenance field names Record A as its only source; no independent receipt or ledger was consulted."
+    },
+    "record-d": {
+      "evidence_cost": 500,
+      "description": "Record D, immutable quote ledger",
+      "content": "The immutable desk ledger maps Q-884 to stored payload hash 7c91 and records the 512-to-128 reconciliation mismatch. The ledger does not name the upstream feed."
+    }
+  }
+}

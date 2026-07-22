@@ -1,0 +1,31 @@
+{
+  "task_id": "instinct-bench/unreliable-or-conflicting-evidence",
+  "state_schema_version": 4,
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "scorer_version": "0.2.1",
+  "evaluation_protocol_version": "0.2.1",
+  "expected_answer": "feed-west",
+  "required_sources": ["record-d", "record-b"],
+  "hindsight_minimum_cost": 2200,
+  "task_cost_cap": 4900,
+  "source_order": ["record-a", "record-c", "record-d", "record-b"],
+  "source_costs": {
+    "record-a": 300,
+    "record-b": 1700,
+    "record-c": 2400,
+    "record-d": 500
+  },
+  "source_payload_bytes": {
+    "record-a": 170,
+    "record-b": 120,
+    "record-c": 157,
+    "record-d": 160
+  },
+  "source_token_proxy": {
+    "record-a": 43,
+    "record-b": 30,
+    "record-c": 40,
+    "record-d": 40
+  }
+}

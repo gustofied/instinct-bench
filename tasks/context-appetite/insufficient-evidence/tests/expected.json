@@ -1,0 +1,31 @@
+{
+  "task_id": "instinct-bench/insufficient-evidence",
+  "state_schema_version": 4,
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "scorer_version": "0.2.1",
+  "evaluation_protocol_version": "0.2.1",
+  "expected_answer": "INSUFFICIENT:search-api-2026.07.22.5,cache-router-2026.07.22.2",
+  "required_sources": ["record-c", "record-a", "record-d"],
+  "hindsight_minimum_cost": 4100,
+  "task_cost_cap": 13100,
+  "source_order": ["record-c", "record-a", "record-d", "record-b"],
+  "source_costs": {
+    "record-a": 1400,
+    "record-b": 9000,
+    "record-c": 500,
+    "record-d": 2200
+  },
+  "source_payload_bytes": {
+    "record-a": 195,
+    "record-b": 148,
+    "record-c": 166,
+    "record-d": 187
+  },
+  "source_token_proxy": {
+    "record-a": 49,
+    "record-b": 37,
+    "record-c": 42,
+    "record-d": 47
+  }
+}

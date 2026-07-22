@@ -15,24 +15,29 @@ Early domains:
 - `drawing`: make, inspect, repair, and continue from partial shape.
 - `writing`: draft, revise, preserve voice, and stop before overworking.
 
-## First Harbor Learning Task
+## First Harbor Pilot
 
-The first implemented task is
-[`deployment-outage`](tasks/context-appetite/answer-or-look/deployment-outage),
-inside the `context-appetite` domain and `answer-or-look` task set. An agent must
-identify an outage-causing deployment while choosing among evidence sources
-with visible evidence-credit prices. Correctness and evidence sufficiency gate
-task success; efficiency only adjusts successful scores.
+The first `context-appetite` domain contains five hand-authored learning tasks:
 
-This is one look-required Harbor learning instance, not yet a benchmark signal.
-Evaluating context appetite requires a population spanning answer-now,
-one-source, multi-source, and insufficient-evidence cases.
+- [`deployment-outage`](tasks/context-appetite/deployment-outage)
+- [`answer-now`](tasks/context-appetite/answer-now)
+- [`complementary-evidence`](tasks/context-appetite/complementary-evidence)
+- [`insufficient-evidence`](tasks/context-appetite/insufficient-evidence)
+- [`unreliable-or-conflicting-evidence`](tasks/context-appetite/unreliable-or-conflicting-evidence)
+
+Together they test whether an agent should answer, look, combine evidence, or
+stop. This is a verifier and task-design pilot, not yet a leaderboard.
 
 Run its reference solution with:
 
 ```bash
 uvx --from 'harbor[modal]==0.20.0' harbor run \
-  -p tasks/context-appetite/answer-or-look/deployment-outage \
+  -p tasks/context-appetite \
   -a oracle \
-  -e modal
+  -e modal \
+  -o jobs-scratch \
+  --job-name context-appetite-v0.2.1-oracle-smoke-001
 ```
+
+See the [domain design and runbook](tasks/context-appetite/README.md) for the
+measurement contract, security boundary, and real-agent canary.

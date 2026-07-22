@@ -1,0 +1,30 @@
+{
+  "task_id": "instinct-bench/answer-now",
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "question": "Which deployment was rolled back immediately before invoice generation recovered at 09:14 UTC?",
+  "initial_context": "Approved change ticket CHG-910 records rollback of billing-api-2026.07.22.7 at 09:12 UTC and restoration of invoice generation at 09:14 UTC.",
+  "source_order": ["record-b", "record-c", "record-d", "record-a"],
+  "sources": {
+    "record-a": {
+      "evidence_cost": 9000,
+      "description": "Record A, archived change materials",
+      "content": "The archived CHG-910 bundle confirms that billing-api-2026.07.22.7 was rolled back before invoice generation recovered. It adds no material fact beyond the approved ticket in the initial context."
+    },
+    "record-b": {
+      "evidence_cost": 450,
+      "description": "Record B, 09:13-09:16 UTC",
+      "content": "09:13 UTC invoice generation remained degraded. 09:14 UTC the synthetic invoice check passed. 09:16 UTC the recovery was declared stable. This record contains no deployment identifier."
+    },
+    "record-c": {
+      "evidence_cost": 1500,
+      "description": "Record C, 08:45 UTC",
+      "content": "invoice-worker-2026.07.22.2 completed a routine rollout at 08:45 UTC. Worker queue depth and error rate remained normal throughout the later billing incident."
+    },
+    "record-d": {
+      "evidence_cost": 3200,
+      "description": "Record D, responder discussion",
+      "content": "Responders agreed to roll back the billing API change named in CHG-910. The discussion records recovery but abbreviates the deployment as 'the CHG-910 billing rollout.'"
+    }
+  }
+}

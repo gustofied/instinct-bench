@@ -1,0 +1,30 @@
+{
+  "task_id": "instinct-bench/complementary-evidence",
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "question": "Which tenant and API key authorized export request req-7f9?",
+  "initial_context": "Export request req-7f9 moved protected data at 03:18 UTC, but the incident summary does not identify its tenant or credential.",
+  "source_order": ["record-a", "record-d", "record-b", "record-c"],
+  "sources": {
+    "record-a": {
+      "evidence_cost": 300,
+      "description": "Record A, customer notification",
+      "content": "Tenant tenant-lantern was notified about export request req-2a1 from the prior day. The notice does not mention req-7f9 or key-prod-19."
+    },
+    "record-b": {
+      "evidence_cost": 1800,
+      "description": "Record B, credential registry",
+      "content": "Credential key-prod-19 is active and owned by tenant-orchid. The registry records ownership but does not contain export request IDs."
+    },
+    "record-c": {
+      "evidence_cost": 6000,
+      "description": "Record C, export object ledger",
+      "content": "Request req-7f9 exported 418 objects between 03:18:04 and 03:18:31 UTC. The object ledger stores request IDs and counts, not tenant or credential identity."
+    },
+    "record-d": {
+      "evidence_cost": 700,
+      "description": "Record D, gateway authentication",
+      "content": "At 03:18:03 UTC, export request req-7f9 authenticated with credential key-prod-19. The gateway record does not store tenant ownership."
+    }
+  }
+}

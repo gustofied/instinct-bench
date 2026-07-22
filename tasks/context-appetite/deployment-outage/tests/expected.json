@@ -1,0 +1,31 @@
+{
+  "task_id": "instinct-bench/deployment-outage",
+  "state_schema_version": 4,
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "scorer_version": "0.2.1",
+  "evaluation_protocol_version": "0.2.1",
+  "expected_answer": "checkout-api-2026.07.22.4",
+  "required_sources": ["record-a"],
+  "hindsight_minimum_cost": 2000,
+  "task_cost_cap": 22300,
+  "source_order": ["record-c", "record-a", "record-d", "record-b"],
+  "source_costs": {
+    "record-a": 2000,
+    "record-b": 12000,
+    "record-c": 300,
+    "record-d": 8000
+  },
+  "source_payload_bytes": {
+    "record-a": 331,
+    "record-b": 321,
+    "record-c": 230,
+    "record-d": 343
+  },
+  "source_token_proxy": {
+    "record-a": 83,
+    "record-b": 81,
+    "record-c": 58,
+    "record-d": 86
+  }
+}

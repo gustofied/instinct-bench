@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "instinct-bench/run-manifest/v1",
+  "title": "Instinct Bench run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "raw_job_path",
+    "run_kind",
+    "lifecycle",
+    "publication",
+    "benchmark",
+    "runner",
+    "agent_egress",
+    "contract_visibility",
+    "counts",
+    "costs_usd",
+    "trials"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "harbor_job_uuid": {"type": ["string", "null"]},
+    "raw_job_path": {"type": "string", "minLength": 1},
+    "hub_url": {"type": ["string", "null"]},
+    "run_kind": {
+      "enum": ["preflight", "oracle-smoke", "model-canary", "model-pilot", "evaluation"]
+    },
+    "lifecycle": {
+      "enum": ["planned", "running", "completed", "partial", "aborted", "cancelled"]
+    },
+    "publication": {
+      "enum": ["scratch", "review", "eligible", "published", "superseded", "excluded"]
+    },
+    "supersedes": {"type": "array", "items": {"type": "string"}},
+    "status_reason": {"type": ["string", "null"]},
+    "started_at": {"type": ["string", "null"]},
+    "finished_at": {"type": ["string", "null"]},
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "domain", "implementation_version", "git_commit", "task_checksums"],
+      "properties": {
+        "name": {"const": "instinct-bench"},
+        "domain": {"const": "context-appetite"},
+        "implementation_version": {"type": "string"},
+        "git_commit": {"type": "string"},
+        "task_checksums": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        }
+      }
+    },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["harbor_version", "agent", "harness_version", "skills", "prompt_digest", "environment", "sandbox_config", "provider", "provider_routing", "model", "effort", "temperature", "n_attempts", "n_concurrent", "command"],
+      "properties": {
+        "harbor_version": {"type": "string"},
+        "agent": {"type": "string"},
+        "harness_version": {"type": ["string", "null"]},
+        "skills": {"type": "array", "items": {"type": "string"}},
+        "prompt_digest": {"type": ["string", "null"]},
+        "environment": {"type": "string"},
+        "sandbox_config": {"type": "object"},
+        "provider": {"type": ["string", "null"]},
+        "provider_routing": {"type": "object"},
+        "model": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "array", "items": {"type": "string"}},
+            {"type": "null"}
+          ]
+        },
+        "effort": {"type": ["string", "null"]},
+        "temperature": {"type": ["number", "null"]},
+        "n_attempts": {"type": "integer", "minimum": 1},
+        "n_concurrent": {"type": "integer", "minimum": 1},
+        "command": {"type": "string"}
+      }
+    },
+    "agent_egress": {"enum": ["public", "allowlist", "no-network"]},
+    "contract_visibility": {"enum": ["public", "private", "runtime-generated"]},
+    "counts": {"$ref": "#/$defs/counts"},
+    "costs_usd": {"$ref": "#/$defs/costs"},
+    "trials": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/trial"}
+    }
+  },
+  "$defs": {
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planned", "completed", "valid", "task_pass", "task_fail", "infrastructure_error", "cancelled", "not_started"],
+      "properties": {
+        "planned": {"type": "integer", "minimum": 0},
+        "completed": {"type": "integer", "minimum": 0},
+        "valid": {"type": "integer", "minimum": 0},
+        "task_pass": {"type": "integer", "minimum": 0},
+        "task_fail": {"type": "integer", "minimum": 0},
+        "infrastructure_error": {"type": "integer", "minimum": 0},
+        "cancelled": {"type": "integer", "minimum": 0},
+        "not_started": {"type": "integer", "minimum": 0}
+      }
+    },
+    "costs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "harness", "sandbox", "total"],
+      "properties": {
+        "model": {"type": ["number", "null"], "minimum": 0},
+        "harness": {"type": ["number", "null"], "minimum": 0},
+        "sandbox": {"type": ["number", "null"], "minimum": 0},
+        "total": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "trial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trial_id", "task_name", "model", "attempt", "seed", "execution_state", "task_outcome", "failure_origin", "trajectory_path", "verifier_details_path", "provider_route", "metrics", "telemetry", "costs_usd"],
+      "properties": {
+        "trial_id": {"type": "string"},
+        "task_name": {"type": "string"},
+        "model": {"type": ["string", "null"]},
+        "attempt": {"type": "integer", "minimum": 1},
+        "seed": {
+          "oneOf": [
+            {"type": "integer"},
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+        "execution_state": {
+          "enum": ["valid", "infrastructure-error", "cancelled", "not-started"]
+        },
+        "task_outcome": {"enum": ["pass", "fail", "not-evaluated"]},
+        "failure_origin": {
+          "enum": ["none", "task", "agent", "model-provider", "harness-setup", "sandbox", "verifier", "orchestrator", "user"]
+        },
+        "failure_detail": {"type": ["string", "null"]},
+        "trajectory_path": {"type": ["string", "null"]},
+        "verifier_details_path": {"type": ["string", "null"]},
+        "provider_route": {"type": "object"},
+        "metrics": {"type": "object"},
+        "telemetry": {"$ref": "#/$defs/telemetry"},
+        "costs_usd": {"$ref": "#/$defs/costs"}
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_tokens", "evidence"],
+      "properties": {
+        "model_tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["input", "output", "cached_input", "total"],
+          "properties": {
+            "input": {"type": ["integer", "null"], "minimum": 0},
+            "output": {"type": ["integer", "null"], "minimum": 0},
+            "cached_input": {"type": ["integer", "null"], "minimum": 0},
+            "total": {"type": ["integer", "null"], "minimum": 0}
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["credits", "payload_bytes", "token_proxy", "source_sequence", "list_calls", "status_calls"],
+          "properties": {
+            "credits": {"type": ["integer", "null"], "minimum": 0},
+            "payload_bytes": {"type": ["integer", "null"], "minimum": 0},
+            "token_proxy": {"type": ["integer", "null"], "minimum": 0},
+            "source_sequence": {"type": "array", "items": {"type": "string"}},
+            "list_calls": {"type": ["integer", "null"], "minimum": 0},
+            "status_calls": {"type": ["integer", "null"], "minimum": 0}
+          }
+        }
+      }
+    }
+  }
+}

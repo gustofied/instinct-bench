@@ -19,6 +19,7 @@ dist/
 
 # Harbor / eval outputs
 jobs/
+jobs-scratch/
 outputs/
 artifacts/
 traces/

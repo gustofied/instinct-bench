@@ -1,0 +1,30 @@
+{
+  "task_id": "instinct-bench/insufficient-evidence",
+  "task_data_version": "0.2.1",
+  "evidence_cost_table_version": "0.2.0",
+  "question": "Which two deployments are candidate causes of the search latency incident from 11:10 to 11:26 UTC, and can the evidence uniquely attribute the incident to either one?",
+  "initial_context": "Search p95 latency rose at 11:10 UTC after two components changed within two minutes of each other.",
+  "source_order": ["record-c", "record-a", "record-d", "record-b"],
+  "sources": {
+    "record-a": {
+      "evidence_cost": 1400,
+      "description": "Record A, service telemetry",
+      "content": "At 11:10 UTC, search-api query latency and cache-router miss rate rose in the same aggregation interval. Trace sampling was disabled, so the telemetry cannot establish which signal led the other."
+    },
+    "record-b": {
+      "evidence_cost": 9000,
+      "description": "Record B, customer impact",
+      "content": "Customers experienced slow search responses from 11:10 to 11:26 UTC in three regions. The impact record contains no component-level causal evidence."
+    },
+    "record-c": {
+      "evidence_cost": 500,
+      "description": "Record C, change sequence",
+      "content": "11:08 UTC search-api-2026.07.22.5 deployed. 11:09 UTC cache-router-2026.07.22.2 deployed. No other production changes completed before latency increased at 11:10 UTC."
+    },
+    "record-d": {
+      "evidence_cost": 2200,
+      "description": "Record D, mitigation sequence",
+      "content": "At 11:22 UTC responders rolled back both recent changes as one mitigation bundle. Search latency returned to baseline at 11:26 UTC. Neither change was rolled back or tested independently."
+    }
+  }
+}
