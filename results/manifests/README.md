@@ -8,6 +8,8 @@ versioned index consumed by reports and the website.
 - `jobs/`: predeclared model pilots and evaluations, including failures.
 - `results/manifests/`: normalized run intent, lifecycle, configuration,
   counts, costs, and per-trial classification.
+- `results/reports/`: human-readable analyses derived from a locked manifest
+  and its raw Harbor job.
 
 Create the intent record before launch and finalize it even when orchestration
 aborts. `execution_state` answers whether a valid trial ran;
@@ -29,3 +31,6 @@ Normalize a completed Harbor 0.20 job with
 the tool preserves raw trial names, task digests, provider configuration,
 trace paths, classifications, token telemetry, and costs without dropping
 failed cells.
+
+The first completed model-pilot analysis is
+[`context-appetite-v0.2.1-model-pilot-3x-001`](../reports/context-appetite-v0.2.1-model-pilot-3x-001.md).

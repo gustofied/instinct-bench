@@ -53,6 +53,7 @@ def base_result() -> dict[str, Any]:
             "n_cache_tokens": 20,
             "n_output_tokens": 10,
             "cost_usd": 0.001,
+            "metadata": {"n_episodes": 2, "summarization_count": 0},
         },
         "verifier_result": {
             "rewards": {
@@ -202,9 +203,26 @@ class ManifestBuildTests(unittest.TestCase):
                         {
                             "source": "user",
                             "message": "Harness prompt\n\nTask Description:\nTask text",
-                        }
+                        },
+                        {
+                            "source": "agent",
+                            "tool_calls": [
+                                {
+                                    "function_name": "bash_command",
+                                    "arguments": {"keystrokes": "evidence list\n"},
+                                },
+                                {
+                                    "function_name": "mark_task_complete",
+                                    "arguments": {},
+                                },
+                            ],
+                        },
                     ]
                 },
+            )
+            (trial_dir / "trial.log").write_text(
+                "Parser warnings: - No valid JSON object found\n"
+                "Parser warnings: - Extra text detected before JSON object\n"
             )
             args = argparse.Namespace(
                 job_dir=job_dir,
@@ -233,6 +251,10 @@ class ManifestBuildTests(unittest.TestCase):
         self.assertEqual(trial["trial_name"], "answer-now__abc1234")
         self.assertEqual(trial["attempt"], 1)
         self.assertEqual(trial["telemetry"]["model_tokens"]["cached_input"], 20)
+        self.assertEqual(trial["telemetry"]["harness"]["episodes"], 2)
+        self.assertEqual(trial["telemetry"]["harness"]["invalid_json_turns"], 1)
+        self.assertEqual(trial["telemetry"]["harness"]["extra_text_warning_lines"], 1)
+        self.assertEqual(trial["telemetry"]["harness"]["mark_task_complete_calls"], 1)
         self.assertTrue(trial["trajectory_path"].endswith("trajectory.json"))
 
 

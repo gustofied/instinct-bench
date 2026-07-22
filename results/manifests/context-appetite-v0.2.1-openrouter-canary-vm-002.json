@@ -1,0 +1,464 @@
+{
+  "schema_version": "1.0",
+  "run_id": "context-appetite-v0.2.1-openrouter-canary-vm-002",
+  "harbor_job_uuid": "3bf6888c-1b82-4fa3-b812-861109e99fc7",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002",
+  "hub_url": null,
+  "run_kind": "model-canary",
+  "lifecycle": "completed",
+  "publication": "scratch",
+  "supersedes": [
+    "ec60b38c-4ba5-4dbc-a2c6-bae690e7ad48",
+    "f360cff0-ef9e-47b2-9539-cd339fcc9c1a"
+  ],
+  "status_reason": "First operationally green five-task real-agent canary on the repaired v0.2.1 contracts; all task and integrity gates passed.",
+  "started_at": "2026-07-22T20:02:08.739779",
+  "finished_at": "2026-07-22T20:19:02.856150",
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "77ef2de3667b22794db0b8d089256165dd9f11e1",
+    "task_checksums": {
+      "deployment-outage": "sha256:e6cd26834456890fdd7fcd26154166d842a8e72913e70458caac944f0a6aad2d",
+      "insufficient-evidence": "sha256:5448f3ec38e565d59e294827bdc17440c46cc0c13d50bf84b90fa285976144cd",
+      "unreliable-or-conflicting-evidence": "sha256:26b2956bc5406c80221eb1a21fcdb4a33f0239ad64cba3accbefb6018baa833b",
+      "complementary-evidence": "sha256:526d037fba28f984243a32f45c8be191909f92fcfa30ed0cfbe71f61681c83df",
+      "answer-now": "sha256:fa3f355757533f0758afd6066dd90bac88ec95cb2902fdbf7a55ee8507eb53ab"
+    }
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": "sha256:e6794ed5222445d522a800f3fc70ec258776cbcb09731d43a0028c5c7f0137fc",
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 1,
+    "n_concurrent": 1,
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a terminus-2 -m openrouter/deepseek/deepseek-v4-flash -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-openrouter-canary-vm-002 -n 1 --n-concurrent-agents 1 --max-retries 0 --ek modal_vm_runtime=true"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 5,
+    "completed": 5,
+    "valid": 5,
+    "task_pass": 5,
+    "task_fail": 0,
+    "valid_not_evaluated": 0,
+    "infrastructure_error": 0,
+    "cancelled": 0,
+    "not_started": 0
+  },
+  "costs_usd": {
+    "model": 0.0070429857000000005,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "ea60e8d7-98c8-435d-ad32-72e0bf3fa5af",
+      "trial_name": "answer-now__3niey86",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/answer-now__3niey86/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/answer-now__3niey86/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 14150,
+        "evidence_payload_bytes": 705,
+        "evidence_token_proxy": 177,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 14150,
+        "sources_outside_hindsight_minimum": 4,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 17239,
+          "output": 2277,
+          "cached_input": 3968,
+          "total": null
+        },
+        "evidence": {
+          "credits": 14150,
+          "payload_bytes": 705,
+          "token_proxy": 177,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 9,
+          "summarizations": 0,
+          "invalid_json_turns": 1,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0022813701,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "f2fac5ef-ed1b-4f33-81c3-9956da5a9580",
+      "trial_name": "complementary-evidence__LjwE4MM",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/complementary-evidence__LjwE4MM/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/complementary-evidence__LjwE4MM/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 11050,
+          "output": 1921,
+          "cached_input": 4608,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 1,
+          "extra_text_warning_lines": 12,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0010981488,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "66c1cb7b-6aaa-4721-a917-27f884b660c2",
+      "trial_name": "deployment-outage__3JpGgCX",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/deployment-outage__3JpGgCX/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/deployment-outage__3JpGgCX/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7955,
+          "output": 1622,
+          "cached_input": 3200,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.000837578,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "31b0065c-b616-4a6c-b33c-c321e0ee98f7",
+      "trial_name": "insufficient-evidence__Hj3YHtD",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/insufficient-evidence__Hj3YHtD/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/insufficient-evidence__Hj3YHtD/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 13100,
+        "evidence_payload_bytes": 696,
+        "evidence_token_proxy": 175,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 9000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 14153,
+          "output": 2010,
+          "cached_input": 3840,
+          "total": null
+        },
+        "evidence": {
+          "credits": 13100,
+          "payload_bytes": 696,
+          "token_proxy": 175,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.001479898,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "f18fc140-5052-44ed-be25-dfeca5fc6647",
+      "trial_name": "unreliable-or-conflicting-eviden__z5B533U",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/unreliable-or-conflicting-eviden__z5B533U/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-002/unreliable-or-conflicting-eviden__z5B533U/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 4900,
+        "evidence_payload_bytes": 607,
+        "evidence_token_proxy": 153,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2700,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 13753,
+          "output": 1578,
+          "cached_input": 3968,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4900,
+          "payload_bytes": 607,
+          "token_proxy": 153,
+          "source_sequence": [
+            "record-d",
+            "record-a",
+            "record-c",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0013459908,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

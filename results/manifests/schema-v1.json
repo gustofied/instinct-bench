@@ -179,6 +179,20 @@
             "list_calls": {"type": ["integer", "null"], "minimum": 0},
             "status_calls": {"type": ["integer", "null"], "minimum": 0}
           }
+        },
+        "harness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["episodes", "summarizations", "invalid_json_turns", "extra_text_warning_lines", "mark_task_complete_calls", "bash_command_calls", "non_evidence_shell_calls"],
+          "properties": {
+            "episodes": {"type": ["integer", "null"], "minimum": 0},
+            "summarizations": {"type": ["integer", "null"], "minimum": 0},
+            "invalid_json_turns": {"type": "integer", "minimum": 0},
+            "extra_text_warning_lines": {"type": "integer", "minimum": 0},
+            "mark_task_complete_calls": {"type": "integer", "minimum": 0},
+            "bash_command_calls": {"type": "integer", "minimum": 0},
+            "non_evidence_shell_calls": {"type": "integer", "minimum": 0}
+          }
         }
       }
     }

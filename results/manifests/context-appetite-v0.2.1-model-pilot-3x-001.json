@@ -1,0 +1,5736 @@
+{
+  "schema_version": "1.0",
+  "run_id": "context-appetite-v0.2.1-model-pilot-3x-001",
+  "harbor_job_uuid": "0725dfe3-a823-43e7-bebe-bcb2abf32f77",
+  "raw_job_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001",
+  "hub_url": null,
+  "run_kind": "model-pilot",
+  "lifecycle": "completed",
+  "publication": "review",
+  "supersedes": [],
+  "status_reason": "Completed five-model by five-task by three-attempt protocol pilot. Report binary end-to-end task outcomes, verifier diagnostics, acquisition behavior, and infrastructure reliability separately; not a leaderboard result.",
+  "started_at": "2026-07-22T20:23:47.844590",
+  "finished_at": "2026-07-22T22:10:22.326905",
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "77ef2de3667b22794db0b8d089256165dd9f11e1",
+    "task_checksums": {
+      "deployment-outage": "sha256:e6cd26834456890fdd7fcd26154166d842a8e72913e70458caac944f0a6aad2d",
+      "insufficient-evidence": "sha256:5448f3ec38e565d59e294827bdc17440c46cc0c13d50bf84b90fa285976144cd",
+      "unreliable-or-conflicting-evidence": "sha256:26b2956bc5406c80221eb1a21fcdb4a33f0239ad64cba3accbefb6018baa833b",
+      "complementary-evidence": "sha256:526d037fba28f984243a32f45c8be191909f92fcfa30ed0cfbe71f61681c83df",
+      "answer-now": "sha256:fa3f355757533f0758afd6066dd90bac88ec95cb2902fdbf7a55ee8507eb53ab"
+    }
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": "sha256:e6794ed5222445d522a800f3fc70ec258776cbcb09731d43a0028c5c7f0137fc",
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "model": [
+      "openrouter/z-ai/glm-5.2",
+      "openrouter/deepseek/deepseek-v4-pro",
+      "openrouter/minimax/minimax-m3",
+      "openrouter/thinkingmachines/inkling",
+      "openrouter/deepseek/deepseek-v4-flash"
+    ],
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 3,
+    "n_concurrent": 2,
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a terminus-2 -m openrouter/z-ai/glm-5.2 -m openrouter/deepseek/deepseek-v4-pro -m openrouter/minimax/minimax-m3 -m openrouter/thinkingmachines/inkling -m openrouter/deepseek/deepseek-v4-flash -e modal -o jobs --job-name context-appetite-v0.2.1-model-pilot-3x-001 -k 3 -n 2 --n-concurrent-agents 2 --max-retries 0 --ek modal_vm_runtime=true"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 75,
+    "completed": 75,
+    "valid": 74,
+    "task_pass": 67,
+    "task_fail": 7,
+    "valid_not_evaluated": 0,
+    "infrastructure_error": 1,
+    "cancelled": 0,
+    "not_started": 0
+  },
+  "costs_usd": {
+    "model": 0.50926395698,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "65153195-53b2-4603-9cda-57d52327b1a5",
+      "trial_name": "answer-now__3DgES5L",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__3DgES5L/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__3DgES5L/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 14150,
+        "evidence_payload_bytes": 705,
+        "evidence_token_proxy": 177,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 14150,
+        "sources_outside_hindsight_minimum": 4,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 16245,
+          "output": 2835,
+          "cached_input": 1792,
+          "total": null
+        },
+        "evidence": {
+          "credits": 14150,
+          "payload_bytes": 705,
+          "token_proxy": 177,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0025084416,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "8a68c5c4-39bc-4200-9f08-b27592139d84",
+      "trial_name": "answer-now__xf2GfL9",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__xf2GfL9/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__xf2GfL9/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 14150,
+        "evidence_payload_bytes": 705,
+        "evidence_token_proxy": 177,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 14150,
+        "sources_outside_hindsight_minimum": 4,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 15041,
+          "output": 3217,
+          "cached_input": 6208,
+          "total": null
+        },
+        "evidence": {
+          "credits": 14150,
+          "payload_bytes": 705,
+          "token_proxy": 177,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 1,
+          "extra_text_warning_lines": 14,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 7,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0021785809999999997,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "95e0af8c-ca9a-48bd-9ab3-2fd0246d5a8e",
+      "trial_name": "answer-now__kh5CzXp",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__kh5CzXp/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__kh5CzXp/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 14150,
+        "evidence_payload_bytes": 705,
+        "evidence_token_proxy": 177,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 14150,
+        "sources_outside_hindsight_minimum": 4,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 15750,
+          "output": 2979,
+          "cached_input": 2816,
+          "total": null
+        },
+        "evidence": {
+          "credits": 14150,
+          "payload_bytes": 705,
+          "token_proxy": 177,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 16,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0019066096,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "4abcea2d-0d22-4442-a2f4-94fc7b18c7cf",
+      "trial_name": "complementary-evidence__CUmfxWv",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "agent",
+      "failure_detail": "AgentTimeoutError: Agent execution timed out after 120.0 seconds",
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__CUmfxWv/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__CUmfxWv/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 0,
+        "task_success": 0,
+        "correctness": 0,
+        "evidence_sufficient": 0,
+        "cost_score": 0.886364,
+        "observed_evidence_cost": 1000,
+        "evidence_payload_bytes": 269,
+        "evidence_token_proxy": 68,
+        "sources_opened": 2,
+        "agent_requests": 3,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 0,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 3720,
+          "output": 499,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 1000,
+          "payload_bytes": 269,
+          "token_proxy": 68,
+          "source_sequence": [
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 4,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 6,
+          "mark_task_complete_calls": 0,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0006592799999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "28e1d60c-3690-4586-ba60-83974972e19d",
+      "trial_name": "complementary-evidence__W7BnRMN",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__W7BnRMN/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__W7BnRMN/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 12636,
+          "output": 1460,
+          "cached_input": 64,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0020187942,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5b50d9c4-0f20-4cc9-9d30-4442a76e20be",
+      "trial_name": "complementary-evidence__vjoDD88",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__vjoDD88/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__vjoDD88/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9605,
+          "output": 1316,
+          "cached_input": 2560,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0009985220000000002,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "84f3fbda-a0cf-4b62-b8b7-4c91f27272fa",
+      "trial_name": "deployment-outage__E3tjED6",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__E3tjED6/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__E3tjED6/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9833,
+          "output": 1965,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-a",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0017788475999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "ea489603-81d8-4b05-aafc-a4226fbbbfca",
+      "trial_name": "deployment-outage__g4pdPJW",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "agent",
+      "failure_detail": "AgentTimeoutError: Agent execution timed out after 120.0 seconds",
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__g4pdPJW/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__g4pdPJW/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 0,
+        "task_success": 0,
+        "correctness": 0,
+        "evidence_sufficient": 1,
+        "cost_score": 0.538117,
+        "observed_evidence_cost": 10300,
+        "evidence_payload_bytes": 904,
+        "evidence_token_proxy": 227,
+        "sources_opened": 3,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 8300,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 0,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7707,
+          "output": 1291,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 10300,
+          "payload_bytes": 904,
+          "token_proxy": 227,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 1,
+          "extra_text_warning_lines": 8,
+          "mark_task_complete_calls": 0,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0013219017,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "f99729da-46a4-4652-ab25-7fa432c734b8",
+      "trial_name": "deployment-outage__YtG4wjS",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__YtG4wjS/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__YtG4wjS/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 1,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 11626,
+          "output": 1697,
+          "cached_input": 3072,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0012311152,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "2272cca9-3637-4ce3-9bf4-f2127c7673b4",
+      "trial_name": "insufficient-evidence__mqJETDJ",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "agent",
+      "failure_detail": "AgentTimeoutError: Agent execution timed out after 120.0 seconds",
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__mqJETDJ/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__mqJETDJ/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 0,
+        "task_success": 0,
+        "correctness": 0,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 13100,
+        "evidence_payload_bytes": 696,
+        "evidence_token_proxy": 175,
+        "sources_opened": 4,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 9000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 0,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 3638,
+          "output": 641,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 13100,
+          "payload_bytes": 696,
+          "token_proxy": 175,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 4,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 0,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00063168,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "6b18f832-6234-4325-b4cb-d1bd60e645f1",
+      "trial_name": "insufficient-evidence__SrSrkPh",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__SrSrkPh/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__SrSrkPh/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 13100,
+        "evidence_payload_bytes": 696,
+        "evidence_token_proxy": 175,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 9000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 13601,
+          "output": 1727,
+          "cached_input": 5248,
+          "total": null
+        },
+        "evidence": {
+          "credits": 13100,
+          "payload_bytes": 696,
+          "token_proxy": 175,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0014904050000000002,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "ceb72766-cb0e-4325-ac1c-42ccb08db1bc",
+      "trial_name": "insufficient-evidence__ScoQwhN",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "infrastructure-error",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "verifier",
+      "failure_detail": "DownloadVerifierDirError: Failed to download verifier directory from environment",
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__ScoQwhN/agent/trajectory.json",
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": 14804,
+          "output": 2577,
+          "cached_input": 2816,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 1,
+          "extra_text_warning_lines": 14,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0017530436,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "7a22457c-4828-4601-a2c9-59a3a36c1f1b",
+      "trial_name": "unreliable-or-conflicting-eviden__nWyvUpC",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__nWyvUpC/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__nWyvUpC/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.489796,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 450,
+        "evidence_token_proxy": 113,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8793,
+          "output": 1349,
+          "cached_input": 2432,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 450,
+          "token_proxy": 113,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0009354491999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "2ac3840a-2730-456f-9e55-e3b0e0ece1fb",
+      "trial_name": "unreliable-or-conflicting-eviden__gxemErK",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__gxemErK/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__gxemErK/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 4900,
+        "evidence_payload_bytes": 607,
+        "evidence_token_proxy": 153,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2700,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 12486,
+          "output": 1355,
+          "cached_input": 3712,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4900,
+          "payload_bytes": 607,
+          "token_proxy": 153,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 14,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.001253328,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "19576c99-37e6-4359-8d60-5f34bc77bbc8",
+      "trial_name": "unreliable-or-conflicting-eviden__KhD6ruY",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__KhD6ruY/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__KhD6ruY/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 4900,
+        "evidence_payload_bytes": 607,
+        "evidence_token_proxy": 153,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2700,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 16842,
+          "output": 1683,
+          "cached_input": 10880,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4900,
+          "payload_bytes": 607,
+          "token_proxy": 153,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 16,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.001097639,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "80b1a7c6-afb6-4bd2-925d-3a56f5011b1c",
+      "trial_name": "answer-now__BWJkv6Q",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__BWJkv6Q/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__BWJkv6Q/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.636042,
+        "observed_evidence_cost": 5150,
+        "evidence_payload_bytes": 510,
+        "evidence_token_proxy": 128,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 5150,
+        "sources_outside_hindsight_minimum": 3,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 13227,
+          "output": 1446,
+          "cached_input": 2560,
+          "total": null
+        },
+        "evidence": {
+          "credits": 5150,
+          "payload_bytes": 510,
+          "token_proxy": 128,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.019804488,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "fe073888-9d79-4df8-ae7c-acec5c7cd23b",
+      "trial_name": "answer-now__2qLjcKr",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__2qLjcKr/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__2qLjcKr/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.742049,
+        "observed_evidence_cost": 3650,
+        "evidence_payload_bytes": 352,
+        "evidence_token_proxy": 88,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 3650,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9434,
+          "output": 2465,
+          "cached_input": 5632,
+          "total": null
+        },
+        "evidence": {
+          "credits": 3650,
+          "payload_bytes": 352,
+          "token_proxy": 88,
+          "source_sequence": [
+            "record-b",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009606191999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "84fcc6d4-8b06-4d78-8f5a-d485fd9abd0e",
+      "trial_name": "answer-now__HhQhVug",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__HhQhVug/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__HhQhVug/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.742049,
+        "observed_evidence_cost": 3650,
+        "evidence_payload_bytes": 352,
+        "evidence_token_proxy": 88,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 3650,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7418,
+          "output": 2738,
+          "cached_input": 5632,
+          "total": null
+        },
+        "evidence": {
+          "credits": 3650,
+          "payload_bytes": 352,
+          "token_proxy": 88,
+          "source_sequence": [
+            "record-b",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0090370496,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "79c8b151-ad5e-4670-a6e6-e15923eca100",
+      "trial_name": "complementary-evidence__PuhNG92",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__PuhNG92/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__PuhNG92/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 13252,
+          "output": 1595,
+          "cached_input": 4608,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 14,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.01756396763,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b1b24dbf-430c-42df-aad0-6812bbbde14a",
+      "trial_name": "complementary-evidence__JQxudEe",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__JQxudEe/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__JQxudEe/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8887,
+          "output": 1590,
+          "cached_input": 3840,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.008498908199999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "54054188-bb2c-4a4e-935b-7ebc8b2160f4",
+      "trial_name": "complementary-evidence__NiQgvE8",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__NiQgvE8/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__NiQgvE8/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9021,
+          "output": 1917,
+          "cached_input": 5248,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.008398284,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "e69629bf-fd49-4171-9aed-479ea30e6a1f",
+      "trial_name": "deployment-outage__fFbR7gR",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__fFbR7gR/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__fFbR7gR/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7063,
+          "output": 1178,
+          "cached_input": 3840,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0046305228,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "044f5800-d149-4c47-900a-8572a67d0461",
+      "trial_name": "deployment-outage__xJQn2qn",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "agent",
+      "failure_detail": "AgentTimeoutError: Agent execution timed out after 120.0 seconds",
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__xJQn2qn/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__xJQn2qn/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7247,
+          "output": 755,
+          "cached_input": 2048,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 1,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00767225,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "3d42797e-7294-46b3-887e-7d0e3e4bfc0c",
+      "trial_name": "deployment-outage__rTKqaCt",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__rTKqaCt/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__rTKqaCt/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7287,
+          "output": 1178,
+          "cached_input": 4864,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.005412444000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "39902a91-cce1-407e-b04a-fa35a93efab2",
+      "trial_name": "insufficient-evidence__o5qbJ3o",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__o5qbJ3o/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__o5qbJ3o/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 12418,
+          "output": 2713,
+          "cached_input": 6656,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.014943318019999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5d447eed-186e-4763-a836-ede5952fae8f",
+      "trial_name": "insufficient-evidence__BhcDdAm",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__BhcDdAm/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__BhcDdAm/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9428,
+          "output": 2248,
+          "cached_input": 6784,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0083898272,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "4c28926f-9ce1-486e-aee5-71d7cabe4696",
+      "trial_name": "insufficient-evidence__8ymz3vT",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__8ymz3vT/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__8ymz3vT/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9352,
+          "output": 1976,
+          "cached_input": 6528,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0079976352,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "4f8cb148-b254-4f93-8860-bdce0ff8b01a",
+      "trial_name": "unreliable-or-conflicting-eviden__WBicjtk",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__WBicjtk/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__WBicjtk/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.489796,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 450,
+        "evidence_token_proxy": 113,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8778,
+          "output": 1635,
+          "cached_input": 6272,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 450,
+          "token_proxy": 113,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00939540257,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "990ba527-1c82-4363-9621-47e38e6167f5",
+      "trial_name": "unreliable-or-conflicting-eviden__7CAAkVw",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__7CAAkVw/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__7CAAkVw/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 4900,
+        "evidence_payload_bytes": 607,
+        "evidence_token_proxy": 153,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2700,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9038,
+          "output": 1690,
+          "cached_input": 7168,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4900,
+          "payload_bytes": 607,
+          "token_proxy": 153,
+          "source_sequence": [
+            "record-d",
+            "record-b",
+            "record-a",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.006104616,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "deea6b3c-1e92-428e-83df-213e6ead5300",
+      "trial_name": "unreliable-or-conflicting-eviden__wZpyq9p",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-pro",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__wZpyq9p/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__wZpyq9p/verifier/details.json",
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-pro",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 4900,
+        "evidence_payload_bytes": 607,
+        "evidence_token_proxy": 153,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2700,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7652,
+          "output": 1828,
+          "cached_input": 5760,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4900,
+          "payload_bytes": 607,
+          "token_proxy": 153,
+          "source_sequence": [
+            "record-d",
+            "record-a",
+            "record-b",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.006293232,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "da3626a6-d22f-47fb-8b7e-280c2fcf65f5",
+      "trial_name": "answer-now__aPWSv4B",
+      "task_name": "answer-now",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__aPWSv4B/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__aPWSv4B/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.862191,
+        "observed_evidence_cost": 1950,
+        "evidence_payload_bytes": 342,
+        "evidence_token_proxy": 86,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 1950,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 10831,
+          "output": 1013,
+          "cached_input": 9255,
+          "total": null
+        },
+        "evidence": {
+          "credits": 1950,
+          "payload_bytes": 342,
+          "token_proxy": 86,
+          "source_sequence": [
+            "record-b",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0022437,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "3fe072ee-cf3c-4e53-b11d-44456f2f47b9",
+      "trial_name": "answer-now__WxxTtNj",
+      "task_name": "answer-now",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__WxxTtNj/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__WxxTtNj/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 14150,
+        "evidence_payload_bytes": 705,
+        "evidence_token_proxy": 177,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 14150,
+        "sources_outside_hindsight_minimum": 4,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 14112,
+          "output": 1307,
+          "cached_input": 11648,
+          "total": null
+        },
+        "evidence": {
+          "credits": 14150,
+          "payload_bytes": 705,
+          "token_proxy": 177,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 7,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.00300648,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "a6d07105-a83b-4935-b794-7b80d7d32827",
+      "trial_name": "answer-now__fyQ2CS9",
+      "task_name": "answer-now",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__fyQ2CS9/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__fyQ2CS9/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.968198,
+        "observed_evidence_cost": 450,
+        "evidence_payload_bytes": 184,
+        "evidence_token_proxy": 46,
+        "sources_opened": 1,
+        "agent_requests": 3,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 450,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8172,
+          "output": 864,
+          "cached_input": 5334,
+          "total": null
+        },
+        "evidence": {
+          "credits": 450,
+          "payload_bytes": 184,
+          "token_proxy": 46,
+          "source_sequence": [
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 3,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00220824,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "46b03352-e86b-4988-a3ff-4befd5a75f1d",
+      "trial_name": "complementary-evidence__RCJZkvB",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__RCJZkvB/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__RCJZkvB/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9736,
+          "output": 1467,
+          "cached_input": 7640,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0028476,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "32632a6f-bf4c-4c3a-90ca-102a8a018a7a",
+      "trial_name": "complementary-evidence__guyVrS4",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__guyVrS4/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__guyVrS4/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 1,
+        "zero_cost_tool_calls": 2,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 18561,
+          "output": 1191,
+          "cached_input": 13952,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 1
+        },
+        "harness": {
+          "episodes": 9,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 8,
+          "non_evidence_shell_calls": 2
+        }
+      },
+      "costs_usd": {
+        "model": 0.0036490199999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "66539295-fe00-4408-9daf-77ed0594963d",
+      "trial_name": "complementary-evidence__a5CMqmi",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__a5CMqmi/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__a5CMqmi/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7805,
+          "output": 945,
+          "cached_input": 5812,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00208062,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "e11ccb6d-f0bd-4ce2-a571-bf851af19d7b",
+      "trial_name": "deployment-outage__Mrr9Pc6",
+      "task_name": "deployment-outage",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__Mrr9Pc6/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__Mrr9Pc6/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 10559,
+          "output": 1455,
+          "cached_input": 6784,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00328554,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "113fb3d2-0fc7-4bda-b2dd-08f74814763a",
+      "trial_name": "deployment-outage__fMr4f37",
+      "task_name": "deployment-outage",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__fMr4f37/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__fMr4f37/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 11709,
+          "output": 1143,
+          "cached_input": 9227,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0026698200000000003,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b7726099-4d12-48cc-935e-09fba01184f8",
+      "trial_name": "deployment-outage__2saxZ4Z",
+      "task_name": "deployment-outage",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__2saxZ4Z/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__2saxZ4Z/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 10198,
+          "output": 921,
+          "cached_input": 7169,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0024440399999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b573ed17-1c21-4a23-8c51-4ba147c900c1",
+      "trial_name": "insufficient-evidence__5PSCfNV",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__5PSCfNV/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__5PSCfNV/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 13100,
+        "evidence_payload_bytes": 696,
+        "evidence_token_proxy": 175,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 9000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 17212,
+          "output": 1349,
+          "cached_input": 13229,
+          "total": null
+        },
+        "evidence": {
+          "credits": 13100,
+          "payload_bytes": 696,
+          "token_proxy": 175,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 7,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 7,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.00360744,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5f1cab7e-7ac3-4a8a-a1eb-6850f67a9e17",
+      "trial_name": "insufficient-evidence__gn5UAJu",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "task",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__gn5UAJu/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__gn5UAJu/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 0,
+        "task_success": 0,
+        "correctness": 0,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 13100,
+        "evidence_payload_bytes": 696,
+        "evidence_token_proxy": 175,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 9000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 17793,
+          "output": 1883,
+          "cached_input": 16036,
+          "total": null
+        },
+        "evidence": {
+          "credits": 13100,
+          "payload_bytes": 696,
+          "token_proxy": 175,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 8,
+          "non_evidence_shell_calls": 2
+        }
+      },
+      "costs_usd": {
+        "model": 0.0037488599999999997,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "d2b97fc6-d6ef-4370-bc80-6dc536e0dd99",
+      "trial_name": "insufficient-evidence__kFiSSYa",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__kFiSSYa/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__kFiSSYa/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 13100,
+        "evidence_payload_bytes": 696,
+        "evidence_token_proxy": 175,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 9000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 15647,
+          "output": 1152,
+          "cached_input": 11732,
+          "total": null
+        },
+        "evidence": {
+          "credits": 13100,
+          "payload_bytes": 696,
+          "token_proxy": 175,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00326082,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b780464e-2009-4c7a-b158-fc7a9f2060ba",
+      "trial_name": "unreliable-or-conflicting-eviden__HxGgVSc",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__HxGgVSc/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__HxGgVSc/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.489796,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 450,
+        "evidence_token_proxy": 113,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 13381,
+          "output": 1103,
+          "cached_input": 12123,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 450,
+          "token_proxy": 113,
+          "source_sequence": [
+            "record-d",
+            "record-a",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0024283800000000004,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "83935633-5e3f-4263-b0a3-8fab350ed9a2",
+      "trial_name": "unreliable-or-conflicting-eviden__5mmmxND",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__5mmmxND/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__5mmmxND/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 4900,
+        "evidence_payload_bytes": 607,
+        "evidence_token_proxy": 153,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2700,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 18244,
+          "output": 1330,
+          "cached_input": 15488,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4900,
+          "payload_bytes": 607,
+          "token_proxy": 153,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 9,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 6,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 8,
+          "non_evidence_shell_calls": 1
+        }
+      },
+      "costs_usd": {
+        "model": 0.0033520799999999995,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "832fac8e-5966-41bc-8614-c22c5ed32d11",
+      "trial_name": "unreliable-or-conflicting-eviden__2VGyfex",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/minimax/minimax-m3",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__2VGyfex/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__2VGyfex/verifier/details.json",
+      "provider_route": {
+        "name": "minimax/minimax-m3",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.489796,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 450,
+        "evidence_token_proxy": 113,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 13164,
+          "output": 1158,
+          "cached_input": 11123,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 450,
+          "token_proxy": 113,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 7,
+          "non_evidence_shell_calls": 2
+        }
+      },
+      "costs_usd": {
+        "model": 0.00266928,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "08033c63-669b-43d7-9dc6-0c69e6c48df9",
+      "trial_name": "answer-now__e8PNvPX",
+      "task_name": "answer-now",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__e8PNvPX/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__e8PNvPX/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.0,
+        "observed_evidence_cost": 14150,
+        "evidence_payload_bytes": 705,
+        "evidence_token_proxy": 177,
+        "sources_opened": 4,
+        "agent_requests": 6,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 14150,
+        "sources_outside_hindsight_minimum": 4,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 12488,
+          "output": 1387,
+          "cached_input": 6400,
+          "total": null
+        },
+        "evidence": {
+          "credits": 14150,
+          "payload_bytes": 705,
+          "token_proxy": 177,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.012793350000000002,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "d2c0066c-e2d5-4d02-b832-020a416ba2ad",
+      "trial_name": "answer-now__eZk5HqM",
+      "task_name": "answer-now",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__eZk5HqM/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__eZk5HqM/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.332155,
+        "observed_evidence_cost": 9450,
+        "evidence_payload_bytes": 379,
+        "evidence_token_proxy": 95,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 9450,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7823,
+          "output": 875,
+          "cached_input": 2560,
+          "total": null
+        },
+        "evidence": {
+          "credits": 9450,
+          "payload_bytes": 379,
+          "token_proxy": 95,
+          "source_sequence": [
+            "record-b",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009241949999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "523d76ff-8630-48b3-b2da-cac6a94ae1d3",
+      "trial_name": "answer-now__STnNssW",
+      "task_name": "answer-now",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__STnNssW/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__STnNssW/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.636042,
+        "observed_evidence_cost": 5150,
+        "evidence_payload_bytes": 510,
+        "evidence_token_proxy": 128,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 5150,
+        "sources_outside_hindsight_minimum": 3,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 12171,
+          "output": 1001,
+          "cached_input": 7296,
+          "total": null
+        },
+        "evidence": {
+          "credits": 5150,
+          "payload_bytes": 510,
+          "token_proxy": 128,
+          "source_sequence": [
+            "record-b",
+            "record-c",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 8,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 7,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.010169369999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "13591e64-24c4-4658-bb19-469f834095c3",
+      "trial_name": "complementary-evidence__QsFbJ2U",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__QsFbJ2U/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__QsFbJ2U/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.034091,
+        "observed_evidence_cost": 8500,
+        "evidence_payload_bytes": 421,
+        "evidence_token_proxy": 106,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 6000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9890,
+          "output": 978,
+          "cached_input": 4736,
+          "total": null
+        },
+        "evidence": {
+          "credits": 8500,
+          "payload_bytes": 421,
+          "token_proxy": 106,
+          "source_sequence": [
+            "record-c",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009920019999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "f31b5af6-2e69-4da6-9a12-67a9809a42d0",
+      "trial_name": "complementary-evidence__WRAcp6q",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__WRAcp6q/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__WRAcp6q/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8176,
+          "output": 645,
+          "cached_input": 2048,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 4,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00908841,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "0d5ef8d9-42f7-441b-89a9-6557be344845",
+      "trial_name": "complementary-evidence__X4AKeVm",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__X4AKeVm/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__X4AKeVm/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.034091,
+        "observed_evidence_cost": 8500,
+        "evidence_payload_bytes": 421,
+        "evidence_token_proxy": 106,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 6000,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8430,
+          "output": 921,
+          "cached_input": 2048,
+          "total": null
+        },
+        "evidence": {
+          "credits": 8500,
+          "payload_bytes": 421,
+          "token_proxy": 106,
+          "source_sequence": [
+            "record-c",
+            "record-b",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.010460210000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "466e07d3-9cef-4db8-8b33-3353ebbf8d77",
+      "trial_name": "deployment-outage__MeXpdRG",
+      "task_name": "deployment-outage",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__MeXpdRG/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__MeXpdRG/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 6744,
+          "output": 727,
+          "cached_input": 3072,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.007138589999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "9aeef91e-1dda-4118-87fe-c4ead67c6435",
+      "trial_name": "deployment-outage__ZUPeSjG",
+      "task_name": "deployment-outage",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__ZUPeSjG/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__ZUPeSjG/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8146,
+          "output": 1029,
+          "cached_input": 3328,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009551210000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "6b329a04-779b-42c7-b812-47776a7cf2fa",
+      "trial_name": "deployment-outage__9XBe6nF",
+      "task_name": "deployment-outage",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__9XBe6nF/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__9XBe6nF/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8457,
+          "output": 618,
+          "cached_input": 2816,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 4,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00862262,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "82b3d112-7229-4d87-8b8a-c746a706c1c5",
+      "trial_name": "insufficient-evidence__XTJXUG8",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "task",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__XTJXUG8/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__XTJXUG8/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 0,
+        "task_success": 0,
+        "correctness": 1,
+        "evidence_sufficient": 0,
+        "cost_score": 0.854962,
+        "observed_evidence_cost": 1900,
+        "evidence_payload_bytes": 361,
+        "evidence_token_proxy": 91,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8371,
+          "output": 1040,
+          "cached_input": 4096,
+          "total": null
+        },
+        "evidence": {
+          "credits": 1900,
+          "payload_bytes": 361,
+          "token_proxy": 91,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009183319999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b5d1ef9a-edaf-40a8-9a75-0475c0c92090",
+      "trial_name": "insufficient-evidence__k8aPwhV",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__k8aPwhV/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__k8aPwhV/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8832,
+          "output": 1031,
+          "cached_input": 2304,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.011095230000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "d0b08189-3f2a-41cf-beb2-77927abc509a",
+      "trial_name": "insufficient-evidence__7SihyYu",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__7SihyYu/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__7SihyYu/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 10699,
+          "output": 871,
+          "cached_input": 3968,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 5,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.01093311,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "70d86f6b-d2a6-4d61-ac25-16dacde71128",
+      "trial_name": "unreliable-or-conflicting-eviden__6HwG3Bp",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__6HwG3Bp/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__6HwG3Bp/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.061224,
+        "observed_evidence_cost": 4600,
+        "evidence_payload_bytes": 437,
+        "evidence_token_proxy": 110,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 2400,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9917,
+          "output": 739,
+          "cached_input": 5376,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4600,
+          "payload_bytes": 437,
+          "token_proxy": 110,
+          "source_sequence": [
+            "record-b",
+            "record-d",
+            "record-c"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 5,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.008447870000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "acb333d6-dd39-4d9e-99e2-508e2ec3f732",
+      "trial_name": "unreliable-or-conflicting-eviden__Ckwyoxb",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__Ckwyoxb/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__Ckwyoxb/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.55102,
+        "observed_evidence_cost": 2200,
+        "evidence_payload_bytes": 280,
+        "evidence_token_proxy": 70,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 6174,
+          "output": 1048,
+          "cached_input": 2688,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2200,
+          "payload_bytes": 280,
+          "token_proxy": 70,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 2,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.008187360000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "e32c6041-7842-4489-8a0c-60bdbd0c6b28",
+      "trial_name": "unreliable-or-conflicting-eviden__FiDrQDL",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/thinkingmachines/inkling",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__FiDrQDL/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__FiDrQDL/verifier/details.json",
+      "provider_route": {
+        "name": "thinkingmachines/inkling",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.55102,
+        "observed_evidence_cost": 2200,
+        "evidence_payload_bytes": 280,
+        "evidence_token_proxy": 70,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7678,
+          "output": 666,
+          "cached_input": 2432,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2200,
+          "payload_bytes": 280,
+          "token_proxy": 70,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 4,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00835674,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "43125121-c1c8-4b62-a875-2cefa2a4fc0a",
+      "trial_name": "answer-now__Kxnbqji",
+      "task_name": "answer-now",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__Kxnbqji/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__Kxnbqji/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.968198,
+        "observed_evidence_cost": 450,
+        "evidence_payload_bytes": 184,
+        "evidence_token_proxy": 46,
+        "sources_opened": 1,
+        "agent_requests": 3,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 450,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 5105,
+          "output": 1343,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 450,
+          "payload_bytes": 184,
+          "token_proxy": 46,
+          "source_sequence": [
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 4,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 3,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.010189330000000002,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "25069f91-b19f-44d9-b623-200d83f78281",
+      "trial_name": "answer-now__Kj9dHJi",
+      "task_name": "answer-now",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__Kj9dHJi/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__Kj9dHJi/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.968198,
+        "observed_evidence_cost": 450,
+        "evidence_payload_bytes": 184,
+        "evidence_token_proxy": 46,
+        "sources_opened": 1,
+        "agent_requests": 3,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 450,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7833,
+          "output": 2639,
+          "cached_input": 768,
+          "total": null
+        },
+        "evidence": {
+          "credits": 450,
+          "payload_bytes": 184,
+          "token_proxy": 46,
+          "source_sequence": [
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 3,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.01876036,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5d52f48b-4138-43d8-96cf-917da1b9a291",
+      "trial_name": "answer-now__Z4Mvr7Q",
+      "task_name": "answer-now",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__Z4Mvr7Q/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/answer-now__Z4Mvr7Q/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.332155,
+        "observed_evidence_cost": 9450,
+        "evidence_payload_bytes": 379,
+        "evidence_token_proxy": 95,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 9450,
+        "sources_outside_hindsight_minimum": 2,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7117,
+          "output": 2083,
+          "cached_input": 5508,
+          "total": null
+        },
+        "evidence": {
+          "credits": 9450,
+          "payload_bytes": 379,
+          "token_proxy": 95,
+          "source_sequence": [
+            "record-b",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.010824922,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "6e0cfa31-1c6a-41bd-ad5d-5528f840665a",
+      "trial_name": "complementary-evidence__BCzKfLE",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__BCzKfLE/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__BCzKfLE/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 6822,
+          "output": 858,
+          "cached_input": 2304,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009770428000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "ae759603-6ba7-4ce8-823a-aa84affd7d78",
+      "trial_name": "complementary-evidence__FmeEVpk",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__FmeEVpk/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__FmeEVpk/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 8930,
+          "output": 1053,
+          "cached_input": 7360,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.008744799999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "bdde055a-e3b7-440f-852b-3e71f2b8f391",
+      "trial_name": "complementary-evidence__r8EGFB2",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__r8EGFB2/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/complementary-evidence__r8EGFB2/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.681818,
+        "observed_evidence_cost": 2800,
+        "evidence_payload_bytes": 401,
+        "evidence_token_proxy": 101,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9155,
+          "output": 1218,
+          "cached_input": 8248,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2800,
+          "payload_bytes": 401,
+          "token_proxy": 101,
+          "source_sequence": [
+            "record-a",
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.00495262946,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5dbcd3b7-c6e7-4b46-98f1-b7e0bd6cfad9",
+      "trial_name": "deployment-outage__XQoGtus",
+      "task_name": "deployment-outage",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__XQoGtus/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__XQoGtus/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7123,
+          "output": 931,
+          "cached_input": 5632,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0043594284,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "ddad122c-da6c-41f7-968d-e16c2c244dc1",
+      "trial_name": "deployment-outage__wWAHjBu",
+      "task_name": "deployment-outage",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__wWAHjBu/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__wWAHjBu/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7307,
+          "output": 957,
+          "cached_input": 5800,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0052507032,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "8c17bd79-e778-41f8-8b29-ae75e712c122",
+      "trial_name": "deployment-outage__5X3oQYi",
+      "task_name": "deployment-outage",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__5X3oQYi/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/deployment-outage__5X3oQYi/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.896861,
+        "observed_evidence_cost": 2300,
+        "evidence_payload_bytes": 561,
+        "evidence_token_proxy": 141,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 300,
+        "sources_outside_hindsight_minimum": 1,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 7183,
+          "output": 899,
+          "cached_input": 2688,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2300,
+          "payload_bytes": 561,
+          "token_proxy": 141,
+          "source_sequence": [
+            "record-c",
+            "record-a"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.010230078,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b74ed3e8-53ce-4759-928f-bfcd3fbc0bfb",
+      "trial_name": "insufficient-evidence__aWaPNkL",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "fail",
+      "failure_origin": "agent",
+      "failure_detail": "AgentTimeoutError: Agent execution timed out after 120.0 seconds",
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__aWaPNkL/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__aWaPNkL/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9425,
+          "output": 3276,
+          "cached_input": 1792,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 1,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0145639052,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "90ff09c1-26d5-400d-9afa-60382ea175a7",
+      "trial_name": "insufficient-evidence__kCMX6kz",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__kCMX6kz/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__kCMX6kz/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 11858,
+          "output": 1676,
+          "cached_input": 7360,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0155852,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "f4876bea-0914-427e-97a5-f9826113db64",
+      "trial_name": "insufficient-evidence__hC24ejm",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__hC24ejm/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/insufficient-evidence__hC24ejm/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 5,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 9877,
+          "output": 1570,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.017966285999999998,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "0050dfdd-09d2-4a34-a3a1-de8c2c09a3a6",
+      "trial_name": "unreliable-or-conflicting-eviden__p3NVrxc",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__p3NVrxc/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__p3NVrxc/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.55102,
+        "observed_evidence_cost": 2200,
+        "evidence_payload_bytes": 280,
+        "evidence_token_proxy": 70,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 6985,
+          "output": 1059,
+          "cached_input": 5079,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2200,
+          "payload_bytes": 280,
+          "token_proxy": 70,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.008039059999999999,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "c695081e-a915-4777-a1d5-515a5966319f",
+      "trial_name": "unreliable-or-conflicting-eviden__Rm5EEm4",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 2,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__Rm5EEm4/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__Rm5EEm4/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.55102,
+        "observed_evidence_cost": 2200,
+        "evidence_payload_bytes": 280,
+        "evidence_token_proxy": 70,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 6658,
+          "output": 883,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2200,
+          "payload_bytes": 280,
+          "token_proxy": 70,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.009805802,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "4ce8adcd-f69a-4346-ba78-fd18fe06eb23",
+      "trial_name": "unreliable-or-conflicting-eviden__F9a76mV",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 3,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__F9a76mV/agent/trajectory.json",
+      "verifier_details_path": "jobs/context-appetite-v0.2.1-model-pilot-3x-001/unreliable-or-conflicting-eviden__F9a76mV/verifier/details.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.55102,
+        "observed_evidence_cost": 2200,
+        "evidence_payload_bytes": 280,
+        "evidence_token_proxy": 70,
+        "sources_opened": 2,
+        "agent_requests": 4,
+        "list_calls": 1,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 1,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": 6880,
+          "output": 1865,
+          "cached_input": 4672,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2200,
+          "payload_bytes": 280,
+          "token_proxy": 70,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 1,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0080179698,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

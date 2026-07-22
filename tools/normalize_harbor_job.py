@@ -133,6 +133,52 @@ def known_cost(value: object) -> float | None:
     return float(value)
 
 
+def known_int(value: object) -> int | None:
+    if isinstance(value, bool) or not isinstance(value, int):
+        return None
+    return value
+
+
+def harness_telemetry(trial_dir: Path, agent_result: dict[str, Any]) -> dict[str, Any]:
+    trajectory = optional_json(trial_dir / "agent" / "trajectory.json")
+    mark_task_complete_calls = 0
+    bash_command_calls = 0
+    non_evidence_shell_calls = 0
+    for step in trajectory.get("steps", []):
+        if not isinstance(step, dict):
+            continue
+        for call in step.get("tool_calls") or []:
+            if not isinstance(call, dict):
+                continue
+            function_name = call.get("function_name")
+            if function_name == "mark_task_complete":
+                mark_task_complete_calls += 1
+            if function_name != "bash_command":
+                continue
+            bash_command_calls += 1
+            arguments = call.get("arguments") or {}
+            command = (
+                arguments.get("keystrokes", "") if isinstance(arguments, dict) else ""
+            )
+            if not isinstance(command, str) or not command.strip().startswith(
+                "evidence "
+            ):
+                non_evidence_shell_calls += 1
+
+    trial_log_path = trial_dir / "trial.log"
+    trial_log = trial_log_path.read_text() if trial_log_path.is_file() else ""
+    metadata = agent_result.get("metadata") or {}
+    return {
+        "episodes": known_int(metadata.get("n_episodes")),
+        "summarizations": known_int(metadata.get("summarization_count")),
+        "invalid_json_turns": trial_log.count("No valid JSON object found"),
+        "extra_text_warning_lines": trial_log.count("Extra text detected"),
+        "mark_task_complete_calls": mark_task_complete_calls,
+        "bash_command_calls": bash_command_calls,
+        "non_evidence_shell_calls": non_evidence_shell_calls,
+    }
+
+
 def build_trial(
     result_path: Path,
     *,
@@ -186,6 +232,7 @@ def build_trial(
                 "list_calls": rewards.get("list_calls"),
                 "status_calls": rewards.get("status_calls"),
             },
+            "harness": harness_telemetry(trial_dir, agent_result),
         },
         "costs_usd": {
             "model": model_cost,
