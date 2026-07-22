@@ -97,13 +97,16 @@ export default function Home() {
                 </p>
                 <a
                   aria-label="Made by gustofied"
-                  className="group mt-5 inline-flex items-center border-t border-line pt-3"
+                  className="group mt-5 inline-flex cursor-pointer items-center border-t border-line pt-3 outline-none"
                   href="https://x.com/gustofied"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span className="font-signature text-[18px] leading-none text-marker group-hover:underline">
-                    made by @gustofied
+                  <span className="font-signature text-[18px] leading-none text-marker">
+                    made by{" "}
+                    <span className="underline decoration-marker/70 underline-offset-4 group-hover:decoration-2 group-focus-visible:decoration-2">
+                      @gustofied
+                    </span>
                   </span>
                 </a>
               </div>
