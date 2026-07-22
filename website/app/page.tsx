@@ -82,7 +82,7 @@ export default function Home() {
               >
                 <span className="sr-only">{benchmark.name}</span>
                 <img
-                  className="block h-auto w-full max-w-[760px] -translate-y-[11%] object-contain object-left"
+                  className="block h-auto w-full max-w-[760px] -translate-y-[14%] object-contain object-left"
                   src="/instinct-bench-wordmark.png?v=3"
                   alt=""
                   width="1419"
