@@ -1,24 +1,22 @@
 import { ArrowUpRight } from "lucide-react";
 
+import { DomainDrawer } from "@/components/domain-drawer";
 import { Reveal } from "@/components/reveal";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { benchmark } from "@/lib/benchmark";
 import { cn } from "@/lib/utils";
 
-const mobileCell =
-  "max-md:grid max-md:w-full max-md:grid-cols-[90px_minmax(0,1fr)] max-md:items-baseline max-md:border-0 max-md:px-0 max-md:py-1.5 max-md:before:font-mono max-md:before:text-[9px] max-md:before:text-muted max-md:before:uppercase max-md:before:content-[attr(data-label)]";
-
-const taskCount = benchmark.evaluations.reduce(
-  (total, evaluation) => total + evaluation.tasks,
+const domains = benchmark.suites.flatMap((suite) => suite.domains);
+const trajectories = domains.flatMap((domain) => domain.trajectories);
+const taskCount = domains.reduce(
+  (total, domain) =>
+    total + domain.taskSets.reduce((domainTotal, taskSet) => domainTotal + taskSet.tasks, 0),
   0,
+);
+const averageScore =
+  trajectories.reduce((total, trajectory) => total + trajectory.reward, 0) /
+  trajectories.length;
+const bestRun = trajectories.reduce((best, trajectory) =>
+  trajectory.reward > best.reward ? trajectory : best,
 );
 
 function SectionHeading({
@@ -38,26 +36,6 @@ function SectionHeading({
       </div>
       <span className="font-mono text-[9px] text-muted uppercase">{count}</span>
     </div>
-  );
-}
-
-function Status({ value }: { value: string }) {
-  const color =
-    value === "pass"
-      ? "bg-ink"
-      : value === "review"
-        ? "bg-registration-yellow"
-        : value === "fail"
-          ? "bg-marker"
-          : value === "shaping"
-            ? "bg-marker"
-            : "border border-marker bg-transparent";
-
-  return (
-    <span className="inline-flex items-center gap-2 font-mono text-[9px] uppercase">
-      <span className={cn("size-1.5 shrink-0", color)} aria-hidden="true" />
-      {value}
-    </span>
   );
 }
 
@@ -86,19 +64,16 @@ export default function Home() {
 
             <nav
               className="flex items-center justify-center gap-6 text-[12px] max-md:gap-4"
-              aria-label="Page sections"
+              aria-label="Benchmark suites"
             >
-              <a className="text-muted hover:text-ink hover:underline" href="#evals">
-                evals
+              <a className="text-muted hover:text-ink hover:underline" href="#instinct-bench">
+                instinct-bench
               </a>
               <a
                 className="text-muted hover:text-ink hover:underline"
-                href="#trajectories"
+                href="#instinct-bench-live"
               >
-                trajectories
-              </a>
-              <a className="text-muted hover:text-ink hover:underline" href="#artifacts">
-                artifacts
+                instinct-bench-live
               </a>
             </nav>
 
@@ -154,11 +129,18 @@ export default function Home() {
 
             <div className="grid grid-cols-4 border-y border-line max-sm:grid-cols-2">
               {[
-                ["evals", benchmark.evaluations.length.toString().padStart(2, "0")],
-                ["tasks", taskCount.toString().padStart(2, "0")],
-                ["runs", benchmark.trajectories.length.toString().padStart(2, "0")],
-                ["files", benchmark.artifacts.length.toString().padStart(2, "0")],
-              ].map(([label, value], index) => (
+                {
+                  label: "domains",
+                  value: domains.length.toString().padStart(2, "0"),
+                },
+                { label: "tasks", value: taskCount.toString().padStart(2, "0") },
+                { label: "avg score", value: averageScore.toFixed(2) },
+                {
+                  label: "best model",
+                  value: bestRun.model,
+                  score: bestRun.reward.toFixed(2),
+                },
+              ].map(({ label, score, value }, index) => (
                 <div
                   className={cn(
                     "flex min-h-14 items-center justify-between gap-4 px-4",
@@ -169,196 +151,53 @@ export default function Home() {
                   key={label}
                 >
                   <span className="font-mono text-[9px] text-muted uppercase">{label}</span>
-                  <strong className="font-mono text-base font-medium">{value}</strong>
+                  <span className="flex min-w-0 items-baseline justify-end gap-1.5">
+                    <strong
+                      className={cn(
+                        "font-mono font-medium",
+                        label === "best model" ? "truncate text-[10px]" : "text-base",
+                      )}
+                    >
+                      {value}
+                    </strong>
+                    {score ? (
+                      <span className="shrink-0 font-mono text-[9px] text-marker">
+                        / {score}
+                      </span>
+                    ) : null}
+                  </span>
                 </div>
               ))}
             </div>
           </section>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <section
-            className="scroll-mt-6 pt-10"
-            id="evals"
-            aria-labelledby="evals-title"
-          >
-            <SectionHeading
-              count={`${benchmark.evaluations.length.toString().padStart(2, "0")} evals / ${taskCount} tasks`}
-              description="Judgments expressed as repeatable tasks."
-              title="Eval index"
-            />
-            <Card>
-              <CardContent className="p-0">
-                <Table className="table-fixed max-md:block">
-                  <TableHeader className="max-md:sr-only">
-                    <TableRow className="border-line hover:bg-transparent">
-                      <TableHead className="w-[23%]">Eval</TableHead>
-                      <TableHead className="w-[32%]">Judgment</TableHead>
-                      <TableHead className="w-[18%]">Material</TableHead>
-                      <TableHead className="w-[9%]">Tasks</TableHead>
-                      <TableHead className="w-[18%]">Verifier / stage</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody className="max-md:block">
-                    {benchmark.evaluations.map((evaluation, index) => (
-                      <TableRow
-                        className="h-[70px] border-line hover:bg-faint max-md:block max-md:h-auto max-md:px-4 max-md:py-3"
-                        key={evaluation.name}
-                      >
-                        <TableCell className={cn("w-[23%]", mobileCell)} data-label="Eval">
-                          <span className="flex items-baseline">
-                            <span className="w-[30px] shrink-0 font-mono text-[9px] text-marker">
-                              {(index + 1).toString().padStart(2, "0")}
-                            </span>
-                            <strong className="font-medium">{evaluation.name}</strong>
-                          </span>
-                        </TableCell>
-                        <TableCell className={cn("w-[32%] text-copy", mobileCell)} data-label="Judgment">
-                          {evaluation.judgment}
-                        </TableCell>
-                        <TableCell className={cn("w-[18%] text-copy", mobileCell)} data-label="Material">
-                          {evaluation.material}
-                        </TableCell>
-                        <TableCell className={cn("w-[9%] font-mono", mobileCell)} data-label="Tasks">
-                          {evaluation.tasks.toString().padStart(2, "0")}
-                        </TableCell>
-                        <TableCell className={cn("w-[18%]", mobileCell)} data-label="Verifier">
-                          <span className="flex flex-col items-start gap-1.5">
-                            <span className="text-[12px] text-copy">{evaluation.verifier}</span>
-                            <Status value={evaluation.stage} />
-                          </span>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </section>
-        </Reveal>
-
-        <Reveal delay={0.12}>
-          <section
-            className="scroll-mt-6 pt-10"
-            id="trajectories"
-            aria-labelledby="trajectories-title"
-          >
-            <SectionHeading
-              count={`${benchmark.trajectories.length.toString().padStart(2, "0")} mock runs`}
-              description="Attempts, costs, and outputs."
-              title="Trajectories"
-            />
-            <Card>
-              <CardContent className="p-0">
-                <Table className="table-fixed max-md:block">
-                  <TableHeader className="max-md:sr-only">
-                    <TableRow className="border-line hover:bg-transparent">
-                      <TableHead className="w-[25%]">Task / run</TableHead>
-                      <TableHead className="w-[25%]">Model / harness</TableHead>
-                      <TableHead className="w-[14%]">Variant</TableHead>
-                      <TableHead className="w-[12%]">Result</TableHead>
-                      <TableHead className="w-[8%]">Reward</TableHead>
-                      <TableHead className="w-[8%]">Steps</TableHead>
-                      <TableHead className="w-[8%]">Cost</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody className="max-md:block">
-                    {benchmark.trajectories.map((trajectory) => (
-                      <TableRow
-                        className="h-[68px] border-line hover:bg-faint max-md:block max-md:h-auto max-md:px-4 max-md:py-3"
-                        key={trajectory.id}
-                      >
-                        <TableCell className={cn("w-[25%]", mobileCell)} data-label="Task">
-                          <span className="flex flex-col gap-1">
-                            <strong className="font-medium">{trajectory.task}</strong>
-                            <span className="font-mono text-[9px] text-muted uppercase">
-                              {trajectory.id} / {trajectory.artifacts} files
-                            </span>
-                          </span>
-                        </TableCell>
-                        <TableCell className={cn("w-[25%]", mobileCell)} data-label="Agent">
-                          <span className="flex flex-col gap-1">
-                            <span>{trajectory.model}</span>
-                            <span className="font-mono text-[9px] text-muted uppercase">{trajectory.harness}</span>
-                          </span>
-                        </TableCell>
-                        <TableCell className={cn("w-[14%] text-copy", mobileCell)} data-label="Variant">
-                          {trajectory.variant}
-                        </TableCell>
-                        <TableCell className={cn("w-[12%]", mobileCell)} data-label="Result">
-                          <Status value={trajectory.result} />
-                        </TableCell>
-                        <TableCell className={cn("w-[8%] font-mono", mobileCell)} data-label="Reward">
-                          {trajectory.reward.toFixed(2)}
-                        </TableCell>
-                        <TableCell className={cn("w-[8%] font-mono", mobileCell)} data-label="Steps">
-                          {trajectory.steps.toString().padStart(2, "0")}
-                        </TableCell>
-                        <TableCell className={cn("w-[8%] font-mono", mobileCell)} data-label="Cost">
-                          {trajectory.cost}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </section>
-        </Reveal>
-
-        <Reveal delay={0.16}>
-          <section
-            className="scroll-mt-6 pt-10"
-            id="artifacts"
-            aria-labelledby="artifacts-title"
-          >
-            <SectionHeading
-              count={`${benchmark.artifacts.length.toString().padStart(2, "0")} mock files`}
-              description="Task, trace, verifier, and submitted output."
-              title="Artifacts"
-            />
-            <Card>
-              <CardContent className="p-0">
-                <Table className="table-fixed max-md:block">
-                  <TableHeader className="max-md:sr-only">
-                    <TableRow className="border-line hover:bg-transparent">
-                      <TableHead className="w-[28%]">File</TableHead>
-                      <TableHead className="w-[34%]">Role</TableHead>
-                      <TableHead className="w-[25%]">Source</TableHead>
-                      <TableHead className="w-[13%]">Size</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody className="max-md:block">
-                    {benchmark.artifacts.map((artifact, index) => (
-                      <TableRow
-                        className="h-[58px] border-line hover:bg-faint max-md:block max-md:h-auto max-md:px-4 max-md:py-3"
-                        key={artifact.name}
-                      >
-                        <TableCell className={cn("w-[28%]", mobileCell)} data-label="File">
-                          <span className="flex items-baseline">
-                            <span className="w-[30px] shrink-0 font-mono text-[9px] text-marker">
-                              {(index + 1).toString().padStart(2, "0")}
-                            </span>
-                            <strong className="font-mono text-[12px] font-medium">{artifact.name}</strong>
-                          </span>
-                        </TableCell>
-                        <TableCell className={cn("w-[34%] text-copy", mobileCell)} data-label="Role">
-                          {artifact.role}
-                        </TableCell>
-                        <TableCell className={cn("w-[25%] font-mono text-[11px]", mobileCell)} data-label="Source">
-                          {artifact.source}
-                        </TableCell>
-                        <TableCell className={cn("w-[13%] font-mono", mobileCell)} data-label="Size">
-                          {artifact.size}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </section>
-        </Reveal>
+        {benchmark.suites.map((suite, suiteIndex) => (
+          <Reveal delay={0.08 + suiteIndex * 0.04} key={suite.slug}>
+            <section
+              className="scroll-mt-6 pt-10"
+              id={suite.slug}
+              aria-labelledby={`${suite.slug}-title`}
+            >
+              <SectionHeading
+                count={`${suite.domains.length.toString().padStart(2, "0")} ${suite.domains.length === 1 ? "domain" : "domains"}`}
+                description={suite.description}
+                title={suite.name}
+              />
+              <div className="border border-line">
+                {suite.domains.map((domain) => (
+                  <DomainDrawer
+                    available={domain.name === "context-appetite"}
+                    defaultOpen={domain.name === "context-appetite"}
+                    domain={domain}
+                    key={domain.name}
+                    live={suite.slug === "instinct-bench-live"}
+                  />
+                ))}
+              </div>
+            </section>
+          </Reveal>
+        ))}
 
         <Reveal delay={0.2}>
           <footer className="mt-10 flex items-center justify-between gap-8 border-t border-line py-5 max-md:flex-col max-md:items-start">
