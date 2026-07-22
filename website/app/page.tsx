@@ -112,7 +112,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 border-y border-line sm:grid-cols-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4">
               {[
                 {
                   label: "domains",
@@ -124,7 +124,10 @@ export default function Home() {
                 },
               ].map(({ label, value }, index) => (
                 <div
-                  className={cn("flex min-h-14 items-center justify-between gap-4 px-4", index > 0 && "border-l border-line")}
+                  className={cn(
+                    "flex min-h-14 items-center justify-between gap-4 border-y border-line px-4",
+                    index > 0 && "border-l",
+                  )}
                   key={label}
                 >
                   <span className="font-mono text-[9px] text-muted uppercase">{label}</span>
@@ -132,38 +135,14 @@ export default function Home() {
                 </div>
               ))}
 
-              <div className="border-t border-line sm:border-t-0 sm:border-l">
-                {[
-                  {
-                    label: "avg score",
-                    value: benchmarkSummary.averageScore?.toFixed(2) ?? "—",
-                  },
-                  {
-                    label: "$ / task",
-                    value: benchmarkSummary.bestRun?.cost ?? "—",
-                  },
-                ].map(({ label, value }, index) => (
-                  <div
-                    className={cn(
-                      "flex min-h-14 items-center justify-between gap-4 px-4",
-                      index > 0 && "border-t border-line",
-                    )}
-                    key={label}
-                  >
-                    <span
-                      className={cn(
-                        "font-mono text-[9px] text-muted",
-                        label !== "$ / task" && "uppercase",
-                      )}
-                    >
-                      {label}
-                    </span>
-                    <strong className="font-mono text-base font-medium">{value}</strong>
-                  </div>
-                ))}
+              <div className="flex min-h-14 items-center justify-between gap-4 border-b border-line px-4 sm:border-y sm:border-l">
+                <span className="font-mono text-[9px] text-muted uppercase">avg score</span>
+                <strong className="font-mono text-base font-medium">
+                  {benchmarkSummary.averageScore?.toFixed(2) ?? "—"}
+                </strong>
               </div>
 
-              <div className="flex min-h-28 flex-col items-stretch justify-center gap-2 border-t border-l border-line px-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:border-t-0">
+              <div className="flex min-h-14 flex-col items-stretch justify-center gap-1 border-b border-l border-line px-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:border-y">
                 <span className="font-mono text-[9px] text-muted uppercase">best agent</span>
                 <span className="grid min-w-0 gap-1 text-right">
                   <span className="flex min-w-0 items-baseline justify-end gap-1.5">
@@ -179,6 +158,13 @@ export default function Home() {
                     </strong>
                   </span>
                 </span>
+              </div>
+
+              <div className="col-start-1 row-start-3 flex min-h-14 items-center justify-between gap-4 border-x border-b border-line px-4 sm:col-start-3 sm:row-start-2">
+                <span className="font-mono text-[9px] text-muted">$ / task</span>
+                <strong className="font-mono text-base font-medium">
+                  {benchmarkSummary.bestRun?.cost ?? "—"}
+                </strong>
               </div>
             </div>
           </section>
