@@ -82,7 +82,7 @@ export default function Home() {
               >
                 <span className="sr-only">{benchmark.name}</span>
                 <img
-                  className="block h-auto w-full max-w-[760px] -translate-y-[14%] object-contain object-left"
+                  className="block h-auto w-full max-w-[760px] -translate-y-[11%] object-contain object-left"
                   src="/instinct-bench-wordmark.png?v=3"
                   alt=""
                   width="1419"
@@ -173,7 +173,10 @@ export default function Home() {
         {benchmark.suites.map((suite, suiteIndex) => (
           <Reveal delay={0.08 + suiteIndex * 0.04} key={suite.slug}>
             <section
-              className="scroll-mt-6 pt-10"
+              className={cn(
+                "scroll-mt-6 pt-10",
+                suiteIndex === 0 && "sm:-mt-10",
+              )}
               id={suite.slug}
               aria-labelledby={`${suite.slug}-title`}
             >
