@@ -21,3 +21,9 @@ model performance.
 
 `schema-v1.json` is the contract. `template.json` is a starting record, not a
 completed result.
+
+Normalize a completed Harbor 0.20 job with
+`tools/normalize_harbor_job.py`. Pass the exact launch command and Git commit;
+the tool preserves raw trial names, task digests, provider configuration,
+trace paths, classifications, token telemetry, and costs without dropping
+failed cells.

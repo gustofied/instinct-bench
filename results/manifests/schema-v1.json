@@ -120,9 +120,10 @@
     "trial": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["trial_id", "task_name", "model", "attempt", "seed", "execution_state", "task_outcome", "failure_origin", "trajectory_path", "verifier_details_path", "provider_route", "metrics", "telemetry", "costs_usd"],
+      "required": ["trial_id", "trial_name", "task_name", "model", "attempt", "seed", "execution_state", "task_outcome", "failure_origin", "trajectory_path", "verifier_details_path", "provider_route", "metrics", "telemetry", "costs_usd"],
       "properties": {
         "trial_id": {"type": "string"},
+        "trial_name": {"type": "string"},
         "task_name": {"type": "string"},
         "model": {"type": ["string", "null"]},
         "attempt": {"type": "integer", "minimum": 1},

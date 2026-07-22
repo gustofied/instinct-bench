@@ -1,0 +1,388 @@
+{
+  "schema_version": "1.0",
+  "run_id": "context-appetite-v0.2.1-oracle-smoke-001",
+  "harbor_job_uuid": "2964595c-33a3-464c-833e-4366d51c9444",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001",
+  "hub_url": null,
+  "run_kind": "oracle-smoke",
+  "lifecycle": "completed",
+  "publication": "scratch",
+  "supersedes": [],
+  "status_reason": null,
+  "started_at": "2026-07-22T19:22:10.949175",
+  "finished_at": "2026-07-22T19:26:40.596953",
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "26dbe280bffaac422a9798ea920aac9d830364c1",
+    "task_checksums": {
+      "deployment-outage": "sha256:e6cd26834456890fdd7fcd26154166d842a8e72913e70458caac944f0a6aad2d",
+      "insufficient-evidence": "sha256:5448f3ec38e565d59e294827bdc17440c46cc0c13d50bf84b90fa285976144cd",
+      "unreliable-or-conflicting-evidence": "sha256:26b2956bc5406c80221eb1a21fcdb4a33f0239ad64cba3accbefb6018baa833b",
+      "complementary-evidence": "sha256:526d037fba28f984243a32f45c8be191909f92fcfa30ed0cfbe71f61681c83df",
+      "answer-now": "sha256:fa3f355757533f0758afd6066dd90bac88ec95cb2902fdbf7a55ee8507eb53ab"
+    }
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "oracle",
+    "harness_version": "1.0.0",
+    "skills": [],
+    "prompt_digest": null,
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "provider": null,
+    "provider_routing": {
+      "agent_kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "model": null,
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 1,
+    "n_concurrent": 2,
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a oracle -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-oracle-smoke-001 -n 2"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 5,
+    "completed": 5,
+    "valid": 5,
+    "task_pass": 5,
+    "task_fail": 0,
+    "infrastructure_error": 0,
+    "cancelled": 0,
+    "not_started": 0
+  },
+  "costs_usd": {
+    "model": null,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "7563d912-bc21-49c8-a503-4563f8eefee6",
+      "trial_name": "answer-now__nkfedpG",
+      "task_name": "answer-now",
+      "model": null,
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": null,
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/answer-now__nkfedpG/verifier/details.json",
+      "provider_route": {},
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 1.0,
+        "observed_evidence_cost": 0,
+        "evidence_payload_bytes": 0,
+        "evidence_token_proxy": 0,
+        "sources_opened": 0,
+        "agent_requests": 1,
+        "list_calls": 0,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 0,
+        "hindsight_minimum_cost": 0,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": 0,
+          "payload_bytes": 0,
+          "token_proxy": 0,
+          "source_sequence": [],
+          "list_calls": 0,
+          "status_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "245583a0-4fce-4915-93a1-c1b660e2574a",
+      "trial_name": "complementary-evidence__GGSh9mv",
+      "task_name": "complementary-evidence",
+      "model": null,
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": null,
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/complementary-evidence__GGSh9mv/verifier/details.json",
+      "provider_route": {},
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.715909,
+        "observed_evidence_cost": 2500,
+        "evidence_payload_bytes": 266,
+        "evidence_token_proxy": 67,
+        "sources_opened": 2,
+        "agent_requests": 3,
+        "list_calls": 0,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 0,
+        "hindsight_minimum_cost": 2500,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2500,
+          "payload_bytes": 266,
+          "token_proxy": 67,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 0,
+          "status_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "f18b9a17-f902-4498-8439-983c136cd544",
+      "trial_name": "deployment-outage__r3juEKC",
+      "task_name": "deployment-outage",
+      "model": null,
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": null,
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/deployment-outage__r3juEKC/verifier/details.json",
+      "provider_route": {},
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.910314,
+        "observed_evidence_cost": 2000,
+        "evidence_payload_bytes": 331,
+        "evidence_token_proxy": 83,
+        "sources_opened": 1,
+        "agent_requests": 2,
+        "list_calls": 0,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 0,
+        "hindsight_minimum_cost": 2000,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2000,
+          "payload_bytes": 331,
+          "token_proxy": 83,
+          "source_sequence": [
+            "record-a"
+          ],
+          "list_calls": 0,
+          "status_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "7bcae1b6-7992-442e-b8ee-956499e808a4",
+      "trial_name": "insufficient-evidence__kcDYgFE",
+      "task_name": "insufficient-evidence",
+      "model": null,
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": null,
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/insufficient-evidence__kcDYgFE/verifier/details.json",
+      "provider_route": {},
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.687023,
+        "observed_evidence_cost": 4100,
+        "evidence_payload_bytes": 548,
+        "evidence_token_proxy": 138,
+        "sources_opened": 3,
+        "agent_requests": 4,
+        "list_calls": 0,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 0,
+        "hindsight_minimum_cost": 4100,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 1,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": 4100,
+          "payload_bytes": 548,
+          "token_proxy": 138,
+          "source_sequence": [
+            "record-c",
+            "record-a",
+            "record-d"
+          ],
+          "list_calls": 0,
+          "status_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5e75a0bb-e5b5-4202-8584-9665ffbeb653",
+      "trial_name": "unreliable-or-conflicting-eviden__Q6pu9ya",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": null,
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "pass",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": null,
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/unreliable-or-conflicting-eviden__Q6pu9ya/verifier/details.json",
+      "provider_route": {},
+      "metrics": {
+        "reward": 1,
+        "task_success": 1,
+        "correctness": 1,
+        "evidence_sufficient": 1,
+        "cost_score": 0.55102,
+        "observed_evidence_cost": 2200,
+        "evidence_payload_bytes": 280,
+        "evidence_token_proxy": 70,
+        "sources_opened": 2,
+        "agent_requests": 3,
+        "list_calls": 0,
+        "status_calls": 0,
+        "zero_cost_tool_calls": 0,
+        "hindsight_minimum_cost": 2200,
+        "hindsight_cost_gap": 0,
+        "sources_outside_hindsight_minimum": 0,
+        "abstained": 0,
+        "selective_decision_correct": 1,
+        "duplicate_open_attempts": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1
+      },
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": 2200,
+          "payload_bytes": 280,
+          "token_proxy": 70,
+          "source_sequence": [
+            "record-d",
+            "record-b"
+          ],
+          "list_calls": 0,
+          "status_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}
