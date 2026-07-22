@@ -122,43 +122,64 @@ export default function Home() {
                   label: "tasks",
                   value: benchmarkSummary.taskCount.toString().padStart(2, "0"),
                 },
-                {
-                  label: "avg score",
-                  value: benchmarkSummary.averageScore?.toFixed(2) ?? "—",
-                },
-                {
-                  label: "best model",
-                  value: benchmarkSummary.bestRun?.model ?? "—",
-                  score: benchmarkSummary.bestRun?.reward.toFixed(2),
-                },
-              ].map(({ label, score, value }, index) => (
+              ].map(({ label, value }, index) => (
                 <div
-                  className={cn(
-                    "flex min-h-14 items-center justify-between gap-4 px-4",
-                    index > 0 && "border-l border-line",
-                    index === 2 && "border-t border-l-0 sm:border-t-0 sm:border-l",
-                    index === 3 && "border-t sm:border-t-0",
-                  )}
+                  className={cn("flex min-h-14 items-center justify-between gap-4 px-4", index > 0 && "border-l border-line")}
                   key={label}
                 >
                   <span className="font-mono text-[9px] text-muted uppercase">{label}</span>
-                  <span className="flex min-w-0 items-baseline justify-end gap-1.5">
-                    <strong
-                      className={cn(
-                        "font-mono font-medium",
-                        label === "best model" ? "truncate text-[10px]" : "text-base",
-                      )}
-                    >
-                      {value}
-                    </strong>
-                    {score ? (
-                      <span className="shrink-0 font-mono text-[9px] text-marker">
-                        / {score}
-                      </span>
-                    ) : null}
-                  </span>
+                  <strong className="font-mono text-base font-medium">{value}</strong>
                 </div>
               ))}
+
+              <div className="border-t border-line sm:border-t-0 sm:border-l">
+                {[
+                  {
+                    label: "avg score",
+                    value: benchmarkSummary.averageScore?.toFixed(2) ?? "—",
+                  },
+                  {
+                    label: "$ / task",
+                    value: benchmarkSummary.bestRun?.cost ?? "—",
+                  },
+                ].map(({ label, value }, index) => (
+                  <div
+                    className={cn(
+                      "flex min-h-14 items-center justify-between gap-4 px-4",
+                      index > 0 && "border-t border-line",
+                    )}
+                    key={label}
+                  >
+                    <span
+                      className={cn(
+                        "font-mono text-[9px] text-muted",
+                        label !== "$ / task" && "uppercase",
+                      )}
+                    >
+                      {label}
+                    </span>
+                    <strong className="font-mono text-base font-medium">{value}</strong>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex min-h-28 flex-col items-stretch justify-center gap-2 border-t border-l border-line px-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:border-t-0">
+                <span className="font-mono text-[9px] text-muted uppercase">best agent</span>
+                <span className="grid min-w-0 gap-1 text-right">
+                  <span className="flex min-w-0 items-baseline justify-end gap-1.5">
+                    <span className="shrink-0 font-mono text-[9px] text-muted">Harness:</span>
+                    <strong className="truncate font-mono text-[10px] font-medium">
+                      {benchmarkSummary.bestRun?.harness ?? "—"}
+                    </strong>
+                  </span>
+                  <span className="flex min-w-0 items-baseline justify-end gap-1.5">
+                    <span className="shrink-0 font-mono text-[9px] text-muted">Model:</span>
+                    <strong className="truncate font-mono text-[10px] font-medium">
+                      {benchmarkSummary.bestRun?.model ?? "—"}
+                    </strong>
+                  </span>
+                </span>
+              </div>
             </div>
           </section>
         </Reveal>
