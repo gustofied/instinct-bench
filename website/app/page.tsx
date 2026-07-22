@@ -12,18 +12,25 @@ const mockAgentCostSplit = [
 ] as const;
 
 function SectionHeading({
+  className,
   count,
   description,
   id,
   title,
 }: {
+  className?: string;
   count: string;
   description: string;
   id: string;
   title: string;
 }) {
   return (
-    <div className="mb-3 grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-6">
+    <div
+      className={cn(
+        "mb-3 grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-6",
+        className,
+      )}
+    >
       <div>
         <h2 className="font-serif text-[21px] font-normal leading-none" id={id}>
           {title}
@@ -173,13 +180,13 @@ export default function Home() {
                 </strong>
               </div>
 
-              <div className="col-start-2 row-start-3 flex min-h-14 flex-col justify-center gap-1 border-r border-b border-line px-3 sm:col-start-4 sm:row-start-2 sm:px-4">
-                <span className="font-mono text-[9px] text-muted">$ on agent</span>
-                <span className="grid min-w-0 grid-cols-3">
+              <div className="col-start-2 row-start-3 flex min-h-14 flex-col justify-center gap-1 border-r border-b border-line px-3 sm:col-start-4 sm:row-start-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-4">
+                <span className="shrink-0 font-mono text-[9px] text-muted">$ on agent</span>
+                <span className="grid min-w-0 grid-cols-3 sm:w-[148px]">
                   {mockAgentCostSplit.map(({ label, value }, index) => (
                     <span
                       className={cn(
-                        "grid min-w-0 gap-0.5 px-2 font-mono",
+                        "grid min-w-0 gap-0.5 px-1.5 font-mono",
                         index === 0 ? "pl-0" : "border-l border-line",
                         index === mockAgentCostSplit.length - 1 && "pr-0",
                       )}
@@ -200,12 +207,16 @@ export default function Home() {
             <section
               className={cn(
                 "scroll-mt-6 pt-10",
-                suiteIndex === 0 && "sm:-mt-10",
+                suiteIndex === 0 && "sm:-mt-14 sm:pt-0",
               )}
               id={suite.slug}
               aria-labelledby={`${suite.slug}-title`}
             >
               <SectionHeading
+                className={cn(
+                  suiteIndex === 0 &&
+                    "sm:mb-0 sm:min-h-14 sm:w-1/2 sm:items-center sm:pr-6",
+                )}
                 count={`${suite.domains.length.toString().padStart(2, "0")} ${suite.domains.length === 1 ? "domain" : "domains"}`}
                 description={suite.description}
                 id={`${suite.slug}-title`}
