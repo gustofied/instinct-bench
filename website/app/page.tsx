@@ -5,6 +5,12 @@ import { Reveal } from "@/components/reveal";
 import { benchmark, benchmarkSummary } from "@/lib/benchmark";
 import { cn } from "@/lib/utils";
 
+const mockAgentCostSplit = [
+  { label: "Model", value: 76 },
+  { label: "Harness", value: 9 },
+  { label: "Sandbox", value: 15 },
+] as const;
+
 function SectionHeading({
   count,
   description,
@@ -165,6 +171,23 @@ export default function Home() {
                 <strong className="font-mono text-base font-medium">
                   {benchmarkSummary.bestRun?.cost ?? "—"}
                 </strong>
+              </div>
+
+              <div className="col-start-2 row-start-3 flex min-h-14 items-center justify-between gap-2 border-r border-b border-line px-3 sm:col-start-4 sm:row-start-2 sm:gap-4 sm:px-4">
+                <span className="whitespace-nowrap font-mono text-[9px] text-muted">
+                  $ on agent
+                </span>
+                <span className="grid min-w-0 gap-0.5">
+                  {mockAgentCostSplit.map(({ label, value }) => (
+                    <span
+                      className="flex items-baseline justify-between gap-2 font-mono text-[9px]"
+                      key={label}
+                    >
+                      <span className="text-muted">{label}</span>
+                      <strong className="font-medium">{value}%</strong>
+                    </span>
+                  ))}
+                </span>
               </div>
             </div>
           </section>
