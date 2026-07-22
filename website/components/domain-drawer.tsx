@@ -1,13 +1,15 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 
 import type { BenchmarkDomain } from "@/lib/benchmark";
 import { cn } from "@/lib/utils";
 
-function Status({ value }: { value: string }) {
+type TrajectoryResult = BenchmarkDomain["trajectories"][number]["result"];
+
+function Status({ value }: { value: TrajectoryResult }) {
   const color =
     value === "pass"
       ? "bg-ink"
@@ -37,18 +39,19 @@ function PanelHeading({ count, title }: { count: number; title: string }) {
 }
 
 export function DomainDrawer({
-  available = false,
   defaultOpen = false,
   domain,
   live = false,
 }: {
-  available?: boolean;
   defaultOpen?: boolean;
   domain: BenchmarkDomain;
   live?: boolean;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
-  const panelId = `domain-${domain.name}`;
+  const available = domain.availability === "available";
+  const [open, setOpen] = useState(defaultOpen && available);
+  const reduceMotion = useReducedMotion();
+  const panelId = `domain-${domain.slug}-panel`;
+  const triggerId = `domain-${domain.slug}-trigger`;
   const taskCount = domain.taskSets.reduce((total, taskSet) => total + taskSet.tasks, 0);
   const scores = domain.trajectories.map((trajectory) => trajectory.reward);
   const score = live
@@ -60,12 +63,12 @@ export function DomainDrawer({
   if (!available) {
     return (
       <article className="border-b border-line last:border-b-0">
-        <div className="grid min-h-[72px] grid-cols-[minmax(160px,0.82fr)_minmax(240px,1.4fr)_230px_28px] items-center gap-4 px-4 py-3 max-md:grid-cols-1 max-md:gap-2">
+        <div className="grid min-h-[72px] grid-cols-1 items-center gap-2 px-4 py-3 md:grid-cols-[minmax(160px,0.82fr)_minmax(240px,1.4fr)_230px_28px] md:gap-4">
           <strong className="min-w-0 font-mono text-[12px] font-medium text-copy">
             {domain.name}
           </strong>
           <span className="text-[13px] text-muted">{domain.judgment}</span>
-          <span className="col-span-2 justify-self-end font-mono text-[9px] text-muted uppercase max-md:col-span-1 max-md:justify-self-start">
+          <span className="justify-self-start font-mono text-[9px] text-muted uppercase md:col-span-2 md:justify-self-end">
             coming later
           </span>
         </div>
@@ -78,19 +81,21 @@ export function DomainDrawer({
       <button
         aria-controls={panelId}
         aria-expanded={open}
-        className="group grid min-h-[72px] w-full cursor-pointer grid-cols-[minmax(160px,0.82fr)_minmax(240px,1.4fr)_230px_28px] items-center gap-4 bg-transparent px-4 py-3 text-left hover:bg-faint max-md:grid-cols-[minmax(0,1fr)_28px] max-md:gap-x-4 max-md:gap-y-2"
+        aria-label={`${open ? "Collapse" : "Expand"} ${domain.name}`}
+        className="group grid min-h-[72px] w-full cursor-pointer grid-cols-[minmax(0,1fr)_28px] items-center gap-x-4 gap-y-2 bg-transparent px-4 py-3 text-left hover:bg-faint md:grid-cols-[minmax(160px,0.82fr)_minmax(240px,1.4fr)_230px_28px] md:gap-4"
+        id={triggerId}
         onClick={() => setOpen((value) => !value)}
         type="button"
       >
         <strong className="min-w-0 font-mono text-[12px] font-medium">
           {domain.name}
         </strong>
-        <span className="text-[13px] text-copy max-md:col-span-2 max-md:row-start-2">
+        <span className="col-span-2 row-start-2 text-[13px] text-copy md:col-span-1 md:row-auto">
           {domain.judgment}
         </span>
-        <span className="flex items-center justify-between gap-4 max-md:col-span-2 max-md:row-start-3 max-md:justify-start">
+        <span className="col-span-2 row-start-3 flex items-center justify-start gap-4 md:col-span-1 md:row-auto md:justify-between">
           <span className="font-mono text-[10px] text-copy">
-            {domain.taskSets.length.toString().padStart(2, "0")} set
+            {domain.taskSets.length.toString().padStart(2, "0")} {domain.taskSets.length === 1 ? "set" : "sets"}
           </span>
           <span className="font-mono text-[10px] text-copy">
             {taskCount.toString().padStart(2, "0")} tasks
@@ -101,7 +106,7 @@ export function DomainDrawer({
             </span>
           ) : null}
         </span>
-        <span className="grid size-7 place-items-center border border-line text-muted transition-colors group-hover:border-ink group-hover:text-ink max-md:col-start-2 max-md:row-start-1">
+        <span className="col-start-2 row-start-1 grid size-7 place-items-center border border-line text-muted transition-colors group-hover:border-ink group-hover:text-ink md:col-auto md:row-auto">
           {open ? (
             <Minus aria-hidden="true" size={13} strokeWidth={1.5} />
           ) : (
@@ -118,10 +123,16 @@ export function DomainDrawer({
             exit={{ height: 0, opacity: 0 }}
             id={panelId}
             initial={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
+            role="region"
+            aria-labelledby={triggerId}
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : { duration: 0.18, ease: "easeOut" }
+            }
           >
-            <div className="grid grid-cols-3 border-t border-line bg-faint max-lg:grid-cols-1">
-              <section className="min-w-0 p-4 max-lg:border-b max-lg:border-line">
+            <div className="grid grid-cols-1 border-t border-line bg-faint md:grid-cols-3">
+              <section className="min-w-0 border-b border-line p-4 md:border-b-0">
                 <PanelHeading count={domain.taskSets.length} title="Task sets" />
                 <div className="divide-y divide-line">
                   {domain.taskSets.map((taskSet) => (
@@ -143,7 +154,7 @@ export function DomainDrawer({
                 </div>
               </section>
 
-              <section className="min-w-0 border-l border-line p-4 max-lg:border-b max-lg:border-l-0 max-lg:border-line">
+              <section className="min-w-0 border-b border-line p-4 md:border-b-0 md:border-l">
                 <PanelHeading count={domain.trajectories.length} title="Trajectories" />
                 <div className="divide-y divide-line">
                   {domain.trajectories.map((trajectory) => (
@@ -165,7 +176,7 @@ export function DomainDrawer({
                 </div>
               </section>
 
-              <section className="min-w-0 border-l border-line p-4 max-lg:border-l-0">
+              <section className="min-w-0 p-4 md:border-l">
                 <PanelHeading count={domain.artifacts.length} title="Artifacts" />
                 <div className="divide-y divide-line">
                   {domain.artifacts.map((artifact) => (

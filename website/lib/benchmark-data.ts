@@ -1,0 +1,122 @@
+import type { BenchmarkManifest } from "@/lib/benchmark-schema";
+
+export const benchmarkSource = {
+  name: "instinct-bench",
+  version: "0.1",
+  status: "shaping",
+  mock: true,
+  suites: [
+    {
+      name: "instinct-bench",
+      slug: "instinct-bench",
+      mode: "fixed",
+      description: "Stable tasks for repeatable comparison.",
+      domains: [
+        {
+          name: "context-appetite",
+          slug: "context-appetite",
+          judgment: "Knowing how much context is enough.",
+          stage: "shaping",
+          availability: "available",
+          taskSets: [
+            {
+              name: "minimum-context / qa",
+              material: "variable-context questions",
+              tasks: 24,
+              verifier: "exact + rubric",
+              stage: "shaping",
+            },
+          ],
+          trajectories: [
+            {
+              id: "run-0042",
+              task: "context-short-014",
+              model: "laguna-xs-2.1",
+              harness: "pool",
+              variant: "4k context",
+              result: "pass",
+              reward: 0.92,
+              steps: 7,
+              cost: "$0.03",
+              artifacts: 4,
+            },
+          ],
+          artifacts: [
+            {
+              name: "task.yaml",
+              role: "task definition",
+              source: "context-short-014",
+              size: "3.2 KB",
+            },
+            {
+              name: "instruction.md",
+              role: "agent prompt",
+              source: "context-short-014",
+              size: "1.8 KB",
+            },
+            {
+              name: "trajectory.jsonl",
+              role: "tool + reasoning trace",
+              source: "run-0042",
+              size: "84 KB",
+            },
+            {
+              name: "verifier-report.json",
+              role: "reward breakdown",
+              source: "run-0042",
+              size: "6.4 KB",
+            },
+          ],
+        },
+        {
+          name: "tool-restraint",
+          slug: "tool-restraint",
+          judgment: "Calling a tool only when it improves the work.",
+          stage: "shaping",
+          availability: "planned",
+          taskSets: [],
+          trajectories: [],
+          artifacts: [],
+        },
+        {
+          name: "drawing",
+          slug: "drawing",
+          judgment: "Inspecting, repairing, and continuing a partial form.",
+          stage: "study",
+          availability: "planned",
+          taskSets: [],
+          trajectories: [],
+          artifacts: [],
+        },
+        {
+          name: "writing",
+          slug: "writing",
+          judgment: "Revising without sanding away the voice.",
+          stage: "study",
+          availability: "planned",
+          taskSets: [],
+          trajectories: [],
+          artifacts: [],
+        },
+      ],
+    },
+    {
+      name: "instinct-bench-live",
+      slug: "instinct-bench-live",
+      mode: "live",
+      description: "Recurring tasks drawn from changing conditions.",
+      domains: [
+        {
+          name: "coastal-reading",
+          slug: "coastal-reading",
+          judgment: "Reading current coastal conditions from public observations.",
+          stage: "study",
+          availability: "planned",
+          taskSets: [],
+          trajectories: [],
+          artifacts: [],
+        },
+      ],
+    },
+  ],
+} as const satisfies BenchmarkManifest;

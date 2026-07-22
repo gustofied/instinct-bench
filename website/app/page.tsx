@@ -2,36 +2,26 @@ import { ArrowUpRight } from "lucide-react";
 
 import { DomainDrawer } from "@/components/domain-drawer";
 import { Reveal } from "@/components/reveal";
-import { benchmark } from "@/lib/benchmark";
+import { benchmark, benchmarkSummary } from "@/lib/benchmark";
 import { cn } from "@/lib/utils";
-
-const domains = benchmark.suites.flatMap((suite) => suite.domains);
-const trajectories = domains.flatMap((domain) => domain.trajectories);
-const taskCount = domains.reduce(
-  (total, domain) =>
-    total + domain.taskSets.reduce((domainTotal, taskSet) => domainTotal + taskSet.tasks, 0),
-  0,
-);
-const averageScore =
-  trajectories.reduce((total, trajectory) => total + trajectory.reward, 0) /
-  trajectories.length;
-const bestRun = trajectories.reduce((best, trajectory) =>
-  trajectory.reward > best.reward ? trajectory : best,
-);
 
 function SectionHeading({
   count,
   description,
+  id,
   title,
 }: {
   count: string;
   description: string;
+  id: string;
   title: string;
 }) {
   return (
-    <div className="mb-3 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-6 max-sm:grid-cols-1 max-sm:gap-1">
+    <div className="mb-3 grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-6">
       <div>
-        <h2 className="font-serif text-[21px] font-normal leading-none">{title}</h2>
+        <h2 className="font-serif text-[21px] font-normal leading-none" id={id}>
+          {title}
+        </h2>
         <p className="mt-1 text-[12px] text-muted">{description}</p>
       </div>
       <span className="font-mono text-[9px] text-muted uppercase">{count}</span>
@@ -42,11 +32,11 @@ function SectionHeading({
 export default function Home() {
   return (
     <main className="min-h-screen bg-paper text-ink">
-      <div className="mx-auto w-[calc(100%-2rem)] max-w-[1024px] pb-10 max-md:w-[calc(100%-1.25rem)]">
+      <div className="mx-auto w-[calc(100%-1.25rem)] max-w-[1024px] pb-10 md:w-[calc(100%-2rem)]">
         <Reveal>
-          <header className="grid min-h-[58px] grid-cols-[1fr_auto_1fr] items-center border-b border-line py-2 max-md:grid-cols-1 max-md:gap-1.5 max-md:py-3">
+          <header className="grid min-h-[58px] grid-cols-1 items-center gap-1.5 border-b border-line py-3 md:grid-cols-[1fr_auto_1fr] md:gap-0 md:py-2">
             <a
-              className="flex items-center gap-2.5 max-md:justify-center"
+              className="flex items-center justify-center gap-2.5 md:justify-start"
               href="/"
               aria-label="instinct-bench home"
             >
@@ -57,13 +47,13 @@ export default function Home() {
                 width="615"
                 height="455"
               />
-              <span className="font-mono text-[10px] font-semibold uppercase">
+              <span className="shrink-0 font-mono text-[10px] font-semibold uppercase">
                 instinct-bench
               </span>
             </a>
 
             <nav
-              className="flex items-center justify-center gap-6 text-[12px] max-md:gap-4"
+              className="flex items-center justify-center gap-4 text-[12px] md:gap-6"
               aria-label="Benchmark suites"
             >
               <a className="text-muted hover:text-ink hover:underline" href="#instinct-bench">
@@ -77,7 +67,7 @@ export default function Home() {
               </a>
             </nav>
 
-            <span className="justify-self-end font-mono text-[9px] text-muted uppercase max-md:justify-self-center">
+            <span className="justify-self-center font-mono text-[9px] text-muted uppercase md:justify-self-end">
               mock data / v{benchmark.version}
             </span>
           </header>
@@ -85,10 +75,10 @@ export default function Home() {
 
         <Reveal delay={0.04}>
           <section aria-labelledby="page-title">
-            <div className="grid min-h-[262px] grid-cols-[minmax(0,2fr)_minmax(240px,0.75fr)] items-center gap-14 py-8 max-md:min-h-0 max-md:grid-cols-1 max-md:gap-6 max-md:py-7">
+            <div className="grid min-h-0 grid-cols-1 items-center gap-6 py-7 md:min-h-[262px] md:grid-cols-[minmax(0,2fr)_minmax(240px,0.75fr)] md:gap-14 md:py-8">
               <h1
                 id="page-title"
-                className="flex min-h-[154px] min-w-0 items-center leading-none max-md:min-h-[104px]"
+                className="flex min-h-[104px] min-w-0 items-center leading-none md:min-h-[154px]"
               >
                 <span className="sr-only">{benchmark.name}</span>
                 <img
@@ -100,7 +90,7 @@ export default function Home() {
                 />
               </h1>
 
-              <div className="border-l border-line pl-7 max-md:border-t max-md:border-l-0 max-md:pt-5 max-md:pl-0">
+              <div className="border-t border-line pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-7">
                 <p className="font-serif text-[17px] leading-[1.5] text-copy">
                   Testing the capacities that make agents useful: taste,
                   restraint, context judgment, craft, and control.
@@ -127,26 +117,32 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 border-y border-line max-sm:grid-cols-2">
+            <div className="grid grid-cols-2 border-y border-line sm:grid-cols-4">
               {[
                 {
                   label: "domains",
-                  value: domains.length.toString().padStart(2, "0"),
+                  value: benchmarkSummary.domainCount.toString().padStart(2, "0"),
                 },
-                { label: "tasks", value: taskCount.toString().padStart(2, "0") },
-                { label: "avg score", value: averageScore.toFixed(2) },
+                {
+                  label: "tasks",
+                  value: benchmarkSummary.taskCount.toString().padStart(2, "0"),
+                },
+                {
+                  label: "avg score",
+                  value: benchmarkSummary.averageScore?.toFixed(2) ?? "—",
+                },
                 {
                   label: "best model",
-                  value: bestRun.model,
-                  score: bestRun.reward.toFixed(2),
+                  value: benchmarkSummary.bestRun?.model ?? "—",
+                  score: benchmarkSummary.bestRun?.reward.toFixed(2),
                 },
               ].map(({ label, score, value }, index) => (
                 <div
                   className={cn(
                     "flex min-h-14 items-center justify-between gap-4 px-4",
                     index > 0 && "border-l border-line",
-                    index === 2 && "max-sm:border-t max-sm:border-l-0",
-                    index === 3 && "max-sm:border-t",
+                    index === 2 && "border-t border-l-0 sm:border-t-0 sm:border-l",
+                    index === 3 && "border-t sm:border-t-0",
                   )}
                   key={label}
                 >
@@ -182,16 +178,18 @@ export default function Home() {
               <SectionHeading
                 count={`${suite.domains.length.toString().padStart(2, "0")} ${suite.domains.length === 1 ? "domain" : "domains"}`}
                 description={suite.description}
+                id={`${suite.slug}-title`}
                 title={suite.name}
               />
               <div className="border border-line">
-                {suite.domains.map((domain) => (
+                {suite.domains.map((domain, domainIndex) => (
                   <DomainDrawer
-                    available={domain.name === "context-appetite"}
-                    defaultOpen={domain.name === "context-appetite"}
+                    defaultOpen={
+                      domainIndex === 0 && domain.availability === "available"
+                    }
                     domain={domain}
                     key={domain.name}
-                    live={suite.slug === "instinct-bench-live"}
+                    live={suite.mode === "live"}
                   />
                 ))}
               </div>
@@ -200,7 +198,7 @@ export default function Home() {
         ))}
 
         <Reveal delay={0.2}>
-          <footer className="mt-10 flex items-center justify-between gap-8 border-t border-line py-5 max-md:flex-col max-md:items-start">
+          <footer className="mt-10 flex flex-col items-start justify-between gap-8 border-t border-line py-5 md:flex-row md:items-center">
             <span className="font-mono text-[9px] text-muted uppercase">
               instinct-bench / mock interface
             </span>
