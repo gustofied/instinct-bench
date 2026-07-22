@@ -47,3 +47,12 @@ The complete build and pilot review lives in
 [`results/reports/our-first-harbor`](results/reports/our-first-harbor). It
 separates task decisions, evidence acquisition, harness completion, and
 infrastructure before proposing the next experiment.
+
+## Context Appetite v0.3.0
+
+The next release is preregistered as 30 public development tasks and 75 private
+held-out tasks across five matched evidence-necessity conditions. It fixes one
+model-harness configuration so the experiment measures answer, look, abstain,
+and stop behavior without turning the result into a model leaderboard.
+
+Read the full [v0.3.0 protocol](docs/context-appetite-v0.3.0-plan.md).
