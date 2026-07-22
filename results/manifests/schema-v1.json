@@ -94,13 +94,14 @@
     "counts": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["planned", "completed", "valid", "task_pass", "task_fail", "infrastructure_error", "cancelled", "not_started"],
+      "required": ["planned", "completed", "valid", "task_pass", "task_fail", "valid_not_evaluated", "infrastructure_error", "cancelled", "not_started"],
       "properties": {
         "planned": {"type": "integer", "minimum": 0},
         "completed": {"type": "integer", "minimum": 0},
         "valid": {"type": "integer", "minimum": 0},
         "task_pass": {"type": "integer", "minimum": 0},
         "task_fail": {"type": "integer", "minimum": 0},
+        "valid_not_evaluated": {"type": "integer", "minimum": 0},
         "infrastructure_error": {"type": "integer", "minimum": 0},
         "cancelled": {"type": "integer", "minimum": 0},
         "not_started": {"type": "integer", "minimum": 0}

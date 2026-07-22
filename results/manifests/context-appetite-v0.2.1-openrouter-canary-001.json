@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0",
+  "run_id": "context-appetite-v0.2.1-openrouter-canary-001",
+  "harbor_job_uuid": "ec60b38c-4ba5-4dbc-a2c6-bae690e7ad48",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-001",
+  "hub_url": null,
+  "run_kind": "model-canary",
+  "lifecycle": "aborted",
+  "publication": "superseded",
+  "supersedes": [],
+  "status_reason": "Superseded after two Terminus setup failures on Modal gVisor DinD (tmux fork permission denied); interrupted before model execution.",
+  "started_at": "2026-07-22T19:40:06.038644",
+  "finished_at": null,
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "961accc9cdab3be5173bc9c190897f316ba3c9f7",
+    "task_checksums": {
+      "deployment-outage": "sha256:e6cd26834456890fdd7fcd26154166d842a8e72913e70458caac944f0a6aad2d",
+      "insufficient-evidence": "sha256:5448f3ec38e565d59e294827bdc17440c46cc0c13d50bf84b90fa285976144cd",
+      "unreliable-or-conflicting-evidence": "sha256:26b2956bc5406c80221eb1a21fcdb4a33f0239ad64cba3accbefb6018baa833b",
+      "complementary-evidence": "sha256:526d037fba28f984243a32f45c8be191909f92fcfa30ed0cfbe71f61681c83df",
+      "answer-now": "sha256:fa3f355757533f0758afd6066dd90bac88ec95cb2902fdbf7a55ee8507eb53ab"
+    }
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": null,
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 1,
+    "n_concurrent": 1,
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a terminus-2 -m openrouter/deepseek/deepseek-v4-flash -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-openrouter-canary-001 -n 1 --n-concurrent-agents 1 --max-retries 0"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 5,
+    "completed": 3,
+    "valid": 0,
+    "task_pass": 0,
+    "task_fail": 0,
+    "valid_not_evaluated": 0,
+    "infrastructure_error": 2,
+    "cancelled": 1,
+    "not_started": 2
+  },
+  "costs_usd": {
+    "model": null,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "not-started:answer-now:openrouter/deepseek/deepseek-v4-flash:1",
+      "trial_name": "not-started:answer-now:openrouter/deepseek/deepseek-v4-flash:1",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "not-started",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "orchestrator",
+      "failure_detail": "No TrialResult was written.",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {},
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "not-started:complementary-evidence:openrouter/deepseek/deepseek-v4-flash:1",
+      "trial_name": "not-started:complementary-evidence:openrouter/deepseek/deepseek-v4-flash:1",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "not-started",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "orchestrator",
+      "failure_detail": "No TrialResult was written.",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {},
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "d0c0e876-9200-4709-a6fe-1e7d6bd75f40",
+      "trial_name": "deployment-outage__nkBSUc7",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "infrastructure-error",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "harness-setup",
+      "failure_detail": "RuntimeError: Failed to start tmux session. Error: create window failed: fork failed: Permission denied",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "05945950-ccbc-43a3-866b-435684dddf3d",
+      "trial_name": "insufficient-evidence__9PYXSoF",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "infrastructure-error",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "harness-setup",
+      "failure_detail": "RuntimeError: Failed to start tmux session. Error: create window failed: fork failed: Permission denied",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "9a1dab91-9cd5-4eca-9537-939a5a2f109c",
+      "trial_name": "unreliable-or-conflicting-eviden__gv9rJiA",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "cancelled",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "user",
+      "failure_detail": "CancelledError:",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

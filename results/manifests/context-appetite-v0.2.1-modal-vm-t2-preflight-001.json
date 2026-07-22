@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "run_id": "context-appetite-v0.2.1-modal-vm-t2-preflight-001",
+  "harbor_job_uuid": "a5292f26-1377-4865-bedf-2fc2269c2d43",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-modal-vm-t2-preflight-001",
+  "hub_url": null,
+  "run_kind": "preflight",
+  "lifecycle": "completed",
+  "publication": "scratch",
+  "supersedes": [],
+  "status_reason": "Install-only Terminus 2 preflight validating Modal VM runtime after gVisor DinD tmux fork failures.",
+  "started_at": "2026-07-22T19:44:56.666192",
+  "finished_at": "2026-07-22T19:45:59.143329",
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "961accc9cdab3be5173bc9c190897f316ba3c9f7",
+    "task_checksums": {
+      "deployment-outage": "sha256:e6cd26834456890fdd7fcd26154166d842a8e72913e70458caac944f0a6aad2d"
+    }
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": null,
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 1,
+    "n_concurrent": 1,
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -i deployment-outage -a terminus-2 -m openrouter/deepseek/deepseek-v4-flash -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-modal-vm-t2-preflight-001 --install-only -n 1 --n-concurrent-agents 1 --max-retries 0 --ek modal_vm_runtime=true"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 1,
+    "completed": 1,
+    "valid": 1,
+    "task_pass": 0,
+    "task_fail": 0,
+    "valid_not_evaluated": 1,
+    "infrastructure_error": 0,
+    "cancelled": 0,
+    "not_started": 0
+  },
+  "costs_usd": {
+    "model": null,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "ffe4862d-8759-4fba-a0da-8c78cdb660eb",
+      "trial_name": "deployment-outage__JkT2iay",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "valid",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "none",
+      "failure_detail": null,
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

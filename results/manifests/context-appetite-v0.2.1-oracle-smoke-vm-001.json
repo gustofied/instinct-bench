@@ -1,16 +1,18 @@
 {
   "schema_version": "1.0",
-  "run_id": "context-appetite-v0.2.1-oracle-smoke-001",
-  "harbor_job_uuid": "2964595c-33a3-464c-833e-4366d51c9444",
-  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001",
+  "run_id": "context-appetite-v0.2.1-oracle-smoke-vm-001",
+  "harbor_job_uuid": "3fd1fd5d-4f75-4cf1-bb8b-206f1d1c39b5",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-vm-001",
   "hub_url": null,
   "run_kind": "oracle-smoke",
   "lifecycle": "completed",
   "publication": "scratch",
-  "supersedes": [],
-  "status_reason": null,
-  "started_at": "2026-07-22T19:22:10.949175",
-  "finished_at": "2026-07-22T19:26:40.596953",
+  "supersedes": [
+    "2964595c-33a3-464c-833e-4366d51c9444"
+  ],
+  "status_reason": "Five-task Oracle smoke on the same Modal VM runtime required by Terminus 2; all binary task and verifier-integrity gates passed.",
+  "started_at": "2026-07-22T19:52:11.855622",
+  "finished_at": "2026-07-22T19:57:41.481224",
   "benchmark": {
     "name": "instinct-bench",
     "domain": "context-appetite",
@@ -38,7 +40,9 @@
       "cpu_enforcement_policy": "auto",
       "memory_enforcement_policy": "auto",
       "extra_docker_compose": [],
-      "kwargs": {},
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
       "extra_allowed_hosts": []
     },
     "provider": null,
@@ -51,7 +55,7 @@
     "temperature": null,
     "n_attempts": 1,
     "n_concurrent": 2,
-    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a oracle -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-oracle-smoke-001 -n 2"
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a oracle -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-oracle-smoke-vm-001 -n 2 --max-retries 0 --ek modal_vm_runtime=true"
   },
   "agent_egress": "public",
   "contract_visibility": "private",
@@ -74,8 +78,8 @@
   },
   "trials": [
     {
-      "trial_id": "7563d912-bc21-49c8-a503-4563f8eefee6",
-      "trial_name": "answer-now__nkfedpG",
+      "trial_id": "7441960c-164f-45f5-ae48-cb86a8a944b3",
+      "trial_name": "answer-now__G9qhQ9G",
       "task_name": "answer-now",
       "model": null,
       "attempt": 1,
@@ -85,7 +89,7 @@
       "failure_origin": "none",
       "failure_detail": null,
       "trajectory_path": null,
-      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/answer-now__nkfedpG/verifier/details.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-vm-001/answer-now__G9qhQ9G/verifier/details.json",
       "provider_route": {},
       "metrics": {
         "reward": 1,
@@ -134,8 +138,8 @@
       }
     },
     {
-      "trial_id": "245583a0-4fce-4915-93a1-c1b660e2574a",
-      "trial_name": "complementary-evidence__GGSh9mv",
+      "trial_id": "f57dd965-78be-4dbf-8a02-2f30576eb47b",
+      "trial_name": "complementary-evidence__4oDHkC6",
       "task_name": "complementary-evidence",
       "model": null,
       "attempt": 1,
@@ -145,7 +149,7 @@
       "failure_origin": "none",
       "failure_detail": null,
       "trajectory_path": null,
-      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/complementary-evidence__GGSh9mv/verifier/details.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-vm-001/complementary-evidence__4oDHkC6/verifier/details.json",
       "provider_route": {},
       "metrics": {
         "reward": 1,
@@ -197,8 +201,8 @@
       }
     },
     {
-      "trial_id": "f18b9a17-f902-4498-8439-983c136cd544",
-      "trial_name": "deployment-outage__r3juEKC",
+      "trial_id": "3a9b70aa-5599-4a92-a5e4-529902e40758",
+      "trial_name": "deployment-outage__VhL6vRS",
       "task_name": "deployment-outage",
       "model": null,
       "attempt": 1,
@@ -208,7 +212,7 @@
       "failure_origin": "none",
       "failure_detail": null,
       "trajectory_path": null,
-      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/deployment-outage__r3juEKC/verifier/details.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-vm-001/deployment-outage__VhL6vRS/verifier/details.json",
       "provider_route": {},
       "metrics": {
         "reward": 1,
@@ -259,8 +263,8 @@
       }
     },
     {
-      "trial_id": "7bcae1b6-7992-442e-b8ee-956499e808a4",
-      "trial_name": "insufficient-evidence__kcDYgFE",
+      "trial_id": "430b7b6d-61c7-467b-a21b-bceab8f53781",
+      "trial_name": "insufficient-evidence__LppFvU8",
       "task_name": "insufficient-evidence",
       "model": null,
       "attempt": 1,
@@ -270,7 +274,7 @@
       "failure_origin": "none",
       "failure_detail": null,
       "trajectory_path": null,
-      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/insufficient-evidence__kcDYgFE/verifier/details.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-vm-001/insufficient-evidence__LppFvU8/verifier/details.json",
       "provider_route": {},
       "metrics": {
         "reward": 1,
@@ -323,8 +327,8 @@
       }
     },
     {
-      "trial_id": "5e75a0bb-e5b5-4202-8584-9665ffbeb653",
-      "trial_name": "unreliable-or-conflicting-eviden__Q6pu9ya",
+      "trial_id": "88554fab-1979-482c-a16a-ffc588a6eb44",
+      "trial_name": "unreliable-or-conflicting-eviden__hFzvtdn",
       "task_name": "unreliable-or-conflicting-evidence",
       "model": null,
       "attempt": 1,
@@ -334,7 +338,7 @@
       "failure_origin": "none",
       "failure_detail": null,
       "trajectory_path": null,
-      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-001/unreliable-or-conflicting-eviden__Q6pu9ya/verifier/details.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.2.1-oracle-smoke-vm-001/unreliable-or-conflicting-eviden__hFzvtdn/verifier/details.json",
       "provider_route": {},
       "metrics": {
         "reward": 1,

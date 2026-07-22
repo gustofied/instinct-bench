@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.0",
+  "run_id": "context-appetite-v0.2.1-openrouter-canary-vm-001",
+  "harbor_job_uuid": "f360cff0-ef9e-47b2-9539-cd339fcc9c1a",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-001",
+  "hub_url": null,
+  "run_kind": "model-canary",
+  "lifecycle": "aborted",
+  "publication": "superseded",
+  "supersedes": [
+    "ec60b38c-4ba5-4dbc-a2c6-bae690e7ad48"
+  ],
+  "status_reason": "Superseded after two OpenRouter authentication failures; Modal VM runtime and Terminus setup were healthy, but no model tokens were produced.",
+  "started_at": "2026-07-22T19:46:25.168867",
+  "finished_at": null,
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.2.1",
+    "git_commit": "961accc9cdab3be5173bc9c190897f316ba3c9f7",
+    "task_checksums": {
+      "deployment-outage": "sha256:e6cd26834456890fdd7fcd26154166d842a8e72913e70458caac944f0a6aad2d",
+      "insufficient-evidence": "sha256:5448f3ec38e565d59e294827bdc17440c46cc0c13d50bf84b90fa285976144cd",
+      "unreliable-or-conflicting-evidence": "sha256:26b2956bc5406c80221eb1a21fcdb4a33f0239ad64cba3accbefb6018baa833b",
+      "complementary-evidence": "sha256:526d037fba28f984243a32f45c8be191909f92fcfa30ed0cfbe71f61681c83df",
+      "answer-now": "sha256:fa3f355757533f0758afd6066dd90bac88ec95cb2902fdbf7a55ee8507eb53ab"
+    }
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": "sha256:e6794ed5222445d522a800f3fc70ec258776cbcb09731d43a0028c5c7f0137fc",
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "effort": null,
+    "temperature": null,
+    "n_attempts": 1,
+    "n_concurrent": 1,
+    "command": "/Users/adams/.local/share/uv/tools/harbor/bin/harbor run -p tasks/context-appetite -a terminus-2 -m openrouter/deepseek/deepseek-v4-flash -e modal -o jobs-scratch --job-name context-appetite-v0.2.1-openrouter-canary-vm-001 -n 1 --n-concurrent-agents 1 --max-retries 0 --ek modal_vm_runtime=true"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 5,
+    "completed": 2,
+    "valid": 0,
+    "task_pass": 0,
+    "task_fail": 0,
+    "valid_not_evaluated": 0,
+    "infrastructure_error": 2,
+    "cancelled": 0,
+    "not_started": 3
+  },
+  "costs_usd": {
+    "model": null,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "not-started:answer-now:openrouter/deepseek/deepseek-v4-flash:1",
+      "trial_name": "not-started:answer-now:openrouter/deepseek/deepseek-v4-flash:1",
+      "task_name": "answer-now",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "not-started",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "orchestrator",
+      "failure_detail": "No TrialResult was written.",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {},
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "not-started:complementary-evidence:openrouter/deepseek/deepseek-v4-flash:1",
+      "trial_name": "not-started:complementary-evidence:openrouter/deepseek/deepseek-v4-flash:1",
+      "task_name": "complementary-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "not-started",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "orchestrator",
+      "failure_detail": "No TrialResult was written.",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {},
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "d1e5054d-2ec6-4300-b282-a30e5b19dd1f",
+      "trial_name": "deployment-outage__WMK8rCK",
+      "task_name": "deployment-outage",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "infrastructure-error",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "model-provider",
+      "failure_detail": "AuthenticationError: litellm.AuthenticationError: AuthenticationError: OpenrouterException - {\"error\":{\"message\":\"Missing Authentication header\",\"code\":401}}",
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-001/deployment-outage__WMK8rCK/agent/trajectory.json",
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": 0,
+          "output": 0,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "5143996c-f412-4713-b273-8c594b5bbea8",
+      "trial_name": "insufficient-evidence__RaPsvwR",
+      "task_name": "insufficient-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "infrastructure-error",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "model-provider",
+      "failure_detail": "AuthenticationError: litellm.AuthenticationError: AuthenticationError: OpenrouterException - {\"error\":{\"message\":\"Missing Authentication header\",\"code\":401}}",
+      "trajectory_path": "jobs-scratch/context-appetite-v0.2.1-openrouter-canary-vm-001/insufficient-evidence__RaPsvwR/agent/trajectory.json",
+      "verifier_details_path": null,
+      "provider_route": {
+        "name": "deepseek/deepseek-v4-flash",
+        "provider": "openrouter"
+      },
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": 0,
+          "output": 0,
+          "cached_input": 0,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "not-started:unreliable-or-conflicting-evidence:openrouter/deepseek/deepseek-v4-flash:1",
+      "trial_name": "not-started:unreliable-or-conflicting-evidence:openrouter/deepseek/deepseek-v4-flash:1",
+      "task_name": "unreliable-or-conflicting-evidence",
+      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "attempt": 1,
+      "seed": null,
+      "execution_state": "not-started",
+      "task_outcome": "not-evaluated",
+      "failure_origin": "orchestrator",
+      "failure_detail": "No TrialResult was written.",
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "provider_route": {},
+      "metrics": {},
+      "telemetry": {
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": null,
+          "status_calls": null
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

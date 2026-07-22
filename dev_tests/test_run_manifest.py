@@ -125,6 +125,31 @@ class ClassificationTests(unittest.TestCase):
             ("valid", "fail", "agent"),
         )
 
+    def test_finished_install_only_is_valid_but_not_evaluated(self) -> None:
+        preflight = base_result()
+        preflight["config"]["install_only"] = True
+        preflight["agent_result"] = None
+        preflight["agent_execution"] = None
+        preflight["verifier"] = None
+        preflight["verifier_result"] = None
+        self.assertEqual(
+            NORMALIZER.classify_trial(preflight),
+            ("valid", "not-evaluated", "none", None),
+        )
+
+    def test_unfinished_install_only_is_harness_infrastructure_error(self) -> None:
+        preflight = base_result()
+        preflight["config"]["install_only"] = True
+        preflight["agent_setup"]["finished_at"] = None
+        preflight["agent_result"] = None
+        preflight["agent_execution"] = None
+        preflight["verifier"] = None
+        preflight["verifier_result"] = None
+        self.assertEqual(
+            NORMALIZER.classify_trial(preflight)[:3],
+            ("infrastructure-error", "not-evaluated", "harness-setup"),
+        )
+
 
 class ManifestBuildTests(unittest.TestCase):
     def test_builds_auditable_manifest_from_harbor_020_files(self) -> None:
@@ -200,6 +225,7 @@ class ManifestBuildTests(unittest.TestCase):
         self.assertEqual(manifest["counts"]["planned"], 1)
         self.assertEqual(manifest["counts"]["valid"], 1)
         self.assertEqual(manifest["counts"]["task_pass"], 1)
+        self.assertEqual(manifest["counts"]["valid_not_evaluated"], 0)
         self.assertEqual(manifest["costs_usd"]["model"], 0.001)
         self.assertEqual(manifest["runner"]["model"], "openrouter/example/model")
         self.assertTrue(manifest["runner"]["prompt_digest"].startswith("sha256:"))

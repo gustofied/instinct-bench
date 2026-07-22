@@ -36,7 +36,8 @@ uvx --from 'harbor[modal]==0.20.0' harbor run \
   -a oracle \
   -e modal \
   -o jobs-scratch \
-  --job-name context-appetite-v0.2.1-oracle-smoke-001
+  --job-name context-appetite-v0.2.1-oracle-smoke-001 \
+  --ek modal_vm_runtime=true
 ```
 
 See the [domain design and runbook](tasks/context-appetite/README.md) for the

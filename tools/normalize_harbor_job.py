@@ -88,6 +88,17 @@ def classify_trial(
             return "infrastructure-error", "not-evaluated", "model-provider", detail
         return "valid", "fail", "agent", detail
 
+    if result.get("config", {}).get("install_only") is True:
+        agent_setup = result.get("agent_setup") or {}
+        if agent_setup.get("started_at") and agent_setup.get("finished_at"):
+            return "valid", "not-evaluated", "none", None
+        return (
+            "infrastructure-error",
+            "not-evaluated",
+            "harness-setup",
+            "Install-only trial completed without a finished agent setup.",
+        )
+
     verifier_result = result.get("verifier_result") or {}
     rewards = verifier_result.get("rewards")
     if not isinstance(rewards, dict):
@@ -350,6 +361,11 @@ def build_manifest(args: argparse.Namespace) -> dict[str, Any]:
         "valid": sum(trial["execution_state"] == "valid" for trial in trials),
         "task_pass": sum(trial["task_outcome"] == "pass" for trial in trials),
         "task_fail": sum(trial["task_outcome"] == "fail" for trial in trials),
+        "valid_not_evaluated": sum(
+            trial["execution_state"] == "valid"
+            and trial["task_outcome"] == "not-evaluated"
+            for trial in trials
+        ),
         "infrastructure_error": sum(
             trial["execution_state"] == "infrastructure-error" for trial in trials
         ),
@@ -358,7 +374,9 @@ def build_manifest(args: argparse.Namespace) -> dict[str, Any]:
             trial["execution_state"] == "not-started" for trial in trials
         ),
     }
-    if counts["valid"] != counts["task_pass"] + counts["task_fail"]:
+    if counts["valid"] != (
+        counts["task_pass"] + counts["task_fail"] + counts["valid_not_evaluated"]
+    ):
         raise ValueError("Valid trial count does not match task outcomes")
     if counts["planned"] != (
         counts["valid"]

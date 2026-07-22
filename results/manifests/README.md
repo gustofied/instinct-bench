@@ -13,7 +13,9 @@ Create the intent record before launch and finalize it even when orchestration
 aborts. `execution_state` answers whether a valid trial ran;
 `task_outcome` answers whether that valid trial passed. Infrastructure errors,
 cancellations, and not-started trials never enter task accuracy, but remain in
-the planned-run denominator and visible reliability counts.
+the planned-run denominator and visible reliability counts. Successful
+install-only preflights are `valid` with `task_outcome=not-evaluated`; they are
+tracked by `valid_not_evaluated` and never enter benchmark accuracy.
 
 Use `null` when model, harness, or sandbox cost is unavailable. Never estimate
 or invent the cost mix. Oracle rows are QA evidence and must not appear as

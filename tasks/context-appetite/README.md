@@ -57,11 +57,17 @@ integration invariant covered by image/config tests and the Modal Oracle smoke.
 
 ## Security Boundary
 
-Harbor 0.20 Modal Compose currently uses host networking and the task declares
-public agent egress. The protected sidecar prevents direct answer or ledger
-access, but a public static task contract can be fetched from its repository
-after publication. These five tasks are development and plumbing cases, not a
-secure held-out evaluation or public leaderboard.
+The task declares public agent egress. Harbor 0.20's default Modal Compose
+path runs nested Docker under gVisor with host networking; in our Terminus 2
+preflight, that path also prevented `tmux` from forking. Real-agent runs use
+Harbor's experimental `modal_vm_runtime=true` path instead. It retains normal
+Docker bridge networking between services, but it does not turn the agent's
+public egress into a closed-corpus guarantee.
+
+The protected sidecar prevents direct answer or ledger access, but a public
+static task contract can be fetched from its repository after publication.
+These five tasks are development and plumbing cases, not a secure held-out
+evaluation or public leaderboard.
 
 Model pilots should run before the repaired contracts are published, or from
 private/runtime-generated task packages. A defensible public evaluation also
@@ -79,10 +85,29 @@ uvx --from 'harbor[modal]==0.20.0' harbor run \
   -e modal \
   -o jobs-scratch \
   --job-name context-appetite-v0.2.1-oracle-smoke-001 \
-  -n 2
+  -n 2 \
+  --ek modal_vm_runtime=true
 ```
 
-After the Oracle is green, run the inexpensive Terminus 2 canary:
+Before making a model call, verify Terminus 2 setup in the same runtime:
+
+```bash
+uvx --from 'harbor[modal]==0.20.0' harbor run \
+  -p tasks/context-appetite \
+  -i deployment-outage \
+  -a terminus-2 \
+  -m openrouter/deepseek/deepseek-v4-flash \
+  -e modal \
+  -o jobs-scratch \
+  --job-name context-appetite-v0.2.1-modal-vm-t2-preflight-001 \
+  --install-only \
+  --max-retries 0 \
+  -n 1 \
+  --ek modal_vm_runtime=true
+```
+
+After the Oracle and install-only preflight are green, run the inexpensive
+Terminus 2 canary:
 
 ```bash
 uvx --from 'harbor[modal]==0.20.0' harbor run \
@@ -92,7 +117,9 @@ uvx --from 'harbor[modal]==0.20.0' harbor run \
   -e modal \
   -o jobs-scratch \
   --job-name context-appetite-v0.2.1-openrouter-canary-001 \
-  -n 1
+  --max-retries 0 \
+  -n 1 \
+  --ek modal_vm_runtime=true
 ```
 
 Oracle, install checks, and canaries belong in `jobs-scratch/`. Predeclared

@@ -43,6 +43,7 @@
     "valid": 0,
     "task_pass": 0,
     "task_fail": 0,
+    "valid_not_evaluated": 0,
     "infrastructure_error": 0,
     "cancelled": 0,
     "not_started": 0
