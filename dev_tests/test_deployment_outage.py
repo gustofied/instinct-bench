@@ -226,9 +226,16 @@ class IntegrityTests(unittest.TestCase):
 
     def test_separate_verifier_configuration_declares_state_artifact(self) -> None:
         config = tomllib.loads((TASK_ROOT / "task.toml").read_text())
+        self.assertEqual(config["metadata"]["implementation_version"], "0.1.1")
+        self.assertNotIn("version", config["task"])
         self.assertEqual(config["verifier"]["environment_mode"], "separate")
         self.assertIn("/var/lib/evidence/state.json", config["artifacts"])
         self.assertTrue((TASK_ROOT / "tests" / "Dockerfile").is_file())
+
+    def test_agent_image_pins_terminus_runtime_dependencies(self) -> None:
+        dockerfile = (TASK_ROOT / "environment" / "Dockerfile").read_text()
+        self.assertIn("asciinema=2.2.0-1", dockerfile)
+        self.assertIn("tmux=3.3a-3", dockerfile)
 
     def test_background_probe_detects_exposed_test_material(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

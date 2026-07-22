@@ -5,6 +5,8 @@ Harbor task construction. The agent identifies the deployment responsible for
 a checkout outage while choosing among records with visible evidence-credit
 prices. The agent-facing request is in [instruction.md](instruction.md).
 
+The implementation targets Harbor `0.20.0`.
+
 This instance alone does not validate context appetite. A meaningful task
 population must also contain answer-now, one-source, multi-source, and
 insufficient-evidence cases so that the correct policy cannot be inferred from
@@ -17,14 +19,16 @@ It runs with one CPU, 1 GB RAM, no network, and a 120-second timeout. A
 root-owned Unix-socket service exposes four records through the `evidence` CLI
 and records openings in `/var/lib/evidence/state.json`. The agent runs as the
 unprivileged `agent` user and cannot read unopened evidence or modify the state
-file directly.
+file directly. Pinned Debian packages provide `tmux` and `asciinema` for
+Terminus 2 without runtime package installation or network access.
 
 A background process running as the same unprivileged user continuously checks
 whether `/tests` becomes visible. Its observations are written by the
 root-owned service into the protected state artifact.
 
-Task data, the evidence-cost table, scorer, and evaluation protocol are each
-versioned `0.1.0`; the repository commit freezes their exact contents.
+The Harbor implementation is versioned `0.1.1`. Task data, the evidence-cost
+table, scorer, and evaluation protocol remain independently versioned `0.1.0`;
+the repository commit freezes their exact contents.
 
 ## Verifier
 
@@ -87,7 +91,7 @@ python3 -m unittest discover -s dev_tests -v
 Run the Oracle on Modal:
 
 ```bash
-harbor run \
+uvx --from 'harbor[modal]==0.20.0' harbor run \
   -p tasks/context-appetite/answer-or-look/deployment-outage \
   -a oracle \
   -e modal \

@@ -31,7 +31,7 @@ one-source, multi-source, and insufficient-evidence cases.
 Run its reference solution with:
 
 ```bash
-harbor run \
+uvx --from 'harbor[modal]==0.20.0' harbor run \
   -p tasks/context-appetite/answer-or-look/deployment-outage \
   -a oracle \
   -e modal

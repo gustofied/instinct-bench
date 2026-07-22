@@ -3,12 +3,12 @@ artifacts = ["/var/lib/evidence/state.json"]
 
 [task]
 name = "instinct-bench/deployment-outage"
-version = "0.1.0"
 description = "A look-required Harbor learning task with priced evidence and deterministic grading."
 authors = [{ name = "Adam Sioud" }]
 keywords = ["context-appetite", "answer-or-look", "reasoning", "tool-use", "deterministic-verifier"]
 
 [metadata]
+implementation_version = "0.1.1"
 difficulty = "easy"
 category = "reasoning"
 tags = ["instinct-bench", "context-efficiency", "evidence-selection"]
