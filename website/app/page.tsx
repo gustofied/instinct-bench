@@ -118,10 +118,10 @@ export default function Home() {
                 <span className="sr-only">{benchmark.name}</span>
                 <img
                   className="block h-auto w-full max-w-[760px] -translate-y-[11%] object-contain object-left"
-                  src="/instinct-bench-wordmark.png?v=2"
+                  src="/instinct-bench-wordmark.png?v=3"
                   alt=""
-                  width="1420"
-                  height="248"
+                  width="1419"
+                  height="259"
                 />
               </h1>
 
