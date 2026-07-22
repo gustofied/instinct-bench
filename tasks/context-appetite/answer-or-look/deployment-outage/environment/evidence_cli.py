@@ -34,7 +34,7 @@ def print_list(response: dict[str, Any]) -> None:
     print("\nAvailable evidence:")
     for source in response["sources"]:
         print(
-            f"  {source['id']:<20} {source['cost']:>6} tokens  "
+            f"  {source['id']:<20} {source['evidence_cost']:>6} credits  "
             f"{source['description']}"
         )
 
@@ -56,8 +56,8 @@ def main() -> None:
     elif args.command == "open":
         response = request({"action": "open", "source_id": args.source_id})
         print(f"Source: {response['source_id']}")
-        print(f"Charged: {response['charged_tokens']} tokens")
-        print(f"Total context: {response['context_tokens']} tokens\n")
+        print(f"Charged: {response['charged_evidence_cost']} credits")
+        print(f"Total evidence cost: {response['evidence_cost']} credits\n")
         print(response["content"])
     elif args.command == "status":
         response = request({"action": "status"})
@@ -66,7 +66,7 @@ def main() -> None:
     elif args.command == "answer":
         response = request({"action": "answer", "answer": args.answer})
         print(f"Submitted: {response['submitted']}")
-        print(f"Context used: {response['context_tokens']} tokens")
+        print(f"Evidence cost: {response['evidence_cost']} credits")
     elif args.command == "ping":
         request({"action": "ping"})
         print("ready")

@@ -1,5 +1,5 @@
 #!/bin/sh
 set -eu
 
-evidence open deployment-log
+evidence open operations-record
 evidence answer checkout-api-2026.07.22.4

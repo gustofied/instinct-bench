@@ -15,14 +15,18 @@ Early domains:
 - `drawing`: make, inspect, repair, and continue from partial shape.
 - `writing`: draft, revise, preserve voice, and stop before overworking.
 
-## First Harbor Task
+## First Harbor Learning Task
 
-The first frozen task is
+The first implemented task is
 [`deployment-outage`](tasks/context-appetite/answer-or-look/deployment-outage),
 inside the `context-appetite` domain and `answer-or-look` task set. An agent must
 identify an outage-causing deployment while choosing among evidence sources
-with visible context prices. Correctness and context use are scored separately,
-and the combined reward is gated by correctness.
+with visible evidence-credit prices. Correctness and evidence sufficiency gate
+task success; efficiency only adjusts successful scores.
+
+This is one look-required Harbor learning instance, not yet a benchmark signal.
+Evaluating context appetite requires a population spanning answer-now,
+one-source, multi-source, and insufficient-evidence cases.
 
 Run its reference solution with:
 
@@ -30,5 +34,5 @@ Run its reference solution with:
 harbor run \
   -p tasks/context-appetite/answer-or-look/deployment-outage \
   -a oracle \
-  -e docker
+  -e modal
 ```
