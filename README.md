@@ -42,3 +42,8 @@ uvx --from 'harbor[modal]==0.20.0' harbor run \
 
 See the [domain design and runbook](tasks/context-appetite/README.md) for the
 measurement contract, security boundary, and real-agent canary.
+
+The complete build and pilot review lives in
+[`results/reports/our-first-harbor`](results/reports/our-first-harbor). It
+separates task decisions, evidence acquisition, harness completion, and
+infrastructure before proposing the next experiment.

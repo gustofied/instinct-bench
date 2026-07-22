@@ -34,3 +34,11 @@ failed cells.
 
 The first completed model-pilot analysis is
 [`context-appetite-v0.2.1-model-pilot-3x-001`](../reports/context-appetite-v0.2.1-model-pilot-3x-001.md).
+Its fuller post-run audit and next-experiment design are indexed in
+[`our-first-harbor`](../reports/our-first-harbor/README.md).
+
+`jobs-archive/` is an ignored local provenance store for superseded smoke,
+canary, repair, and abandoned setup jobs. It is kept outside `jobs/` and
+`jobs-scratch/` so Harbor View remains an active-work surface. Archiving a raw
+job never changes its result; reports should record the relocation when a
+historical manifest still contains the original path.

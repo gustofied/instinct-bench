@@ -2,6 +2,12 @@
 
 Status: completed protocol pilot, not a leaderboard result.
 
+> This is the original as-run report. The
+> [full post-run audit](our-first-harbor/pilot-audit.md) preserves its raw
+> evidence but supersedes the timeout classification, zero-gap interpretation,
+> and statistical claims. Use the audit for conclusions and this file for the
+> historical run narrative.
+
 The raw Harbor job is `context-appetite-v0.2.1-model-pilot-3x-001`. The
 normalized record is the [run manifest](../manifests/context-appetite-v0.2.1-model-pilot-3x-001.json).
 
