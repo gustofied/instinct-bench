@@ -2,10 +2,15 @@
 
 ## Purpose
 
-Context Appetite measures whether an agent answers from sufficient initial
-context, acquires material evidence when needed, combines evidence, resolves
-provenance conflicts, and abstains when a closed corpus cannot support a unique
-answer.
+Context Appetite v0.3.1 measures supported evidence routing and stopping under
+an explicit information, provenance, payoff, and acquisition-cost contract. It
+tests direct answers, one-source and complementary evidence, provenance
+conflicts, and supported abstention.
+
+The current prompts disclose whether the initial record identifies the answer,
+and the free catalog exposes source metadata. This release therefore does not
+claim to measure uncued uncertainty detection, Bayes-optimal acquisition, or a
+general intelligence trait.
 
 Version 0.3.1 is a contract-alignment release. It preserves the v0.3.0 raw job
 and frozen 71/75 verifier result, while fixing the proof rule that produced
@@ -34,6 +39,11 @@ task is one generated decision problem.
 4. Public development instances use a new versioned seed and package digests.
 5. Manifest normalizer 2.1 validates release metadata against the requested
    implementation version. The exact 2.0 source used by v0.3.0 is archived.
+6. The work request describes the material support rule and correctly explains
+   that sources are opened one at a time.
+7. An independent semantic audit reconstructs support from source contents and
+   rejects disagreement between material minimal support sets and verifier
+   proof paths.
 
 The runtime architecture remains unchanged: a non-root agent, protected
 evidence sidecar, authenticated final snapshot, collected ledger artifact, and
@@ -42,10 +52,11 @@ separate deterministic no-network verifier.
 ## Release Population
 
 The committed development dataset contains six matched blocks by five
-conditions, or 30 tasks. A formal comparison uses a fresh private release with
-15 disjoint matched blocks by five conditions, or 75 tasks. The existing 21
-scenario blueprints already provide varied operational settings; adding more
-rows is not the current bottleneck.
+conditions, or 30 tasks. The benchmark release contains 15 disjoint matched
+blocks by five conditions, or 75 tasks. Those 75 tasks remain unpublished only
+through the first preregistered public-egress run, then become the single public
+benchmark. This is a one-shot contamination boundary, not a permanent hidden
+leaderboard split.
 
 The 21 blueprints are surface scenarios over five shared generated evidence
 structures. They improve domain and vocabulary coverage, but they are not 21
@@ -63,12 +74,12 @@ Run these gates in order:
 
 1. Full unit suite, Ruff, JSON parsing, generated-file drift, and
    `git diff --check`.
-2. Deterministic policies over every generated task. No fixed one-source
-   policy may dominate.
+2. Independent material-semantic audit and deterministic policies over every
+   generated task. No fixed one-source policy may dominate.
 3. Harbor 0.20 `--print-config` for the complete public dataset.
 4. Oracle over all 30 public tasks on the intended sandbox.
-5. For a private evaluation, Oracle over all 75 private tasks and all protected
-   runtime checks.
+5. Oracle over all 75 pre-public benchmark tasks and all protected runtime
+   checks.
 6. One paid five-condition canary with complete trajectory review.
 7. Only then launch a predeclared proper-agent matrix.
 
@@ -87,17 +98,26 @@ prompt, skills, sandbox, and provider policy. A harness comparison fixes the
 model and provider policy. Every configuration receives all 75 tasks with
 pass@1, no selective retries, and the same timeout and concurrency contract.
 
-Report binary task success; semantic, proof, format, integrity, and harness
-axes; infrastructure reliability; evidence use; model tokens, latency, and
-provider cost; requested versus confirmed routing; and the egress/contract
-boundary. Use matched-block summaries. Do not treat 75 rows as independent,
-blend cost into task success, or infer a model ranking from one configuration.
+Report a success-acquisition frontier: binary task success beside evidence
+credits, source count, and payload, plus semantic, proof, format, integrity,
+harness, infrastructure, token, latency, and provider-cost diagnostics. An
+open-all policy can earn 75/75 binary success, so task success alone does not
+measure restraint. Use matched-block summaries. Do not treat 75 rows as
+independent, blend cost into task success, or infer a model ranking from one
+configuration.
 
 ## Publication
 
-The public development dataset is suitable for Harbor registry testing after
-the local release gates pass. It is a development set, not a hidden
-leaderboard. Official results require a fresh private commitment and run lock.
+The 30-task set is public development material and cannot enter a clean
+public-egress accuracy denominator. The 75-task benchmark remains unpublished
+for one locked baseline, then is published and all subsequent runs are labeled
+public-set protocol results.
+
+Modal Compose gives the agent raw public egress. Once task packages are public,
+that permits solution retrieval and is not a controlled internet action. A
+reusable public comparison must use a network boundary that blocks benchmark
+artifacts and external model APIs, or a future logged and priced internet proxy
+with the same exclusions.
 
 Harbor publication is private by default:
 
@@ -109,7 +129,8 @@ uvx --from 'harbor==0.20.0' harbor publish \
 ```
 
 Add `--public` only after confirming ownership of the `instinct-bench`
-namespace and reviewing the uploaded task and dataset visibility.
+namespace and reviewing the uploaded task and dataset visibility. Registry
+upload remains a separate action that Adam will request explicitly.
 
 The completed truth-free release evidence is recorded in
 [`results/reports/context-appetite-v0.3.1`](../results/reports/context-appetite-v0.3.1/README.md).

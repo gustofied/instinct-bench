@@ -9,8 +9,14 @@ Initial-context provenance:
 - declared reliability: `0.990`
 - lineage group: `initial-7qym2g`
 
-The evidence catalog is optional. Inspect it with `evidence list`, open one
-source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
+The evidence catalog is optional. Inspect it with `evidence list`, open sources
+one at a time with `evidence open SOURCE_ID`, and inspect spend with
+`evidence status`.
+
+A supported answer requires the initial context or opened evidence to establish
+the event-to-entity link. A supported `INSUFFICIENT` decision requires opened
+evidence establishing event-specific ambiguity and that the corpus is complete
+for the relevant window.
 
 Submit exactly one final decision:
 

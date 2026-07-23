@@ -42,6 +42,20 @@ V03_MANIFESTS = (
 
 
 class ClassificationTests(unittest.TestCase):
+    def test_manifest_writer_is_atomic_and_private(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "manifest.json"
+            NORMALIZER.write_json_atomic(path, {"version": 1})
+            self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+            self.assertEqual(json.loads(path.read_text()), {"version": 1})
+            NORMALIZER.write_json_atomic(path, {"version": 2})
+            self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+            self.assertEqual(json.loads(path.read_text()), {"version": 2})
+            self.assertEqual(
+                [item for item in path.parent.iterdir() if item != path],
+                [],
+            )
+
     def test_deadline_preserves_provider_and_terminal_failure_stage(self) -> None:
         provider = {
             "exception_info": {

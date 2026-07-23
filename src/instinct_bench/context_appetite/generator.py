@@ -4,10 +4,12 @@ import argparse
 import hashlib
 import hmac
 import json
+import os
 import random
 import shutil
 import stat
 import string
+import tempfile
 from dataclasses import dataclass
 from itertools import permutations
 from pathlib import Path
@@ -476,8 +478,14 @@ Initial-context provenance:
 - declared reliability: `{spec.initial_declared_reliability:.3f}`
 - lineage group: `{spec.initial_lineage_group}`
 
-The evidence catalog is optional. Inspect it with `evidence list`, open one
-source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
+The evidence catalog is optional. Inspect it with `evidence list`, open sources
+one at a time with `evidence open SOURCE_ID`, and inspect spend with
+`evidence status`.
+
+A supported answer requires the initial context or opened evidence to establish
+the event-to-entity link. A supported `INSUFFICIENT` decision requires opened
+evidence establishing event-specific ambiguity and that the corpus is complete
+for the relevant window.
 
 Submit exactly one final decision:
 
@@ -580,9 +588,27 @@ def solution(spec: TaskSpec) -> str:
     return f"#!/bin/sh\nset -eu\n\n{body}\n"
 
 
-def write_json(path: Path, value: object) -> None:
+def write_json(path: Path, value: object, *, mode: int | None = None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, sort_keys=False) + "\n")
+    descriptor, temporary_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        text=True,
+    )
+    temporary = Path(temporary_name)
+    try:
+        if mode is not None:
+            os.fchmod(descriptor, mode)
+        with os.fdopen(descriptor, "w") as handle:
+            handle.write(json.dumps(value, indent=2, sort_keys=False) + "\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        if mode is not None:
+            path.chmod(mode)
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 def write_task(output_dir: Path, spec: TaskSpec) -> None:
@@ -883,6 +909,7 @@ def main() -> None:
         write_json(
             args.commitment_output.resolve(),
             public_release_commitment(secret, specs, args.output.resolve()),
+            mode=0o600,
         )
     print(
         f"Generated {len(specs)} {args.split} tasks at {args.output}; "

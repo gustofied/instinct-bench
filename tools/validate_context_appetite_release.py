@@ -16,6 +16,9 @@ if str(SRC) not in sys.path:
 
 from instinct_bench.context_appetite import generator  # noqa: E402
 from instinct_bench.context_appetite.schemas import CONDITIONS, TaskSpec  # noqa: E402
+from instinct_bench.context_appetite.semantic_audit import (  # noqa: E402
+    audit_dataset,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -94,6 +97,9 @@ def validate_dataset(
 
     if private:
         validate_permissions(dataset_dir)
+    semantic_results = audit_dataset(dataset_dir)
+    if len(semantic_results) != len(specs):
+        raise ValueError("semantic audit task count does not match generated specs")
 
 
 def review_rows(specs: list[TaskSpec]) -> list[str]:

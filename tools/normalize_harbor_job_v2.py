@@ -5,7 +5,9 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import shlex
+import tempfile
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -1125,7 +1127,7 @@ def main() -> None:
     args = parse_args()
     manifest = build_manifest(args)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(manifest, indent=2, sort_keys=False) + "\n")
+    write_json_atomic(args.output, manifest)
     counts = manifest["counts"]
     print(
         f"Wrote {args.output}: {counts['benchmark_valid']}/{counts['planned']} "
@@ -1133,6 +1135,28 @@ def main() -> None:
         f"{counts['domain_pass']} domain, {counts['deadline']} deadlines, "
         f"{counts['infrastructure_error']} infrastructure errors"
     )
+
+
+def write_json_atomic(path: Path, value: object, *, mode: int = 0o600) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        text=True,
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, mode)
+        with os.fdopen(descriptor, "w") as handle:
+            json.dump(value, handle, indent=2, sort_keys=False)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        path.chmod(mode)
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 if __name__ == "__main__":

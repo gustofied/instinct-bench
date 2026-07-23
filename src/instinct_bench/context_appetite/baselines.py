@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from typing import Callable, Literal
 
 from .schemas import TaskSpec
+from .semantic_audit import infer_supported_decisions
 
 
 TerminalMode = Literal["answer", "insufficient", "oracle"]
@@ -59,6 +60,53 @@ def open_all(spec: TaskSpec) -> tuple[str, ...]:
     return spec.source_order
 
 
+AUTHORITY_PRIORITY = {
+    "immutable-control-ledger": 7,
+    "primary-control-record": 6,
+    "signed-ingestion-receipt": 5,
+    "signed-operational-log": 4,
+    "independent-audit-record": 3,
+    "derived-summary": 1,
+    "unsigned-operator-note": 0,
+}
+
+
+def authority_aware_sequential(spec: TaskSpec) -> tuple[str, ...]:
+    visible_task = {
+        "question": spec.question,
+        "initial_context": spec.initial_context,
+        "sources": {
+            source.source_id: {
+                "content": source.content,
+                "authority_class": source.authority_class,
+                "declared_reliability": source.declared_reliability,
+                "lineage_group": source.lineage_group,
+            }
+            for source in spec.sources
+        },
+    }
+    if infer_supported_decisions(visible_task, ()):
+        return ()
+    list_position = {
+        source_id: position for position, source_id in enumerate(spec.source_order)
+    }
+    ordered = sorted(
+        spec.sources,
+        key=lambda source: (
+            -AUTHORITY_PRIORITY.get(source.authority_class, -1),
+            -source.declared_reliability,
+            list_position[source.source_id],
+            source.evidence_cost,
+        ),
+    )
+    opened: list[str] = []
+    for source in ordered:
+        opened.append(source.source_id)
+        if infer_supported_decisions(visible_task, opened):
+            break
+    return tuple(opened)
+
+
 def proof_aware_oracle(spec: TaskSpec) -> tuple[str, ...]:
     costs = spec.source_map
     return min(
@@ -77,6 +125,7 @@ POLICIES: dict[str, Policy] = {
     "cheapest-first": Policy(cheapest_first, "oracle"),
     "highest-reliability-first": Policy(highest_reliability_first, "oracle"),
     "random-one": Policy(random_one, "oracle"),
+    "authority-aware-sequential": Policy(authority_aware_sequential, "oracle"),
     "open-all": Policy(open_all, "oracle"),
     "proof-aware-oracle": Policy(proof_aware_oracle, "oracle"),
 }

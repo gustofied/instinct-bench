@@ -4,6 +4,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import shutil
 import sys
 import tempfile
 import tomllib
@@ -23,6 +24,12 @@ from instinct_bench.context_appetite.baselines import (  # noqa: E402
     summarize,
 )
 from instinct_bench.context_appetite.schemas import CONDITIONS  # noqa: E402
+from instinct_bench.context_appetite.semantic_audit import (  # noqa: E402
+    EVENT_PATTERN,
+    SemanticAuditError,
+    audit_dataset,
+    audit_task_package,
+)
 
 
 DEV_DIR = REPO_ROOT / "evals" / "context-appetite" / "dev"
@@ -317,6 +324,17 @@ class GeneratorTests(unittest.TestCase):
             self.assertIn("--confidence PROBABILITY", text)
             self.assertNotIn("--confidence 0.84", text)
 
+    def test_instruction_states_plural_tool_and_material_support_contract(
+        self,
+    ) -> None:
+        for spec in self.dev_specs + self.eval_specs:
+            text = generator.instruction(spec)
+            self.assertIn("open sources\none at a time", text)
+            self.assertNotIn("open one\nsource", text)
+            self.assertIn("event-to-entity link", text)
+            self.assertIn("event-specific ambiguity", text)
+            self.assertIn("corpus is complete", text)
+
     def test_generator_is_byte_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             first = Path(temporary) / "first"
@@ -543,6 +561,119 @@ class BaselineTests(unittest.TestCase):
         ):
             self.assertLess(self.summary[name]["optimistic_successes"], 75)
             self.assertGreater(self.summary[name]["optimistic_successes"], 0)
+
+    def test_authority_aware_sequential_reader_covers_all_tasks_at_lower_cost(
+        self,
+    ) -> None:
+        sequential = self.summary["authority-aware-sequential"]
+        open_all = self.summary["open-all"]
+        self.assertEqual(sequential["optimistic_successes"], 75)
+        self.assertLess(
+            sequential["mean_evidence_cost"], open_all["mean_evidence_cost"]
+        )
+
+
+class IndependentSemanticAuditTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.temporary = tempfile.TemporaryDirectory()
+        cls.eval_dir = Path(cls.temporary.name) / "eval"
+        generator.generate(
+            split="eval",
+            secret=EVAL_SECRET,
+            output_dir=cls.eval_dir,
+            replace=False,
+        )
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.temporary.cleanup()
+
+    def test_all_public_and_eval_packages_have_materially_exact_proof_sets(
+        self,
+    ) -> None:
+        self.assertEqual(len(audit_dataset(DEV_DIR)), 30)
+        self.assertEqual(len(audit_dataset(self.eval_dir)), 75)
+
+    def copy_task(self, task_id: str, destination: Path) -> Path:
+        task_dir = destination / task_id
+        shutil.copytree(DEV_DIR / task_id, task_dir)
+        return task_dir
+
+    def test_audit_rejects_missing_material_claim(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            task_dir = self.copy_task("ca-dev-002", Path(temporary))
+            expected = json.loads((task_dir / "tests" / "expected.json").read_text())
+            proof_id = expected["accepted_proof_sets"][0][0]
+            task_data_path = (
+                task_dir / "environment" / "evidence-sidecar" / "task_data.json"
+            )
+            task_data = json.loads(task_data_path.read_text())
+            task_data["sources"][proof_id]["content"] = (
+                "The record is present but contains no attribution claim."
+            )
+            generator.write_json(task_data_path, task_data)
+            with self.assertRaisesRegex(
+                SemanticAuditError, "do not match verifier paths"
+            ):
+                audit_task_package(task_dir)
+
+    def test_audit_rejects_unintended_shortcut(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            task_dir = self.copy_task("ca-dev-003", Path(temporary))
+            expected = json.loads((task_dir / "tests" / "expected.json").read_text())
+            expected_id = expected["expected_entity_id"]
+            task_data_path = (
+                task_dir / "environment" / "evidence-sidecar" / "task_data.json"
+            )
+            task_data = json.loads(task_data_path.read_text())
+            event_id = EVENT_PATTERN.search(task_data["question"]).group()
+            accepted = {
+                source_id
+                for path in expected["accepted_proof_sets"]
+                for source_id in path
+            }
+            shortcut_id = next(
+                source_id
+                for source_id in task_data["sources"]
+                if source_id not in accepted
+            )
+            task_data["sources"][shortcut_id].update(
+                {
+                    "authority_class": "primary-control-record",
+                    "declared_reliability": 0.99,
+                    "content": (
+                        f"The signed decision for {event_id} names {expected_id} "
+                        "as the controlling entity."
+                    ),
+                }
+            )
+            generator.write_json(task_data_path, task_data)
+            with self.assertRaisesRegex(
+                SemanticAuditError, "do not match verifier paths"
+            ):
+                audit_task_package(task_dir)
+
+    def test_audit_rejects_incomplete_abstention_material(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            task_dir = self.copy_task("ca-dev-004", Path(temporary))
+            task_data_path = (
+                task_dir / "environment" / "evidence-sidecar" / "task_data.json"
+            )
+            task_data = json.loads(task_data_path.read_text())
+            completeness_id = next(
+                source_id
+                for source_id, source in task_data["sources"].items()
+                if source["authority_class"] == "independent-audit-record"
+            )
+            task_data["sources"][completeness_id]["content"] = (
+                "The audit covers routine bookkeeping only."
+            )
+            generator.write_json(task_data_path, task_data)
+            with self.assertRaisesRegex(
+                SemanticAuditError, "do not match verifier paths"
+            ):
+                audit_task_package(task_dir)
 
 
 class EvidenceServiceTests(unittest.TestCase):

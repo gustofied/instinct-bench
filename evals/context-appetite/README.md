@@ -1,8 +1,8 @@
 # Context Appetite
 
-Context Appetite is the first domain in Instinct Bench. It evaluates whether an
-agent can answer, inspect optional evidence, abstain, and stop under a declared
-information and price environment.
+Context Appetite is the first domain in Instinct Bench. v0.3.1 evaluates
+supported evidence routing and stopping under a declared information,
+provenance, payoff, and acquisition-cost contract.
 
 This directory contains the v0.3.1 public development output. The five labels are
 experimental conditions, not another dataset or task-family layer:
@@ -14,8 +14,10 @@ experimental conditions, not another dataset or task-family layer:
 5. `reliability-conflict`
 
 Each matched scenario block presents the same latent entity under all five
-conditions. The public development split has six blocks and 30 tasks. Each
-held-out evaluation release has 15 disjoint blocks and 75 private tasks.
+conditions. The public development set has six blocks and 30 tasks. The
+benchmark release has 15 disjoint blocks and 75 tasks. It remains unpublished
+only through its first locked public-egress run, then becomes the single public
+benchmark rather than a permanent hidden leaderboard split.
 Price and list position are matched across evidence-requiring conditions
 within a block and counterbalanced across blocks; release analysis therefore
 uses the scenario block as the unit of resampling.
@@ -32,8 +34,9 @@ evals/context-appetite/
 |-- README.md
 |-- release-v0.3.0.json        # historical public commitment
 |-- official-run-v0.3.0.json   # historical locked protocol
+|-- official-run-v0.3.1.json   # current locked protocol
 |-- dev/                       # 30 committed v0.3.1 tasks
-`-- eval-private-v0.3.1/       # future private tasks, ignored by Git
+`-- eval-private-v0.3.1/       # pre-public benchmark tasks, ignored by Git
 
 src/instinct_bench/context_appetite/
 |-- blueprints.py
@@ -98,10 +101,15 @@ revealing payloads. `evidence open` returns one payload and records the charge.
 The typed `evidence submit` decision is final.
 
 The main service has public egress because Harbor 0.20 Modal Compose requires
-that baseline. Private task contracts therefore remain private through the
-official run. Source contents and the append-only ledger live in a non-root
-sidecar; hidden truth and accepted proof paths live only in a separate
+that baseline. Benchmark contracts therefore remain unpublished through the
+first official run. Source contents and the append-only ledger live in a
+non-root sidecar; hidden truth and accepted proof paths live only in a separate
 no-network verifier.
+
+The material support rule is public: an answer needs an event-to-entity link;
+plain `INSUFFICIENT` needs event-specific ambiguity plus independent
+corpus-completeness evidence. The independent semantic audit reconstructs
+those claims from source text rather than trusting the generator's proof sets.
 
 ## Verifier And Reward
 
@@ -124,8 +132,10 @@ separate diagnostics.
 
 The deterministic policy baselines are acquisition tests. Except for the two
 immediate terminal policies, they assume an oracle terminal decision after
-opening evidence. They detect presentation shortcuts and compare proof
-coverage versus cost; they are not model scores.
+opening evidence. They include an authority-aware sequential reader, detect
+presentation shortcuts, and compare proof coverage versus cost; they are not
+model scores. Open-all earns binary success on every task, so public reporting
+must show a success-acquisition frontier rather than success alone.
 
 ## Validation
 
@@ -150,7 +160,10 @@ uvx --from 'harbor==0.20.0' harbor publish \
 ```
 
 Publishing is private by default. Add `--public` only after the namespace,
-task digests, Oracle result, and release report have been checked.
+task digests, Oracle result, and release report have been checked. Raw public
+egress is not the future controlled-internet action: reusable public runs need
+a network boundary or a logged, priced proxy that blocks benchmark repositories
+and external model APIs. Registry publication happens only when Adam asks.
 
 The corrected release and proper-agent protocol are in
 [`docs/context-appetite-v0.3.1.md`](../../docs/context-appetite-v0.3.1.md).
