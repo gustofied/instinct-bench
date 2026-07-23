@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.1",
+  "benchmark": {
+    "release": "Instinct Bench: Context Appetite v0.3.1",
+    "release_commitment_file": "evals/context-appetite/release-v0.3.1.json",
+    "release_metadata_file": "evals/context-appetite/eval-private-v0.3.1/release-metadata.json",
+    "dataset_path": "evals/context-appetite/eval-private-v0.3.1",
+    "task_release_commit": "4458249",
+    "seed_commitment": "sha256:889fb173b85078bb004c1af559612df075fc3717b2de0a7624af31b8568b0e27",
+    "dataset_commitment": "sha256:46d31fc7b83df596b68190309489946eb28ab09de7f653a565450949192f9ccd",
+    "package_set_commitment": "sha256:d45f374f1d0f26cf852ff47d0bf350d05d76dc5ac42ca144c7143b9d14d2ba17",
+    "contract_visibility_at_run": "unpublished",
+    "publication_lifecycle": "publish the complete 75-task benchmark after the first locked run"
+  },
+  "agent": {
+    "model": "openrouter/z-ai/glm-5.2",
+    "harness": "terminus-2",
+    "harness_version": "2.0.0",
+    "prompt_digest": "sha256:e6794ed5222445d522a800f3fc70ec258776cbcb09731d43a0028c5c7f0137fc",
+    "skills": [],
+    "sampling": {
+      "temperature": 0,
+      "seed": null
+    },
+    "provider_request": {
+      "router": "openrouter",
+      "endpoint_tag": "z-ai/fp8",
+      "allow_fallbacks": false,
+      "require_parameters": true
+    }
+  },
+  "sandbox": {
+    "environment": "modal",
+    "modal_vm_runtime": true,
+    "agent_egress": "public",
+    "verifier_egress": "no-network",
+    "task_schema_version": "1.3",
+    "harbor_version": "0.20.0"
+  },
+  "execution": {
+    "launcher": "tools/run_context_appetite_v031.py",
+    "env_file": ".env",
+    "file_umask": "077",
+    "attempts_per_task": 1,
+    "agent_timeout_seconds": 300,
+    "concurrency": 4,
+    "agent_concurrency": 4,
+    "max_retries": 0,
+    "selective_retries": false,
+    "canary": {
+      "job_name": "context-appetite-v0.3.1-glm52-t2-canary-001",
+      "jobs_dir": "jobs-scratch",
+      "expected_trials": 5,
+      "task_ids": [
+        "ca-eval-051",
+        "ca-eval-055",
+        "ca-eval-070",
+        "ca-eval-025",
+        "ca-eval-064"
+      ]
+    },
+    "evaluation": {
+      "job_name": "context-appetite-v0.3.1-glm52-t2-eval-001",
+      "jobs_dir": "jobs",
+      "expected_trials": 75
+    }
+  },
+  "reporting": {
+    "primary": "binary task success beside acquisition diagnostics",
+    "required_axes": [
+      "semantic_success",
+      "proof_sufficient",
+      "format_contract_met",
+      "verifier_integrity",
+      "harness_completion",
+      "execution_status"
+    ],
+    "required_acquisition_metrics": [
+      "sources_opened",
+      "observed_evidence_cost",
+      "evidence_payload_bytes",
+      "evidence_token_proxy",
+      "successful_excess_evidence_cost"
+    ],
+    "required_runtime_metrics": [
+      "model_input_tokens",
+      "model_cached_input_tokens",
+      "model_output_tokens",
+      "model_call_latency",
+      "trial_latency",
+      "provider_cost_usd",
+      "requested_and_confirmed_route"
+    ],
+    "prohibited_headlines": [
+      "single blended smartness score",
+      "total cost per task when sandbox or harness cost is unknown",
+      "model ranking from one configuration"
+    ]
+  }
+}

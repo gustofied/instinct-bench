@@ -33,7 +33,7 @@ from instinct_bench.context_appetite.semantic_audit import (  # noqa: E402
 
 
 DEV_DIR = REPO_ROOT / "evals" / "context-appetite" / "dev"
-OFFICIAL_RUN = REPO_ROOT / "evals" / "context-appetite" / "official-run-v0.3.0.json"
+OFFICIAL_RUN = REPO_ROOT / "evals" / "context-appetite" / "official-run-v0.3.1.json"
 V031_RELEASE = REPO_ROOT / "evals" / "context-appetite" / "release-v0.3.1.json"
 V031_ORACLE_GATE = (
     REPO_ROOT / "results" / "reports" / "context-appetite-v0.3.1" / "oracle-gate.json"
@@ -74,6 +74,15 @@ def load_release_validator():
     spec = importlib.util.spec_from_file_location(
         "validate_context_appetite_release", path
     )
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_locked_runner():
+    path = REPO_ROOT / "tools" / "run_context_appetite_v031.py"
+    spec = importlib.util.spec_from_file_location("run_context_appetite_v031", path)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -166,16 +175,26 @@ class GeneratorTests(unittest.TestCase):
 
     def test_official_run_protocol_is_locked_and_truth_free(self) -> None:
         config = json.loads(OFFICIAL_RUN.read_text())
-        self.assertEqual(config["schema_version"], "1.0")
-        run = config["run"]
-        self.assertEqual(run["expected_trials"], 75)
-        self.assertEqual(run["attempts_per_task"], 1)
-        self.assertEqual(run["model"], "openrouter/z-ai/glm-5.2")
-        self.assertEqual(run["harness"], "terminus-2")
-        self.assertEqual(run["harness_version"], "2.0.0")
-        self.assertEqual(run["sampling"], {"temperature": 0, "seed": None})
+        self.assertEqual(config["schema_version"], "1.1")
+        benchmark = config["benchmark"]
+        commitment = json.loads(V031_RELEASE.read_text())["release"]
+        for field in (
+            "seed_commitment",
+            "dataset_commitment",
+            "package_set_commitment",
+        ):
+            self.assertEqual(benchmark[field], commitment[field])
+        self.assertRegex(benchmark["task_release_commit"], r"^[0-9a-f]{7,40}$")
+        self.assertEqual(benchmark["contract_visibility_at_run"], "unpublished")
+
+        agent = config["agent"]
+        self.assertEqual(agent["model"], "openrouter/z-ai/glm-5.2")
+        self.assertEqual(agent["harness"], "terminus-2")
+        self.assertEqual(agent["harness_version"], "2.0.0")
+        self.assertRegex(agent["prompt_digest"], r"^sha256:[0-9a-f]{64}$")
+        self.assertEqual(agent["sampling"], {"temperature": 0, "seed": None})
         self.assertEqual(
-            run["provider_request"],
+            agent["provider_request"],
             {
                 "router": "openrouter",
                 "endpoint_tag": "z-ai/fp8",
@@ -183,14 +202,39 @@ class GeneratorTests(unittest.TestCase):
                 "require_parameters": True,
             },
         )
-        self.assertEqual(run["skills"], [])
-        self.assertEqual(run["agent_timeout_seconds"], 300)
-        self.assertEqual(run["concurrency"], 4)
-        self.assertEqual(run["agent_concurrency"], 4)
-        self.assertEqual(run["max_retries"], 0)
-        self.assertFalse(run["selective_retries"])
-        self.assertNotIn("tasks", config)
-        self.assertNotIn("condition", OFFICIAL_RUN.read_text())
+        self.assertEqual(agent["skills"], [])
+
+        execution = config["execution"]
+        self.assertEqual(execution["attempts_per_task"], 1)
+        self.assertEqual(execution["agent_timeout_seconds"], 300)
+        self.assertEqual(execution["concurrency"], 4)
+        self.assertEqual(execution["agent_concurrency"], 4)
+        self.assertEqual(execution["max_retries"], 0)
+        self.assertFalse(execution["selective_retries"])
+        self.assertEqual(execution["file_umask"], "077")
+        self.assertEqual(execution["evaluation"]["expected_trials"], 75)
+        self.assertEqual(execution["canary"]["expected_trials"], 5)
+        self.assertEqual(len(set(execution["canary"]["task_ids"])), 5)
+        self.assertNotIn('"condition"', OFFICIAL_RUN.read_text())
+        self.assertNotIn('"scenario_block"', OFFICIAL_RUN.read_text())
+
+    def test_locked_runner_builds_exact_non_uploading_protocol(self) -> None:
+        runner = load_locked_runner()
+        lock = json.loads(OFFICIAL_RUN.read_text())
+        command = runner.build_command(
+            lock,
+            phase="canary",
+            harbor_executable="/usr/bin/harbor",
+        )
+        self.assertEqual(command[:3], ["/usr/bin/harbor", "run", "-p"])
+        self.assertEqual(command.count("-i"), 5)
+        self.assertIn("openrouter/z-ai/glm-5.2", command)
+        self.assertIn("terminus-2", command)
+        self.assertIn("temperature=0", command)
+        self.assertIn("modal_vm_runtime=true", command)
+        self.assertNotIn("--upload", command)
+        self.assertNotIn("--public", command)
+        self.assertNotIn("--private", command)
 
     def test_eval_task_ids_do_not_encode_condition_or_block(self) -> None:
         second_secret = b"different-private-test-secret-not-for-release-0002"
