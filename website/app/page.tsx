@@ -12,7 +12,7 @@ const mockCostMix = [
 ] as const;
 
 const mockLatencyMix = [
-  { label: "Model wait", value: 76 },
+  { label: "Model", value: 76 },
   { label: "Harness", value: 9 },
   { label: "Sandbox", value: 15 },
 ] as const;
@@ -87,6 +87,43 @@ function MetricMix({
         </span>
       ))}
     </span>
+  );
+}
+
+function TaskMetric({
+  idPrefix,
+  items,
+  label,
+  tooltip,
+  value,
+}: {
+  idPrefix: string;
+  items: ReadonlyArray<{ label: string; value: number }>;
+  label: string;
+  tooltip?: {
+    label: string;
+    text: string;
+  };
+  value: string;
+}) {
+  return (
+    <div className="flex min-h-[112px] flex-col justify-between border border-line px-3 py-3">
+      <div className="flex items-baseline justify-between gap-4">
+        <span className="inline-flex items-center gap-1 font-mono text-[9px] text-muted">
+          {label}
+          {tooltip && (
+            <InfoTooltip
+              align="responsive"
+              id={`${idPrefix}-tooltip`}
+              label={tooltip.label}
+              text={tooltip.text}
+            />
+          )}
+        </span>
+        <strong className="font-mono text-[16px] font-medium">{value}</strong>
+      </div>
+      <MetricMix idPrefix={idPrefix} items={items} />
+    </div>
   );
 }
 
@@ -230,8 +267,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="border border-line">
-              <div className="grid grid-cols-3 md:grid-cols-4">
+            <div className="grid gap-2.5">
+              <div className="grid grid-cols-3 border border-line md:grid-cols-4">
                 {[
                   {
                     label: "domains",
@@ -284,44 +321,23 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="grid border-t border-line min-[560px]:grid-cols-2">
-                <div className="min-h-[116px] px-3 py-3">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-mono text-[9px] text-muted">$ / task</span>
-                    <strong className="font-mono text-[16px] font-medium">
-                      {benchmarkSummary.bestRun?.cost ?? "—"}
-                    </strong>
-                  </div>
-                  <div className="mt-4">
-                    <MetricMix idPrefix="cost" items={mockCostMix} />
-                  </div>
-                </div>
-
-                <div className="min-h-[116px] border-t border-line px-3 py-3 min-[560px]:border-t-0 min-[560px]:border-l">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="inline-flex items-center gap-1 font-mono text-[9px] text-muted">
-                      task latency
-                      <InfoTooltip
-                        align="responsive"
-                        id="task-latency-tooltip"
-                        label="How task latency is measured"
-                        text="Agent run only; excludes environment setup and verifier/grading."
-                      />
-                    </span>
-                    <span className="text-right font-mono">
-                      <strong className="block text-[16px] font-medium">
-                        61s <span className="text-[9px] text-muted">p50</span>
-                      </strong>
-                      <span className="block text-[8px] text-muted">p95 101s</span>
-                    </span>
-                  </div>
-                  <p className="mt-1 font-mono text-[8px] text-muted">
-                    agent run only · excludes setup + grading
-                  </p>
-                  <div className="mt-2.5">
-                    <MetricMix idPrefix="latency" items={mockLatencyMix} />
-                  </div>
-                </div>
+              <div className="grid gap-2.5 min-[560px]:grid-cols-2">
+                <TaskMetric
+                  idPrefix="cost"
+                  items={mockCostMix}
+                  label="$ / task"
+                  value={benchmarkSummary.bestRun?.cost ?? "—"}
+                />
+                <TaskMetric
+                  idPrefix="latency"
+                  items={mockLatencyMix}
+                  label="latency / task"
+                  tooltip={{
+                    label: "How latency per task is measured",
+                    text: "Agent-run latency per task. 61s is p50; p95 is 101s. Excludes environment setup and verifier/grading. Component mix is illustrative.",
+                  }}
+                  value="61s"
+                />
               </div>
             </div>
           </section>
