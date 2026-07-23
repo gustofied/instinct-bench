@@ -63,4 +63,6 @@ the confidence anchor, and hardens private generation. Its generated
 [public development dataset](evals/context-appetite/dev),
 [release note](docs/context-appetite-v0.3.1.md), and
 [domain runbook](evals/context-appetite/README.md) are ready for Harbor agent
-testing. Official comparisons still use fresh private contracts.
+testing. The [release gate](results/reports/context-appetite-v0.3.1/README.md)
+records 30/30 public and 75/75 private Oracle passes. Official comparisons
+still use fresh private contracts.

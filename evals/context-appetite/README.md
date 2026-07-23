@@ -154,6 +154,8 @@ task digests, Oracle result, and release report have been checked.
 
 The corrected release and proper-agent protocol are in
 [`docs/context-appetite-v0.3.1.md`](../../docs/context-appetite-v0.3.1.md).
+The truth-free release evidence is in
+[`results/reports/context-appetite-v0.3.1`](../../results/reports/context-appetite-v0.3.1/README.md).
 The historical preregistration remains in
 [`docs/context-appetite-v0.3.0-plan.md`](../../docs/context-appetite-v0.3.0-plan.md).
 The completed 75-task result and trace audit are in

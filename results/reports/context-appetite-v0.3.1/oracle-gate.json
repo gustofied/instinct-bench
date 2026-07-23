@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "release": {
+    "name": "Instinct Bench: Context Appetite v0.3.1",
+    "version": "0.3.1",
+    "source_commit": "f19cf35"
+  },
+  "public_release": {
+    "split": "dev",
+    "seed_commitment": "sha256:ad5702bb180664416efce763f4886b6f5b9e270ae4a323373742e303aba0dc93",
+    "dataset_commitment": "sha256:10b7b545f9f55939df67667a986bbdfb1a7fb3d12be90b02450a6a3da7889f71",
+    "package_set_commitment": "sha256:8f97446affa53419155969d970d055fe416b580fc594e64ff6f9f5fce15deb18"
+  },
+  "private_release": {
+    "split": "eval",
+    "seed_commitment": "sha256:889fb173b85078bb004c1af559612df075fc3717b2de0a7624af31b8568b0e27",
+    "dataset_commitment": "sha256:46d31fc7b83df596b68190309489946eb28ab09de7f653a565450949192f9ccd",
+    "package_set_commitment": "sha256:dc57a324f8d4696bf82da68fa8839dd28ee00967b4e05bb1fc8687eb3ed4a824",
+    "public_commitment_sha256": "sha256:2a1716d0de8761ffa580f5622e4b13336129f18bbc574bd71d8866ec169fa9ca"
+  },
+  "public_job": {
+    "name": "context-appetite-v0.3.1-dev-oracle-smoke-001",
+    "run_kind": "oracle-smoke",
+    "publication": "excluded",
+    "harbor_version": "0.20.0",
+    "environment": "modal",
+    "concurrency": 4,
+    "max_retries": 0,
+    "result_sha256": "sha256:4557ada5acc25ca45a1b55c38a57dfae1d5d174e8e590beb3b6bfc6f7c271de0",
+    "lock_sha256": "sha256:f8b6ee011a5aec520778d79907f6dd814c786317dd7fb5693aaeeb8aa458b42a",
+    "release_metadata_sha256": "sha256:cc099ca3b304e2060bc937599ea5062d5570a708eac0df9e8375b15061720d89",
+    "normalized_manifest_sha256": "sha256:b555e26642b2061d18f8ac9f6f2b30522f5cf5f30176d1d9a5fe512bbea25fac"
+  },
+  "private_job": {
+    "name": "context-appetite-v0.3.1-oracle-smoke-002",
+    "run_kind": "oracle-smoke",
+    "publication": "excluded",
+    "harbor_version": "0.20.0",
+    "environment": "modal",
+    "concurrency": 4,
+    "max_retries": 0,
+    "started_at": "2026-07-23T10:25:29.087174",
+    "finished_at": "2026-07-23T11:22:50.527531",
+    "result_sha256": "sha256:234be03c3f0ed639d271d17d7613c4e6dfbf14c2be98018f613adaa326daebcb",
+    "lock_sha256": "sha256:c0b1aa6deb73c0d6bb2d42f468fcdc120a1c210dde4dac26663d76fad81e7eea",
+    "private_release_metadata_sha256": "sha256:c07fba5161b711033e532d116949ea648224656261804aebdad5d1f0e343df94",
+    "private_normalized_manifest_sha256": "sha256:e72f5f58d1c9a5a97fab1f50ea4f2b2d566fca2532a9313a391e9e8208358a00"
+  },
+  "public_counts": {
+    "planned": 30,
+    "completed": 30,
+    "benchmark_valid": 30,
+    "exceptions": 0,
+    "strict_pass": 30,
+    "domain_pass": 30,
+    "reward_one": 30,
+    "task_success": 30,
+    "semantic_success": 30,
+    "proof_sufficient": 30,
+    "format_contract_met": 30,
+    "correctness": 30,
+    "verifier_integrity": 30,
+    "artifact_manifests": 30,
+    "artifact_entries_ok": 60,
+    "authenticated_complete_snapshots": 30,
+    "runtime_checks_passed": 150
+  },
+  "private_counts": {
+    "planned": 75,
+    "completed": 75,
+    "benchmark_valid": 75,
+    "exceptions": 0,
+    "strict_pass": 75,
+    "domain_pass": 75,
+    "reward_one": 75,
+    "task_success": 75,
+    "semantic_success": 75,
+    "proof_sufficient": 75,
+    "format_contract_met": 75,
+    "correctness": 75,
+    "verifier_integrity": 75,
+    "artifact_manifests": 75,
+    "artifact_entries_ok": 150,
+    "authenticated_complete_snapshots": 75,
+    "runtime_checks_passed": 375
+  },
+  "condition_counts": {
+    "answer-now": 15,
+    "single-source": 15,
+    "complementary-evidence": 15,
+    "insufficient-evidence": 15,
+    "reliability-conflict": 15
+  },
+  "recovery": {
+    "initial_valid_passes_preserved": 25,
+    "modal_connection_errors_removed_by_exact_job_resume": 50,
+    "valid_trials_selectively_rerun": 0,
+    "note": "The resume filtered only ConnectionError trial directories under the immutable Harbor config. Oracle is release QA and never enters agent-performance denominators."
+  },
+  "privacy": {
+    "raw_jobs_committed": false,
+    "private_release_metadata_committed": false,
+    "normalized_trial_manifests_committed": false,
+    "task_mapping_disclosed": false,
+    "hidden_truth_disclosed": false
+  }
+}

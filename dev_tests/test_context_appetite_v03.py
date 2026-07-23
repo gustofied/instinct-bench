@@ -28,6 +28,9 @@ from instinct_bench.context_appetite.schemas import CONDITIONS  # noqa: E402
 DEV_DIR = REPO_ROOT / "evals" / "context-appetite" / "dev"
 OFFICIAL_RUN = REPO_ROOT / "evals" / "context-appetite" / "official-run-v0.3.0.json"
 V031_RELEASE = REPO_ROOT / "evals" / "context-appetite" / "release-v0.3.1.json"
+V031_ORACLE_GATE = (
+    REPO_ROOT / "results" / "reports" / "context-appetite-v0.3.1" / "oracle-gate.json"
+)
 EVAL_SECRET = b"private-test-secret-not-used-for-release-0001"
 
 
@@ -417,6 +420,31 @@ class GeneratorTests(unittest.TestCase):
             "package_set_commitment",
         ):
             self.assertRegex(release[key], r"^sha256:[0-9a-f]{64}$")
+
+    def test_v031_oracle_gate_is_aggregate_and_commitment_bound(self) -> None:
+        gate = json.loads(V031_ORACLE_GATE.read_text())
+        encoded = json.dumps(gate, sort_keys=True)
+        self.assertNotIn("ca-eval-", encoded)
+        dev_release = json.loads((DEV_DIR / "release-metadata.json").read_text())[
+            "release"
+        ]
+        private_release = json.loads(V031_RELEASE.read_text())["release"]
+        for key in (
+            "seed_commitment",
+            "dataset_commitment",
+            "package_set_commitment",
+        ):
+            self.assertEqual(gate["public_release"][key], dev_release[key])
+            self.assertEqual(gate["private_release"][key], private_release[key])
+        self.assertEqual(gate["public_counts"]["planned"], 30)
+        self.assertEqual(gate["public_counts"]["task_success"], 30)
+        self.assertEqual(gate["public_counts"]["runtime_checks_passed"], 150)
+        self.assertEqual(gate["private_counts"]["planned"], 75)
+        self.assertEqual(gate["private_counts"]["task_success"], 75)
+        self.assertEqual(gate["private_counts"]["runtime_checks_passed"], 375)
+        self.assertFalse(gate["privacy"]["raw_jobs_committed"])
+        self.assertFalse(gate["privacy"]["private_release_metadata_committed"])
+        self.assertFalse(gate["privacy"]["normalized_trial_manifests_committed"])
 
     def test_private_secret_file_must_not_be_group_or_world_readable(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

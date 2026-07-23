@@ -110,3 +110,6 @@ uvx --from 'harbor==0.20.0' harbor publish \
 
 Add `--public` only after confirming ownership of the `instinct-bench`
 namespace and reviewing the uploaded task and dataset visibility.
+
+The completed truth-free release evidence is recorded in
+[`results/reports/context-appetite-v0.3.1`](../results/reports/context-appetite-v0.3.1/README.md).
