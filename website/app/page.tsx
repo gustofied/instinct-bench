@@ -152,7 +152,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4">
+            <div className="grid grid-cols-4 border border-line lg:border-0">
               {[
                 {
                   label: "domains",
@@ -165,55 +165,53 @@ export default function Home() {
               ].map(({ label, value }, index) => (
                 <div
                   className={cn(
-                    "flex min-h-14 items-center justify-between gap-4 border-y border-line px-4",
-                    index > 0 && "border-l",
+                    "col-span-1 row-start-1 flex min-h-[66px] flex-col items-start justify-center gap-1.5 px-2.5 py-2.5 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-y lg:px-4 lg:py-0",
+                    index === 0 ? "col-start-1" : "col-start-2 border-l",
                   )}
                   key={label}
                 >
                   <span className="font-mono text-[9px] text-muted uppercase">{label}</span>
-                  <strong className="font-mono text-base font-medium">{value}</strong>
+                  <strong className="font-mono text-[15px] font-medium lg:text-base">
+                    {value}
+                  </strong>
                 </div>
               ))}
 
-              <div className="flex min-h-14 items-center justify-between gap-4 border-b border-line px-4 sm:border-y sm:border-l">
+              <div className="col-start-3 row-start-1 flex min-h-[66px] flex-col items-start justify-center gap-1.5 border-l border-line px-2.5 py-2.5 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-y lg:px-4 lg:py-0">
                 <span className="font-mono text-[9px] text-muted uppercase">avg score</span>
-                <strong className="font-mono text-base font-medium">
+                <strong className="font-mono text-[15px] font-medium lg:text-base">
                   {benchmarkSummary.averageScore?.toFixed(2) ?? "—"}
                 </strong>
               </div>
 
-              <div className="flex min-h-14 flex-col items-stretch justify-center gap-1 border-b border-l border-line px-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:border-y">
+              <div className="col-span-2 col-start-1 row-start-2 flex min-h-[78px] flex-col justify-center gap-2 border-t border-line px-3 py-2.5 lg:col-span-1 lg:col-start-4 lg:row-start-1 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-y lg:border-l lg:px-4 lg:py-0">
                 <span className="font-mono text-[9px] text-muted uppercase">best agent</span>
-                <span className="grid min-w-0 gap-1 text-right">
-                  <span className="flex min-w-0 items-baseline justify-end gap-1.5">
-                    <span className="shrink-0 font-mono text-[9px] text-muted">Harness:</span>
-                    <strong className="truncate font-mono text-[10px] font-medium">
-                      {benchmarkSummary.bestRun?.harness ?? "—"}
-                    </strong>
-                  </span>
-                  <span className="flex min-w-0 items-baseline justify-end gap-1.5">
-                    <span className="shrink-0 font-mono text-[9px] text-muted">Model:</span>
-                    <strong className="truncate font-mono text-[10px] font-medium">
-                      {benchmarkSummary.bestRun?.model ?? "—"}
-                    </strong>
-                  </span>
+                <span className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-x-1.5 gap-y-0.5 font-mono lg:text-right">
+                  <span className="text-[8px] text-muted">Harness:</span>
+                  <strong className="truncate text-[9px] font-medium">
+                    {benchmarkSummary.bestRun?.harness ?? "—"}
+                  </strong>
+                  <span className="text-[8px] text-muted">Model:</span>
+                  <strong className="truncate text-[9px] font-medium">
+                    {benchmarkSummary.bestRun?.model ?? "—"}
+                  </strong>
                 </span>
               </div>
 
-              <div className="col-start-1 row-start-3 flex min-h-14 items-center justify-between gap-4 border-x border-b border-line px-4 sm:col-start-3 sm:row-start-2">
+              <div className="col-start-4 row-start-1 flex min-h-[66px] flex-col items-start justify-center gap-1.5 border-l border-line px-2.5 py-2.5 lg:col-start-3 lg:row-start-2 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-x lg:border-b lg:px-4 lg:py-0">
                 <span className="font-mono text-[9px] text-muted">$ / task</span>
-                <strong className="font-mono text-base font-medium">
+                <strong className="font-mono text-[15px] font-medium lg:text-base">
                   {benchmarkSummary.bestRun?.cost ?? "—"}
                 </strong>
               </div>
 
-              <div className="col-start-2 row-start-3 flex min-h-14 flex-col justify-center gap-1 border-r border-b border-line px-3 sm:col-start-4 sm:row-start-2 sm:px-4">
+              <div className="col-span-2 col-start-3 row-start-2 flex min-h-[78px] flex-col justify-center gap-2 border-t border-l border-line px-3 py-2.5 lg:col-span-1 lg:col-start-4 lg:row-start-2 lg:min-h-14 lg:border-t-0 lg:border-r lg:border-b lg:border-l-0 lg:px-4 lg:py-0">
                 <span className="font-mono text-[9px] text-muted">$ on agent</span>
                 <span className="grid min-w-0 grid-cols-3">
                   {mockAgentCostSplit.map(({ label, value }, index) => (
                     <span
                       className={cn(
-                        "grid min-w-0 gap-0.5 px-2 font-mono",
+                        "grid min-w-0 gap-0.5 px-1.5 font-mono lg:px-2",
                         index === 0 ? "pl-0" : "border-l border-line",
                         index === mockAgentCostSplit.length - 1 && "pr-0",
                       )}
@@ -234,7 +232,7 @@ export default function Home() {
             <section
               className={cn(
                 "scroll-mt-6 pt-10",
-                suiteIndex === 0 && "sm:-mt-10",
+                suiteIndex === 0 && "lg:-mt-10",
               )}
               id={suite.slug}
               aria-labelledby={`${suite.slug}-title`}
