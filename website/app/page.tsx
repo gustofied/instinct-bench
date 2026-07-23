@@ -40,9 +40,9 @@ export default function Home() {
     <main className="min-h-screen bg-paper text-ink">
       <div className="mx-auto w-[calc(100%-1.25rem)] max-w-[1024px] pb-10 md:w-[calc(100%-2rem)]">
         <Reveal>
-          <header className="grid min-h-[58px] grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 border-b border-line py-2.5 md:grid-cols-[1fr_auto_1fr] md:gap-0 md:py-2">
+          <header className="grid min-h-[58px] grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 border-b border-line py-2.5 min-[560px]:grid-cols-[1fr_auto_1fr] min-[560px]:gap-0 min-[560px]:py-2">
             <a
-              className="col-start-1 row-start-1 flex items-center gap-2.5 justify-self-start"
+              className="col-start-1 row-start-1 flex items-center justify-self-start"
               href="/"
               aria-label="instinct-bench home"
             >
@@ -53,13 +53,10 @@ export default function Home() {
                 width="615"
                 height="455"
               />
-              <span className="shrink-0 font-mono text-[10px] font-semibold uppercase">
-                instinct-bench
-              </span>
             </a>
 
             <nav
-              className="col-span-2 row-start-2 flex items-center justify-center gap-3 text-[12px] md:col-span-1 md:col-start-2 md:row-start-1 md:gap-6"
+              className="col-span-2 row-start-2 flex items-center justify-center gap-3 font-mono text-[9px] min-[560px]:col-span-1 min-[560px]:col-start-2 min-[560px]:row-start-1 md:gap-6 md:font-sans md:text-[12px]"
               aria-label="Benchmark suites"
             >
               <a className="text-muted hover:text-ink hover:underline" href="#instinct-bench">
@@ -81,7 +78,7 @@ export default function Home() {
 
             <nav
               aria-label="Project links"
-              className="col-start-2 row-start-1 flex items-center justify-self-end gap-2 font-mono text-[9px] text-muted uppercase md:col-start-3"
+              className="col-start-2 row-start-1 flex items-center justify-self-end gap-2 font-mono text-[9px] text-muted uppercase min-[560px]:col-start-3"
             >
               <a
                 className="hover:text-ink hover:underline"
@@ -115,7 +112,7 @@ export default function Home() {
 
         <Reveal delay={0.04}>
           <section aria-labelledby="page-title">
-            <div className="grid min-h-0 grid-cols-1 items-center gap-6 py-7 md:min-h-[262px] md:grid-cols-[minmax(0,2fr)_minmax(240px,0.75fr)] md:gap-14 md:py-8">
+            <div className="grid min-h-0 grid-cols-1 items-center gap-6 pt-9 pb-7 md:min-h-[262px] md:grid-cols-[minmax(0,2fr)_minmax(240px,0.75fr)] md:gap-14 md:py-8">
               <h1
                 id="page-title"
                 className="flex min-h-[104px] min-w-0 items-center leading-none md:min-h-[154px]"
@@ -131,7 +128,7 @@ export default function Home() {
               </h1>
 
               <div className="border-t border-line pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-7">
-                <p className="font-serif text-[17px] leading-[1.5] text-copy">
+                <p className="mx-auto max-w-[44ch] text-center font-serif text-[17px] leading-[1.5] text-copy md:mx-0 md:max-w-none md:text-left">
                   Testing the capacities that make agents useful: taste,
                   restraint, context judgment, craft, and control.
                 </p>
