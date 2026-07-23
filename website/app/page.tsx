@@ -40,9 +40,9 @@ export default function Home() {
     <main className="min-h-screen bg-paper text-ink">
       <div className="mx-auto w-[calc(100%-1.25rem)] max-w-[1024px] pb-10 md:w-[calc(100%-2rem)]">
         <Reveal>
-          <header className="grid min-h-[58px] grid-cols-1 items-center gap-1.5 border-b border-line py-3 md:grid-cols-[1fr_auto_1fr] md:gap-0 md:py-2">
+          <header className="grid min-h-[58px] grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 border-b border-line py-2.5 md:grid-cols-[1fr_auto_1fr] md:gap-0 md:py-2">
             <a
-              className="flex items-center justify-center gap-2.5 md:justify-start"
+              className="col-start-1 row-start-1 flex items-center gap-2.5 justify-self-start"
               href="/"
               aria-label="instinct-bench home"
             >
@@ -59,7 +59,7 @@ export default function Home() {
             </a>
 
             <nav
-              className="flex items-center justify-center gap-4 text-[12px] md:gap-6"
+              className="col-span-2 row-start-2 flex items-center justify-center gap-3 text-[12px] md:col-span-1 md:col-start-2 md:row-start-1 md:gap-6"
               aria-label="Benchmark suites"
             >
               <a className="text-muted hover:text-ink hover:underline" href="#instinct-bench">
@@ -81,7 +81,7 @@ export default function Home() {
 
             <nav
               aria-label="Project links"
-              className="flex items-center justify-self-center gap-2 font-mono text-[9px] text-muted uppercase md:justify-self-end"
+              className="col-start-2 row-start-1 flex items-center justify-self-end gap-2 font-mono text-[9px] text-muted uppercase md:col-start-3"
             >
               <a
                 className="hover:text-ink hover:underline"
