@@ -71,6 +71,12 @@ export default function Home() {
               >
                 instinct-bench-live
               </a>
+              <span
+                aria-disabled="true"
+                className="cursor-default text-muted opacity-[0.45]"
+              >
+                instinct-learning
+              </span>
             </nav>
 
             <span className="justify-self-center font-mono text-[9px] text-muted uppercase md:justify-self-end">
