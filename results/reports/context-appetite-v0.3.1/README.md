@@ -1,16 +1,16 @@
 # Context Appetite v0.3.1 Release Gate
 
-Context Appetite v0.3.1 is release-ready as a Harbor development dataset and
-private evaluation family. This report covers task quality and runtime
-integrity, not model performance.
+Context Appetite v0.3.1 is release-ready for its locked proper-agent canary.
+This report covers task quality and runtime integrity, not model performance.
 
 ## Release Shape
 
 - Suite: Instinct Bench
 - Domain and Harbor dataset: `context-appetite`
 - Public development split: 6 matched scenario blocks x 5 conditions = 30 tasks
-- Private evaluation split: 15 held-out scenario blocks x 5 conditions = 75 tasks
-- Source checkpoint: `f19cf35`
+- Unpublished benchmark split: 15 held-out scenario blocks x 5 conditions = 75 tasks
+- Task release checkpoint: `4458249`
+- Proper-agent run lock checkpoint: `6aff569`
 - Harbor: `harbor[modal]==0.20.0`
 
 The five condition labels are experimental strata, not nested task families.
@@ -23,19 +23,19 @@ sample sizes.
 
 | Gate | Result |
 | --- | --- |
-| Unit and adversarial tests | 99/99 passed |
+| Unit and adversarial tests | 108/108 passed |
 | Ruff format and lint | Passed |
 | JSON and diff validation | Passed |
 | Public package validation | 30/30 tasks, 6/6 blocks |
-| Private package validation | 75/75 tasks, 15/15 blocks |
+| Unpublished package validation | 75/75 tasks, 15/15 blocks |
 | Held-out block and condition review | 15/15 mappings reviewed |
-| Harbor 0.20 config resolution | Public and private datasets passed |
+| Harbor 0.20 config resolution | Public and unpublished datasets passed |
 | Public development Oracle matrix | 30/30 passed |
-| Private Oracle canary | 1/1 passed |
-| Private Oracle matrix | 75/75 passed |
-| Artifact collection | Public 60/60; private 150/150 entries `ok` |
-| Authenticated evidence snapshots | Public 30/30; private 75/75 complete |
-| Separate-verifier runtime checks | Public 150/150; private 375/375 passed |
+| Unpublished Oracle canary | 1/1 passed |
+| Unpublished Oracle matrix | 75/75 passed |
+| Artifact collection | Public 60/60; benchmark 150/150 entries `ok` |
+| Authenticated evidence snapshots | Public 30/30; benchmark 75/75 complete |
+| Separate-verifier runtime checks | Public 150/150; benchmark 375/375 passed |
 
 Every Oracle trial returned binary reward, task success, semantic success,
 proof sufficiency, format compliance, correctness, and verifier integrity of
@@ -50,33 +50,29 @@ part of the same contract. v0.3.1 now normalizes private roots and task
 directories to `0700`, data files to `0600`, and transported `solution/` paths
 to `0755`. Package digests commit to both contents and file/directory modes.
 
-The full Oracle job initially completed 25 valid passes before 50 Modal
-environment starts hit a local DNS `ConnectionError`. Harbor's exact-job
-resume removed and reran only those infrastructure-error trial directories
-under the locked config. The final job contains the original 25 valid trials
-plus 50 recovered trials: 75 completed, 75 passed, zero final exceptions, and
-no task-selective retry.
+The renewed final-digest Oracle jobs completed cleanly without resume,
+directory removal, or selective retry: 30/30 public development tasks and
+75/75 unpublished benchmark tasks passed.
 
 ## Privacy
 
-The tracked public commitment contains no task mapping, condition, hidden
-truth, source contents, or proof path. The private release metadata, raw
+The tracked release commitment contains no task mapping, condition, hidden
+truth, source contents, or proof path. The unpublished release metadata, raw
 Oracle job, and normalized trial manifest remain local. Only aggregate,
-truth-free gate evidence is committed here so future proper-agent runs are not
-contaminated.
+truth-free gate evidence is committed here so the first proper-agent run is
+not contaminated.
 
 Modal Compose requires public agent egress. Static public development tasks
-therefore cannot support a hidden leaderboard claim. Formal comparisons must
-use a fresh private release commitment or another architecture that enforces a
-closed network boundary.
+therefore cannot support a clean public-egress accuracy denominator. The 75
+unpublished tasks receive one preregistered run before publication. Later
+public-set results require a network boundary that blocks benchmark artifacts
+and external model APIs, or must be labeled as public-set protocol results.
 
 ## Verdict
 
-The family is ready to publish privately to Harbor and test proper agent
-configurations. The next comparison must predeclare the complete
-model+harness+prompt+skills+sandbox+provider route, use all 75 private tasks
-with pass@1, and report task success separately from acquisition and cost
-diagnostics.
+The family is ready for the locked five-condition canary. A clean canary
+trajectory audit unlocks the one-shot 75-task run. The result must report the
+complete model+harness+prompt+skills+sandbox+provider configuration and keep
+task success separate from acquisition and cost diagnostics.
 
-Registry upload remains an external account step: `harbor auth status`
-currently reports that this machine is not authenticated.
+Registry upload remains a separate action that Adam will request explicitly.

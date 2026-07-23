@@ -3,48 +3,53 @@
   "release": {
     "name": "Instinct Bench: Context Appetite v0.3.1",
     "version": "0.3.1",
-    "source_commit": "f19cf35"
+    "task_release_commit": "4458249",
+    "run_lock_commit": "6aff569"
   },
   "public_release": {
     "split": "dev",
     "seed_commitment": "sha256:ad5702bb180664416efce763f4886b6f5b9e270ae4a323373742e303aba0dc93",
     "dataset_commitment": "sha256:10b7b545f9f55939df67667a986bbdfb1a7fb3d12be90b02450a6a3da7889f71",
-    "package_set_commitment": "sha256:8f97446affa53419155969d970d055fe416b580fc594e64ff6f9f5fce15deb18"
+    "package_set_commitment": "sha256:199f69cc6f3d885cdd64328aee2775e8492cf7990186c8899346e1f86c8d27d2"
   },
   "private_release": {
     "split": "eval",
     "seed_commitment": "sha256:889fb173b85078bb004c1af559612df075fc3717b2de0a7624af31b8568b0e27",
     "dataset_commitment": "sha256:46d31fc7b83df596b68190309489946eb28ab09de7f653a565450949192f9ccd",
-    "package_set_commitment": "sha256:dc57a324f8d4696bf82da68fa8839dd28ee00967b4e05bb1fc8687eb3ed4a824",
-    "public_commitment_sha256": "sha256:2a1716d0de8761ffa580f5622e4b13336129f18bbc574bd71d8866ec169fa9ca"
+    "package_set_commitment": "sha256:d45f374f1d0f26cf852ff47d0bf350d05d76dc5ac42ca144c7143b9d14d2ba17",
+    "public_commitment_sha256": "sha256:9482cfdf11f546711bf0c368a8325e4406a28f1262bfc02100ca9b8784ebfb62"
   },
   "public_job": {
-    "name": "context-appetite-v0.3.1-dev-oracle-smoke-001",
+    "name": "context-appetite-v0.3.1-dev-oracle-final-001",
     "run_kind": "oracle-smoke",
-    "publication": "excluded",
+    "publication": "scratch",
+    "performance_eligibility": "excluded",
     "harbor_version": "0.20.0",
     "environment": "modal",
     "concurrency": 4,
     "max_retries": 0,
-    "result_sha256": "sha256:4557ada5acc25ca45a1b55c38a57dfae1d5d174e8e590beb3b6bfc6f7c271de0",
-    "lock_sha256": "sha256:f8b6ee011a5aec520778d79907f6dd814c786317dd7fb5693aaeeb8aa458b42a",
-    "release_metadata_sha256": "sha256:cc099ca3b304e2060bc937599ea5062d5570a708eac0df9e8375b15061720d89",
-    "normalized_manifest_sha256": "sha256:b555e26642b2061d18f8ac9f6f2b30522f5cf5f30176d1d9a5fe512bbea25fac"
+    "started_at": "2026-07-23T13:22:44.606711",
+    "finished_at": "2026-07-23T13:35:18.069448",
+    "result_sha256": "sha256:b730602fc59a0f3f0dfefcb309a409b6dc51b031be810573fc150e9bd0ee93ab",
+    "lock_sha256": "sha256:277024d52f8bcea44e2dd8d49afa75ef638b06c2d580ec2f35daf50636f4669d",
+    "release_metadata_sha256": "sha256:03e30a59ef78502dab6ddc562086960307fcae7c20019bd4ae204fc02d269c25",
+    "normalized_manifest_sha256": "sha256:fa4964924c7c2f2f108ff94ce57338d36a49f678f7f859616f249b22bd565b35"
   },
   "private_job": {
-    "name": "context-appetite-v0.3.1-oracle-smoke-002",
+    "name": "context-appetite-v0.3.1-oracle-final-001",
     "run_kind": "oracle-smoke",
-    "publication": "excluded",
+    "publication": "scratch",
+    "performance_eligibility": "excluded",
     "harbor_version": "0.20.0",
     "environment": "modal",
     "concurrency": 4,
     "max_retries": 0,
-    "started_at": "2026-07-23T10:25:29.087174",
-    "finished_at": "2026-07-23T11:22:50.527531",
-    "result_sha256": "sha256:234be03c3f0ed639d271d17d7613c4e6dfbf14c2be98018f613adaa326daebcb",
-    "lock_sha256": "sha256:c0b1aa6deb73c0d6bb2d42f468fcdc120a1c210dde4dac26663d76fad81e7eea",
-    "private_release_metadata_sha256": "sha256:c07fba5161b711033e532d116949ea648224656261804aebdad5d1f0e343df94",
-    "private_normalized_manifest_sha256": "sha256:e72f5f58d1c9a5a97fab1f50ea4f2b2d566fca2532a9313a391e9e8208358a00"
+    "started_at": "2026-07-23T13:37:09.633148",
+    "finished_at": "2026-07-23T14:07:42.900750",
+    "result_sha256": "sha256:43bdcb8a027f8f8b84b9987c897b366d0fb944c20c3a763ba03ddf371a74b5c9",
+    "lock_sha256": "sha256:5ddae219e66e1bec679a52c1d633b2b319cda2e391380e9b5247e641f171c66f",
+    "private_release_metadata_sha256": "sha256:7aaecb5ca9397aae8e610bf0ac788a1a25527824f79f68c69d1491b5bb8414d7",
+    "private_normalized_manifest_sha256": "sha256:2244ccf1cbbefe3fc0952df59499deccb2ccff7c3e10e276f836828edb799796"
   },
   "public_counts": {
     "planned": 30,
@@ -92,10 +97,10 @@
     "reliability-conflict": 15
   },
   "recovery": {
-    "initial_valid_passes_preserved": 25,
-    "modal_connection_errors_removed_by_exact_job_resume": 50,
+    "exact_job_resume_used": false,
+    "infrastructure_retries": 0,
     "valid_trials_selectively_rerun": 0,
-    "note": "The resume filtered only ConnectionError trial directories under the immutable Harbor config. Oracle is release QA and never enters agent-performance denominators."
+    "note": "Both final-digest Oracle jobs completed without retries or directory removal. Oracle is release QA and never enters agent-performance denominators."
   },
   "privacy": {
     "raw_jobs_committed": false,
