@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { DomainDrawer } from "@/components/domain-drawer";
 import { Reveal } from "@/components/reveal";
@@ -10,47 +11,16 @@ const costResources = [
   {
     label: "Inference",
     value: benchmarkTelemetry.cost.inferencePerTask,
-    status: "measured",
+    status: "recorded",
     tooltip:
-      "All model execution on the agent path, including the main model, subagents, routing, compaction, summarization, embeddings, and rerankers where applicable. Judge and verifier inference is evaluation overhead.",
-  },
-  {
-    label: "Services",
-    value: benchmarkTelemetry.cost.servicesPerTask ?? "—",
-    status: "unknown",
-    tooltip:
-      "Metered external APIs used during agent execution, such as search, hosted browser, retrieval, and data APIs.",
+      "All model calls on the agent path. Recorded spend: $0.79675688 total, or $0.010623 per task. Judge and verifier inference is evaluation overhead.",
   },
   {
     label: "Runtime",
-    value: benchmarkTelemetry.cost.runtimePerTask ?? "—",
-    status: "unknown",
+    value: `≥${benchmarkTelemetry.cost.runtimePerTask}`,
+    status: "reconstructed",
     tooltip:
-      "Sandbox or container compute, storage, and execution. Runtime includes local harness and tool work; environment provisioning is tracked separately.",
-  },
-] as const;
-
-const latencyResources = [
-  {
-    label: "Inference",
-    value: `${benchmarkTelemetry.latency.inferenceShare}%`,
-    status: "measured",
-    tooltip:
-      "Client-observed model request time, including network, provider queueing, model execution, generation, and response transfer.",
-  },
-  {
-    label: "Services",
-    value: benchmarkTelemetry.latency.servicesShare ?? "—",
-    status: "unknown",
-    tooltip:
-      "Time waiting for external APIs and hosted tools during agent execution.",
-  },
-  {
-    label: "Runtime",
-    value: benchmarkTelemetry.latency.runtimeShare ?? "—",
-    status: "unknown",
-    tooltip:
-      "Local agent, harness, and tool execution inside the runtime. Environment provisioning is excluded.",
+      "The executing sandbox or container environment. Requested-resource reconstruction: at least $0.41226556 total, or $0.005497 per task.",
   },
 ] as const;
 
@@ -62,7 +32,7 @@ function InfoTooltip({
   text,
   triggerText,
 }: {
-  align?: "center" | "left" | "responsive" | "right";
+  align?: "left" | "responsive" | "right";
   className?: string;
   id: string;
   label: string;
@@ -91,7 +61,6 @@ function InfoTooltip({
         className={cn(
           "pointer-events-none invisible absolute bottom-[calc(100%+0.5rem)] z-40 w-56 max-w-[calc(100vw-1.5rem)] border border-ink bg-ink px-3 py-2.5 text-left font-sans text-[11px] leading-[1.5] font-normal whitespace-normal text-paper normal-case opacity-0 transition-opacity group-hover/info:visible group-hover/info:opacity-100 group-focus-within/info:visible group-focus-within/info:opacity-100",
           align === "left" && "left-0",
-          align === "center" && "left-1/2 -translate-x-1/2",
           align === "right" && "right-0",
           align === "responsive" &&
             "left-0 min-[560px]:right-0 min-[560px]:left-auto",
@@ -105,7 +74,7 @@ function InfoTooltip({
   );
 }
 
-function MetricMix({
+function CostBreakdown({
   idPrefix,
   items,
 }: {
@@ -118,7 +87,7 @@ function MetricMix({
   }>;
 }) {
   return (
-    <span className="grid min-w-0 grid-cols-3 border-t border-line pt-2.5">
+    <span className="grid min-w-0 grid-cols-2 border-t border-line pt-2.5">
       {items.map(({ label, status, tooltip, value }, index) => (
         <span
           className={cn(
@@ -129,7 +98,7 @@ function MetricMix({
           key={label}
         >
           <InfoTooltip
-            align={index === 0 ? "left" : index === 1 ? "center" : "right"}
+            align={index === 0 ? "left" : "right"}
             className="text-[8px] text-muted"
             id={`${idPrefix}-${label.toLowerCase()}-tooltip`}
             label={`What ${label} means for ${idPrefix}`}
@@ -147,21 +116,16 @@ function MetricMix({
 }
 
 function TaskMetric({
+  children,
   idPrefix,
-  items,
   label,
   tooltip,
   value,
   valueMarker,
   valueNote,
 }: {
+  children?: ReactNode;
   idPrefix: string;
-  items: ReadonlyArray<{
-    label: string;
-    status: string;
-    tooltip: string;
-    value: string;
-  }>;
   label: string;
   tooltip?: {
     label: string;
@@ -169,10 +133,15 @@ function TaskMetric({
   };
   value: string;
   valueMarker?: string;
-  valueNote: string;
+  valueNote?: string;
 }) {
   return (
-    <div className="flex min-h-[128px] flex-col justify-between border border-line px-3 py-3">
+    <div
+      className={cn(
+        "flex flex-col justify-between border border-line px-3 py-3",
+        children ? "min-h-[112px]" : "min-h-[58px] min-[560px]:min-h-[112px]",
+      )}
+    >
       <div className="flex min-h-[34px] items-start justify-between gap-4">
         {tooltip ? (
           <InfoTooltip
@@ -197,10 +166,12 @@ function TaskMetric({
               <span className="text-[8px] text-muted">{valueMarker}</span>
             )}
           </span>
-          <span className="text-[7px] text-muted uppercase">{valueNote}</span>
+          {valueNote && (
+            <span className="text-[7px] text-muted uppercase">{valueNote}</span>
+          )}
         </span>
       </div>
-      <MetricMix idPrefix={idPrefix} items={items} />
+      {children}
     </div>
   );
 }
@@ -406,26 +377,25 @@ export default function Home() {
               <div className="grid gap-2.5 min-[560px]:grid-cols-2">
                 <TaskMetric
                   idPrefix="cost"
-                  items={costResources}
                   label="$ / task"
                   tooltip={{
                     label: "How cost per task is measured",
-                    text: "Lower bound from v0.3.0: approximately $0.0106 per task for agent-path inference only. Services, runtime, judge, and verifier costs are not included. Cost and latency shares are independent because runtime can continue billing while inference is in flight.",
+                    text: "Agent-path lower bound from v0.3.0. Recorded inference is $0.010623 per task and reconstructed main runtime is at least $0.005497 per task. Verifier runtime, reconstructed at $0.001614 per task, and other evaluation overhead are excluded.",
                   }}
                   value={`≥${benchmarkTelemetry.cost.lowerBoundPerTask}`}
-                  valueNote="inference only"
-                />
+                  valueNote="agent path floor"
+                >
+                  <CostBreakdown idPrefix="cost" items={costResources} />
+                </TaskMetric>
                 <TaskMetric
                   idPrefix="latency"
-                  items={latencyResources}
                   label="s / task"
                   tooltip={{
                     label: "How latency per task is measured",
-                    text: "Agent run only. Median (p50): 61s; p95: 101s. Excludes environment setup and verifier/grading. The measured mix is 88% inference and 12% unattributed agent time.",
+                    text: "The time customers will wait for a draft.",
                   }}
                   value={`${benchmarkTelemetry.latency.p50Seconds}s`}
                   valueMarker="p50"
-                  valueNote={`${benchmarkTelemetry.latency.unattributedShare}% unattributed`}
                 />
               </div>
             </div>

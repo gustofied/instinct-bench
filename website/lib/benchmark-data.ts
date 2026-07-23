@@ -3,18 +3,15 @@ import type { BenchmarkManifest } from "@/lib/benchmark-schema";
 export const benchmarkTelemetry = {
   source: "v0.3.0",
   cost: {
-    lowerBoundPerTask: "$0.0106",
-    inferencePerTask: "$0.0106",
-    servicesPerTask: null,
-    runtimePerTask: null,
+    lowerBoundPerTask: "$0.01612",
+    inferencePerTask: "$0.010623",
+    inferenceTotal: "$0.79675688",
+    runtimePerTask: "$0.005497",
+    runtimeTotal: "$0.41226556",
+    verifierRuntimePerTask: "$0.001614",
   },
   latency: {
     p50Seconds: 61,
-    p95Seconds: 101,
-    inferenceShare: 88,
-    servicesShare: null,
-    runtimeShare: null,
-    unattributedShare: 12,
   },
 } as const;
 
@@ -56,7 +53,7 @@ export const benchmarkSource = {
               result: "pass",
               reward: 0.92,
               steps: 7,
-              cost: "~$0.0106 inference",
+              cost: "≥$0.01612 agent path",
               artifacts: 4,
             },
           ],
