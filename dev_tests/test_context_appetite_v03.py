@@ -232,6 +232,21 @@ class GeneratorTests(unittest.TestCase):
         self.assertIn("terminus-2", command)
         self.assertIn("temperature=0", command)
         self.assertIn("modal_vm_runtime=true", command)
+        routing_arg = next(
+            value for value in command if value.startswith("llm_call_kwargs=")
+        )
+        self.assertEqual(
+            json.loads(routing_arg.split("=", 1)[1]),
+            {
+                "extra_body": {
+                    "provider": {
+                        "order": ["z-ai/fp8"],
+                        "allow_fallbacks": False,
+                        "require_parameters": True,
+                    }
+                }
+            },
+        )
         self.assertNotIn("--upload", command)
         self.assertNotIn("--public", command)
         self.assertNotIn("--private", command)

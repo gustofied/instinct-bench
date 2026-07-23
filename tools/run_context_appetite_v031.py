@@ -118,6 +118,18 @@ def build_command(
     execution = lock["execution"]
     phase_config = execution[phase]
     provider = agent["provider_request"]
+    provider_payload = json.dumps(
+        {
+            "extra_body": {
+                "provider": {
+                    "order": [provider["endpoint_tag"]],
+                    "allow_fallbacks": provider["allow_fallbacks"],
+                    "require_parameters": provider["require_parameters"],
+                }
+            }
+        },
+        separators=(",", ":"),
+    )
 
     command = [
         harbor_executable,
@@ -153,13 +165,7 @@ def build_command(
             "--ak",
             f"temperature={agent['sampling']['temperature']}",
             "--ak",
-            (
-                "llm_call_kwargs={extra_body:{provider:{order:["
-                f"{provider['endpoint_tag']}],"
-                f"allow_fallbacks:{str(provider['allow_fallbacks']).lower()},"
-                f"require_parameters:{str(provider['require_parameters']).lower()}"
-                "}}}"
-            ),
+            f"llm_call_kwargs={provider_payload}",
             "--env-file",
             execution["env_file"],
             "-y",
