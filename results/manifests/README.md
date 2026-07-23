@@ -11,6 +11,10 @@ versioned index consumed by reports and the website.
 - `results/reports/`: human-readable analyses derived from a locked manifest
   and its raw Harbor job.
 
+The canonical ignored storage layout, verified tree digests, and one-screen
+Harbor View setup are documented in
+[`docs/local-evidence-review.md`](../../docs/local-evidence-review.md).
+
 Create the intent record before launch and finalize it even when orchestration
 aborts. In v2, `execution_status` records completed, deadline, infrastructure,
 cancelled, and not-started cells. `verifier_status` and `verifier_integrity`

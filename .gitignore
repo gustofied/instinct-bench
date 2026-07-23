@@ -26,12 +26,16 @@ outputs/
 artifacts/
 traces/
 logs/
+local-review/
 evals/context-appetite/eval-private/
 evals/context-appetite/eval-private-v*/
 evals/jobs/
 
 # Private project journal
 journal/
+
+# Local exploratory learning work
+explorative/
 
 # Downloaded agent skills
 .agents/skills/

@@ -2,6 +2,10 @@
 
 Archive date: 2026-07-23.
 
+This is the historical v0.2.1 cleanup record. The later canonical local review
+layout, including v0.3.0 and v0.3.1, is documented in
+[`docs/local-evidence-review.md`](../../../docs/local-evidence-review.md).
+
 Harbor View scans the directory it is given and displays historical setup
 failures beside valid model runs. To create a clean active dashboard without
 deleting provenance, superseded and scratch jobs were moved into the ignored
