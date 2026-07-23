@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-021",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
+  "initial_context": "The signed decision register for evt-cpmm6bpz establishes alloc-k9z4h38r as the controlling allocation endpoint.",
+  "initial_context_metadata": {
+    "authority_class": "signed-decision-register",
+    "declared_reliability": 0.995,
+    "lineage_group": "initial-863adb"
+  },
+  "source_order": [
+    "src-45hfdbj",
+    "src-uy33pns",
+    "src-c28gkme",
+    "src-wj9n2qy"
+  ],
+  "sources": {
+    "src-45hfdbj": {
+      "evidence_cost": 4,
+      "description": "Reservation Routing record m5rr5",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-8etegg",
+      "content": "The final control record independently confirms alloc-k9z4h38r for evt-cpmm6bpz."
+    },
+    "src-uy33pns": {
+      "evidence_cost": 2,
+      "description": "Reservation Routing record 5dtxp",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-65q34a",
+      "content": "A prior unrelated event was controlled by alloc-qebckbry; it is not evt-cpmm6bpz. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-wj9n2qy": {
+      "evidence_cost": 8,
+      "description": "Reservation Routing record 2hcwv",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-ehh9mg",
+      "content": "The timeline confirms when evt-cpmm6bpz closed but contains no allocation endpoint identifier. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-c28gkme": {
+      "evidence_cost": 1,
+      "description": "Reservation Routing record jvrap",
+      "authority_class": "derived-summary",
+      "declared_reliability": 0.74,
+      "lineage_group": "lin-gpfptd",
+      "content": "A desk summary refers to the allocation endpoint already named in the signed decision record. A duplicate bookkeeping line was removed before this record was finalized. Administrative fields were reconciled independently and add no attribution claim."
+    }
+  }
+}

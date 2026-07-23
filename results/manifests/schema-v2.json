@@ -95,7 +95,9 @@
               "release_version": {"type": "string"},
               "split": {"type": "string"},
               "generator_version": {"type": "string"},
-              "seed_commitment": {"type": "string"}
+              "seed_commitment": {"type": "string"},
+              "dataset_commitment": {"type": "string"},
+              "package_set_commitment": {"type": "string"}
             }
           },
           "trials": {
@@ -126,7 +128,9 @@
         "release_version",
         "split",
         "generator_version",
-        "seed_commitment"
+        "seed_commitment",
+        "dataset_commitment",
+        "package_set_commitment"
       ],
       "properties": {
         "name": {"const": "instinct-bench"},
@@ -146,6 +150,14 @@
         "split": {"type": ["string", "null"]},
         "generator_version": {"type": ["string", "null"]},
         "seed_commitment": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "dataset_commitment": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "package_set_commitment": {
           "type": ["string", "null"],
           "pattern": "^sha256:[0-9a-f]{64}$"
         }

@@ -240,6 +240,21 @@ class ClassificationTests(unittest.TestCase):
 
 
 class ReleaseContractTests(unittest.TestCase):
+    def test_sampling_seed_is_separate_and_reads_nested_llm_kwargs(self) -> None:
+        self.assertEqual(
+            NORMALIZER.sampling_seed({"kwargs": {"seed": 7}}),
+            7,
+        )
+        self.assertEqual(
+            NORMALIZER.sampling_seed(
+                {"kwargs": {"llm_call_kwargs": {"seed": "release-1"}}}
+            ),
+            "release-1",
+        )
+        self.assertIsNone(
+            NORMALIZER.sampling_seed({"kwargs": {"seed": None, "llm_call_kwargs": {}}})
+        )
+
     def evaluation_metadata(self) -> tuple[argparse.Namespace, dict, dict, set[str]]:
         args = argparse.Namespace(implementation_version="0.3.0", run_kind="evaluation")
         release = {
@@ -248,6 +263,8 @@ class ReleaseContractTests(unittest.TestCase):
             "split": "eval",
             "generator_version": "0.3.0",
             "seed_commitment": "sha256:" + "a" * 64,
+            "dataset_commitment": "sha256:" + "b" * 64,
+            "package_set_commitment": "sha256:" + "c" * 64,
             "expected_task_count": 75,
             "expected_block_count": 15,
             "matrix_complete": True,

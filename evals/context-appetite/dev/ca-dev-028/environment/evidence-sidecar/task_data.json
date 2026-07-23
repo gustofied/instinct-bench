@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-028",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
+  "initial_context": "The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-vxccx2"
+  },
+  "source_order": [
+    "src-73mk8jt",
+    "src-y3nqw6u",
+    "src-d2qqbnw",
+    "src-er9fk6a"
+  ],
+  "sources": {
+    "src-y3nqw6u": {
+      "evidence_cost": 8,
+      "description": "Power Transfer record j326h",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-pn2zax",
+      "content": "The control record maps evt-6xcvc522 to correlation key link-ybjq63m; it contains no entity identifier."
+    },
+    "src-73mk8jt": {
+      "evidence_cost": 1,
+      "description": "Power Transfer record xu8zg",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-r6k98b",
+      "content": "The signed receipt maps correlation key link-ybjq63m to circuit-z36qfpk8; it contains no event identifier. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-d2qqbnw": {
+      "evidence_cost": 2,
+      "description": "Power Transfer record 72wm2",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-fh7xux",
+      "content": "The audit maps evt-6xcvc522 to independent correlation key link-kr3ta3q; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-er9fk6a": {
+      "evidence_cost": 4,
+      "description": "Power Transfer record 7k8cr",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-mn6as7",
+      "content": "A second signed receipt maps correlation key link-kr3ta3q to circuit-z36qfpk8; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
+    }
+  }
+}

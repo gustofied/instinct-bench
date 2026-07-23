@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-027",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
+  "initial_context": "The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-rqap8q"
+  },
+  "source_order": [
+    "src-nagent8",
+    "src-gd7dw68",
+    "src-tq92nze",
+    "src-xm44e5y"
+  ],
+  "sources": {
+    "src-gd7dw68": {
+      "evidence_cost": 8,
+      "description": "Power Transfer record 6fkfb",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-bax3db",
+      "content": "The signed decision for evt-6xcvc522 names circuit-z36qfpk8 as the controlling power circuit."
+    },
+    "src-nagent8": {
+      "evidence_cost": 1,
+      "description": "Power Transfer record 653n6",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-2hgu8e",
+      "content": "The independent audit for evt-6xcvc522 identifies circuit-z36qfpk8 as the controlling power circuit."
+    },
+    "src-tq92nze": {
+      "evidence_cost": 2,
+      "description": "Power Transfer record e4gdu",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-3tkj47",
+      "content": "The similarly timed but unrelated event used circuit-93282xz8; its event identifier is different from evt-6xcvc522. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-xm44e5y": {
+      "evidence_cost": 4,
+      "description": "Power Transfer record 4bdgb",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-dmjuny",
+      "content": "The operational timeline confirms evt-6xcvc522 but records no controlling entity."
+    }
+  }
+}

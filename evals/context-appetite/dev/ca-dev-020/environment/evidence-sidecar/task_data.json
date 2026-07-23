@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-020",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which release controlled invoice recovery evt-f23b6u8k?",
+  "initial_context": "The signed intake record establishes evt-f23b6u8k and the decision question, but does not identify the controlling release.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-4f45fa"
+  },
+  "source_order": [
+    "src-ty7ymmh",
+    "src-vemygdt",
+    "src-pcpaxwn",
+    "src-4vuqpma"
+  ],
+  "sources": {
+    "src-pcpaxwn": {
+      "evidence_cost": 4,
+      "description": "Invoice Rollback record c6vcw",
+      "authority_class": "immutable-control-ledger",
+      "declared_reliability": 0.995,
+      "lineage_group": "lin-tgqd7v",
+      "content": "The immutable ledger maps evt-f23b6u8k to payload hash link-jr8u4eg; it contains no entity identifier. A duplicate bookkeeping line was removed before this record was finalized."
+    },
+    "src-vemygdt": {
+      "evidence_cost": 1,
+      "description": "Invoice Rollback record gdx7k",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.985,
+      "lineage_group": "lin-kfgxdn",
+      "content": "The signed receipt maps payload hash link-jr8u4eg to rel-qy7pdjjw; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
+    },
+    "src-4vuqpma": {
+      "evidence_cost": 2,
+      "description": "Invoice Rollback record qcc42",
+      "authority_class": "unsigned-operator-note",
+      "declared_reliability": 0.52,
+      "lineage_group": "lin-8m3cka",
+      "content": "An unsigned note claims rel-q496mj9m controlled evt-f23b6u8k. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-ty7ymmh": {
+      "evidence_cost": 8,
+      "description": "Invoice Rollback record ktvm7",
+      "authority_class": "derived-summary",
+      "declared_reliability": 0.68,
+      "lineage_group": "lin-8m3cka",
+      "content": "A generated summary repeats the same claim that rel-q496mj9m controlled evt-f23b6u8k."
+    }
+  }
+}

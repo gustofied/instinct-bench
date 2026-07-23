@@ -1,0 +1,38 @@
+{
+  "task_id": "instinct-bench/ca-dev-011",
+  "state_schema_version": 5,
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "scorer_version": "0.3.0",
+  "evaluation_protocol_version": "0.3.0",
+  "expected_decision": "answer",
+  "expected_entity_id": "cred-843e22bv",
+  "accepted_proof_sets": [
+    []
+  ],
+  "hindsight_minimum_cost": 0,
+  "source_order": [
+    "src-rkkna4b",
+    "src-ezuq92q",
+    "src-9g9qeuh",
+    "src-3mjc3jw"
+  ],
+  "source_costs": {
+    "src-3mjc3jw": 2,
+    "src-ezuq92q": 4,
+    "src-rkkna4b": 8,
+    "src-9g9qeuh": 1
+  },
+  "source_payload_bytes": {
+    "src-3mjc3jw": 157,
+    "src-ezuq92q": 155,
+    "src-rkkna4b": 92,
+    "src-9g9qeuh": 248
+  },
+  "source_token_proxy": {
+    "src-3mjc3jw": 40,
+    "src-ezuq92q": 39,
+    "src-rkkna4b": 23,
+    "src-9g9qeuh": 62
+  }
+}

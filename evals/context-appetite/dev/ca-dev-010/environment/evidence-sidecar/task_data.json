@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-010",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which capacity feed controlled quote correction evt-7ucfmrv5?",
+  "initial_context": "The signed intake record establishes evt-7ucfmrv5 and the decision question, but does not identify the controlling capacity feed.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-qckxcf"
+  },
+  "source_order": [
+    "src-myz9s37",
+    "src-fbnr9q4",
+    "src-6cxe73g",
+    "src-w2brteh"
+  ],
+  "sources": {
+    "src-6cxe73g": {
+      "evidence_cost": 2,
+      "description": "Capacity Quote record 27232",
+      "authority_class": "immutable-control-ledger",
+      "declared_reliability": 0.995,
+      "lineage_group": "lin-nng5u6",
+      "content": "The immutable ledger maps evt-7ucfmrv5 to payload hash link-mek2anr; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-myz9s37": {
+      "evidence_cost": 1,
+      "description": "Capacity Quote record vqwmu",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.985,
+      "lineage_group": "lin-kvu3yq",
+      "content": "The signed receipt maps payload hash link-mek2anr to feed-jqzjhm4v; it contains no event identifier. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-w2brteh": {
+      "evidence_cost": 4,
+      "description": "Capacity Quote record q4d9t",
+      "authority_class": "unsigned-operator-note",
+      "declared_reliability": 0.52,
+      "lineage_group": "lin-2e6nez",
+      "content": "An unsigned note claims feed-m24f83r4 controlled evt-7ucfmrv5. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-fbnr9q4": {
+      "evidence_cost": 8,
+      "description": "Capacity Quote record uarqc",
+      "authority_class": "derived-summary",
+      "declared_reliability": 0.68,
+      "lineage_group": "lin-2e6nez",
+      "content": "A generated summary repeats the same claim that feed-m24f83r4 controlled evt-7ucfmrv5. Administrative fields were reconciled independently and add no attribution claim."
+    }
+  }
+}

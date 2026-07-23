@@ -3,7 +3,7 @@
   "normalizer": {
     "name": "normalize_harbor_job_v2",
     "version": "2.0.0",
-    "source_sha256": "sha256:84064a7be30e1d051065c6f0f2e805866ce17d1251b458e367e73e073cfe3e84"
+    "source_sha256": "sha256:b2b025a6a10113b84e5b18b0e2372a5af01b7e2f1b7cd286647da9a1ae20838e"
   },
   "derived_from": {
     "manifest_path": "results/manifests/context-appetite-v0.2.1-model-pilot-3x-001.json",
@@ -38,7 +38,9 @@
     "release_version": null,
     "split": null,
     "generator_version": null,
-    "seed_commitment": null
+    "seed_commitment": null,
+    "dataset_commitment": null,
+    "package_set_commitment": null
   },
   "runner": {
     "harbor_version": "0.20.0",

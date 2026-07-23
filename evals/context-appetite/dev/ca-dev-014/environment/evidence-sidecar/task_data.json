@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-014",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which tenant credential controlled access event evt-ymkkbtd6?",
+  "initial_context": "The signed intake record establishes evt-ymkkbtd6 and the decision question, but does not identify the controlling tenant credential.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-rh5nzx"
+  },
+  "source_order": [
+    "src-8zg3nvs",
+    "src-kv855ug",
+    "src-7x87fz9",
+    "src-ruts2k2"
+  ],
+  "sources": {
+    "src-ruts2k2": {
+      "evidence_cost": 2,
+      "description": "Tenant Credential record rsuq4",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-db6xhm",
+      "content": "The event window contains a valid control action by cred-843e22bv, but the record does not bind that action uniquely to evt-ymkkbtd6."
+    },
+    "src-kv855ug": {
+      "evidence_cost": 4,
+      "description": "Tenant Credential record yuxnx",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-fwqea6",
+      "content": "The same event window contains a valid control action by cred-jhc3qkzh, also not uniquely bound to evt-ymkkbtd6. The record also contains routine timestamps that do not change the attribution. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-8zg3nvs": {
+      "evidence_cost": 8,
+      "description": "Tenant Credential record gnsd8",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-uqtxqq",
+      "content": "Telemetry for evt-ymkkbtd6 combines both control actions and cannot distinguish which tenant credential controlled the event."
+    },
+    "src-7x87fz9": {
+      "evidence_cost": 1,
+      "description": "Tenant Credential record 4cp8f",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-jtavfn",
+      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence. The surrounding status checks remained within their ordinary operating range. A duplicate bookkeeping line was removed before this record was finalized."
+    }
+  }
+}

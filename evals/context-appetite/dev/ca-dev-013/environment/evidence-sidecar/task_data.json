@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-013",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which tenant credential controlled access event evt-ymkkbtd6?",
+  "initial_context": "The signed intake record establishes evt-ymkkbtd6 and the decision question, but does not identify the controlling tenant credential.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-ykvg8u"
+  },
+  "source_order": [
+    "src-eahj5z7",
+    "src-8v545vm",
+    "src-wyxxwxt",
+    "src-hhsvhgp"
+  ],
+  "sources": {
+    "src-hhsvhgp": {
+      "evidence_cost": 2,
+      "description": "Tenant Credential record dn24c",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-4nkthd",
+      "content": "The control record maps evt-ymkkbtd6 to correlation key link-9vg2ks7; it contains no entity identifier. Administrative fields were reconciled independently and add no attribution claim. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-8v545vm": {
+      "evidence_cost": 4,
+      "description": "Tenant Credential record nn9ss",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-6sy23p",
+      "content": "The signed receipt maps correlation key link-9vg2ks7 to cred-843e22bv; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-eahj5z7": {
+      "evidence_cost": 8,
+      "description": "Tenant Credential record g3rdf",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-2k65vx",
+      "content": "The audit maps evt-ymkkbtd6 to independent correlation key link-ca66agh; it contains no entity identifier. The surrounding status checks remained within their ordinary operating range. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-wyxxwxt": {
+      "evidence_cost": 1,
+      "description": "Tenant Credential record ura4u",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-phnaek",
+      "content": "A second signed receipt maps correlation key link-ca66agh to cred-843e22bv; it contains no event identifier."
+    }
+  }
+}

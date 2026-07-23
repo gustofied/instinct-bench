@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-022",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
+  "initial_context": "The signed intake record establishes evt-cpmm6bpz and the decision question, but does not identify the controlling allocation endpoint.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-v954fa"
+  },
+  "source_order": [
+    "src-4pu9hf7",
+    "src-rnaae4q",
+    "src-dxed4ad",
+    "src-3yrqnj6"
+  ],
+  "sources": {
+    "src-4pu9hf7": {
+      "evidence_cost": 4,
+      "description": "Reservation Routing record z7rua",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-6ykrcw",
+      "content": "The signed decision for evt-cpmm6bpz names alloc-k9z4h38r as the controlling allocation endpoint."
+    },
+    "src-rnaae4q": {
+      "evidence_cost": 2,
+      "description": "Reservation Routing record bukdt",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-vum8q4",
+      "content": "The audit confirms that evt-cpmm6bpz was reviewed, but its extract omits the allocation endpoint identifier. Administrative fields were reconciled independently and add no attribution claim. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-3yrqnj6": {
+      "evidence_cost": 8,
+      "description": "Reservation Routing record awq7s",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-c9hxrj",
+      "content": "The similarly timed but unrelated event used alloc-qebckbry; its event identifier is different from evt-cpmm6bpz. Administrative fields were reconciled independently and add no attribution claim. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-dxed4ad": {
+      "evidence_cost": 1,
+      "description": "Reservation Routing record n2qyj",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-986mm9",
+      "content": "The operational timeline confirms evt-cpmm6bpz but records no controlling entity. Administrative fields were reconciled independently and add no attribution claim. The record also contains routine timestamps that do not change the attribution."
+    }
+  }
+}

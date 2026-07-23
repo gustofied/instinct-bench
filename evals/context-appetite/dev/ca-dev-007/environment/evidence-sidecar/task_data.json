@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-007",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which capacity feed controlled quote correction evt-7ucfmrv5?",
+  "initial_context": "The signed intake record establishes evt-7ucfmrv5 and the decision question, but does not identify the controlling capacity feed.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-47ehde"
+  },
+  "source_order": [
+    "src-u3ja89r",
+    "src-58hq8p4",
+    "src-jezrfx8",
+    "src-jwrcg6e"
+  ],
+  "sources": {
+    "src-jezrfx8": {
+      "evidence_cost": 2,
+      "description": "Capacity Quote record 632gt",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-vw78fj",
+      "content": "The signed decision for evt-7ucfmrv5 names feed-jqzjhm4v as the controlling capacity feed. A duplicate bookkeeping line was removed before this record was finalized."
+    },
+    "src-u3ja89r": {
+      "evidence_cost": 1,
+      "description": "Capacity Quote record qt9hy",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-vwpwm3",
+      "content": "The independent audit for evt-7ucfmrv5 identifies feed-jqzjhm4v as the controlling capacity feed. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-jwrcg6e": {
+      "evidence_cost": 4,
+      "description": "Capacity Quote record xe2hf",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-rjd4s3",
+      "content": "The similarly timed but unrelated event used feed-m24f83r4; its event identifier is different from evt-7ucfmrv5. A duplicate bookkeeping line was removed before this record was finalized. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-58hq8p4": {
+      "evidence_cost": 8,
+      "description": "Capacity Quote record sh32f",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-39x5vp",
+      "content": "The operational timeline confirms evt-7ucfmrv5 but records no controlling entity."
+    }
+  }
+}

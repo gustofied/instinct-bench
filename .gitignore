@@ -25,6 +25,8 @@ outputs/
 artifacts/
 traces/
 logs/
+evals/context-appetite/eval-private/
+evals/jobs/
 
 # Private project journal
 journal/

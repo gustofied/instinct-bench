@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-003",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which deployment controlled recovery event evt-f625cs7n?",
+  "initial_context": "The signed intake record establishes evt-f625cs7n and the decision question, but does not identify the controlling deployment.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-4zeyjz"
+  },
+  "source_order": [
+    "src-gt4fhk8",
+    "src-qq8e8yy",
+    "src-p6g4yvv",
+    "src-jnbfnuh"
+  ],
+  "sources": {
+    "src-gt4fhk8": {
+      "evidence_cost": 1,
+      "description": "Deployment Recovery record eyqvh",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-u5bdy9",
+      "content": "The control record maps evt-f625cs7n to correlation key link-f9rrp2k; it contains no entity identifier. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-jnbfnuh": {
+      "evidence_cost": 4,
+      "description": "Deployment Recovery record xmz45",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-67hx9f",
+      "content": "The signed receipt maps correlation key link-f9rrp2k to dep-bwsqcb9d; it contains no event identifier."
+    },
+    "src-p6g4yvv": {
+      "evidence_cost": 8,
+      "description": "Deployment Recovery record g3bsa",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-y8csc4",
+      "content": "The audit concerns a separate event linked to dep-4d2skj78, not evt-f625cs7n. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-qq8e8yy": {
+      "evidence_cost": 2,
+      "description": "Deployment Recovery record 57utg",
+      "authority_class": "signed-ingestion-receipt",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-t3d6qu",
+      "content": "This receipt confirms routine processing but contains neither evt-f625cs7n nor an entity identifier."
+    }
+  }
+}

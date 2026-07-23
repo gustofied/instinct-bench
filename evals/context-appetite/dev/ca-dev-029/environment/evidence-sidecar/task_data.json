@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-029",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
+  "initial_context": "The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-aajz87"
+  },
+  "source_order": [
+    "src-pyb9yy6",
+    "src-jp2fxqp",
+    "src-t9xmh6a",
+    "src-37q8cu9"
+  ],
+  "sources": {
+    "src-jp2fxqp": {
+      "evidence_cost": 8,
+      "description": "Power Transfer record nqc2f",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-uzpcef",
+      "content": "The event window contains a valid control action by circuit-z36qfpk8, but the record does not bind that action uniquely to evt-6xcvc522."
+    },
+    "src-pyb9yy6": {
+      "evidence_cost": 1,
+      "description": "Power Transfer record 3x4nt",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-jjgxzb",
+      "content": "The same event window contains a valid control action by circuit-93282xz8, also not uniquely bound to evt-6xcvc522. A duplicate bookkeeping line was removed before this record was finalized."
+    },
+    "src-t9xmh6a": {
+      "evidence_cost": 2,
+      "description": "Power Transfer record n4pmt",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-suxk6m",
+      "content": "Telemetry for evt-6xcvc522 combines both control actions and cannot distinguish which power circuit controlled the event. A duplicate bookkeeping line was removed before this record was finalized. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-37q8cu9": {
+      "evidence_cost": 4,
+      "description": "Power Transfer record 27wvj",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-a9avvv",
+      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence."
+    }
+  }
+}

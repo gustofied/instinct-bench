@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-009",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which capacity feed controlled quote correction evt-7ucfmrv5?",
+  "initial_context": "The signed intake record establishes evt-7ucfmrv5 and the decision question, but does not identify the controlling capacity feed.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-vv39yt"
+  },
+  "source_order": [
+    "src-s5uuh8q",
+    "src-zbaut8s",
+    "src-5tx6kzu",
+    "src-nyg9gmp"
+  ],
+  "sources": {
+    "src-5tx6kzu": {
+      "evidence_cost": 2,
+      "description": "Capacity Quote record x6qm9",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-bkgq54",
+      "content": "The event window contains a valid control action by feed-jqzjhm4v, but the record does not bind that action uniquely to evt-7ucfmrv5. Administrative fields were reconciled independently and add no attribution claim. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-s5uuh8q": {
+      "evidence_cost": 1,
+      "description": "Capacity Quote record 6czcf",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-w48sqg",
+      "content": "The same event window contains a valid control action by feed-m24f83r4, also not uniquely bound to evt-7ucfmrv5. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-nyg9gmp": {
+      "evidence_cost": 4,
+      "description": "Capacity Quote record 9nyp3",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-k6hd37",
+      "content": "Telemetry for evt-7ucfmrv5 combines both control actions and cannot distinguish which capacity feed controlled the event. A duplicate bookkeeping line was removed before this record was finalized."
+    },
+    "src-zbaut8s": {
+      "evidence_cost": 8,
+      "description": "Capacity Quote record tcmrk",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-yfh5pd",
+      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence."
+    }
+  }
+}

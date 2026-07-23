@@ -1,0 +1,43 @@
+{
+  "task_id": "instinct-bench/ca-dev-027",
+  "state_schema_version": 5,
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "scorer_version": "0.3.0",
+  "evaluation_protocol_version": "0.3.0",
+  "expected_decision": "answer",
+  "expected_entity_id": "circuit-z36qfpk8",
+  "accepted_proof_sets": [
+    [
+      "src-gd7dw68"
+    ],
+    [
+      "src-nagent8"
+    ]
+  ],
+  "hindsight_minimum_cost": 1,
+  "source_order": [
+    "src-nagent8",
+    "src-gd7dw68",
+    "src-tq92nze",
+    "src-xm44e5y"
+  ],
+  "source_costs": {
+    "src-gd7dw68": 8,
+    "src-nagent8": 1,
+    "src-tq92nze": 2,
+    "src-xm44e5y": 4
+  },
+  "source_payload_bytes": {
+    "src-gd7dw68": 93,
+    "src-nagent8": 100,
+    "src-tq92nze": 193,
+    "src-xm44e5y": 81
+  },
+  "source_token_proxy": {
+    "src-gd7dw68": 24,
+    "src-nagent8": 25,
+    "src-tq92nze": 49,
+    "src-xm44e5y": 21
+  }
+}

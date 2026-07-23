@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-001",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which deployment controlled recovery event evt-f625cs7n?",
+  "initial_context": "The signed decision register for evt-f625cs7n establishes dep-bwsqcb9d as the controlling deployment.",
+  "initial_context_metadata": {
+    "authority_class": "signed-decision-register",
+    "declared_reliability": 0.995,
+    "lineage_group": "initial-9d2k59"
+  },
+  "source_order": [
+    "src-pxthrye",
+    "src-3azkztt",
+    "src-vv8eqka",
+    "src-bwssrxy"
+  ],
+  "sources": {
+    "src-pxthrye": {
+      "evidence_cost": 1,
+      "description": "Deployment Recovery record k9ptm",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-jb7z9n",
+      "content": "The final control record independently confirms dep-bwsqcb9d for evt-f625cs7n. The surrounding status checks remained within their ordinary operating range. A duplicate bookkeeping line was removed before this record was finalized."
+    },
+    "src-bwssrxy": {
+      "evidence_cost": 4,
+      "description": "Deployment Recovery record q3m39",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-aunuxz",
+      "content": "A prior unrelated event was controlled by dep-4d2skj78; it is not evt-f625cs7n."
+    },
+    "src-vv8eqka": {
+      "evidence_cost": 8,
+      "description": "Deployment Recovery record e97jf",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-av2h3e",
+      "content": "The timeline confirms when evt-f625cs7n closed but contains no deployment identifier. The surrounding status checks remained within their ordinary operating range. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-3azkztt": {
+      "evidence_cost": 2,
+      "description": "Deployment Recovery record qsmu2",
+      "authority_class": "derived-summary",
+      "declared_reliability": 0.74,
+      "lineage_group": "lin-s6f3r3",
+      "content": "A desk summary refers to the deployment already named in the signed decision record. The record also contains routine timestamps that do not change the attribution. Administrative fields were reconciled independently and add no attribution claim."
+    }
+  }
+}

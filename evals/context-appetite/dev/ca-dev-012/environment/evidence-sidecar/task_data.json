@@ -1,0 +1,52 @@
+{
+  "task_id": "instinct-bench/ca-dev-012",
+  "task_data_version": "0.3.0",
+  "evidence_cost_table_version": "0.3.0",
+  "question": "Which tenant credential controlled access event evt-ymkkbtd6?",
+  "initial_context": "The signed intake record establishes evt-ymkkbtd6 and the decision question, but does not identify the controlling tenant credential.",
+  "initial_context_metadata": {
+    "authority_class": "signed-intake-record",
+    "declared_reliability": 0.99,
+    "lineage_group": "initial-sjpzkz"
+  },
+  "source_order": [
+    "src-f368b62",
+    "src-nyfpmuf",
+    "src-6d2f8vq",
+    "src-gmzvdnf"
+  ],
+  "sources": {
+    "src-gmzvdnf": {
+      "evidence_cost": 2,
+      "description": "Tenant Credential record dh4xz",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-7m49my",
+      "content": "The signed decision for evt-ymkkbtd6 names cred-843e22bv as the controlling tenant credential. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-nyfpmuf": {
+      "evidence_cost": 4,
+      "description": "Tenant Credential record t62k3",
+      "authority_class": "independent-audit-record",
+      "declared_reliability": 0.97,
+      "lineage_group": "lin-ny6y65",
+      "content": "The audit confirms that evt-ymkkbtd6 was reviewed, but its extract omits the tenant credential identifier."
+    },
+    "src-f368b62": {
+      "evidence_cost": 8,
+      "description": "Tenant Credential record tntkg",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-jdpu3k",
+      "content": "The similarly timed but unrelated event used cred-jhc3qkzh; its event identifier is different from evt-ymkkbtd6. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-6d2f8vq": {
+      "evidence_cost": 1,
+      "description": "Tenant Credential record zz4gz",
+      "authority_class": "signed-operational-log",
+      "declared_reliability": 0.98,
+      "lineage_group": "lin-4cyk7y",
+      "content": "The operational timeline confirms evt-ymkkbtd6 but records no controlling entity."
+    }
+  }
+}

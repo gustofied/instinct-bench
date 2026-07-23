@@ -56,3 +56,6 @@ model-harness configuration so the experiment measures answer, look, abstain,
 and stop behavior without turning the result into a model leaderboard.
 
 Read the full [v0.3.0 protocol](docs/context-appetite-v0.3.0-plan.md).
+The generated [public development dataset](evals/context-appetite/dev) and its
+[domain runbook](evals/context-appetite/README.md) are versioned in this repo;
+the held-out evaluation tasks remain private through the official run.

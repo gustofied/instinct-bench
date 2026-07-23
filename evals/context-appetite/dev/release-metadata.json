@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "release": {
+    "name": "Instinct Bench: Context Appetite v0.3.0",
+    "version": "0.3.0",
+    "split": "dev",
+    "generator_version": "0.3.0",
+    "seed_commitment": "sha256:85ffe035842a4fed694d47a3915d648602d7a3abc8030c3060ae45f839c72669",
+    "dataset_commitment": "sha256:9396a6057b3bd2a6a0cc2f8bd288fcb3332c7d995ec397a0e675c54e0b911a1c",
+    "package_set_commitment": "sha256:c744d328f3b23ba0ccff9d5b5bd679472dc0214f4e08b7721879956da7feffa2",
+    "expected_task_count": 30,
+    "expected_block_count": 6,
+    "matrix_complete": true,
+    "conditions": [
+      "answer-now",
+      "single-source",
+      "complementary-evidence",
+      "insufficient-evidence",
+      "reliability-conflict"
+    ]
+  },
+  "tasks": {
+    "ca-dev-001": {
+      "condition": "answer-now",
+      "scenario_block": "ca-dev-block-001",
+      "instance_commitment": "sha256:8f1f19d70213dffc6c990b54dd6b878ce547e6525cf4ccc2b34915a62fb92efa"
+    },
+    "ca-dev-002": {
+      "condition": "single-source",
+      "scenario_block": "ca-dev-block-001",
+      "instance_commitment": "sha256:3c8a4d32e1f8ecb5344c312b59f36925af8b14e2f7f5ebd573d8a9f3932ca756"
+    },
+    "ca-dev-003": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-dev-block-001",
+      "instance_commitment": "sha256:d60b6ab2fab7fe862f0b8dcb5970f29065d1ae5a31d1c00b0fcfe14d2d8fcdb9"
+    },
+    "ca-dev-004": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-dev-block-001",
+      "instance_commitment": "sha256:362b37224309ce9e1e8c5d0e95cff1ae3c819d27282adfb0071a50ecf8478060"
+    },
+    "ca-dev-005": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-dev-block-001",
+      "instance_commitment": "sha256:0e031c66e277c98f4ce529a4773e82095e51bd363328208d40b0d8ebeea85c82"
+    },
+    "ca-dev-006": {
+      "condition": "answer-now",
+      "scenario_block": "ca-dev-block-002",
+      "instance_commitment": "sha256:3f29927cc0c1a819fa0853bfc3f9f1510b48e8e070b000a38783996fdb2848d9"
+    },
+    "ca-dev-007": {
+      "condition": "single-source",
+      "scenario_block": "ca-dev-block-002",
+      "instance_commitment": "sha256:666ecced66653533ac02e4f0220b58d071f964dcdb53153da2124adb895ff5eb"
+    },
+    "ca-dev-008": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-dev-block-002",
+      "instance_commitment": "sha256:c25ee0f1d9985c481f1ce55bee21fe6700b76a753297957a60bc981cdcda9d11"
+    },
+    "ca-dev-009": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-dev-block-002",
+      "instance_commitment": "sha256:352a74d3acfbe63ecf07c690d7cb228733382d95575f586cb0f361d6088d84a0"
+    },
+    "ca-dev-010": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-dev-block-002",
+      "instance_commitment": "sha256:88007fe790c9ed614e9672e62c9f50823f9747059507311a10b0945af29740c5"
+    },
+    "ca-dev-011": {
+      "condition": "answer-now",
+      "scenario_block": "ca-dev-block-003",
+      "instance_commitment": "sha256:c70af70caa23a15e5fbc2c6fbf7e89823dfed88fec48f26028eb5b05c557d42a"
+    },
+    "ca-dev-012": {
+      "condition": "single-source",
+      "scenario_block": "ca-dev-block-003",
+      "instance_commitment": "sha256:1ec967061ced70b3846644bb62c70444d89861d29e38d923c6a109acc07ccf0e"
+    },
+    "ca-dev-013": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-dev-block-003",
+      "instance_commitment": "sha256:39b9dde9b45cb1c04ab290175f0bf34a4a14a54b23ad774ac755846ea9ddedcd"
+    },
+    "ca-dev-014": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-dev-block-003",
+      "instance_commitment": "sha256:64310e7090977a0c1a3533a8bd1b2920e7d1fa31b446e78e3880fb585cc45c25"
+    },
+    "ca-dev-015": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-dev-block-003",
+      "instance_commitment": "sha256:4e89431d2429cded79f4c82e14a2d00895f94a3130aa7eb3fbb28c4a85bdfb40"
+    },
+    "ca-dev-016": {
+      "condition": "answer-now",
+      "scenario_block": "ca-dev-block-004",
+      "instance_commitment": "sha256:d1a31639141f86137e77ccc0ead1623402e72ae11b451361adfbe32fb821ecf6"
+    },
+    "ca-dev-017": {
+      "condition": "single-source",
+      "scenario_block": "ca-dev-block-004",
+      "instance_commitment": "sha256:50e907aafae8fa5e8e046309a8d75354096876f7c4fb3c67c1627392cc68e857"
+    },
+    "ca-dev-018": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-dev-block-004",
+      "instance_commitment": "sha256:3c82b854d8d79e04a9a8c33bf3b9aedc355d832518252eec85d3b662ff492f2b"
+    },
+    "ca-dev-019": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-dev-block-004",
+      "instance_commitment": "sha256:a7c393356ae83fe06baffff52a54881162f59e40d6e455e000a0a34801837c6e"
+    },
+    "ca-dev-020": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-dev-block-004",
+      "instance_commitment": "sha256:acb6c1841969d8d1a08006fcfd8ee0a4706068243087f907b3fdcb175f9f36be"
+    },
+    "ca-dev-021": {
+      "condition": "answer-now",
+      "scenario_block": "ca-dev-block-005",
+      "instance_commitment": "sha256:83dcf577468196d7a2df010910fe8ba20583289f94aceace64bb79e7f1a932e1"
+    },
+    "ca-dev-022": {
+      "condition": "single-source",
+      "scenario_block": "ca-dev-block-005",
+      "instance_commitment": "sha256:cd083dde515d9badd4133a83ee300fc297bf372157e56e0da06828468dc1ec67"
+    },
+    "ca-dev-023": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-dev-block-005",
+      "instance_commitment": "sha256:4ae0aa8d52566b276945886e112501147b0f70248d60b1701056aaeb2556cf23"
+    },
+    "ca-dev-024": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-dev-block-005",
+      "instance_commitment": "sha256:a0aaa0f9a68c5f88537ac6c026143d030dde2d6990b4571f2b2bb7aaaf7f2282"
+    },
+    "ca-dev-025": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-dev-block-005",
+      "instance_commitment": "sha256:85f514de35b8e1060bccb5299c4fbcbe27059e7c21173de8219f82bb733d0e2f"
+    },
+    "ca-dev-026": {
+      "condition": "answer-now",
+      "scenario_block": "ca-dev-block-006",
+      "instance_commitment": "sha256:515943f0ef4accdad4b26891e777adfe560654220d1a555ab4aeaf121b7433cc"
+    },
+    "ca-dev-027": {
+      "condition": "single-source",
+      "scenario_block": "ca-dev-block-006",
+      "instance_commitment": "sha256:1c96aa59073a22fd9433293c756f29b0d3bccec7cae4524bff4da5cf1bc082e8"
+    },
+    "ca-dev-028": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-dev-block-006",
+      "instance_commitment": "sha256:9d2485b11fd13ff4ed13308081e2a2dabd44a3cdc1620551db0842b526678b7e"
+    },
+    "ca-dev-029": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-dev-block-006",
+      "instance_commitment": "sha256:0dbc266288c59e5ecdbb424d10fe40acf719f01c4deafff910b654f608228a9d"
+    },
+    "ca-dev-030": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-dev-block-006",
+      "instance_commitment": "sha256:44a031e9aef0e72505e665bddb3fe65980838d377f3265a75778bfb47dfd8594"
+    }
+  }
+}

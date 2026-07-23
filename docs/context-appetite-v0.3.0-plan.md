@@ -56,9 +56,12 @@ x 1 fixed model-harness rollout
 = 75 unique trials
 ```
 
-Held-out task IDs are opaque (`ca-eval-001` through `ca-eval-075`). Condition,
-block, generator seed, and truth remain in protected release metadata rather
-than task names.
+Held-out task IDs use the exact opaque set `ca-eval-001` through
+`ca-eval-075`, assigned to condition/block cells through a release-secret-keyed
+permutation. Dataset order is independently permuted from the same secret so it
+does not reveal the condition cycle or create a fixed scheduling pattern.
+Condition and block live in private release metadata. The release secret and
+truth stay outside public metadata and outside the agent image.
 
 ## Decision Contract
 
@@ -72,9 +75,20 @@ Every task uses one short neutral instruction and exposes:
 - correlation or lineage group;
 - the same terminal payoff table.
 
-Prices, list positions, relevance, payload size, and reliability are balanced
-and independently randomized across the release. Source costs are drawn from
-`1`, `2`, `4`, and `8`; the total possible acquisition cost is at most `15`.
+Price and list position are counterbalanced independently of evidentiary role
+across the release. Opaque identifiers are HMAC-derived. Authority,
+reliability, and lineage are deliberately declared properties of the source
+model rather than randomized noise; payload bytes are measured as a separate
+diagnostic. Source costs are drawn from `1`, `2`, `4`, and `8`; the total
+possible acquisition cost is `15`.
+
+Within each matched block, the designated first proof source has the same
+price and list position across the four evidence-requiring conditions. This
+holds presentation constant for the within-block condition comparison. Across
+the 15 evaluation blocks, that source occupies 15 distinct price-position
+cells out of the 16 possible, once per condition. Analyses therefore block on
+scenario rather than treating price or position as independently sampled on
+all 75 rows.
 
 The disclosed diagnostic policy utility is:
 
@@ -144,6 +158,9 @@ Bayes-optimal regret.
 - Generate a cryptographically random release secret outside Git.
 - Derive per-task seeds and opaque IDs using HMAC.
 - Commit only the generator version and SHA-256 release-secret commitment.
+- Commit a dataset commitment derived from all 75 private instance
+  commitments and a package-set commitment derived from all complete Harbor
+  task digests before inference.
 - Commit public development tasks; ignore `eval-private/` and the secret.
 - Put only initial context, catalog metadata, and the evidence CLI in the main
   agent image.
@@ -168,15 +185,18 @@ and to the raw Harbor job. Every trial exposes:
 
 ```text
 execution_status: completed | deadline | infrastructure_error | cancelled | not_started
-failure_stage: provider_wait | terminal_io | sandbox | collection | verifier | null
+failure_stage: provider_wait | terminal_io | agent_execution | sandbox | collection | verifier | null
 answer_observed: bool
 verifier_status: pass | fail | error | not_run
 semantic_outcome: pass | fail | not_evaluated
 proof_outcome: pass | fail | not_evaluated
 format_outcome: pass | fail | not_evaluated
 harness_completion: confirmed | unconfirmed | not_evaluated
+benchmark_valid: bool
 strict_task_success: 0 | 1 | null
 domain_success: 0 | 1 | null
+sampling_seed: int | string | null
+instance_commitment: sha256 | null
 ```
 
 The v0.2.1 migration must reproduce 69 benchmark-valid trials, 67 strict
@@ -230,8 +250,11 @@ versioned superseding run.
    balance, and no-answer-leak tests.
 3. Verifier fixtures for valid, wrong, unsupported memorized, alternative
    proof, malformed, canonicalized unordered, forged, stale, and missing state.
-4. Deterministic policies over every task: answer-now, abstain, first-listed,
-   cheapest-first, open-all, random, stop-after-one, and proof-aware Oracle.
+4. Deterministic acquisition policies over every task: answer immediately,
+   abstain immediately, first-listed, cheapest-first,
+   highest-reliability-first, random-one, open-all, and proof-aware Oracle.
+   Nonterminal baselines use an oracle terminal decision and therefore measure
+   proof coverage and acquisition cost, not model accuracy.
 5. Harbor task validation and `--print-config` inspection for every bundle.
 6. One Terminus install-only Modal preflight.
 7. Oracle over all 75 private tasks, with strict reward `1` for every task.

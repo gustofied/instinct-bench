@@ -1,0 +1,21 @@
+services:
+  main:
+    depends_on:
+      evidence:
+        condition: service_healthy
+
+  evidence:
+    build:
+      context: ./evidence-sidecar
+    expose:
+      - "8000"
+    healthcheck:
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+      interval: 1s
+      timeout: 3s
+      retries: 20
+      start_period: 2s

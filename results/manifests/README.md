@@ -35,7 +35,8 @@ provider configuration, trace paths, independent classifications, model-call
 latency, token telemetry, and costs without dropping failed cells. Pass
 `--derived-from` when correcting a historical manifest; the tool records its
 path and digest instead of rewriting it. v0.3 task runs also require complete
-release metadata with non-secret seed and per-instance commitments.
+release metadata with a non-secret seed commitment, dataset and package-set
+commitments, matched-condition metadata, and per-instance commitments.
 Task provenance uses Harbor 0.20's locked `TrialLock.task.digest`; the older
 result-side `task_checksum` field is deprecated and is not treated as the
 durable package identity.

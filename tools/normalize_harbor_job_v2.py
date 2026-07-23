@@ -32,6 +32,7 @@ V02_CONDITIONS = {
 }
 PUBLIC_METRIC_NAMES = {
     "abstained": "abstained",
+    "abstention_mode_match": "abstention_mode_match",
     "agent_requests": "agent_requests",
     "confidence": "confidence",
     "correctness": "correctness",
@@ -107,6 +108,20 @@ def binary_metric(value: object) -> int | None:
     if outcome == "fail":
         return 0
     return None
+
+
+def sampling_seed(agent_config: dict[str, Any]) -> int | str | None:
+    kwargs = agent_config.get("kwargs")
+    if not isinstance(kwargs, dict):
+        return None
+    value = kwargs.get("seed")
+    if value is None:
+        llm_call_kwargs = kwargs.get("llm_call_kwargs")
+        if isinstance(llm_call_kwargs, dict):
+            value = llm_call_kwargs.get("seed")
+    if isinstance(value, bool) or not isinstance(value, int | str):
+        return None
+    return value
 
 
 def canonical_answer(value: object) -> object:
@@ -516,6 +531,8 @@ def validate_release_metadata(
         "split",
         "generator_version",
         "seed_commitment",
+        "dataset_commitment",
+        "package_set_commitment",
         "expected_task_count",
         "expected_block_count",
         "matrix_complete",
@@ -532,6 +549,10 @@ def validate_release_metadata(
         raise ValueError("Release conditions do not match the locked condition order")
     if not is_sha256_commitment(release["seed_commitment"]):
         raise ValueError("Release seed_commitment must be a SHA-256 commitment")
+    if not is_sha256_commitment(release["dataset_commitment"]):
+        raise ValueError("Release dataset_commitment must be a SHA-256 commitment")
+    if not is_sha256_commitment(release["package_set_commitment"]):
+        raise ValueError("Release package_set_commitment must be a SHA-256 commitment")
     if release["expected_task_count"] != len(task_names):
         raise ValueError("Release expected_task_count does not match the job lock")
     if set(tasks) != task_names:
@@ -649,7 +670,7 @@ def build_trial(
         "instance_commitment": trial_metadata.get("instance_commitment"),
         "model": agent_config.get("model_name"),
         "attempt": attempt,
-        "sampling_seed": agent_config.get("kwargs", {}).get("seed"),
+        "sampling_seed": sampling_seed(agent_config),
         "execution_status": execution_status,
         "failure_stage": failure_stage,
         "failure_detail": failure_detail,
@@ -730,7 +751,7 @@ def build_not_started(
         "instance_commitment": trial_metadata.get("instance_commitment"),
         "model": model,
         "attempt": attempt,
-        "sampling_seed": lock_trial.get("agent", {}).get("kwargs", {}).get("seed"),
+        "sampling_seed": sampling_seed(lock_trial.get("agent", {})),
         "execution_status": "not_started",
         "failure_stage": None,
         "failure_detail": "not_started",
@@ -1003,6 +1024,8 @@ def build_manifest(args: argparse.Namespace) -> dict[str, Any]:
             "split": release.get("split"),
             "generator_version": release.get("generator_version"),
             "seed_commitment": release.get("seed_commitment"),
+            "dataset_commitment": release.get("dataset_commitment"),
+            "package_set_commitment": release.get("package_set_commitment"),
         }
     )
     base["runner"]["command"] = sanitize_command(base["runner"]["command"])
