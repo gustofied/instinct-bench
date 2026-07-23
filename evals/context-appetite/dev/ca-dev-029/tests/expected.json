@@ -28,14 +28,14 @@
   },
   "source_payload_bytes": {
     "src-rfnp9e5": 201,
-    "src-g5s7kfp": 264,
-    "src-2k6hxy6": 136,
-    "src-htevatc": 275
+    "src-g5s7kfp": 271,
+    "src-2k6hxy6": 121,
+    "src-htevatc": 281
   },
   "source_token_proxy": {
     "src-rfnp9e5": 51,
-    "src-g5s7kfp": 66,
-    "src-2k6hxy6": 34,
-    "src-htevatc": 69
+    "src-g5s7kfp": 68,
+    "src-2k6hxy6": 31,
+    "src-htevatc": 71
   }
 }

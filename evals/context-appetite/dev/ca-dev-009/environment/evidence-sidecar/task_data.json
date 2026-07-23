@@ -30,7 +30,7 @@
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
       "lineage_group": "lin-m54tap",
-      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence."
+      "content": "The audit confirms the catalog records exhaust the relevant window; it makes no event-to-entity attribution claim."
     },
     "src-h8e8srr": {
       "evidence_cost": 4,
@@ -38,7 +38,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-zwb7tg",
-      "content": "The event window contains a valid control action by feed-ad6czgh6, but the record does not bind that action uniquely to evt-kvxv7smf. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+      "content": "A valid control action by feed-ad6czgh6 occurred during the relevant window. This record contains no event identifier. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
     },
     "src-9kd2hnv": {
       "evidence_cost": 8,
@@ -46,7 +46,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-rm2stv",
-      "content": "The same event window contains a valid control action by feed-yxt8pgtm, also not uniquely bound to evt-kvxv7smf. Administrative fields were reconciled independently and add no attribution claim."
+      "content": "A valid control action by feed-yxt8pgtm occurred during the relevant window. This record contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
     }
   }
 }

@@ -156,18 +156,30 @@ def infer_supported_decisions(
             ):
                 link_entities.setdefault(link_id, set()).add(entity_id)
 
-        if (
+        combined_ambiguity = (
             _trusted(record, {"signed-operational-log"}, 0.98)
-            and event_id in content
             and "cannot distinguish which" in content
             and "controlled the event" in content
-        ):
+        )
+        individual_non_binding = _trusted(
+            record, {"primary-control-record"}, 0.99
+        ) and (
+            "does not bind that action uniquely" in content
+            or "not uniquely bound" in content
+        )
+        if event_id in content and (combined_ambiguity or individual_non_binding):
             ambiguity_sources.add(source_id)
-        if (
+        legacy_completeness = (
             _trusted(record, {"independent-audit-record"}, 0.97)
             and "records are complete for the window" in content
             and "no additional attribution evidence" in content
-        ):
+        )
+        scoped_completeness = (
+            _trusted(record, {"independent-audit-record"}, 0.97)
+            and "catalog records exhaust the relevant window" in content
+            and "no event-to-entity attribution claim" in content
+        )
+        if legacy_completeness or scoped_completeness:
             completeness_sources.add(source_id)
 
     for link_id in event_links:

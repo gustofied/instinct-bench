@@ -30,7 +30,7 @@
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
       "lineage_group": "lin-duvehq",
-      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence. The record also contains routine timestamps that do not change the attribution."
+      "content": "The audit confirms the catalog records exhaust the relevant window; it makes no event-to-entity attribution claim. The record also contains routine timestamps that do not change the attribution."
     },
     "src-4u3xv9x": {
       "evidence_cost": 8,
@@ -38,7 +38,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-gs6yfa",
-      "content": "The event window contains a valid control action by dep-buxg3g2p, but the record does not bind that action uniquely to evt-svyh3xq9. Administrative fields were reconciled independently and add no attribution claim."
+      "content": "A valid control action by dep-buxg3g2p occurred during the relevant window. This record contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
     },
     "src-kynn7q3": {
       "evidence_cost": 2,
@@ -46,7 +46,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-ahv2q3",
-      "content": "The same event window contains a valid control action by dep-8e9x4ama, also not uniquely bound to evt-svyh3xq9. A duplicate bookkeeping line was removed before this record was finalized."
+      "content": "A valid control action by dep-8e9x4ama occurred during the relevant window. This record contains no event identifier. A duplicate bookkeeping line was removed before this record was finalized."
     }
   }
 }

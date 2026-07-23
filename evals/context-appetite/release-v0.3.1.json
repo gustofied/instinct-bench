@@ -6,8 +6,8 @@
     "split": "eval",
     "generator_version": "0.3.1",
     "seed_commitment": "sha256:889fb173b85078bb004c1af559612df075fc3717b2de0a7624af31b8568b0e27",
-    "dataset_commitment": "sha256:46d31fc7b83df596b68190309489946eb28ab09de7f653a565450949192f9ccd",
-    "package_set_commitment": "sha256:d45f374f1d0f26cf852ff47d0bf350d05d76dc5ac42ca144c7143b9d14d2ba17",
+    "dataset_commitment": "sha256:ba114f75664f4569dccd570afd36df9855dee23e7aaf8e1abc4aa0a280c92866",
+    "package_set_commitment": "sha256:8e8f80239d0232b76ece0f2d2d67da34863aa130acd458d603cfe7ae91f75f70",
     "expected_task_count": 75,
     "expected_block_count": 15
   }

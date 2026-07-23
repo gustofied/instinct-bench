@@ -309,7 +309,7 @@ class ReleaseContractTests(unittest.TestCase):
             args, release=release, tasks=tasks, task_names=task_names
         )
         tasks.pop("ca-eval-075")
-        with self.assertRaisesRegex(ValueError, "does not match the lock"):
+        with self.assertRaisesRegex(ValueError, "does not match task metadata"):
             NORMALIZER.validate_release_metadata(
                 args, release=release, tasks=tasks, task_names=task_names
             )
@@ -325,6 +325,45 @@ class ReleaseContractTests(unittest.TestCase):
         )
         release["generator_version"] = "0.3.0"
         with self.assertRaisesRegex(ValueError, "match implementation_version"):
+            NORMALIZER.validate_release_metadata(
+                args, release=release, tasks=tasks, task_names=task_names
+            )
+
+    def test_v031_canary_requires_a_balanced_release_subset(self) -> None:
+        _, release, tasks, _ = self.evaluation_metadata()
+        args = argparse.Namespace(
+            implementation_version="0.3.1", run_kind="model-canary"
+        )
+        release["name"] = "Instinct Bench: Context Appetite v0.3.1"
+        release["version"] = "0.3.1"
+        release["generator_version"] = "0.3.1"
+        task_names = {
+            "ca-eval-001",
+            "ca-eval-007",
+            "ca-eval-013",
+            "ca-eval-019",
+            "ca-eval-025",
+        }
+        NORMALIZER.validate_release_metadata(
+            args, release=release, tasks=tasks, task_names=task_names
+        )
+
+        task_names.remove("ca-eval-025")
+        with self.assertRaisesRegex(ValueError, "exactly five tasks"):
+            NORMALIZER.validate_release_metadata(
+                args, release=release, tasks=tasks, task_names=task_names
+            )
+
+        task_names.add("ca-eval-002")
+        with self.assertRaisesRegex(ValueError, "one task per condition"):
+            NORMALIZER.validate_release_metadata(
+                args, release=release, tasks=tasks, task_names=task_names
+            )
+
+    def test_implementation_version_must_be_canonical(self) -> None:
+        args, release, tasks, task_names = self.evaluation_metadata()
+        args.implementation_version = "v0.3.1"
+        with self.assertRaisesRegex(ValueError, "canonical X.Y.Z"):
             NORMALIZER.validate_release_metadata(
                 args, release=release, tasks=tasks, task_names=task_names
             )

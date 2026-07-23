@@ -30,7 +30,7 @@
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
       "lineage_group": "lin-je3zqw",
-      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
+      "content": "The audit confirms the catalog records exhaust the relevant window; it makes no event-to-entity attribution claim. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
     },
     "src-2k6hxy6": {
       "evidence_cost": 2,
@@ -38,7 +38,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-2fmjjs",
-      "content": "The event window contains a valid control action by circuit-7ru85xvt, but the record does not bind that action uniquely to evt-djsbjgwh."
+      "content": "A valid control action by circuit-7ru85xvt occurred during the relevant window. This record contains no event identifier."
     },
     "src-htevatc": {
       "evidence_cost": 4,
@@ -46,7 +46,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-7jsnn7",
-      "content": "The same event window contains a valid control action by circuit-tzqn9uwe, also not uniquely bound to evt-djsbjgwh. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+      "content": "A valid control action by circuit-tzqn9uwe occurred during the relevant window. This record contains no event identifier. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
     }
   }
 }

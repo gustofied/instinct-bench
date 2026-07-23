@@ -734,6 +734,36 @@ class IndependentSemanticAuditTests(unittest.TestCase):
             ):
                 audit_task_package(task_dir)
 
+    def test_audit_rejects_unaccepted_non_binding_abstention_source(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            task_dir = self.copy_task("ca-dev-004", Path(temporary))
+            expected = json.loads((task_dir / "tests" / "expected.json").read_text())
+            accepted = {
+                source_id
+                for path in expected["accepted_proof_sets"]
+                for source_id in path
+            }
+            task_data_path = (
+                task_dir / "environment" / "evidence-sidecar" / "task_data.json"
+            )
+            task_data = json.loads(task_data_path.read_text())
+            event_id = EVENT_PATTERN.search(task_data["question"]).group()
+            shortcut_id = next(
+                source_id
+                for source_id, source in task_data["sources"].items()
+                if source_id not in accepted
+                and source["authority_class"] == "primary-control-record"
+            )
+            task_data["sources"][shortcut_id]["content"] = (
+                "A valid control action occurred, but the record does not bind "
+                f"that action uniquely to {event_id}."
+            )
+            generator.write_json(task_data_path, task_data)
+            with self.assertRaisesRegex(
+                SemanticAuditError, "do not match verifier paths"
+            ):
+                audit_task_package(task_dir)
+
 
 class EvidenceServiceTests(unittest.TestCase):
     def test_catalog_is_redacted_and_submission_is_final(self) -> None:

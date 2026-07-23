@@ -30,7 +30,7 @@
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
       "lineage_group": "lin-a24cwx",
-      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence. The surrounding status checks remained within their ordinary operating range."
+      "content": "The audit confirms the catalog records exhaust the relevant window; it makes no event-to-entity attribution claim. The surrounding status checks remained within their ordinary operating range."
     },
     "src-8k29dyf": {
       "evidence_cost": 2,
@@ -38,7 +38,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-mh7j6h",
-      "content": "The event window contains a valid control action by rel-87dg2qeh, but the record does not bind that action uniquely to evt-rud9g74x. Administrative fields were reconciled independently and add no attribution claim."
+      "content": "A valid control action by rel-87dg2qeh occurred during the relevant window. This record contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
     },
     "src-x8anktt": {
       "evidence_cost": 8,
@@ -46,7 +46,7 @@
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
       "lineage_group": "lin-rmb2fh",
-      "content": "The same event window contains a valid control action by rel-cf2nbva9, also not uniquely bound to evt-rud9g74x. The surrounding status checks remained within their ordinary operating range."
+      "content": "A valid control action by rel-cf2nbva9 occurred during the relevant window. This record contains no event identifier. The surrounding status checks remained within their ordinary operating range."
     }
   }
 }

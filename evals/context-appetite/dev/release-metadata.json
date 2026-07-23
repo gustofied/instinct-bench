@@ -6,8 +6,8 @@
     "split": "dev",
     "generator_version": "0.3.1",
     "seed_commitment": "sha256:ad5702bb180664416efce763f4886b6f5b9e270ae4a323373742e303aba0dc93",
-    "dataset_commitment": "sha256:10b7b545f9f55939df67667a986bbdfb1a7fb3d12be90b02450a6a3da7889f71",
-    "package_set_commitment": "sha256:199f69cc6f3d885cdd64328aee2775e8492cf7990186c8899346e1f86c8d27d2",
+    "dataset_commitment": "sha256:e2cdd69ae1f67216db6e7cb2aa7fdb7f6f99282f899d9b788846ab4445b7bf9b",
+    "package_set_commitment": "sha256:7c5b798bd20bca9b14b19371772c4de58baa0ae04051e62be947162ced70d0c1",
     "expected_task_count": 30,
     "expected_block_count": 6,
     "matrix_complete": true,
@@ -38,7 +38,7 @@
     "ca-dev-004": {
       "condition": "insufficient-evidence",
       "scenario_block": "ca-dev-block-001",
-      "instance_commitment": "sha256:f741d5bf0b3c53dc21823ad24d5c5b92fb918f1a8f601057b8a2bb0878a7d462"
+      "instance_commitment": "sha256:444e71230037cd8cfb2cf03d3dd92c3c12259cd534df4e1336678f659e63efb2"
     },
     "ca-dev-005": {
       "condition": "reliability-conflict",
@@ -63,7 +63,7 @@
     "ca-dev-009": {
       "condition": "insufficient-evidence",
       "scenario_block": "ca-dev-block-002",
-      "instance_commitment": "sha256:82b6502e96add2fea884e102ab3ae79186f95fc0b12c4c3f4459d60af0d17f43"
+      "instance_commitment": "sha256:8aedd628949a03c6894d0205746715842526d30f140e7f6c3e88181d68cd0a6a"
     },
     "ca-dev-010": {
       "condition": "reliability-conflict",
@@ -88,7 +88,7 @@
     "ca-dev-014": {
       "condition": "insufficient-evidence",
       "scenario_block": "ca-dev-block-003",
-      "instance_commitment": "sha256:e2111df257ea52e5ec6a07c8541d1c301c2acb409c308c33fb4e2f24f474caa0"
+      "instance_commitment": "sha256:86d3f0275397d2b9ce838684877983863626229848faaff385f37517b9928687"
     },
     "ca-dev-015": {
       "condition": "reliability-conflict",
@@ -113,7 +113,7 @@
     "ca-dev-019": {
       "condition": "insufficient-evidence",
       "scenario_block": "ca-dev-block-004",
-      "instance_commitment": "sha256:195fc9acd1d939d7b0b6d9073a556c47ef4726f40ddf0ac2bea84009a20a71b7"
+      "instance_commitment": "sha256:536530ab39415756defcd95081be6c206b98e9797950f957f3997e445f7f5779"
     },
     "ca-dev-020": {
       "condition": "reliability-conflict",
@@ -138,7 +138,7 @@
     "ca-dev-024": {
       "condition": "insufficient-evidence",
       "scenario_block": "ca-dev-block-005",
-      "instance_commitment": "sha256:b400d05cd334e83011405f6734166ab363a5c99f588606e46c4552e20bc402f5"
+      "instance_commitment": "sha256:eb368f38a50cafd92f0991f85588c0cd3d0117422e6945af4c658b0dc7f7011b"
     },
     "ca-dev-025": {
       "condition": "reliability-conflict",
@@ -163,7 +163,7 @@
     "ca-dev-029": {
       "condition": "insufficient-evidence",
       "scenario_block": "ca-dev-block-006",
-      "instance_commitment": "sha256:6d8a1e2d7cd34fb991e76c44acda0151e5464f8e90de7ce6365812f68577c371"
+      "instance_commitment": "sha256:c09be594de2f1c1e8c608256210a0662718c598876d1e776323af40d23f929eb"
     },
     "ca-dev-030": {
       "condition": "reliability-conflict",

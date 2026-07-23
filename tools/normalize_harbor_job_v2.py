@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import shlex
 import tempfile
 from collections import Counter, defaultdict
@@ -17,7 +18,7 @@ import normalize_harbor_job as v1
 
 
 SCHEMA_VERSION = "2.0"
-NORMALIZER_VERSION = "2.1.0"
+NORMALIZER_VERSION = "2.2.0"
 LOCKED_CONDITIONS = (
     "answer-now",
     "single-source",
@@ -85,6 +86,13 @@ def is_sha256_commitment(value: object) -> bool:
     except ValueError:
         return False
     return True
+
+
+def canonical_implementation_version(value: object) -> str:
+    version = str(value)
+    if re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
+        raise ValueError("implementation_version must use canonical X.Y.Z syntax")
+    return version
 
 
 def metric_outcome(value: object) -> str | None:
@@ -518,10 +526,11 @@ def validate_release_metadata(
     tasks: dict[str, Any],
     task_names: set[str],
 ) -> None:
-    requires_metadata = (
-        str(args.implementation_version).startswith("0.3")
-        and args.run_kind != "preflight"
+    implementation_version = canonical_implementation_version(
+        args.implementation_version
     )
+    is_v03 = implementation_version.startswith("0.3")
+    requires_metadata = is_v03 and args.run_kind != "preflight"
     if not release and not tasks:
         if requires_metadata:
             raise ValueError("v0.3 task runs require --release-metadata")
@@ -555,11 +564,19 @@ def validate_release_metadata(
         raise ValueError("Release dataset_commitment must be a SHA-256 commitment")
     if not is_sha256_commitment(release["package_set_commitment"]):
         raise ValueError("Release package_set_commitment must be a SHA-256 commitment")
-    if release["expected_task_count"] != len(task_names):
-        raise ValueError("Release expected_task_count does not match the job lock")
-    if set(tasks) != task_names:
-        missing = sorted(task_names - set(tasks))
-        extra = sorted(set(tasks) - task_names)
+    metadata_names = set(tasks)
+    if release["expected_task_count"] != len(metadata_names):
+        raise ValueError("Release expected_task_count does not match task metadata")
+    is_v03_canary = args.run_kind == "model-canary" and is_v03
+    if is_v03_canary:
+        if not task_names.issubset(metadata_names):
+            missing = sorted(task_names - metadata_names)
+            raise ValueError(
+                f"Canary tasks are absent from release metadata: {missing}"
+            )
+    elif metadata_names != task_names:
+        missing = sorted(task_names - metadata_names)
+        extra = sorted(metadata_names - task_names)
         raise ValueError(
             f"Release task metadata does not match the lock; missing={missing}, extra={extra}"
         )
@@ -587,12 +604,9 @@ def validate_release_metadata(
     if release["expected_block_count"] != len(blocks):
         raise ValueError("Release expected_block_count does not match scenario blocks")
 
-    if args.run_kind == "evaluation" and str(args.implementation_version).startswith(
-        "0.3"
-    ):
-        implementation_version = str(args.implementation_version)
+    if args.run_kind in {"evaluation", "model-canary"} and is_v03:
         expected_names = {f"ca-eval-{index:03d}" for index in range(1, 76)}
-        if task_names != expected_names:
+        if args.run_kind == "evaluation" and task_names != expected_names:
             raise ValueError("The official v0.3 evaluation requires ca-eval-001..075")
         if (
             release["name"]
@@ -612,6 +626,20 @@ def validate_release_metadata(
             if Counter(conditions) != Counter(LOCKED_CONDITIONS):
                 raise ValueError(
                     f"Scenario block {block} is not a complete matched block"
+                )
+        if args.run_kind == "model-canary":
+            selected = [tasks[task_name] for task_name in task_names]
+            if len(selected) != 5:
+                raise ValueError("The official v0.3 canary requires exactly five tasks")
+            if Counter(row["condition"] for row in selected) != Counter(
+                LOCKED_CONDITIONS
+            ):
+                raise ValueError(
+                    "The official v0.3 canary requires one task per condition"
+                )
+            if len({row["scenario_block"] for row in selected}) != 5:
+                raise ValueError(
+                    "The official v0.3 canary requires five distinct scenario blocks"
                 )
 
 
@@ -964,6 +992,9 @@ def validate_task_digests(lock_trials: list[dict[str, Any]]) -> None:
 
 
 def build_manifest(args: argparse.Namespace) -> dict[str, Any]:
+    args.implementation_version = canonical_implementation_version(
+        args.implementation_version
+    )
     job_dir = args.job_dir.resolve()
     job_lock = v1.read_json(job_dir / "lock.json")
     lock_trials = job_lock["trials"]

@@ -212,19 +212,19 @@ def role_records(
                 "independent-audit-record",
                 0.97,
                 "d",
-                "The audit confirms the records are complete for the window and contains no additional attribution evidence.",
+                "The audit confirms the catalog records exhaust the relevant window; it makes no event-to-entity attribution claim.",
             ),
             "candidate-a": record(
                 "primary-control-record",
                 0.99,
                 "a",
-                f"The event window contains a valid control action by {target}, but the record does not bind that action uniquely to {event_id}.",
+                f"A valid control action by {target} occurred during the relevant window. This record contains no event identifier.",
             ),
             "candidate-b": record(
                 "primary-control-record",
                 0.99,
                 "b",
-                f"The same event window contains a valid control action by {alternate}, also not uniquely bound to {event_id}.",
+                f"A valid control action by {alternate} occurred during the relevant window. This record contains no event identifier.",
             ),
         }
         return (
