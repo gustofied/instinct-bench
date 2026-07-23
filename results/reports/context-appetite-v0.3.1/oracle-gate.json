@@ -3,24 +3,24 @@
   "release": {
     "name": "Instinct Bench: Context Appetite v0.3.1",
     "version": "0.3.1",
-    "task_release_commit": "4458249",
-    "run_lock_commit": "6aff569"
+    "task_release_commit": "9341d23",
+    "run_lock_commit": "d9659a1"
   },
   "public_release": {
     "split": "dev",
     "seed_commitment": "sha256:ad5702bb180664416efce763f4886b6f5b9e270ae4a323373742e303aba0dc93",
-    "dataset_commitment": "sha256:10b7b545f9f55939df67667a986bbdfb1a7fb3d12be90b02450a6a3da7889f71",
-    "package_set_commitment": "sha256:199f69cc6f3d885cdd64328aee2775e8492cf7990186c8899346e1f86c8d27d2"
+    "dataset_commitment": "sha256:e2cdd69ae1f67216db6e7cb2aa7fdb7f6f99282f899d9b788846ab4445b7bf9b",
+    "package_set_commitment": "sha256:7c5b798bd20bca9b14b19371772c4de58baa0ae04051e62be947162ced70d0c1"
   },
   "private_release": {
     "split": "eval",
     "seed_commitment": "sha256:889fb173b85078bb004c1af559612df075fc3717b2de0a7624af31b8568b0e27",
-    "dataset_commitment": "sha256:46d31fc7b83df596b68190309489946eb28ab09de7f653a565450949192f9ccd",
-    "package_set_commitment": "sha256:d45f374f1d0f26cf852ff47d0bf350d05d76dc5ac42ca144c7143b9d14d2ba17",
-    "public_commitment_sha256": "sha256:9482cfdf11f546711bf0c368a8325e4406a28f1262bfc02100ca9b8784ebfb62"
+    "dataset_commitment": "sha256:ba114f75664f4569dccd570afd36df9855dee23e7aaf8e1abc4aa0a280c92866",
+    "package_set_commitment": "sha256:8e8f80239d0232b76ece0f2d2d67da34863aa130acd458d603cfe7ae91f75f70",
+    "public_commitment_sha256": "sha256:cb4e5873b3b10ea7bf49765e6aae998549cce37419db5297a10126e6e8421f53"
   },
   "public_job": {
-    "name": "context-appetite-v0.3.1-dev-oracle-final-001",
+    "name": "context-appetite-v0.3.1-dev-oracle-final-002",
     "run_kind": "oracle-smoke",
     "publication": "scratch",
     "performance_eligibility": "excluded",
@@ -28,15 +28,15 @@
     "environment": "modal",
     "concurrency": 4,
     "max_retries": 0,
-    "started_at": "2026-07-23T13:22:44.606711",
-    "finished_at": "2026-07-23T13:35:18.069448",
-    "result_sha256": "sha256:b730602fc59a0f3f0dfefcb309a409b6dc51b031be810573fc150e9bd0ee93ab",
-    "lock_sha256": "sha256:277024d52f8bcea44e2dd8d49afa75ef638b06c2d580ec2f35daf50636f4669d",
-    "release_metadata_sha256": "sha256:03e30a59ef78502dab6ddc562086960307fcae7c20019bd4ae204fc02d269c25",
-    "normalized_manifest_sha256": "sha256:fa4964924c7c2f2f108ff94ce57338d36a49f678f7f859616f249b22bd565b35"
+    "started_at": "2026-07-23T14:31:13.339412",
+    "finished_at": "2026-07-23T14:44:25.888708",
+    "result_sha256": "sha256:f6cf389c08de1b3bebf62ddd2fd42b38e563d6e5311328d7122658ba9ea1dfa5",
+    "lock_sha256": "sha256:b9f8da75119b529eb50110b28687cddb5ed36ba06f76e944f4872d38845985c7",
+    "release_metadata_sha256": "sha256:44f5b0c6f8ed57dae0730fcc4a775722fbdb1f48f080c4c242565db106ece7e2",
+    "normalized_manifest_sha256": "sha256:1b560b15f8fdf08d84fefe13ee768ee4e125e93b9fdbe4d4295389f12e18bbe7"
   },
   "private_job": {
-    "name": "context-appetite-v0.3.1-oracle-final-001",
+    "name": "context-appetite-v0.3.1-oracle-final-002",
     "run_kind": "oracle-smoke",
     "publication": "scratch",
     "performance_eligibility": "excluded",
@@ -44,12 +44,12 @@
     "environment": "modal",
     "concurrency": 4,
     "max_retries": 0,
-    "started_at": "2026-07-23T13:37:09.633148",
-    "finished_at": "2026-07-23T14:07:42.900750",
-    "result_sha256": "sha256:43bdcb8a027f8f8b84b9987c897b366d0fb944c20c3a763ba03ddf371a74b5c9",
-    "lock_sha256": "sha256:5ddae219e66e1bec679a52c1d633b2b319cda2e391380e9b5247e641f171c66f",
-    "private_release_metadata_sha256": "sha256:7aaecb5ca9397aae8e610bf0ac788a1a25527824f79f68c69d1491b5bb8414d7",
-    "private_normalized_manifest_sha256": "sha256:2244ccf1cbbefe3fc0952df59499deccb2ccff7c3e10e276f836828edb799796"
+    "started_at": "2026-07-23T14:44:40.968058",
+    "finished_at": "2026-07-23T15:16:32.162328",
+    "result_sha256": "sha256:2098708c4d88c2bb35ab8dd835feb718c866d34e80ea4ecffc9109b89b8d5e02",
+    "lock_sha256": "sha256:b92fda6990e296121ba74599a431391beace362bff72351b80fea8a59e962f4f",
+    "private_release_metadata_sha256": "sha256:c3222a59b6a9f4d522e3a2d9f722d1d6888d73ceaa374826ecad80dcf8f075d5",
+    "private_normalized_manifest_sha256": "sha256:ca3ff7a6ff7d1cfb316006cd3522fc65fe09fee078dac467fc6768e48fec8708"
   },
   "public_counts": {
     "planned": 30,

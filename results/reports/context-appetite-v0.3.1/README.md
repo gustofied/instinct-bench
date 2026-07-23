@@ -9,8 +9,8 @@ This report covers task quality and runtime integrity, not model performance.
 - Domain and Harbor dataset: `context-appetite`
 - Public development split: 6 matched scenario blocks x 5 conditions = 30 tasks
 - Unpublished benchmark split: 15 held-out scenario blocks x 5 conditions = 75 tasks
-- Task release checkpoint: `4458249`
-- Proper-agent run lock checkpoint: `6aff569`
+- Task release checkpoint: `9341d23`
+- Proper-agent run lock checkpoint: `d9659a1`
 - Harbor: `harbor[modal]==0.20.0`
 
 The five condition labels are experimental strata, not nested task families.
@@ -23,7 +23,7 @@ sample sizes.
 
 | Gate | Result |
 | --- | --- |
-| Unit and adversarial tests | 108/108 passed |
+| Unit and adversarial tests | 111/111 passed |
 | Ruff format and lint | Passed |
 | JSON and diff validation | Passed |
 | Public package validation | 30/30 tasks, 6/6 blocks |
@@ -53,6 +53,16 @@ to `0755`. Package digests commit to both contents and file/directory modes.
 The renewed final-digest Oracle jobs completed cleanly without resume,
 directory removal, or selective retry: 30/30 public development tasks and
 75/75 unpublished benchmark tasks passed.
+
+The first paid canary was operationally valid but scored 4/5 because an
+unaccepted candidate source said its action was "not uniquely bound" to the
+event. Together with the completeness audit, that materially supported the
+model's `INSUFFICIENT` decision under the published instruction. The canary
+therefore exposed a verifier false negative rather than an agent failure.
+v0.3.1 now removes that ambiguity from candidate records, keeps the explicit
+ambiguity record as the proof source, and tests that any future unaccepted
+non-binding source is rejected by the independent semantic audit. The
+pre-repair canary is scratch history and is excluded from performance.
 
 ## Privacy
 
