@@ -29,6 +29,7 @@ separately secret-keyed and does not preserve the five-condition cycle.
 evals/context-appetite/
 |-- README.md
 |-- release-v0.3.0.json       # public commitment, created before inference
+|-- official-run-v0.3.0.json  # truth-free locked model/harness protocol
 |-- dev/                      # 30 committed generated tasks
 `-- eval-private/             # 75 generated tasks, ignored by Git
 

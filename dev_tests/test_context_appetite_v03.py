@@ -26,6 +26,7 @@ from instinct_bench.context_appetite.schemas import CONDITIONS  # noqa: E402
 
 
 DEV_DIR = REPO_ROOT / "evals" / "context-appetite" / "dev"
+OFFICIAL_RUN = REPO_ROOT / "evals" / "context-appetite" / "official-run-v0.3.0.json"
 EVAL_SECRET = b"private-test-secret-not-used-for-release-0001"
 
 
@@ -139,6 +140,34 @@ class GeneratorTests(unittest.TestCase):
                 spec.title for spec in self.eval_specs
             )
         )
+
+    def test_official_run_protocol_is_locked_and_truth_free(self) -> None:
+        config = json.loads(OFFICIAL_RUN.read_text())
+        self.assertEqual(config["schema_version"], "1.0")
+        run = config["run"]
+        self.assertEqual(run["expected_trials"], 75)
+        self.assertEqual(run["attempts_per_task"], 1)
+        self.assertEqual(run["model"], "openrouter/z-ai/glm-5.2")
+        self.assertEqual(run["harness"], "terminus-2")
+        self.assertEqual(run["harness_version"], "2.0.0")
+        self.assertEqual(run["sampling"], {"temperature": 0, "seed": None})
+        self.assertEqual(
+            run["provider_request"],
+            {
+                "router": "openrouter",
+                "endpoint_tag": "z-ai/fp8",
+                "allow_fallbacks": False,
+                "require_parameters": True,
+            },
+        )
+        self.assertEqual(run["skills"], [])
+        self.assertEqual(run["agent_timeout_seconds"], 300)
+        self.assertEqual(run["concurrency"], 4)
+        self.assertEqual(run["agent_concurrency"], 4)
+        self.assertEqual(run["max_retries"], 0)
+        self.assertFalse(run["selective_retries"])
+        self.assertNotIn("tasks", config)
+        self.assertNotIn("condition", OFFICIAL_RUN.read_text())
 
     def test_eval_task_ids_do_not_encode_condition_or_block(self) -> None:
         second_secret = b"different-private-test-secret-not-for-release-0002"

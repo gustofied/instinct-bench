@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "run": {
+    "name": "context-appetite-v0.3.0-glm52-t2-eval-001",
+    "release": "Instinct Bench: Context Appetite v0.3.0",
+    "release_commitment_file": "release-v0.3.0.json",
+    "task_release_commit": "b68a419",
+    "expected_trials": 75,
+    "attempts_per_task": 1,
+    "model": "openrouter/z-ai/glm-5.2",
+    "harness": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "sampling": {
+      "temperature": 0,
+      "seed": null
+    },
+    "provider_request": {
+      "router": "openrouter",
+      "endpoint_tag": "z-ai/fp8",
+      "allow_fallbacks": false,
+      "require_parameters": true
+    },
+    "sandbox": {
+      "environment": "modal",
+      "modal_vm_runtime": true,
+      "agent_egress": "public"
+    },
+    "agent_timeout_seconds": 300,
+    "concurrency": 4,
+    "agent_concurrency": 4,
+    "max_retries": 0,
+    "selective_retries": false
+  }
+}
