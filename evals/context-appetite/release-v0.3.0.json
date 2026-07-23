@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "release": {
+    "name": "Instinct Bench: Context Appetite v0.3.0",
+    "version": "0.3.0",
+    "split": "eval",
+    "generator_version": "0.3.0",
+    "seed_commitment": "sha256:dc4362d0d7575ae59c4215811e2bbccf2a0c54bd2ab067708717b3c397316ff5",
+    "dataset_commitment": "sha256:70bb1939f22f84e092fd8ce56788ce7e35d7e6cf7b29b9621640e9d11da6cde6",
+    "package_set_commitment": "sha256:fa3e8869e5166a924e2ba912ff1a27a3d885edca29d0c932f81d1eed51f1c672",
+    "expected_task_count": 75,
+    "expected_block_count": 15
+  }
+}
