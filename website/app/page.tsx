@@ -79,9 +79,37 @@ export default function Home() {
               </span>
             </nav>
 
-            <span className="justify-self-center font-mono text-[9px] text-muted uppercase md:justify-self-end">
-              mock data / v{benchmark.version}
-            </span>
+            <nav
+              aria-label="Project links"
+              className="flex items-center justify-self-center gap-2 font-mono text-[9px] text-muted uppercase md:justify-self-end"
+            >
+              <a
+                className="hover:text-ink hover:underline"
+                href="https://x.com/instinctbench"
+                rel="noreferrer"
+                target="_blank"
+              >
+                X
+              </a>
+              <span aria-hidden="true">/</span>
+              <a
+                className="hover:text-ink hover:underline"
+                href="https://hub.harborframework.com/organizations/instinct-bench"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Harbor
+              </a>
+              <span aria-hidden="true">/</span>
+              <a
+                className="hover:text-ink hover:underline"
+                href="https://github.com/gustofied/instinct-bench"
+                rel="noreferrer"
+                target="_blank"
+              >
+                GitHub
+              </a>
+            </nav>
           </header>
         </Reveal>
 
