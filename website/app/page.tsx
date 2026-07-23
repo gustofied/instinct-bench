@@ -5,11 +5,90 @@ import { Reveal } from "@/components/reveal";
 import { benchmark, benchmarkSummary } from "@/lib/benchmark";
 import { cn } from "@/lib/utils";
 
-const mockAgentCostSplit = [
+const mockCostMix = [
   { label: "Model", value: 76 },
   { label: "Harness", value: 9 },
   { label: "Sandbox", value: 15 },
 ] as const;
+
+const mockLatencyMix = [
+  { label: "Model wait", value: 76 },
+  { label: "Harness", value: 9 },
+  { label: "Sandbox", value: 15 },
+] as const;
+
+function InfoTooltip({
+  align = "right",
+  id,
+  label,
+  text,
+}: {
+  align?: "left" | "responsive" | "right";
+  id: string;
+  label: string;
+  text: string;
+}) {
+  return (
+    <span className="group/info relative inline-flex">
+      <button
+        aria-describedby={id}
+        aria-label={label}
+        className="inline-flex size-3 cursor-help items-center justify-center font-mono text-[8px] text-muted underline decoration-dotted underline-offset-2 hover:text-ink"
+        type="button"
+      >
+        ?
+      </button>
+      <span
+        className={cn(
+          "pointer-events-none invisible absolute bottom-full z-30 mb-2 w-56 border border-line bg-paper px-2.5 py-2 text-left font-sans text-[11px] leading-[1.4] font-normal text-copy normal-case opacity-0 shadow-sm transition-opacity group-hover/info:visible group-hover/info:opacity-100 group-focus-within/info:visible group-focus-within/info:opacity-100",
+          align === "left" && "left-0",
+          align === "right" && "right-0",
+          align === "responsive" &&
+            "left-0 min-[560px]:right-0 min-[560px]:left-auto",
+        )}
+        id={id}
+        role="tooltip"
+      >
+        {text}
+      </span>
+    </span>
+  );
+}
+
+function MetricMix({
+  idPrefix,
+  items,
+}: {
+  idPrefix: string;
+  items: ReadonlyArray<{ label: string; value: number }>;
+}) {
+  return (
+    <span className="grid min-w-0 grid-cols-3 border-t border-line pt-2.5">
+      {items.map(({ label, value }, index) => (
+        <span
+          className={cn(
+            "grid min-w-0 gap-1 px-2 font-mono",
+            index === 0 ? "pl-0" : "border-l border-line",
+            index === items.length - 1 && "pr-0",
+          )}
+          key={label}
+        >
+          <span className="inline-flex min-w-0 items-center gap-0.5 text-[8px] text-muted">
+            <span>{label}</span>
+            {label === "Sandbox" && (
+              <InfoTooltip
+                id={`${idPrefix}-sandbox-tooltip`}
+                label="What Sandbox includes"
+                text="Includes sandbox runtime and agent-invoked tool execution."
+              />
+            )}
+          </span>
+          <strong className="text-[10px] font-medium">{value}%</strong>
+        </span>
+      ))}
+    </span>
+  );
+}
 
 function SectionHeading({
   count,
@@ -151,76 +230,98 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 border border-line lg:border-0">
-              {[
-                {
-                  label: "domains",
-                  value: benchmarkSummary.domainCount.toString().padStart(2, "0"),
-                },
-                {
-                  label: "tasks",
-                  value: benchmarkSummary.taskCount.toString().padStart(2, "0"),
-                },
-              ].map(({ label, value }, index) => (
-                <div
-                  className={cn(
-                    "col-span-1 row-start-1 flex min-h-[66px] flex-col items-start justify-center gap-1.5 px-2.5 py-2.5 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-y lg:px-4 lg:py-0",
-                    index === 0 ? "col-start-1" : "col-start-2 border-l",
-                  )}
-                  key={label}
-                >
-                  <span className="font-mono text-[9px] text-muted uppercase">{label}</span>
-                  <strong className="font-mono text-[15px] font-medium lg:text-base">
-                    {value}
+            <div className="border border-line">
+              <div className="grid grid-cols-3 md:grid-cols-4">
+                {[
+                  {
+                    label: "domains",
+                    value: benchmarkSummary.domainCount.toString().padStart(2, "0"),
+                  },
+                  {
+                    label: "tasks",
+                    value: benchmarkSummary.taskCount.toString().padStart(2, "0"),
+                  },
+                ].map(({ label, value }, index) => (
+                  <div
+                    className={cn(
+                      "flex min-h-[66px] flex-col items-start justify-center gap-1.5 px-3 py-2.5",
+                      index > 0 && "border-l border-line",
+                    )}
+                    key={label}
+                  >
+                    <span className="font-mono text-[9px] text-muted uppercase">
+                      {label}
+                    </span>
+                    <strong className="font-mono text-[15px] font-medium">
+                      {value}
+                    </strong>
+                  </div>
+                ))}
+
+                <div className="flex min-h-[66px] flex-col items-start justify-center gap-1.5 border-l border-line px-3 py-2.5">
+                  <span className="font-mono text-[9px] text-muted uppercase">
+                    avg score
+                  </span>
+                  <strong className="font-mono text-[15px] font-medium">
+                    {benchmarkSummary.averageScore?.toFixed(2) ?? "—"}
                   </strong>
                 </div>
-              ))}
 
-              <div className="col-start-3 row-start-1 flex min-h-[66px] flex-col items-start justify-center gap-1.5 border-l border-line px-2.5 py-2.5 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-y lg:px-4 lg:py-0">
-                <span className="font-mono text-[9px] text-muted uppercase">avg score</span>
-                <strong className="font-mono text-[15px] font-medium lg:text-base">
-                  {benchmarkSummary.averageScore?.toFixed(2) ?? "—"}
-                </strong>
+                <div className="col-span-3 flex min-h-[66px] items-center justify-between gap-4 border-t border-line px-3 py-2.5 md:col-span-1 md:flex-col md:items-start md:justify-center md:gap-1.5 md:border-t-0 md:border-l">
+                  <span className="font-mono text-[9px] text-muted uppercase">
+                    best agent
+                  </span>
+                  <span className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-x-1.5 gap-y-0.5 text-right font-mono md:text-left">
+                    <span className="text-[8px] text-muted">Harness:</span>
+                    <strong className="truncate text-[9px] font-medium">
+                      {benchmarkSummary.bestRun?.harness ?? "—"}
+                    </strong>
+                    <span className="text-[8px] text-muted">Model:</span>
+                    <strong className="truncate text-[9px] font-medium">
+                      {benchmarkSummary.bestRun?.model ?? "—"}
+                    </strong>
+                  </span>
+                </div>
               </div>
 
-              <div className="col-span-2 col-start-1 row-start-2 flex min-h-[78px] flex-col justify-center gap-2 border-t border-line px-3 py-2.5 lg:col-span-1 lg:col-start-4 lg:row-start-1 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-y lg:border-l lg:px-4 lg:py-0">
-                <span className="font-mono text-[9px] text-muted uppercase">best agent</span>
-                <span className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-x-1.5 gap-y-0.5 font-mono lg:text-right">
-                  <span className="text-[8px] text-muted">Harness:</span>
-                  <strong className="truncate text-[9px] font-medium">
-                    {benchmarkSummary.bestRun?.harness ?? "—"}
-                  </strong>
-                  <span className="text-[8px] text-muted">Model:</span>
-                  <strong className="truncate text-[9px] font-medium">
-                    {benchmarkSummary.bestRun?.model ?? "—"}
-                  </strong>
-                </span>
-              </div>
+              <div className="grid border-t border-line min-[560px]:grid-cols-2">
+                <div className="min-h-[116px] px-3 py-3">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <span className="font-mono text-[9px] text-muted">$ / task</span>
+                    <strong className="font-mono text-[16px] font-medium">
+                      {benchmarkSummary.bestRun?.cost ?? "—"}
+                    </strong>
+                  </div>
+                  <div className="mt-4">
+                    <MetricMix idPrefix="cost" items={mockCostMix} />
+                  </div>
+                </div>
 
-              <div className="col-start-4 row-start-1 flex min-h-[66px] flex-col items-start justify-center gap-1.5 border-l border-line px-2.5 py-2.5 lg:col-start-3 lg:row-start-2 lg:min-h-14 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:border-x lg:border-b lg:px-4 lg:py-0">
-                <span className="font-mono text-[9px] text-muted">$ / task</span>
-                <strong className="font-mono text-[15px] font-medium lg:text-base">
-                  {benchmarkSummary.bestRun?.cost ?? "—"}
-                </strong>
-              </div>
-
-              <div className="col-span-2 col-start-3 row-start-2 flex min-h-[78px] flex-col justify-center gap-2 border-t border-l border-line px-3 py-2.5 lg:col-span-1 lg:col-start-4 lg:row-start-2 lg:min-h-14 lg:border-t-0 lg:border-r lg:border-b lg:border-l-0 lg:px-4 lg:py-0">
-                <span className="font-mono text-[9px] text-muted">$ on agent</span>
-                <span className="grid min-w-0 grid-cols-3">
-                  {mockAgentCostSplit.map(({ label, value }, index) => (
-                    <span
-                      className={cn(
-                        "grid min-w-0 gap-0.5 px-1.5 font-mono lg:px-2",
-                        index === 0 ? "pl-0" : "border-l border-line",
-                        index === mockAgentCostSplit.length - 1 && "pr-0",
-                      )}
-                      key={label}
-                    >
-                      <span className="text-[8px] text-muted">{label}</span>
-                      <strong className="text-[10px] font-medium">{value}%</strong>
+                <div className="min-h-[116px] border-t border-line px-3 py-3 min-[560px]:border-t-0 min-[560px]:border-l">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="inline-flex items-center gap-1 font-mono text-[9px] text-muted">
+                      task latency
+                      <InfoTooltip
+                        align="responsive"
+                        id="task-latency-tooltip"
+                        label="How task latency is measured"
+                        text="Agent run only; excludes environment setup and verifier/grading."
+                      />
                     </span>
-                  ))}
-                </span>
+                    <span className="text-right font-mono">
+                      <strong className="block text-[16px] font-medium">
+                        61s <span className="text-[9px] text-muted">p50</span>
+                      </strong>
+                      <span className="block text-[8px] text-muted">p95 101s</span>
+                    </span>
+                  </div>
+                  <p className="mt-1 font-mono text-[8px] text-muted">
+                    agent run only · excludes setup + grading
+                  </p>
+                  <div className="mt-2.5">
+                    <MetricMix idPrefix="latency" items={mockLatencyMix} />
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -229,10 +330,7 @@ export default function Home() {
         {benchmark.suites.map((suite, suiteIndex) => (
           <Reveal delay={0.08 + suiteIndex * 0.04} key={suite.slug}>
             <section
-              className={cn(
-                "scroll-mt-6 pt-10",
-                suiteIndex === 0 && "lg:-mt-10",
-              )}
+              className="scroll-mt-6 pt-10"
               id={suite.slug}
               aria-labelledby={`${suite.slug}-title`}
             >
