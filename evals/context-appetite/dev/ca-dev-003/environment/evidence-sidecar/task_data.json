@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-003",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which deployment controlled recovery event evt-f625cs7n?",
-  "initial_context": "The signed intake record establishes evt-f625cs7n and the decision question, but does not identify the controlling deployment.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which deployment controlled recovery event evt-svyh3xq9?",
+  "initial_context": "The signed intake record establishes evt-svyh3xq9 and the decision question, but does not identify the controlling deployment.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-4zeyjz"
+    "lineage_group": "initial-xgwrpw"
   },
   "source_order": [
-    "src-gt4fhk8",
-    "src-qq8e8yy",
-    "src-p6g4yvv",
-    "src-jnbfnuh"
+    "src-dyxb23s",
+    "src-ukhx2zf",
+    "src-bg98dwc",
+    "src-9hbuhrb"
   ],
   "sources": {
-    "src-gt4fhk8": {
+    "src-dyxb23s": {
       "evidence_cost": 1,
-      "description": "Deployment Recovery record eyqvh",
+      "description": "Deployment Recovery record p6cy2",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-u5bdy9",
-      "content": "The control record maps evt-f625cs7n to correlation key link-f9rrp2k; it contains no entity identifier. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-cb2cfp",
+      "content": "The control record maps evt-svyh3xq9 to correlation key link-nseynjz; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-jnbfnuh": {
+    "src-9hbuhrb": {
       "evidence_cost": 4,
-      "description": "Deployment Recovery record xmz45",
+      "description": "Deployment Recovery record ykxsy",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-67hx9f",
-      "content": "The signed receipt maps correlation key link-f9rrp2k to dep-bwsqcb9d; it contains no event identifier."
+      "lineage_group": "lin-vyh5zu",
+      "content": "The signed receipt maps correlation key link-nseynjz to dep-buxg3g2p; it contains no event identifier. A duplicate bookkeeping line was removed before this record was finalized. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-p6g4yvv": {
+    "src-bg98dwc": {
       "evidence_cost": 8,
-      "description": "Deployment Recovery record g3bsa",
+      "description": "Deployment Recovery record zep8s",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-y8csc4",
-      "content": "The audit concerns a separate event linked to dep-4d2skj78, not evt-f625cs7n. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-tbc6jc",
+      "content": "The audit concerns a separate event linked to dep-8e9x4ama, not evt-svyh3xq9."
     },
-    "src-qq8e8yy": {
+    "src-ukhx2zf": {
       "evidence_cost": 2,
-      "description": "Deployment Recovery record 57utg",
+      "description": "Deployment Recovery record g3pah",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-t3d6qu",
-      "content": "This receipt confirms routine processing but contains neither evt-f625cs7n nor an entity identifier."
+      "lineage_group": "lin-nmqeps",
+      "content": "This receipt confirms routine processing but contains neither evt-svyh3xq9 nor an entity identifier. A duplicate bookkeeping line was removed before this record was finalized."
     }
   }
 }

@@ -1,5 +1,5 @@
 #!/bin/sh
 set -eu
 
-evidence open src-gmzvdnf
-evidence submit answer cred-843e22bv --confidence 1.0
+evidence open src-3n87hp6
+evidence submit answer cred-95h445eb --confidence 1.0

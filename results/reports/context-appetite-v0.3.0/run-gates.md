@@ -8,7 +8,11 @@ validation never enter model-performance denominators.
 | Terminus/Modal preflight | `context-appetite-v0.3.0-modal-t2-preflight-001` | setup completed; no benchmark trial |
 | Private Oracle | `context-appetite-v0.3.0-oracle-smoke-001` | 75/75 strict; 375/375 runtime checks |
 | Paid five-condition canary | `context-appetite-v0.3.0-glm52-t2-canary-001` | 5/5 strict; all traces inspected |
-| Official evaluation | `context-appetite-v0.3.0-glm52-t2-eval-001` | 75/75 completed; 71 domain passes |
+| Official evaluation | `context-appetite-v0.3.0-glm52-t2-eval-001` | 75/75 completed; 71 frozen strict passes |
+
+The later material-proof audit found 74/75 materially supported decisions.
+That post-hoc adjudication is reported separately and does not alter this
+frozen gate record.
 
 ## Precommitment
 

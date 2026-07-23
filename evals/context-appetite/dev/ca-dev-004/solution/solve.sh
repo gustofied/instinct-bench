@@ -1,8 +1,6 @@
 #!/bin/sh
 set -eu
 
-evidence open src-zxjceu4
-evidence open src-zhfpqcd
-evidence open src-3v7ubuw
-evidence open src-tsh6s82
+evidence open src-t5nj36v
+evidence open src-btzumgv
 evidence submit insufficient --confidence 1.0

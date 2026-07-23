@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-017",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which release controlled invoice recovery evt-f23b6u8k?",
-  "initial_context": "The signed intake record establishes evt-f23b6u8k and the decision question, but does not identify the controlling release.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which release controlled invoice recovery evt-rud9g74x?",
+  "initial_context": "The signed intake record establishes evt-rud9g74x and the decision question, but does not identify the controlling release.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-24u48e"
+    "lineage_group": "initial-bcrsss"
   },
   "source_order": [
-    "src-hf2n5hz",
-    "src-n8qpcvs",
-    "src-bd73amc",
-    "src-8ves2wn"
+    "src-6a6dag5",
+    "src-qcd4mty",
+    "src-q7vmfyz",
+    "src-5uhcnkc"
   ],
   "sources": {
-    "src-bd73amc": {
+    "src-q7vmfyz": {
       "evidence_cost": 4,
-      "description": "Invoice Rollback record 7tsp8",
+      "description": "Invoice Rollback record thehj",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-83s9bd",
-      "content": "The signed decision for evt-f23b6u8k names rel-qy7pdjjw as the controlling release. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-n8wmzs",
+      "content": "The signed decision for evt-rud9g74x names rel-87dg2qeh as the controlling release."
     },
-    "src-n8qpcvs": {
+    "src-qcd4mty": {
       "evidence_cost": 1,
-      "description": "Invoice Rollback record qt87a",
+      "description": "Invoice Rollback record cvrun",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-yjdtn8",
-      "content": "The independent audit for evt-f23b6u8k identifies rel-qy7pdjjw as the controlling release. The surrounding status checks remained within their ordinary operating range. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-nubfac",
+      "content": "The independent audit for evt-rud9g74x identifies rel-87dg2qeh as the controlling release."
     },
-    "src-8ves2wn": {
+    "src-5uhcnkc": {
       "evidence_cost": 2,
-      "description": "Invoice Rollback record 4bpb6",
+      "description": "Invoice Rollback record 3unap",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-6usxar",
-      "content": "The similarly timed but unrelated event used rel-q496mj9m; its event identifier is different from evt-f23b6u8k."
+      "lineage_group": "lin-z4mz9g",
+      "content": "The similarly timed but unrelated event used rel-cf2nbva9; its event identifier is different from evt-rud9g74x. The record also contains routine timestamps that do not change the attribution. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-hf2n5hz": {
+    "src-6a6dag5": {
       "evidence_cost": 8,
-      "description": "Invoice Rollback record tsp7a",
+      "description": "Invoice Rollback record k3g88",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-mpt343",
-      "content": "The operational timeline confirms evt-f23b6u8k but records no controlling entity."
+      "lineage_group": "lin-aq7yf7",
+      "content": "The operational timeline confirms evt-rud9g74x but records no controlling entity."
     }
   }
 }

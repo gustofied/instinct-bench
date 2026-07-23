@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-018",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which release controlled invoice recovery evt-f23b6u8k?",
-  "initial_context": "The signed intake record establishes evt-f23b6u8k and the decision question, but does not identify the controlling release.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which release controlled invoice recovery evt-rud9g74x?",
+  "initial_context": "The signed intake record establishes evt-rud9g74x and the decision question, but does not identify the controlling release.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-jv2dj9"
+    "lineage_group": "initial-5kh8mp"
   },
   "source_order": [
-    "src-6mjv2nx",
-    "src-bjavfy3",
-    "src-4ufqv85",
-    "src-w5cg4fv"
+    "src-p5ryez2",
+    "src-qeqg2q5",
+    "src-2xxjzd8",
+    "src-vju7s96"
   ],
   "sources": {
-    "src-4ufqv85": {
+    "src-2xxjzd8": {
       "evidence_cost": 4,
-      "description": "Invoice Rollback record ng7y2",
+      "description": "Invoice Rollback record smkgn",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-m9prwy",
-      "content": "The control record maps evt-f23b6u8k to correlation key link-jr8u4eg; it contains no entity identifier. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-tpuqkf",
+      "content": "The control record maps evt-rud9g74x to correlation key link-7na86sy; it contains no entity identifier. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-bjavfy3": {
+    "src-qeqg2q5": {
       "evidence_cost": 1,
-      "description": "Invoice Rollback record nmtct",
+      "description": "Invoice Rollback record yy9uu",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-p4u3un",
-      "content": "The signed receipt maps correlation key link-jr8u4eg to rel-qy7pdjjw; it contains no event identifier."
+      "lineage_group": "lin-4r4mh8",
+      "content": "The signed receipt maps correlation key link-7na86sy to rel-87dg2qeh; it contains no event identifier."
     },
-    "src-w5cg4fv": {
+    "src-vju7s96": {
       "evidence_cost": 2,
-      "description": "Invoice Rollback record d937x",
+      "description": "Invoice Rollback record cc7xj",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-t4ky9h",
-      "content": "The audit concerns a separate event linked to rel-q496mj9m, not evt-f23b6u8k. Administrative fields were reconciled independently and add no attribution claim. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-v58jk2",
+      "content": "The audit concerns a separate event linked to rel-cf2nbva9, not evt-rud9g74x. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-6mjv2nx": {
+    "src-p5ryez2": {
       "evidence_cost": 8,
-      "description": "Invoice Rollback record 83bte",
+      "description": "Invoice Rollback record f23bm",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-pc3gsm",
-      "content": "This receipt confirms routine processing but contains neither evt-f23b6u8k nor an entity identifier."
+      "lineage_group": "lin-zv959d",
+      "content": "This receipt confirms routine processing but contains neither evt-rud9g74x nor an entity identifier. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
     }
   }
 }

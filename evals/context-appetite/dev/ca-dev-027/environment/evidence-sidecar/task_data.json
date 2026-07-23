@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-027",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
-  "initial_context": "The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which power circuit controlled transfer event evt-djsbjgwh?",
+  "initial_context": "The signed intake record establishes evt-djsbjgwh and the decision question, but does not identify the controlling power circuit.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-rqap8q"
+    "lineage_group": "initial-tyafue"
   },
   "source_order": [
-    "src-nagent8",
-    "src-gd7dw68",
-    "src-tq92nze",
-    "src-xm44e5y"
+    "src-m88sw9u",
+    "src-cqyczhb",
+    "src-fthhdxk",
+    "src-jxezat3"
   ],
   "sources": {
-    "src-gd7dw68": {
+    "src-cqyczhb": {
       "evidence_cost": 8,
-      "description": "Power Transfer record 6fkfb",
+      "description": "Power Transfer record sdzuw",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-bax3db",
-      "content": "The signed decision for evt-6xcvc522 names circuit-z36qfpk8 as the controlling power circuit."
+      "lineage_group": "lin-cmt6hh",
+      "content": "The signed decision for evt-djsbjgwh names circuit-7ru85xvt as the controlling power circuit. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-nagent8": {
+    "src-m88sw9u": {
       "evidence_cost": 1,
-      "description": "Power Transfer record 653n6",
+      "description": "Power Transfer record rwjxw",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-2hgu8e",
-      "content": "The independent audit for evt-6xcvc522 identifies circuit-z36qfpk8 as the controlling power circuit."
+      "lineage_group": "lin-779fzq",
+      "content": "The independent audit for evt-djsbjgwh identifies circuit-7ru85xvt as the controlling power circuit. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-tq92nze": {
+    "src-fthhdxk": {
       "evidence_cost": 2,
-      "description": "Power Transfer record e4gdu",
+      "description": "Power Transfer record j4j6j",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-3tkj47",
-      "content": "The similarly timed but unrelated event used circuit-93282xz8; its event identifier is different from evt-6xcvc522. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-gufmjf",
+      "content": "The similarly timed but unrelated event used circuit-tzqn9uwe; its event identifier is different from evt-djsbjgwh. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-xm44e5y": {
+    "src-jxezat3": {
       "evidence_cost": 4,
-      "description": "Power Transfer record 4bdgb",
+      "description": "Power Transfer record mvqac",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-dmjuny",
-      "content": "The operational timeline confirms evt-6xcvc522 but records no controlling entity."
+      "lineage_group": "lin-fg8e4x",
+      "content": "The operational timeline confirms evt-djsbjgwh but records no controlling entity. A duplicate bookkeeping line was removed before this record was finalized. The record also contains routine timestamps that do not change the attribution."
     }
   }
 }

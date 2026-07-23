@@ -1,13 +1,13 @@
 # Decision Record
 
-Which tenant credential controlled access event evt-ymkkbtd6?
+Which tenant credential controlled access event evt-884vrmqf?
 
-Initial context: The signed decision register for evt-ymkkbtd6 establishes cred-843e22bv as the controlling tenant credential.
+Initial context: The signed decision register for evt-884vrmqf establishes cred-95h445eb as the controlling tenant credential.
 
 Initial-context provenance:
 - authority class: `signed-decision-register`
 - declared reliability: `0.995`
-- lineage group: `initial-eqcyu9`
+- lineage group: `initial-8xagxh`
 
 The evidence catalog is optional. Inspect it with `evidence list`, open one
 source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
@@ -15,10 +15,11 @@ source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
 Submit exactly one final decision:
 
 ```text
-evidence submit answer ENTITY_ID --confidence 0.84
-evidence submit insufficient --confidence 0.84
+evidence submit answer ENTITY_ID --confidence PROBABILITY
+evidence submit insufficient --confidence PROBABILITY
 ```
 
+Replace `PROBABILITY` with your confidence from `0` to `1`.
 Your submission is final. Evidence cannot be opened afterward.
 
 Payoff used as a diagnostic:

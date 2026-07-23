@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-019",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which release controlled invoice recovery evt-f23b6u8k?",
-  "initial_context": "The signed intake record establishes evt-f23b6u8k and the decision question, but does not identify the controlling release.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which release controlled invoice recovery evt-rud9g74x?",
+  "initial_context": "The signed intake record establishes evt-rud9g74x and the decision question, but does not identify the controlling release.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-4g4etv"
+    "lineage_group": "initial-7qym2g"
   },
   "source_order": [
-    "src-zy2erxs",
-    "src-ya6qh29",
-    "src-dtth82f",
-    "src-jgqvuew"
+    "src-x8anktt",
+    "src-xt3mkjc",
+    "src-wnskpdq",
+    "src-8k29dyf"
   ],
   "sources": {
-    "src-dtth82f": {
+    "src-wnskpdq": {
       "evidence_cost": 4,
-      "description": "Invoice Rollback record h53ck",
-      "authority_class": "primary-control-record",
-      "declared_reliability": 0.99,
-      "lineage_group": "lin-f6qdye",
-      "content": "The event window contains a valid control action by rel-qy7pdjjw, but the record does not bind that action uniquely to evt-f23b6u8k."
-    },
-    "src-ya6qh29": {
-      "evidence_cost": 1,
-      "description": "Invoice Rollback record h2t3w",
-      "authority_class": "primary-control-record",
-      "declared_reliability": 0.99,
-      "lineage_group": "lin-s376fs",
-      "content": "The same event window contains a valid control action by rel-q496mj9m, also not uniquely bound to evt-f23b6u8k. Administrative fields were reconciled independently and add no attribution claim."
-    },
-    "src-jgqvuew": {
-      "evidence_cost": 2,
-      "description": "Invoice Rollback record jnzn6",
+      "description": "Invoice Rollback record auvgz",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-9vmrse",
-      "content": "Telemetry for evt-f23b6u8k combines both control actions and cannot distinguish which release controlled the event. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-w2mz9z",
+      "content": "Telemetry for evt-rud9g74x combines both control actions and cannot distinguish which release controlled the event. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-zy2erxs": {
-      "evidence_cost": 8,
-      "description": "Invoice Rollback record mgnxq",
+    "src-xt3mkjc": {
+      "evidence_cost": 1,
+      "description": "Invoice Rollback record zdr73",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-jds8kv",
-      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence."
+      "lineage_group": "lin-a24cwx",
+      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-8k29dyf": {
+      "evidence_cost": 2,
+      "description": "Invoice Rollback record scvph",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-mh7j6h",
+      "content": "The event window contains a valid control action by rel-87dg2qeh, but the record does not bind that action uniquely to evt-rud9g74x. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-x8anktt": {
+      "evidence_cost": 8,
+      "description": "Invoice Rollback record k8kpy",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-rmb2fh",
+      "content": "The same event window contains a valid control action by rel-cf2nbva9, also not uniquely bound to evt-rud9g74x. The surrounding status checks remained within their ordinary operating range."
     }
   }
 }

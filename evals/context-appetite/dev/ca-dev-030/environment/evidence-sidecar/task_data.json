@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-030",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
-  "initial_context": "The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which power circuit controlled transfer event evt-djsbjgwh?",
+  "initial_context": "The signed intake record establishes evt-djsbjgwh and the decision question, but does not identify the controlling power circuit.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-wm8uum"
+    "lineage_group": "initial-vqjbj4"
   },
   "source_order": [
-    "src-vwf795x",
-    "src-g7qrap2",
-    "src-82jaakw",
-    "src-wh8trwp"
+    "src-yggj7ax",
+    "src-am8qbjc",
+    "src-fkzryhc",
+    "src-e6n7hxy"
   ],
   "sources": {
-    "src-g7qrap2": {
+    "src-am8qbjc": {
       "evidence_cost": 8,
-      "description": "Power Transfer record jkx4k",
+      "description": "Power Transfer record sxrg5",
       "authority_class": "immutable-control-ledger",
       "declared_reliability": 0.995,
-      "lineage_group": "lin-gtqdsh",
-      "content": "The immutable ledger maps evt-6xcvc522 to payload hash link-ybjq63m; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-kmfn43",
+      "content": "The immutable ledger maps evt-djsbjgwh to payload hash link-fbzue25; it contains no entity identifier. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-vwf795x": {
+    "src-yggj7ax": {
       "evidence_cost": 1,
-      "description": "Power Transfer record vejbe",
+      "description": "Power Transfer record 3869p",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.985,
-      "lineage_group": "lin-y8rrxq",
-      "content": "The signed receipt maps payload hash link-ybjq63m to circuit-z36qfpk8; it contains no event identifier."
+      "lineage_group": "lin-68hw23",
+      "content": "The signed receipt maps payload hash link-fbzue25 to circuit-7ru85xvt; it contains no event identifier. A duplicate bookkeeping line was removed before this record was finalized. The record also contains routine timestamps that do not change the attribution."
     },
-    "src-82jaakw": {
+    "src-fkzryhc": {
       "evidence_cost": 2,
-      "description": "Power Transfer record ffvgj",
+      "description": "Power Transfer record rz8ca",
       "authority_class": "unsigned-operator-note",
       "declared_reliability": 0.52,
-      "lineage_group": "lin-hs9fp5",
-      "content": "An unsigned note claims circuit-93282xz8 controlled evt-6xcvc522. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-v3hu2s",
+      "content": "An unsigned note claims circuit-tzqn9uwe controlled evt-djsbjgwh. The surrounding status checks remained within their ordinary operating range. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-wh8trwp": {
+    "src-e6n7hxy": {
       "evidence_cost": 4,
-      "description": "Power Transfer record 876m3",
+      "description": "Power Transfer record 6t3mz",
       "authority_class": "derived-summary",
       "declared_reliability": 0.68,
-      "lineage_group": "lin-hs9fp5",
-      "content": "A generated summary repeats the same claim that circuit-93282xz8 controlled evt-6xcvc522."
+      "lineage_group": "lin-v3hu2s",
+      "content": "A generated summary repeats the same claim that circuit-tzqn9uwe controlled evt-djsbjgwh. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
     }
   }
 }

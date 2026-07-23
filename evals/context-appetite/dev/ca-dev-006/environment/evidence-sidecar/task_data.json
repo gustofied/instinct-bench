@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-006",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which capacity feed controlled quote correction evt-7ucfmrv5?",
-  "initial_context": "The signed decision register for evt-7ucfmrv5 establishes feed-jqzjhm4v as the controlling capacity feed.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which capacity feed controlled quote correction evt-kvxv7smf?",
+  "initial_context": "The signed decision register for evt-kvxv7smf establishes feed-ad6czgh6 as the controlling capacity feed.",
   "initial_context_metadata": {
     "authority_class": "signed-decision-register",
     "declared_reliability": 0.995,
-    "lineage_group": "initial-nj9he8"
+    "lineage_group": "initial-jjxyjr"
   },
   "source_order": [
-    "src-gekaes6",
-    "src-5xxfrhm",
-    "src-szqqbgf",
-    "src-9edd884"
+    "src-475zzkk",
+    "src-njveb4u",
+    "src-z3vgeju",
+    "src-s6vazjx"
   ],
   "sources": {
-    "src-szqqbgf": {
+    "src-z3vgeju": {
       "evidence_cost": 2,
-      "description": "Capacity Quote record wzxun",
+      "description": "Capacity Quote record tdzfw",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-7edrbp",
-      "content": "The final control record independently confirms feed-jqzjhm4v for evt-7ucfmrv5. A duplicate bookkeeping line was removed before this record was finalized. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-ss7dx8",
+      "content": "The final control record independently confirms feed-ad6czgh6 for evt-kvxv7smf."
     },
-    "src-gekaes6": {
+    "src-475zzkk": {
       "evidence_cost": 1,
-      "description": "Capacity Quote record wa29a",
+      "description": "Capacity Quote record qzvj2",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-3cwz6j",
-      "content": "A prior unrelated event was controlled by feed-m24f83r4; it is not evt-7ucfmrv5. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-5gdqgt",
+      "content": "A prior unrelated event was controlled by feed-yxt8pgtm; it is not evt-kvxv7smf. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-9edd884": {
+    "src-s6vazjx": {
       "evidence_cost": 4,
-      "description": "Capacity Quote record hpt8y",
+      "description": "Capacity Quote record q5npm",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-jj6vda",
-      "content": "The timeline confirms when evt-7ucfmrv5 closed but contains no capacity feed identifier. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-p2na52",
+      "content": "The timeline confirms when evt-kvxv7smf closed but contains no capacity feed identifier. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-5xxfrhm": {
+    "src-njveb4u": {
       "evidence_cost": 8,
-      "description": "Capacity Quote record c25e6",
+      "description": "Capacity Quote record dryqd",
       "authority_class": "derived-summary",
       "declared_reliability": 0.74,
-      "lineage_group": "lin-ghaawd",
-      "content": "A desk summary refers to the capacity feed already named in the signed decision record. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-kxevcf",
+      "content": "A desk summary refers to the capacity feed already named in the signed decision record."
     }
   }
 }

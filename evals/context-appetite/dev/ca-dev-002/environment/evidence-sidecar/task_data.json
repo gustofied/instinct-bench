@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-002",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which deployment controlled recovery event evt-f625cs7n?",
-  "initial_context": "The signed intake record establishes evt-f625cs7n and the decision question, but does not identify the controlling deployment.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which deployment controlled recovery event evt-svyh3xq9?",
+  "initial_context": "The signed intake record establishes evt-svyh3xq9 and the decision question, but does not identify the controlling deployment.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-ae76xw"
+    "lineage_group": "initial-jbe2nv"
   },
   "source_order": [
-    "src-5pznbmh",
-    "src-kpugmcd",
-    "src-g7y3ee2",
-    "src-8p8p6sj"
+    "src-urb3vh6",
+    "src-63ejqd5",
+    "src-645f2h6",
+    "src-fu5xad3"
   ],
   "sources": {
-    "src-5pznbmh": {
+    "src-urb3vh6": {
       "evidence_cost": 1,
-      "description": "Deployment Recovery record jqsak",
+      "description": "Deployment Recovery record z5emr",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-u3cfsa",
-      "content": "The signed decision for evt-f625cs7n names dep-bwsqcb9d as the controlling deployment."
+      "lineage_group": "lin-6z95bh",
+      "content": "The signed decision for evt-svyh3xq9 names dep-buxg3g2p as the controlling deployment. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-8p8p6sj": {
+    "src-fu5xad3": {
       "evidence_cost": 4,
-      "description": "Deployment Recovery record zpf55",
+      "description": "Deployment Recovery record 4dp83",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-m52gy4",
-      "content": "The audit confirms that evt-f625cs7n was reviewed, but its extract omits the deployment identifier. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-ke4ayy",
+      "content": "The audit confirms that evt-svyh3xq9 was reviewed, but its extract omits the deployment identifier."
     },
-    "src-g7y3ee2": {
+    "src-645f2h6": {
       "evidence_cost": 8,
-      "description": "Deployment Recovery record ynug4",
+      "description": "Deployment Recovery record n5rdy",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-argxwy",
-      "content": "The similarly timed but unrelated event used dep-4d2skj78; its event identifier is different from evt-f625cs7n. The record also contains routine timestamps that do not change the attribution. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-jy24u2",
+      "content": "The similarly timed but unrelated event used dep-8e9x4ama; its event identifier is different from evt-svyh3xq9."
     },
-    "src-kpugmcd": {
+    "src-63ejqd5": {
       "evidence_cost": 2,
-      "description": "Deployment Recovery record kd6fn",
+      "description": "Deployment Recovery record etr7j",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-53zqk6",
-      "content": "The operational timeline confirms evt-f625cs7n but records no controlling entity. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-eqa7sq",
+      "content": "The operational timeline confirms evt-svyh3xq9 but records no controlling entity. Administrative fields were reconciled independently and add no attribution claim."
     }
   }
 }

@@ -1,6 +1,6 @@
 [project]
 name = "instinct-bench"
-version = "0.1.0"
+version = "0.3.1"
 description = "Benchmarks for agent judgment, restraint, craft, and control."
 readme = "README.md"
 requires-python = ">=3.13"

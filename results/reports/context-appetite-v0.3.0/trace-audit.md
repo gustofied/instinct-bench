@@ -16,22 +16,24 @@ duplicate or unknown source opens, invalid JSON turns, or extra-text warnings.
 
 ## Non-Passes
 
-| Task | Block | Decision | Opened | Omitted material |
-| --- | --- | --- | ---: | --- |
-| `ca-eval-004` | 014 | `INSUFFICIENT` | 3 sources / 7 credits | second candidate control record |
-| `ca-eval-006` | 012 | `INSUFFICIENT` | 3 sources / 7 credits | independent completeness audit |
-| `ca-eval-012` | 007 | `INSUFFICIENT` | 3 sources / 7 credits | second candidate control record |
-| `ca-eval-016` | 006 | `INSUFFICIENT` | 3 sources / 7 credits | second candidate control record |
+| Task | Block | Opened | Frozen omission | Material audit |
+| --- | --- | ---: | --- | --- |
+| `ca-eval-004` | 014 | 3 sources / 7 credits | second candidate record | supported |
+| `ca-eval-006` | 012 | 3 sources / 7 credits | completeness audit | unsupported |
+| `ca-eval-012` | 007 | 3 sources / 7 credits | second candidate record | supported |
+| `ca-eval-016` | 006 | 3 sources / 7 credits | second candidate record | supported |
 
 Each trace made the correct semantic decision, met the typed format, completed
-normally, and passed verifier integrity. Each skipped the 8-credit source and
-therefore failed the accepted proof graph. The unopened records could have
-resolved the ambiguity or were needed to establish corpus completeness, so the
-verifier is not merely enforcing an arbitrary reading path.
+normally, and passed verifier integrity. Each failed the frozen all-four-source
+proof graph. That graph was over-specified for three trials: their opened
+event-specific logs already established that both actions were
+indistinguishable, and their independent audits established corpus
+completeness. The omitted candidate record would only have named the second
+candidate, which the terminal response did not request.
 
-This failure mode is best described as **premature abstention after partial
-support**: the agent recognized uncertainty correctly but stopped before it had
-proved that the available evidence could not resolve it.
+`ca-eval-006` is the genuine premature stop. It opened both candidate records
+and the ambiguity log but omitted the completeness audit, so it had not shown
+that no resolving evidence remained.
 
 ## Successful Sample
 
@@ -45,8 +47,8 @@ The three fully audited matched blocks showed condition-sensitive acquisition:
   extra reads;
 - reliability-conflict tasks followed declared authority and lineage rather
   than the cheapest unsigned claim;
-- successful insufficient-evidence tasks exhausted all four sources before
-  abstaining.
+- frozen-verifier-successful insufficient-evidence tasks exhausted all four
+  sources before abstaining.
 
 One sampled trace issued a harmless non-evidence `ls -la`; no sampled trace
 escaped the evidence protocol, corrupted state, or relied on a parser failure.
@@ -70,11 +72,10 @@ result is not explained by a fixed first-listed shortcut.
 
 ## Efficiency
 
-Forty-nine of 71 successful trials matched the hindsight-minimum evidence
-cost. The remaining successful trials spent 92 excess synthetic credits in
-total. Over-acquisition was concentrated in single-source and complementary
-tasks, while successful insufficient-evidence trials necessarily spent all 15
-credits under the frozen proof contract.
+Forty-nine of 71 frozen strict passes matched the frozen hindsight-minimum
+evidence cost. The remaining strict passes spent 92 excess synthetic credits
+in total. This accounting is preserved as history; it should not be used to
+compare against v0.3.1 because the insufficient-evidence proof contract changed.
 
 Hindsight-minimum cost is descriptive. It does not prove that every extra read
 was irrational under uncertainty, and the report does not label excess cost as
@@ -92,7 +93,9 @@ Bayesian regret.
 
 ## Audit Verdict
 
-The four failures are valid construct failures, not infrastructure, verifier,
-or formatting artifacts. The official denominator is 75, the supported-domain
-headline is 71, and semantic correctness should remain visible beside it at
-75. The run is suitable for release as a one-configuration benchmark result.
+The immutable frozen verifier result is 71/75, with no infrastructure,
+integrity, or formatting failures. The post-hoc material audit is 74/75:
+three frozen failures were caused by an instruction/proof-graph mismatch, and
+one was a genuine unsupported abstention. The run is suitable as an amended
+one-configuration protocol record, not as an unqualified 71/75 material-proof
+headline.

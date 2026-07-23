@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
 
-evidence open src-5tnjmzk
-evidence open src-bfwfuf3
-evidence submit answer cred-843e22bv --confidence 1.0
+evidence open src-vshdy6t
+evidence open src-wnpm5yd
+evidence submit answer cred-95h445eb --confidence 1.0

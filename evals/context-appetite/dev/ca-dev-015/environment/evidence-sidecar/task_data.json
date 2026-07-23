@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-015",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which tenant credential controlled access event evt-ymkkbtd6?",
-  "initial_context": "The signed intake record establishes evt-ymkkbtd6 and the decision question, but does not identify the controlling tenant credential.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which tenant credential controlled access event evt-884vrmqf?",
+  "initial_context": "The signed intake record establishes evt-884vrmqf and the decision question, but does not identify the controlling tenant credential.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-maa9mb"
+    "lineage_group": "initial-hb3scm"
   },
   "source_order": [
-    "src-m63aydc",
-    "src-bfwfuf3",
-    "src-bufgt8p",
-    "src-5tnjmzk"
+    "src-8c7c2jm",
+    "src-wnpm5yd",
+    "src-quhrr54",
+    "src-vshdy6t"
   ],
   "sources": {
-    "src-5tnjmzk": {
+    "src-vshdy6t": {
       "evidence_cost": 2,
-      "description": "Tenant Credential record 7phkz",
+      "description": "Tenant Credential record f9vde",
       "authority_class": "immutable-control-ledger",
       "declared_reliability": 0.995,
-      "lineage_group": "lin-5kzefs",
-      "content": "The immutable ledger maps evt-ymkkbtd6 to payload hash link-9vg2ks7; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-72aq8t",
+      "content": "The immutable ledger maps evt-884vrmqf to payload hash link-n3qwm4g; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-bfwfuf3": {
+    "src-wnpm5yd": {
       "evidence_cost": 4,
-      "description": "Tenant Credential record 2w4n5",
+      "description": "Tenant Credential record 6nfp9",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.985,
-      "lineage_group": "lin-q4v8gr",
-      "content": "The signed receipt maps payload hash link-9vg2ks7 to cred-843e22bv; it contains no event identifier."
+      "lineage_group": "lin-9ubfw7",
+      "content": "The signed receipt maps payload hash link-n3qwm4g to cred-95h445eb; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-m63aydc": {
+    "src-8c7c2jm": {
       "evidence_cost": 8,
-      "description": "Tenant Credential record 5cfa8",
+      "description": "Tenant Credential record zs9vc",
       "authority_class": "unsigned-operator-note",
       "declared_reliability": 0.52,
-      "lineage_group": "lin-mekgmc",
-      "content": "An unsigned note claims cred-jhc3qkzh controlled evt-ymkkbtd6. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-95g2ug",
+      "content": "An unsigned note claims cred-2kamnp4z controlled evt-884vrmqf. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-bufgt8p": {
+    "src-quhrr54": {
       "evidence_cost": 1,
-      "description": "Tenant Credential record u5fge",
+      "description": "Tenant Credential record fybu2",
       "authority_class": "derived-summary",
       "declared_reliability": 0.68,
-      "lineage_group": "lin-mekgmc",
-      "content": "A generated summary repeats the same claim that cred-jhc3qkzh controlled evt-ymkkbtd6."
+      "lineage_group": "lin-95g2ug",
+      "content": "A generated summary repeats the same claim that cred-2kamnp4z controlled evt-884vrmqf. A duplicate bookkeeping line was removed before this record was finalized."
     }
   }
 }

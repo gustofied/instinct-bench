@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-004",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which deployment controlled recovery event evt-f625cs7n?",
-  "initial_context": "The signed intake record establishes evt-f625cs7n and the decision question, but does not identify the controlling deployment.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which deployment controlled recovery event evt-svyh3xq9?",
+  "initial_context": "The signed intake record establishes evt-svyh3xq9 and the decision question, but does not identify the controlling deployment.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-4k9fd3"
+    "lineage_group": "initial-cuypdv"
   },
   "source_order": [
-    "src-zxjceu4",
-    "src-tsh6s82",
-    "src-3v7ubuw",
-    "src-zhfpqcd"
+    "src-t5nj36v",
+    "src-kynn7q3",
+    "src-4u3xv9x",
+    "src-btzumgv"
   ],
   "sources": {
-    "src-zxjceu4": {
+    "src-t5nj36v": {
       "evidence_cost": 1,
-      "description": "Deployment Recovery record va8gf",
-      "authority_class": "primary-control-record",
-      "declared_reliability": 0.99,
-      "lineage_group": "lin-ncmnay",
-      "content": "The event window contains a valid control action by dep-bwsqcb9d, but the record does not bind that action uniquely to evt-f625cs7n. Administrative fields were reconciled independently and add no attribution claim."
-    },
-    "src-zhfpqcd": {
-      "evidence_cost": 4,
-      "description": "Deployment Recovery record p56nd",
-      "authority_class": "primary-control-record",
-      "declared_reliability": 0.99,
-      "lineage_group": "lin-jp4zea",
-      "content": "The same event window contains a valid control action by dep-4d2skj78, also not uniquely bound to evt-f625cs7n. The surrounding status checks remained within their ordinary operating range."
-    },
-    "src-3v7ubuw": {
-      "evidence_cost": 8,
-      "description": "Deployment Recovery record uew2j",
+      "description": "Deployment Recovery record 8c7xk",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-n99mmm",
-      "content": "Telemetry for evt-f625cs7n combines both control actions and cannot distinguish which deployment controlled the event. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-5vpygr",
+      "content": "Telemetry for evt-svyh3xq9 combines both control actions and cannot distinguish which deployment controlled the event."
     },
-    "src-tsh6s82": {
-      "evidence_cost": 2,
-      "description": "Deployment Recovery record f3b8t",
+    "src-btzumgv": {
+      "evidence_cost": 4,
+      "description": "Deployment Recovery record cy7q5",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-krvheu",
-      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence."
+      "lineage_group": "lin-duvehq",
+      "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence. The record also contains routine timestamps that do not change the attribution."
+    },
+    "src-4u3xv9x": {
+      "evidence_cost": 8,
+      "description": "Deployment Recovery record edqrw",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-gs6yfa",
+      "content": "The event window contains a valid control action by dep-buxg3g2p, but the record does not bind that action uniquely to evt-svyh3xq9. Administrative fields were reconciled independently and add no attribution claim."
+    },
+    "src-kynn7q3": {
+      "evidence_cost": 2,
+      "description": "Deployment Recovery record df6tb",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-ahv2q3",
+      "content": "The same event window contains a valid control action by dep-8e9x4ama, also not uniquely bound to evt-svyh3xq9. A duplicate bookkeeping line was removed before this record was finalized."
     }
   }
 }

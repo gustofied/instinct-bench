@@ -300,6 +300,21 @@ class ReleaseContractTests(unittest.TestCase):
                 args, release=release, tasks=tasks, task_names=task_names
             )
 
+    def test_v031_release_metadata_matches_implementation_version(self) -> None:
+        args, release, tasks, task_names = self.evaluation_metadata()
+        args.implementation_version = "0.3.1"
+        release["name"] = "Instinct Bench: Context Appetite v0.3.1"
+        release["version"] = "0.3.1"
+        release["generator_version"] = "0.3.1"
+        NORMALIZER.validate_release_metadata(
+            args, release=release, tasks=tasks, task_names=task_names
+        )
+        release["generator_version"] = "0.3.0"
+        with self.assertRaisesRegex(ValueError, "match implementation_version"):
+            NORMALIZER.validate_release_metadata(
+                args, release=release, tasks=tasks, task_names=task_names
+            )
+
     def test_release_metadata_rejects_private_or_unknown_fields(self) -> None:
         args, release, tasks, task_names = self.evaluation_metadata()
         release["master_seed"] = "private"
@@ -384,7 +399,9 @@ class HistoricalReconciliationTests(unittest.TestCase):
         )
         self.assertEqual(
             self.v2["normalizer"]["source_sha256"],
-            NORMALIZER.sha256_file(TOOLS_DIR / "normalize_harbor_job_v2.py"),
+            NORMALIZER.sha256_file(
+                TOOLS_DIR / "archive" / "normalize_harbor_job_v2_0_0.py"
+            ),
         )
 
     def test_reconciles_69_67_68_and_recovered_diagnostics(self) -> None:
@@ -551,12 +568,14 @@ class ContextAppetiteV03ReleaseArtifactTests(unittest.TestCase):
 
     def test_all_committed_v03_manifests_validate(self) -> None:
         Draft202012Validator.check_schema(self.schema)
+        archived_normalizer = TOOLS_DIR / "archive" / "normalize_harbor_job_v2_0_0.py"
         for name, manifest in self.manifests.items():
             with self.subTest(name=name):
                 self.validator.validate(manifest)
+                self.assertEqual(manifest["normalizer"]["version"], "2.0.0")
                 self.assertEqual(
                     manifest["normalizer"]["source_sha256"],
-                    NORMALIZER.sha256_file(TOOLS_DIR / "normalize_harbor_job_v2.py"),
+                    NORMALIZER.sha256_file(archived_normalizer),
                 )
 
     def test_official_manifest_preserves_release_denominators(self) -> None:
@@ -649,6 +668,48 @@ class ContextAppetiteV03ReleaseArtifactTests(unittest.TestCase):
         self.assertEqual(set(condition_counts.values()), {15})
         self.assertEqual(len(block_counts), 15)
         self.assertEqual(set(block_counts.values()), {5})
+
+    def test_post_hoc_material_audit_preserves_frozen_result(self) -> None:
+        official_name = "context-appetite-v0.3.0-glm52-t2-eval-001.json"
+        official_path = V03_MANIFEST_DIR / official_name
+        audit = json.loads(
+            (
+                REPO_ROOT
+                / "results"
+                / "reports"
+                / "context-appetite-v0.3.0"
+                / "material-proof-audit.json"
+            ).read_text()
+        )
+        self.assertEqual(
+            audit["derived_from"]["manifest_sha256"],
+            NORMALIZER.sha256_file(official_path),
+        )
+        self.assertEqual(audit["scope"]["frozen_verifier_passes"], 71)
+        self.assertEqual(
+            audit["post_hoc_material_outcome"]["materially_supported_decisions"],
+            74,
+        )
+        self.assertEqual(
+            audit["post_hoc_material_outcome"]["genuine_unsupported_decisions"],
+            1,
+        )
+        adjudications = {
+            row["task_id"]: row["material_proof_outcome"]
+            for row in audit["adjudications"]
+        }
+        self.assertEqual(
+            adjudications,
+            {
+                "ca-eval-004": "pass",
+                "ca-eval-006": "fail",
+                "ca-eval-012": "pass",
+                "ca-eval-016": "pass",
+            },
+        )
+        official = self.manifests[official_name]
+        self.assertEqual(official["counts"]["strict_pass"], 71)
+        self.assertEqual(official["counts"]["domain_pass"], 71)
 
 
 if __name__ == "__main__":

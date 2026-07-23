@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "audit_name": "context-appetite-v0.3.0-material-proof",
+  "audit_status": "post-hoc",
+  "derived_from": {
+    "manifest": "../../manifests/context-appetite-v0.3.0-glm52-t2-eval-001.json",
+    "manifest_sha256": "sha256:93c01299fd5357e17272f29e5eb50f41270af3b2d58952862f6f6ac024f8e13f"
+  },
+  "scope": {
+    "planned_trials": 75,
+    "frozen_verifier_passes": 71,
+    "frozen_verifier_non_passes_reviewed": 4
+  },
+  "post_hoc_material_outcome": {
+    "materially_supported_decisions": 74,
+    "genuine_unsupported_decisions": 1,
+    "semantic_decisions": 75
+  },
+  "adjudications": [
+    {
+      "task_id": "ca-eval-004",
+      "trial_name": "ca-eval-004__GQosqFL",
+      "frozen_proof_outcome": "fail",
+      "material_proof_outcome": "pass",
+      "reason": "The opened event-specific ambiguity log established two indistinguishable actions, and the opened independent audit established corpus completeness. The omitted candidate record was not material to the requested plain INSUFFICIENT decision."
+    },
+    {
+      "task_id": "ca-eval-006",
+      "trial_name": "ca-eval-006__kMbXRaj",
+      "frozen_proof_outcome": "fail",
+      "material_proof_outcome": "fail",
+      "reason": "The agent opened both candidate records and the ambiguity log but omitted the independent completeness audit, so it had not established that the closed corpus contained no resolving evidence."
+    },
+    {
+      "task_id": "ca-eval-012",
+      "trial_name": "ca-eval-012__57iDVzm",
+      "frozen_proof_outcome": "fail",
+      "material_proof_outcome": "pass",
+      "reason": "The opened event-specific ambiguity log established two indistinguishable actions, and the opened independent audit established corpus completeness. The omitted candidate record was not material to the requested plain INSUFFICIENT decision."
+    },
+    {
+      "task_id": "ca-eval-016",
+      "trial_name": "ca-eval-016__vCcCbT5",
+      "frozen_proof_outcome": "fail",
+      "material_proof_outcome": "pass",
+      "reason": "The opened event-specific ambiguity log established two indistinguishable actions, and the opened independent audit established corpus completeness. The omitted candidate record was not material to the requested plain INSUFFICIENT decision."
+    }
+  ],
+  "interpretation": {
+    "frozen_result_is_immutable": true,
+    "replacement_benchmark_score": false,
+    "note": "This audit corrects the scientific interpretation without rewriting the frozen verifier, manifest, or raw Harbor job. Context Appetite v0.3.1 aligns the executable proof contract with this materiality standard."
+  }
+}

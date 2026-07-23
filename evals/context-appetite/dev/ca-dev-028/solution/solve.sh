@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
 
-evidence open src-y3nqw6u
-evidence open src-73mk8jt
-evidence submit answer circuit-z36qfpk8 --confidence 1.0
+evidence open src-m8tcrju
+evidence open src-nnprs9a
+evidence submit answer circuit-7ru85xvt --confidence 1.0

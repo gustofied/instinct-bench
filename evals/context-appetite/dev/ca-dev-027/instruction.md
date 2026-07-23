@@ -1,13 +1,13 @@
 # Decision Record
 
-Which power circuit controlled transfer event evt-6xcvc522?
+Which power circuit controlled transfer event evt-djsbjgwh?
 
-Initial context: The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.
+Initial context: The signed intake record establishes evt-djsbjgwh and the decision question, but does not identify the controlling power circuit.
 
 Initial-context provenance:
 - authority class: `signed-intake-record`
 - declared reliability: `0.990`
-- lineage group: `initial-rqap8q`
+- lineage group: `initial-tyafue`
 
 The evidence catalog is optional. Inspect it with `evidence list`, open one
 source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
@@ -15,10 +15,11 @@ source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
 Submit exactly one final decision:
 
 ```text
-evidence submit answer ENTITY_ID --confidence 0.84
-evidence submit insufficient --confidence 0.84
+evidence submit answer ENTITY_ID --confidence PROBABILITY
+evidence submit insufficient --confidence PROBABILITY
 ```
 
+Replace `PROBABILITY` with your confidence from `0` to `1`.
 Your submission is final. Evidence cannot be opened afterward.
 
 Payoff used as a diagnostic:

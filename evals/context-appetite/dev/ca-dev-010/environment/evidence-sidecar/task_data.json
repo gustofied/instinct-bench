@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-010",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which capacity feed controlled quote correction evt-7ucfmrv5?",
-  "initial_context": "The signed intake record establishes evt-7ucfmrv5 and the decision question, but does not identify the controlling capacity feed.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which capacity feed controlled quote correction evt-kvxv7smf?",
+  "initial_context": "The signed intake record establishes evt-kvxv7smf and the decision question, but does not identify the controlling capacity feed.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-qckxcf"
+    "lineage_group": "initial-8y2v4j"
   },
   "source_order": [
-    "src-myz9s37",
-    "src-fbnr9q4",
-    "src-6cxe73g",
-    "src-w2brteh"
+    "src-dfc49ph",
+    "src-df8xngs",
+    "src-rv3ztjb",
+    "src-98bkd3q"
   ],
   "sources": {
-    "src-6cxe73g": {
+    "src-rv3ztjb": {
       "evidence_cost": 2,
-      "description": "Capacity Quote record 27232",
+      "description": "Capacity Quote record vdeme",
       "authority_class": "immutable-control-ledger",
       "declared_reliability": 0.995,
-      "lineage_group": "lin-nng5u6",
-      "content": "The immutable ledger maps evt-7ucfmrv5 to payload hash link-mek2anr; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-w4jd3f",
+      "content": "The immutable ledger maps evt-kvxv7smf to payload hash link-byu7f4b; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-myz9s37": {
+    "src-dfc49ph": {
       "evidence_cost": 1,
-      "description": "Capacity Quote record vqwmu",
+      "description": "Capacity Quote record nweu6",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.985,
-      "lineage_group": "lin-kvu3yq",
-      "content": "The signed receipt maps payload hash link-mek2anr to feed-jqzjhm4v; it contains no event identifier. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-chkxga",
+      "content": "The signed receipt maps payload hash link-byu7f4b to feed-ad6czgh6; it contains no event identifier. The record also contains routine timestamps that do not change the attribution."
     },
-    "src-w2brteh": {
+    "src-98bkd3q": {
       "evidence_cost": 4,
-      "description": "Capacity Quote record q4d9t",
+      "description": "Capacity Quote record ncr33",
       "authority_class": "unsigned-operator-note",
       "declared_reliability": 0.52,
-      "lineage_group": "lin-2e6nez",
-      "content": "An unsigned note claims feed-m24f83r4 controlled evt-7ucfmrv5. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-39cc3x",
+      "content": "An unsigned note claims feed-yxt8pgtm controlled evt-kvxv7smf."
     },
-    "src-fbnr9q4": {
+    "src-df8xngs": {
       "evidence_cost": 8,
-      "description": "Capacity Quote record uarqc",
+      "description": "Capacity Quote record jth6n",
       "authority_class": "derived-summary",
       "declared_reliability": 0.68,
-      "lineage_group": "lin-2e6nez",
-      "content": "A generated summary repeats the same claim that feed-m24f83r4 controlled evt-7ucfmrv5. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-39cc3x",
+      "content": "A generated summary repeats the same claim that feed-yxt8pgtm controlled evt-kvxv7smf."
     }
   }
 }

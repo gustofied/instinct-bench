@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-008",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which capacity feed controlled quote correction evt-7ucfmrv5?",
-  "initial_context": "The signed intake record establishes evt-7ucfmrv5 and the decision question, but does not identify the controlling capacity feed.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which capacity feed controlled quote correction evt-kvxv7smf?",
+  "initial_context": "The signed intake record establishes evt-kvxv7smf and the decision question, but does not identify the controlling capacity feed.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-qzjhud"
+    "lineage_group": "initial-ngcgxy"
   },
   "source_order": [
-    "src-2ptr3hv",
-    "src-ykgpy9t",
-    "src-h7bxmmr",
-    "src-48fycas"
+    "src-qf3egrb",
+    "src-esyrtep",
+    "src-9jccwzn",
+    "src-rfpd6d3"
   ],
   "sources": {
-    "src-h7bxmmr": {
+    "src-9jccwzn": {
       "evidence_cost": 2,
-      "description": "Capacity Quote record fzsmp",
+      "description": "Capacity Quote record k92pm",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-kh589c",
-      "content": "The control record maps evt-7ucfmrv5 to correlation key link-mek2anr; it contains no entity identifier. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-p32dwk",
+      "content": "The control record maps evt-kvxv7smf to correlation key link-byu7f4b; it contains no entity identifier."
     },
-    "src-2ptr3hv": {
+    "src-qf3egrb": {
       "evidence_cost": 1,
-      "description": "Capacity Quote record 9nw2v",
+      "description": "Capacity Quote record nb5qj",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-eg9r4v",
-      "content": "The signed receipt maps correlation key link-mek2anr to feed-jqzjhm4v; it contains no event identifier."
+      "lineage_group": "lin-yk6x7x",
+      "content": "The signed receipt maps correlation key link-byu7f4b to feed-ad6czgh6; it contains no event identifier."
     },
-    "src-48fycas": {
+    "src-rfpd6d3": {
       "evidence_cost": 4,
-      "description": "Capacity Quote record jjvqn",
+      "description": "Capacity Quote record sty3k",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-d9wbx9",
-      "content": "The audit concerns a separate event linked to feed-m24f83r4, not evt-7ucfmrv5. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-pq2x9d",
+      "content": "The audit concerns a separate event linked to feed-yxt8pgtm, not evt-kvxv7smf."
     },
-    "src-ykgpy9t": {
+    "src-esyrtep": {
       "evidence_cost": 8,
-      "description": "Capacity Quote record j7u76",
+      "description": "Capacity Quote record 8a638",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-ymsvrv",
-      "content": "This receipt confirms routine processing but contains neither evt-7ucfmrv5 nor an entity identifier. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-8bt8yn",
+      "content": "This receipt confirms routine processing but contains neither evt-kvxv7smf nor an entity identifier."
     }
   }
 }

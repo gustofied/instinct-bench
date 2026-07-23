@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-024",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
-  "initial_context": "The signed intake record establishes evt-cpmm6bpz and the decision question, but does not identify the controlling allocation endpoint.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which allocation endpoint controlled reservation evt-t2xp86yk?",
+  "initial_context": "The signed intake record establishes evt-t2xp86yk and the decision question, but does not identify the controlling allocation endpoint.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-g7jsw6"
+    "lineage_group": "initial-67csb3"
   },
   "source_order": [
-    "src-45rn294",
-    "src-5yycb57",
-    "src-q7bmdwh",
-    "src-7krbws6"
+    "src-xhqg82w",
+    "src-ddjpzgq",
+    "src-a9aur7n",
+    "src-qz788ve"
   ],
   "sources": {
-    "src-45rn294": {
+    "src-xhqg82w": {
       "evidence_cost": 4,
-      "description": "Reservation Routing record vjnt9",
-      "authority_class": "primary-control-record",
-      "declared_reliability": 0.99,
-      "lineage_group": "lin-k4rehw",
-      "content": "The event window contains a valid control action by alloc-k9z4h38r, but the record does not bind that action uniquely to evt-cpmm6bpz. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
-    },
-    "src-5yycb57": {
-      "evidence_cost": 2,
-      "description": "Reservation Routing record 2g5nn",
-      "authority_class": "primary-control-record",
-      "declared_reliability": 0.99,
-      "lineage_group": "lin-abfdkp",
-      "content": "The same event window contains a valid control action by alloc-qebckbry, also not uniquely bound to evt-cpmm6bpz. A duplicate bookkeeping line was removed before this record was finalized."
-    },
-    "src-7krbws6": {
-      "evidence_cost": 8,
-      "description": "Reservation Routing record nmsse",
+      "description": "Reservation Routing record zrcc2",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-8zu68k",
-      "content": "Telemetry for evt-cpmm6bpz combines both control actions and cannot distinguish which allocation endpoint controlled the event."
+      "lineage_group": "lin-qjr7b3",
+      "content": "Telemetry for evt-t2xp86yk combines both control actions and cannot distinguish which allocation endpoint controlled the event."
     },
-    "src-q7bmdwh": {
-      "evidence_cost": 1,
-      "description": "Reservation Routing record rmtvg",
+    "src-ddjpzgq": {
+      "evidence_cost": 2,
+      "description": "Reservation Routing record 5zavy",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-rz7aku",
+      "lineage_group": "lin-b6nqp3",
       "content": "The audit confirms the records are complete for the window and contains no additional attribution evidence."
+    },
+    "src-qz788ve": {
+      "evidence_cost": 8,
+      "description": "Reservation Routing record s9tv2",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-d7hzf9",
+      "content": "The event window contains a valid control action by alloc-p5tppue8, but the record does not bind that action uniquely to evt-t2xp86yk. The surrounding status checks remained within their ordinary operating range."
+    },
+    "src-a9aur7n": {
+      "evidence_cost": 1,
+      "description": "Reservation Routing record mhv26",
+      "authority_class": "primary-control-record",
+      "declared_reliability": 0.99,
+      "lineage_group": "lin-3a8a6j",
+      "content": "The same event window contains a valid control action by alloc-umwzj4d6, also not uniquely bound to evt-t2xp86yk. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
     }
   }
 }

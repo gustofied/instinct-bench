@@ -66,6 +66,8 @@ the exact five-cell subset used to normalize that scratch run.
 
 The complete analysis is
 [`results/reports/context-appetite-v0.3.0`](../reports/context-appetite-v0.3.0/README.md).
+The frozen official manifest remains 71/75. A separate post-hoc material-proof
+audit records 74/75 without rewriting that manifest or the raw Harbor job.
 
 `jobs-archive/` is an ignored local provenance store for superseded smoke,
 canary, repair, and abandoned setup jobs. It is kept outside `jobs/` and

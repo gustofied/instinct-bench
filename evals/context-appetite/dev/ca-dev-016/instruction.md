@@ -1,13 +1,13 @@
 # Decision Record
 
-Which release controlled invoice recovery evt-f23b6u8k?
+Which release controlled invoice recovery evt-rud9g74x?
 
-Initial context: The signed decision register for evt-f23b6u8k establishes rel-qy7pdjjw as the controlling release.
+Initial context: The signed decision register for evt-rud9g74x establishes rel-87dg2qeh as the controlling release.
 
 Initial-context provenance:
 - authority class: `signed-decision-register`
 - declared reliability: `0.995`
-- lineage group: `initial-qtzg8u`
+- lineage group: `initial-73jrgp`
 
 The evidence catalog is optional. Inspect it with `evidence list`, open one
 source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
@@ -15,10 +15,11 @@ source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
 Submit exactly one final decision:
 
 ```text
-evidence submit answer ENTITY_ID --confidence 0.84
-evidence submit insufficient --confidence 0.84
+evidence submit answer ENTITY_ID --confidence PROBABILITY
+evidence submit insufficient --confidence PROBABILITY
 ```
 
+Replace `PROBABILITY` with your confidence from `0` to `1`.
 Your submission is final. Evidence cannot be opened afterward.
 
 Payoff used as a diagnostic:

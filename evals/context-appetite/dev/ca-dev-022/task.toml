@@ -10,7 +10,7 @@ authors = [{ name = "Adam Sioud" }]
 keywords = ["context-appetite", "evidence", "tool-use", "metareasoning"]
 
 [metadata]
-implementation_version = "0.3.0"
+implementation_version = "0.3.1"
 difficulty = "medium"
 category = "reasoning"
 tags = ["instinct-bench", "context-appetite", "evidence-cost"]

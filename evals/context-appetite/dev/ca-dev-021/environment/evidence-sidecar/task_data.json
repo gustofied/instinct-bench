@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-021",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
-  "initial_context": "The signed decision register for evt-cpmm6bpz establishes alloc-k9z4h38r as the controlling allocation endpoint.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which allocation endpoint controlled reservation evt-t2xp86yk?",
+  "initial_context": "The signed decision register for evt-t2xp86yk establishes alloc-p5tppue8 as the controlling allocation endpoint.",
   "initial_context_metadata": {
     "authority_class": "signed-decision-register",
     "declared_reliability": 0.995,
-    "lineage_group": "initial-863adb"
+    "lineage_group": "initial-gu75qr"
   },
   "source_order": [
-    "src-45hfdbj",
-    "src-uy33pns",
-    "src-c28gkme",
-    "src-wj9n2qy"
+    "src-5v68vyy",
+    "src-a6m84ws",
+    "src-8wk3sew",
+    "src-npgpuwj"
   ],
   "sources": {
-    "src-45hfdbj": {
+    "src-5v68vyy": {
       "evidence_cost": 4,
-      "description": "Reservation Routing record m5rr5",
+      "description": "Reservation Routing record yaf7t",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-8etegg",
-      "content": "The final control record independently confirms alloc-k9z4h38r for evt-cpmm6bpz."
+      "lineage_group": "lin-bhr2e5",
+      "content": "The final control record independently confirms alloc-p5tppue8 for evt-t2xp86yk. The record also contains routine timestamps that do not change the attribution. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-uy33pns": {
+    "src-a6m84ws": {
       "evidence_cost": 2,
-      "description": "Reservation Routing record 5dtxp",
+      "description": "Reservation Routing record zwt9v",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-65q34a",
-      "content": "A prior unrelated event was controlled by alloc-qebckbry; it is not evt-cpmm6bpz. The surrounding status checks remained within their ordinary operating range. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-cjt29d",
+      "content": "A prior unrelated event was controlled by alloc-umwzj4d6; it is not evt-t2xp86yk. The record also contains routine timestamps that do not change the attribution."
     },
-    "src-wj9n2qy": {
+    "src-npgpuwj": {
       "evidence_cost": 8,
-      "description": "Reservation Routing record 2hcwv",
+      "description": "Reservation Routing record q2xgj",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-ehh9mg",
-      "content": "The timeline confirms when evt-cpmm6bpz closed but contains no allocation endpoint identifier. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-k3efzu",
+      "content": "The timeline confirms when evt-t2xp86yk closed but contains no allocation endpoint identifier."
     },
-    "src-c28gkme": {
+    "src-8wk3sew": {
       "evidence_cost": 1,
-      "description": "Reservation Routing record jvrap",
+      "description": "Reservation Routing record 837v9",
       "authority_class": "derived-summary",
       "declared_reliability": 0.74,
-      "lineage_group": "lin-gpfptd",
-      "content": "A desk summary refers to the allocation endpoint already named in the signed decision record. A duplicate bookkeeping line was removed before this record was finalized. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-4vabuz",
+      "content": "A desk summary refers to the allocation endpoint already named in the signed decision record. The surrounding status checks remained within their ordinary operating range."
     }
   }
 }

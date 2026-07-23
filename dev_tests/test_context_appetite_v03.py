@@ -27,6 +27,7 @@ from instinct_bench.context_appetite.schemas import CONDITIONS  # noqa: E402
 
 DEV_DIR = REPO_ROOT / "evals" / "context-appetite" / "dev"
 OFFICIAL_RUN = REPO_ROOT / "evals" / "context-appetite" / "official-run-v0.3.0.json"
+V031_RELEASE = REPO_ROOT / "evals" / "context-appetite" / "release-v0.3.1.json"
 EVAL_SECRET = b"private-test-secret-not-used-for-release-0001"
 
 
@@ -52,6 +53,17 @@ def load_server(task_id: str):
     path = DEV_DIR / task_id / "environment" / "evidence-sidecar" / "evidence_server.py"
     name = f"server_{task_id.replace('-', '_')}"
     spec = importlib.util.spec_from_file_location(name, path)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_release_validator():
+    path = REPO_ROOT / "tools" / "validate_context_appetite_release.py"
+    spec = importlib.util.spec_from_file_location(
+        "validate_context_appetite_release", path
+    )
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -119,6 +131,7 @@ class GeneratorTests(unittest.TestCase):
         cls.eval_specs = generator.build_specs(EVAL_SECRET, "eval")
 
     def test_population_taxonomy_and_split_isolation(self) -> None:
+        self.assertEqual(generator.RELEASE_VERSION, "0.3.1")
         self.assertEqual(len(self.dev_specs), 30)
         self.assertEqual(len(self.eval_specs), 75)
         self.assertEqual(
@@ -280,6 +293,27 @@ class GeneratorTests(unittest.TestCase):
         for spec in alternative:
             self.assertTrue(all(path for path in spec.accepted_proof_sets))
 
+    def test_insufficient_proof_contract_matches_plain_abstention(self) -> None:
+        for spec in self.dev_specs + self.eval_specs:
+            if spec.condition != "insufficient-evidence":
+                continue
+            self.assertEqual(len(spec.accepted_proof_sets), 1)
+            proof_sources = {
+                spec.source_map[source_id].authority_class
+                for source_id in spec.accepted_proof_sets[0]
+            }
+            self.assertEqual(
+                proof_sources,
+                {"signed-operational-log", "independent-audit-record"},
+            )
+            self.assertEqual(len(spec.accepted_proof_sets[0]), 2)
+
+    def test_instruction_does_not_anchor_confidence(self) -> None:
+        for spec in self.dev_specs + self.eval_specs:
+            text = generator.instruction(spec)
+            self.assertIn("--confidence PROBABILITY", text)
+            self.assertNotIn("--confidence 0.84", text)
+
     def test_generator_is_byte_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             first = Path(temporary) / "first"
@@ -348,6 +382,41 @@ class GeneratorTests(unittest.TestCase):
             encoded = json.dumps(commitment)
             self.assertNotIn(self.eval_specs[0].latent_entity_id, encoded)
             self.assertNotIn(self.eval_specs[0].condition, encoded)
+            for path in (output_dir, *output_dir.rglob("*")):
+                mode = path.stat().st_mode & 0o777
+                self.assertEqual(mode & 0o077, 0, path)
+                if path.is_dir():
+                    self.assertEqual(mode, 0o700, path)
+                elif mode & 0o111:
+                    self.assertEqual(mode, 0o700, path)
+                else:
+                    self.assertEqual(mode, 0o600, path)
+
+    def test_committed_v031_release_commitment_is_truth_free(self) -> None:
+        commitment = json.loads(V031_RELEASE.read_text())
+        self.assertEqual(commitment["schema_version"], "1.0")
+        self.assertNotIn("tasks", commitment)
+        release = commitment["release"]
+        self.assertEqual(
+            release,
+            {
+                "name": "Instinct Bench: Context Appetite v0.3.1",
+                "version": "0.3.1",
+                "split": "eval",
+                "generator_version": "0.3.1",
+                "seed_commitment": release["seed_commitment"],
+                "dataset_commitment": release["dataset_commitment"],
+                "package_set_commitment": release["package_set_commitment"],
+                "expected_task_count": 75,
+                "expected_block_count": 15,
+            },
+        )
+        for key in (
+            "seed_commitment",
+            "dataset_commitment",
+            "package_set_commitment",
+        ):
+            self.assertRegex(release[key], r"^sha256:[0-9a-f]{64}$")
 
     def test_private_secret_file_must_not_be_group_or_world_readable(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -358,6 +427,21 @@ class GeneratorTests(unittest.TestCase):
                 generator.read_private_secret(path)
             path.chmod(0o600)
             self.assertEqual(generator.read_private_secret(path), EVAL_SECRET)
+
+    def test_private_release_validator_rejects_symlinks(self) -> None:
+        validator = load_release_validator()
+        with tempfile.TemporaryDirectory() as temporary:
+            output_dir = Path(temporary) / "eval"
+            generator.generate(
+                split="eval",
+                secret=EVAL_SECRET,
+                output_dir=output_dir,
+                replace=False,
+            )
+            link = output_dir / "linked-readme"
+            link.symlink_to(output_dir / "README.md")
+            with self.assertRaisesRegex(ValueError, "must not contain symlinks"):
+                validator.validate_permissions(output_dir)
 
     def test_static_runtime_templates_do_not_drift(self) -> None:
         relative_files = [
@@ -569,6 +653,49 @@ class VerifierTests(unittest.TestCase):
         )
         self.assertEqual(wrong_metrics["semantic_success"], 0)
         self.assertEqual(wrong_metrics["task_success"], 0)
+        self.assertEqual(unsupported_metrics["semantic_success"], 1)
+        self.assertEqual(unsupported_metrics["proof_sufficient"], 0)
+        self.assertEqual(unsupported_metrics["task_success"], 0)
+
+    def test_insufficient_proof_uses_ambiguity_and_completeness(self) -> None:
+        score = self.score_for_condition("insufficient-evidence")
+        task_data = json.loads(
+            (
+                DEV_DIR
+                / "ca-dev-004"
+                / "environment"
+                / "evidence-sidecar"
+                / "task_data.json"
+            ).read_text()
+        )
+        by_authority = defaultdict(list)
+        for source_id, source in task_data["sources"].items():
+            by_authority[source["authority_class"]].append(source_id)
+        material_path = tuple(score.EXPECTED["accepted_proof_sets"][0])
+        self.assertEqual(
+            set(material_path),
+            {
+                by_authority["signed-operational-log"][0],
+                by_authority["independent-audit-record"][0],
+            },
+        )
+        submission = {
+            "decision": "insufficient",
+            "answer": None,
+            "confidence": 0.9,
+        }
+        material_metrics, _ = score.calculate_metrics(
+            valid_state(score, material_path, submission)
+        )
+        self.assertEqual(material_metrics["task_success"], 1)
+
+        missing_completeness = tuple(
+            by_authority["primary-control-record"]
+            + by_authority["signed-operational-log"]
+        )
+        unsupported_metrics, _ = score.calculate_metrics(
+            valid_state(score, missing_completeness, submission)
+        )
         self.assertEqual(unsupported_metrics["semantic_success"], 1)
         self.assertEqual(unsupported_metrics["proof_sufficient"], 0)
         self.assertEqual(unsupported_metrics["task_success"], 0)

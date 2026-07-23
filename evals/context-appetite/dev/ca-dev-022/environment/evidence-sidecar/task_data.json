@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-022",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
-  "initial_context": "The signed intake record establishes evt-cpmm6bpz and the decision question, but does not identify the controlling allocation endpoint.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which allocation endpoint controlled reservation evt-t2xp86yk?",
+  "initial_context": "The signed intake record establishes evt-t2xp86yk and the decision question, but does not identify the controlling allocation endpoint.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-v954fa"
+    "lineage_group": "initial-vy3kjp"
   },
   "source_order": [
-    "src-4pu9hf7",
-    "src-rnaae4q",
-    "src-dxed4ad",
-    "src-3yrqnj6"
+    "src-73yabt9",
+    "src-kwk5289",
+    "src-zvee8zb",
+    "src-vhnrgj9"
   ],
   "sources": {
-    "src-4pu9hf7": {
+    "src-73yabt9": {
       "evidence_cost": 4,
-      "description": "Reservation Routing record z7rua",
+      "description": "Reservation Routing record 6cbs9",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-6ykrcw",
-      "content": "The signed decision for evt-cpmm6bpz names alloc-k9z4h38r as the controlling allocation endpoint."
+      "lineage_group": "lin-rc4fzg",
+      "content": "The signed decision for evt-t2xp86yk names alloc-p5tppue8 as the controlling allocation endpoint. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-rnaae4q": {
+    "src-kwk5289": {
       "evidence_cost": 2,
-      "description": "Reservation Routing record bukdt",
+      "description": "Reservation Routing record 93qek",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-vum8q4",
-      "content": "The audit confirms that evt-cpmm6bpz was reviewed, but its extract omits the allocation endpoint identifier. Administrative fields were reconciled independently and add no attribution claim. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-3ck8pc",
+      "content": "The audit confirms that evt-t2xp86yk was reviewed, but its extract omits the allocation endpoint identifier."
     },
-    "src-3yrqnj6": {
+    "src-vhnrgj9": {
       "evidence_cost": 8,
-      "description": "Reservation Routing record awq7s",
+      "description": "Reservation Routing record ypapc",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-c9hxrj",
-      "content": "The similarly timed but unrelated event used alloc-qebckbry; its event identifier is different from evt-cpmm6bpz. Administrative fields were reconciled independently and add no attribution claim. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-9kvwba",
+      "content": "The similarly timed but unrelated event used alloc-umwzj4d6; its event identifier is different from evt-t2xp86yk."
     },
-    "src-dxed4ad": {
+    "src-zvee8zb": {
       "evidence_cost": 1,
-      "description": "Reservation Routing record n2qyj",
+      "description": "Reservation Routing record 49kc9",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-986mm9",
-      "content": "The operational timeline confirms evt-cpmm6bpz but records no controlling entity. Administrative fields were reconciled independently and add no attribution claim. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-qr675h",
+      "content": "The operational timeline confirms evt-t2xp86yk but records no controlling entity. The record also contains routine timestamps that do not change the attribution."
     }
   }
 }

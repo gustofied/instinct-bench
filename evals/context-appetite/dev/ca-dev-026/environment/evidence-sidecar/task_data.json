@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-026",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
-  "initial_context": "The signed decision register for evt-6xcvc522 establishes circuit-z36qfpk8 as the controlling power circuit.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which power circuit controlled transfer event evt-djsbjgwh?",
+  "initial_context": "The signed decision register for evt-djsbjgwh establishes circuit-7ru85xvt as the controlling power circuit.",
   "initial_context_metadata": {
     "authority_class": "signed-decision-register",
     "declared_reliability": 0.995,
-    "lineage_group": "initial-hfzrgb"
+    "lineage_group": "initial-9zzeac"
   },
   "source_order": [
-    "src-z8q4fje",
-    "src-8xssd2k",
-    "src-fwq4uay",
-    "src-45htg9j"
+    "src-danktcg",
+    "src-d4kujet",
+    "src-29xdtyt",
+    "src-vvg642q"
   ],
   "sources": {
-    "src-8xssd2k": {
+    "src-d4kujet": {
       "evidence_cost": 8,
-      "description": "Power Transfer record enwbt",
+      "description": "Power Transfer record qhht9",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-fh52km",
-      "content": "The final control record independently confirms circuit-z36qfpk8 for evt-6xcvc522. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-nthqsp",
+      "content": "The final control record independently confirms circuit-7ru85xvt for evt-djsbjgwh."
     },
-    "src-z8q4fje": {
+    "src-danktcg": {
       "evidence_cost": 1,
-      "description": "Power Transfer record 245nz",
+      "description": "Power Transfer record u3q29",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-bergty",
-      "content": "A prior unrelated event was controlled by circuit-93282xz8; it is not evt-6xcvc522."
+      "lineage_group": "lin-8kszwg",
+      "content": "A prior unrelated event was controlled by circuit-tzqn9uwe; it is not evt-djsbjgwh. The record also contains routine timestamps that do not change the attribution. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-fwq4uay": {
+    "src-29xdtyt": {
       "evidence_cost": 2,
-      "description": "Power Transfer record m3u8y",
+      "description": "Power Transfer record atxvm",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-79h5ue",
-      "content": "The timeline confirms when evt-6xcvc522 closed but contains no power circuit identifier."
+      "lineage_group": "lin-26u69x",
+      "content": "The timeline confirms when evt-djsbjgwh closed but contains no power circuit identifier."
     },
-    "src-45htg9j": {
+    "src-vvg642q": {
       "evidence_cost": 4,
-      "description": "Power Transfer record ngphf",
+      "description": "Power Transfer record jp9pk",
       "authority_class": "derived-summary",
       "declared_reliability": 0.74,
-      "lineage_group": "lin-yv25p2",
-      "content": "A desk summary refers to the power circuit already named in the signed decision record. The surrounding status checks remained within their ordinary operating range. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-7tx6zz",
+      "content": "A desk summary refers to the power circuit already named in the signed decision record."
     }
   }
 }

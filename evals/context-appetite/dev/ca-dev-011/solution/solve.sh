@@ -1,4 +1,4 @@
 #!/bin/sh
 set -eu
 
-evidence submit answer cred-843e22bv --confidence 1.0
+evidence submit answer cred-95h445eb --confidence 1.0

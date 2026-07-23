@@ -1,41 +1,41 @@
 {
   "task_id": "instinct-bench/ca-dev-030",
   "state_schema_version": 5,
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "scorer_version": "0.3.0",
-  "evaluation_protocol_version": "0.3.0",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "scorer_version": "0.3.1",
+  "evaluation_protocol_version": "0.3.1",
   "expected_decision": "answer",
-  "expected_entity_id": "circuit-z36qfpk8",
+  "expected_entity_id": "circuit-7ru85xvt",
   "accepted_proof_sets": [
     [
-      "src-g7qrap2",
-      "src-vwf795x"
+      "src-am8qbjc",
+      "src-yggj7ax"
     ]
   ],
   "hindsight_minimum_cost": 9,
   "source_order": [
-    "src-vwf795x",
-    "src-g7qrap2",
-    "src-82jaakw",
-    "src-wh8trwp"
+    "src-yggj7ax",
+    "src-am8qbjc",
+    "src-fkzryhc",
+    "src-e6n7hxy"
   ],
   "source_costs": {
-    "src-g7qrap2": 8,
-    "src-vwf795x": 1,
-    "src-82jaakw": 2,
-    "src-wh8trwp": 4
+    "src-am8qbjc": 8,
+    "src-yggj7ax": 1,
+    "src-fkzryhc": 2,
+    "src-e6n7hxy": 4
   },
   "source_payload_bytes": {
-    "src-g7qrap2": 182,
-    "src-vwf795x": 103,
-    "src-82jaakw": 145,
-    "src-wh8trwp": 89
+    "src-am8qbjc": 255,
+    "src-yggj7ax": 258,
+    "src-fkzryhc": 218,
+    "src-e6n7hxy": 249
   },
   "source_token_proxy": {
-    "src-g7qrap2": 46,
-    "src-vwf795x": 26,
-    "src-82jaakw": 37,
-    "src-wh8trwp": 23
+    "src-am8qbjc": 64,
+    "src-yggj7ax": 65,
+    "src-fkzryhc": 55,
+    "src-e6n7hxy": 63
   }
 }

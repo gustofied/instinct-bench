@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-025",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
-  "initial_context": "The signed intake record establishes evt-cpmm6bpz and the decision question, but does not identify the controlling allocation endpoint.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which allocation endpoint controlled reservation evt-t2xp86yk?",
+  "initial_context": "The signed intake record establishes evt-t2xp86yk and the decision question, but does not identify the controlling allocation endpoint.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-af7yu8"
+    "lineage_group": "initial-xudrqt"
   },
   "source_order": [
-    "src-29f4323",
-    "src-5tp9snq",
-    "src-pqubef4",
-    "src-d4jxgn9"
+    "src-zf6xzth",
+    "src-rr53hgv",
+    "src-g2du8sy",
+    "src-q6bxssd"
   ],
   "sources": {
-    "src-29f4323": {
+    "src-zf6xzth": {
       "evidence_cost": 4,
-      "description": "Reservation Routing record wqe5m",
+      "description": "Reservation Routing record deax9",
       "authority_class": "immutable-control-ledger",
       "declared_reliability": 0.995,
-      "lineage_group": "lin-8tykzb",
-      "content": "The immutable ledger maps evt-cpmm6bpz to payload hash link-3pxmfnn; it contains no entity identifier. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-m3wnky",
+      "content": "The immutable ledger maps evt-t2xp86yk to payload hash link-r3bsus8; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-5tp9snq": {
+    "src-rr53hgv": {
       "evidence_cost": 2,
-      "description": "Reservation Routing record yxd9n",
+      "description": "Reservation Routing record jgnya",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.985,
-      "lineage_group": "lin-cjem7w",
-      "content": "The signed receipt maps payload hash link-3pxmfnn to alloc-k9z4h38r; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-8s3wsg",
+      "content": "The signed receipt maps payload hash link-r3bsus8 to alloc-p5tppue8; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-d4jxgn9": {
+    "src-q6bxssd": {
       "evidence_cost": 8,
-      "description": "Reservation Routing record z4mxb",
+      "description": "Reservation Routing record dx8t6",
       "authority_class": "unsigned-operator-note",
       "declared_reliability": 0.52,
-      "lineage_group": "lin-6qktq2",
-      "content": "An unsigned note claims alloc-qebckbry controlled evt-cpmm6bpz. The surrounding status checks remained within their ordinary operating range. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-jtreyj",
+      "content": "An unsigned note claims alloc-umwzj4d6 controlled evt-t2xp86yk. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-pqubef4": {
+    "src-g2du8sy": {
       "evidence_cost": 1,
-      "description": "Reservation Routing record j86av",
+      "description": "Reservation Routing record ttyk7",
       "authority_class": "derived-summary",
       "declared_reliability": 0.68,
-      "lineage_group": "lin-6qktq2",
-      "content": "A generated summary repeats the same claim that alloc-qebckbry controlled evt-cpmm6bpz. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-jtreyj",
+      "content": "A generated summary repeats the same claim that alloc-umwzj4d6 controlled evt-t2xp86yk."
     }
   }
 }

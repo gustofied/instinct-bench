@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
 
-evidence open src-6cxe73g
-evidence open src-myz9s37
-evidence submit answer feed-jqzjhm4v --confidence 1.0
+evidence open src-rv3ztjb
+evidence open src-dfc49ph
+evidence submit answer feed-ad6czgh6 --confidence 1.0

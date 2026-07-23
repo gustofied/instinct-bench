@@ -26,6 +26,7 @@ artifacts/
 traces/
 logs/
 evals/context-appetite/eval-private/
+evals/context-appetite/eval-private-v*/
 evals/jobs/
 
 # Private project journal

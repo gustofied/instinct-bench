@@ -15,7 +15,7 @@ import normalize_harbor_job as v1
 
 
 SCHEMA_VERSION = "2.0"
-NORMALIZER_VERSION = "2.0.0"
+NORMALIZER_VERSION = "2.1.0"
 LOCKED_CONDITIONS = (
     "answer-now",
     "single-source",
@@ -588,16 +588,20 @@ def validate_release_metadata(
     if args.run_kind == "evaluation" and str(args.implementation_version).startswith(
         "0.3"
     ):
+        implementation_version = str(args.implementation_version)
         expected_names = {f"ca-eval-{index:03d}" for index in range(1, 76)}
         if task_names != expected_names:
             raise ValueError("The official v0.3 evaluation requires ca-eval-001..075")
         if (
-            release["name"] != "Instinct Bench: Context Appetite v0.3.0"
-            or release["version"] != "0.3.0"
-            or release["generator_version"] != "0.3.0"
+            release["name"]
+            != f"Instinct Bench: Context Appetite v{implementation_version}"
+            or release["version"] != implementation_version
+            or release["generator_version"] != implementation_version
             or release["split"] != "eval"
         ):
-            raise ValueError("The official evaluation requires the v0.3.0 eval split")
+            raise ValueError(
+                "The official evaluation release must match implementation_version"
+            )
         if release["matrix_complete"] is not True:
             raise ValueError("The official evaluation matrix must be complete")
         if len(blocks) != 15:
@@ -1106,7 +1110,7 @@ def parse_args() -> argparse.Namespace:
         choices=("public", "private", "runtime-generated"),
         required=True,
     )
-    parser.add_argument("--implementation-version", default="0.3.0")
+    parser.add_argument("--implementation-version", default="0.3.1")
     parser.add_argument("--git-commit", required=True)
     parser.add_argument("--command", required=True)
     parser.add_argument("--hub-url")

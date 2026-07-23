@@ -17,13 +17,14 @@ from .blueprints import DEV_BLUEPRINTS, EVAL_BLUEPRINTS, Blueprint
 from .schemas import CONDITIONS, SOURCE_COSTS, Condition, SourceSpec, TaskSpec
 
 
-RELEASE_NAME = "Instinct Bench: Context Appetite v0.3.0"
-RELEASE_VERSION = "0.3.0"
-GENERATOR_VERSION = "0.3.0"
+RELEASE_NAME = "Instinct Bench: Context Appetite v0.3.1"
+RELEASE_VERSION = "0.3.1"
+GENERATOR_VERSION = "0.3.1"
 STATE_SCHEMA_VERSION = 5
-DEV_SECRET = b"instinct-bench-context-appetite-v0.3.0-public-dev-seed"
+DEV_SECRET = b"instinct-bench-context-appetite-v0.3.1-public-dev-seed"
 TEMPLATE_ROOT = Path(__file__).with_name("templates")
-GENERATED_MARKER = ".generated-context-appetite-v0.3.0"
+GENERATED_MARKER = ".generated-context-appetite-v0.3.1"
+LEGACY_DEV_MARKER = ".generated-context-appetite-v0.3.0"
 TOKEN_ALPHABET = "23456789abcdefghjkmnpqrstuvwxyz"
 INDEX_PERMUTATIONS = tuple(permutations(range(4)))
 
@@ -199,6 +200,18 @@ def role_records(
 
     if condition == "insufficient-evidence":
         roles = {
+            "ambiguity": record(
+                "signed-operational-log",
+                0.98,
+                "c",
+                f"Telemetry for {event_id} combines both control actions and cannot distinguish which {blueprint.entity_label} controlled the event.",
+            ),
+            "completeness": record(
+                "independent-audit-record",
+                0.97,
+                "d",
+                "The audit confirms the records are complete for the window and contains no additional attribution evidence.",
+            ),
             "candidate-a": record(
                 "primary-control-record",
                 0.99,
@@ -211,23 +224,11 @@ def role_records(
                 "b",
                 f"The same event window contains a valid control action by {alternate}, also not uniquely bound to {event_id}.",
             ),
-            "ambiguity": record(
-                "signed-operational-log",
-                0.98,
-                "c",
-                f"Telemetry for {event_id} combines both control actions and cannot distinguish which {blueprint.entity_label} controlled the event.",
-            ),
-            "unrelated": record(
-                "independent-audit-record",
-                0.97,
-                "d",
-                "The audit confirms the records are complete for the window and contains no additional attribution evidence.",
-            ),
         }
         return (
             roles,
-            (("candidate-a", "candidate-b", "ambiguity", "unrelated"),),
-            "candidate-a",
+            (("ambiguity", "completeness"),),
+            "ambiguity",
         )
 
     shared_lineage = lineage["c"]
@@ -481,10 +482,11 @@ source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
 Submit exactly one final decision:
 
 ```text
-evidence submit answer ENTITY_ID --confidence 0.84
-evidence submit insufficient --confidence 0.84
+evidence submit answer ENTITY_ID --confidence PROBABILITY
+evidence submit insufficient --confidence PROBABILITY
 ```
 
+Replace `PROBABILITY` with your confidence from `0` to `1`.
 Your submission is final. Evidence cannot be opened afterward.
 
 Payoff used as a diagnostic:
@@ -590,7 +592,8 @@ def write_task(output_dir: Path, spec: TaskSpec) -> None:
     (task_dir / "instruction.md").write_text(instruction(spec))
     (task_dir / "README.md").write_text(
         f"# {spec.task_id}\n\n"
-        f"Generated Context Appetite v0.3.0 {spec.split} task. Do not edit this "
+        f"Generated Context Appetite v{RELEASE_VERSION} {spec.split} task. "
+        "Do not edit this "
         "bundle directly; regenerate it from the versioned generator.\n"
     )
     (task_dir / ".gitignore").write_text("__pycache__/\n*.pyc\n")
@@ -732,16 +735,38 @@ def public_release_commitment(
     }
 
 
-def prepare_output(output_dir: Path, replace: bool) -> None:
+def prepare_output(
+    output_dir: Path,
+    replace: bool,
+    *,
+    private: bool,
+    allow_legacy_dev_marker: bool,
+) -> None:
     if output_dir.exists():
-        marker = output_dir / GENERATED_MARKER
         if not replace:
             raise ValueError(f"output already exists: {output_dir}; pass --replace")
-        if not marker.is_file():
+        accepted_markers = [output_dir / GENERATED_MARKER]
+        if allow_legacy_dev_marker:
+            accepted_markers.append(output_dir / LEGACY_DEV_MARKER)
+        if not any(marker.is_file() for marker in accepted_markers):
             raise ValueError(f"refusing to replace unmarked directory: {output_dir}")
         shutil.rmtree(output_dir)
-    output_dir.mkdir(parents=True)
+    output_dir.mkdir(parents=True, mode=0o700 if private else 0o755)
+    if private:
+        output_dir.chmod(0o700)
     (output_dir / GENERATED_MARKER).write_text(GENERATOR_VERSION + "\n")
+
+
+def secure_private_tree(output_dir: Path) -> None:
+    output_dir.chmod(0o700)
+    for path in output_dir.rglob("*"):
+        if path.is_symlink():
+            raise ValueError(f"private output must not contain symlinks: {path}")
+        if path.is_dir():
+            path.chmod(0o700)
+        elif path.is_file():
+            executable = bool(stat.S_IMODE(path.stat().st_mode) & 0o111)
+            path.chmod(0o700 if executable else 0o600)
 
 
 def generate(
@@ -754,7 +779,13 @@ def generate(
     if len(secret) < 32:
         raise ValueError("generation secret must contain at least 32 bytes")
     specs = build_specs(secret, split)
-    prepare_output(output_dir, replace)
+    private = split == "eval"
+    prepare_output(
+        output_dir,
+        replace,
+        private=private,
+        allow_legacy_dev_marker=split == "dev",
+    )
     for spec in specs:
         write_task(output_dir, spec)
     write_json(
@@ -767,12 +798,14 @@ def generate(
         f"{len(specs)} generated {split} tasks across {len(specs) // 5} matched "
         "blocks. See the domain runbook one directory above.\n"
     )
+    if private:
+        secure_private_tree(output_dir)
     return specs
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate Context Appetite v0.3.0 tasks"
+        description=f"Generate Context Appetite v{RELEASE_VERSION} tasks"
     )
     parser.add_argument("--split", choices=("dev", "eval"), required=True)
     parser.add_argument("--output", type=Path, required=True)

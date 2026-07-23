@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-028",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which power circuit controlled transfer event evt-6xcvc522?",
-  "initial_context": "The signed intake record establishes evt-6xcvc522 and the decision question, but does not identify the controlling power circuit.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which power circuit controlled transfer event evt-djsbjgwh?",
+  "initial_context": "The signed intake record establishes evt-djsbjgwh and the decision question, but does not identify the controlling power circuit.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-vxccx2"
+    "lineage_group": "initial-yemzfw"
   },
   "source_order": [
-    "src-73mk8jt",
-    "src-y3nqw6u",
-    "src-d2qqbnw",
-    "src-er9fk6a"
+    "src-nnprs9a",
+    "src-m8tcrju",
+    "src-3jv8c2b",
+    "src-8h37bqh"
   ],
   "sources": {
-    "src-y3nqw6u": {
+    "src-m8tcrju": {
       "evidence_cost": 8,
-      "description": "Power Transfer record j326h",
+      "description": "Power Transfer record jzwb2",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-pn2zax",
-      "content": "The control record maps evt-6xcvc522 to correlation key link-ybjq63m; it contains no entity identifier."
+      "lineage_group": "lin-gzd9s8",
+      "content": "The control record maps evt-djsbjgwh to correlation key link-fbzue25; it contains no entity identifier. Administrative fields were reconciled independently and add no attribution claim. The record also contains routine timestamps that do not change the attribution."
     },
-    "src-73mk8jt": {
+    "src-nnprs9a": {
       "evidence_cost": 1,
-      "description": "Power Transfer record xu8zg",
+      "description": "Power Transfer record tqtgh",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-r6k98b",
-      "content": "The signed receipt maps correlation key link-ybjq63m to circuit-z36qfpk8; it contains no event identifier. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-uuhg6f",
+      "content": "The signed receipt maps correlation key link-fbzue25 to circuit-7ru85xvt; it contains no event identifier. The record also contains routine timestamps that do not change the attribution."
     },
-    "src-d2qqbnw": {
+    "src-3jv8c2b": {
       "evidence_cost": 2,
-      "description": "Power Transfer record 72wm2",
+      "description": "Power Transfer record zqttw",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-fh7xux",
-      "content": "The audit maps evt-6xcvc522 to independent correlation key link-kr3ta3q; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-6hh83e",
+      "content": "The audit maps evt-djsbjgwh to independent correlation key link-38u4qr9; it contains no entity identifier. Administrative fields were reconciled independently and add no attribution claim."
     },
-    "src-er9fk6a": {
+    "src-8h37bqh": {
       "evidence_cost": 4,
-      "description": "Power Transfer record 7k8cr",
+      "description": "Power Transfer record 4575d",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-mn6as7",
-      "content": "A second signed receipt maps correlation key link-kr3ta3q to circuit-z36qfpk8; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim."
+      "lineage_group": "lin-69vd3u",
+      "content": "A second signed receipt maps correlation key link-38u4qr9 to circuit-7ru85xvt; it contains no event identifier. The record also contains routine timestamps that do not change the attribution. A duplicate bookkeeping line was removed before this record was finalized."
     }
   }
 }

@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-023",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which allocation endpoint controlled reservation evt-cpmm6bpz?",
-  "initial_context": "The signed intake record establishes evt-cpmm6bpz and the decision question, but does not identify the controlling allocation endpoint.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which allocation endpoint controlled reservation evt-t2xp86yk?",
+  "initial_context": "The signed intake record establishes evt-t2xp86yk and the decision question, but does not identify the controlling allocation endpoint.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-25me2d"
+    "lineage_group": "initial-7cckxe"
   },
   "source_order": [
-    "src-u9hgws6",
-    "src-qakpue9",
-    "src-gyv237w",
-    "src-4vrphrr"
+    "src-wz53r43",
+    "src-xq2d8e5",
+    "src-4fqf3kj",
+    "src-75zc3cz"
   ],
   "sources": {
-    "src-u9hgws6": {
+    "src-wz53r43": {
       "evidence_cost": 4,
-      "description": "Reservation Routing record h2wgt",
+      "description": "Reservation Routing record s8pvf",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-92aq7s",
-      "content": "The control record maps evt-cpmm6bpz to correlation key link-3pxmfnn; it contains no entity identifier."
+      "lineage_group": "lin-akx8qx",
+      "content": "The control record maps evt-t2xp86yk to correlation key link-r3bsus8; it contains no entity identifier."
     },
-    "src-qakpue9": {
+    "src-xq2d8e5": {
       "evidence_cost": 2,
-      "description": "Reservation Routing record z3t84",
+      "description": "Reservation Routing record nd6ch",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-5k2jvj",
-      "content": "The signed receipt maps correlation key link-3pxmfnn to alloc-k9z4h38r; it contains no event identifier. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-7mu7ac",
+      "content": "The signed receipt maps correlation key link-r3bsus8 to alloc-p5tppue8; it contains no event identifier."
     },
-    "src-4vrphrr": {
+    "src-75zc3cz": {
       "evidence_cost": 8,
-      "description": "Reservation Routing record rs2xn",
+      "description": "Reservation Routing record yhx5g",
       "authority_class": "independent-audit-record",
       "declared_reliability": 0.97,
-      "lineage_group": "lin-eybj53",
-      "content": "The audit concerns a separate event linked to alloc-qebckbry, not evt-cpmm6bpz. The surrounding status checks remained within their ordinary operating range. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-jxnc4c",
+      "content": "The audit concerns a separate event linked to alloc-umwzj4d6, not evt-t2xp86yk."
     },
-    "src-gyv237w": {
+    "src-4fqf3kj": {
       "evidence_cost": 1,
-      "description": "Reservation Routing record shzpp",
+      "description": "Reservation Routing record hqb2y",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-63tdvu",
-      "content": "This receipt confirms routine processing but contains neither evt-cpmm6bpz nor an entity identifier. The record also contains routine timestamps that do not change the attribution. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-72r5px",
+      "content": "This receipt confirms routine processing but contains neither evt-t2xp86yk nor an entity identifier."
     }
   }
 }

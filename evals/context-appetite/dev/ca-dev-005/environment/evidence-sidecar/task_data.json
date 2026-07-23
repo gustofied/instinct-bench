@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-005",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which deployment controlled recovery event evt-f625cs7n?",
-  "initial_context": "The signed intake record establishes evt-f625cs7n and the decision question, but does not identify the controlling deployment.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which deployment controlled recovery event evt-svyh3xq9?",
+  "initial_context": "The signed intake record establishes evt-svyh3xq9 and the decision question, but does not identify the controlling deployment.",
   "initial_context_metadata": {
     "authority_class": "signed-intake-record",
     "declared_reliability": 0.99,
-    "lineage_group": "initial-a6562v"
+    "lineage_group": "initial-5xzawg"
   },
   "source_order": [
-    "src-tujyw6g",
-    "src-wpwt3bp",
-    "src-wr4nbk9",
-    "src-nfq2ye2"
+    "src-q73mhpd",
+    "src-v98gpcx",
+    "src-rzkkhbm",
+    "src-bfx7chj"
   ],
   "sources": {
-    "src-tujyw6g": {
+    "src-q73mhpd": {
       "evidence_cost": 1,
-      "description": "Deployment Recovery record a9nhd",
+      "description": "Deployment Recovery record ep8j4",
       "authority_class": "immutable-control-ledger",
       "declared_reliability": 0.995,
-      "lineage_group": "lin-yhywqa",
-      "content": "The immutable ledger maps evt-f625cs7n to payload hash link-f9rrp2k; it contains no entity identifier. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-z2ufek",
+      "content": "The immutable ledger maps evt-svyh3xq9 to payload hash link-nseynjz; it contains no entity identifier. The record also contains routine timestamps that do not change the attribution."
     },
-    "src-nfq2ye2": {
+    "src-bfx7chj": {
       "evidence_cost": 4,
-      "description": "Deployment Recovery record scpjd",
+      "description": "Deployment Recovery record jx7da",
       "authority_class": "signed-ingestion-receipt",
       "declared_reliability": 0.985,
-      "lineage_group": "lin-4mm3bd",
-      "content": "The signed receipt maps payload hash link-f9rrp2k to dep-bwsqcb9d; it contains no event identifier."
+      "lineage_group": "lin-h9m9ze",
+      "content": "The signed receipt maps payload hash link-nseynjz to dep-buxg3g2p; it contains no event identifier. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-wr4nbk9": {
+    "src-rzkkhbm": {
       "evidence_cost": 8,
-      "description": "Deployment Recovery record 5nc4v",
+      "description": "Deployment Recovery record pamht",
       "authority_class": "unsigned-operator-note",
       "declared_reliability": 0.52,
-      "lineage_group": "lin-ufhqbw",
-      "content": "An unsigned note claims dep-4d2skj78 controlled evt-f625cs7n. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-aj3pws",
+      "content": "An unsigned note claims dep-8e9x4ama controlled evt-svyh3xq9. A duplicate bookkeeping line was removed before this record was finalized."
     },
-    "src-wpwt3bp": {
+    "src-v98gpcx": {
       "evidence_cost": 2,
-      "description": "Deployment Recovery record 2eu3u",
+      "description": "Deployment Recovery record hcwqp",
       "authority_class": "derived-summary",
       "declared_reliability": 0.68,
-      "lineage_group": "lin-ufhqbw",
-      "content": "A generated summary repeats the same claim that dep-4d2skj78 controlled evt-f625cs7n. The record also contains routine timestamps that do not change the attribution."
+      "lineage_group": "lin-aj3pws",
+      "content": "A generated summary repeats the same claim that dep-8e9x4ama controlled evt-svyh3xq9. A duplicate bookkeeping line was removed before this record was finalized."
     }
   }
 }

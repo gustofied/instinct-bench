@@ -265,7 +265,7 @@ def process(request: dict[str, Any]) -> dict[str, Any]:
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    server_version = "instinct-bench-evidence/0.3.0"
+    server_version = "instinct-bench-evidence/0.3.1"
 
     def _write(self, status: int, payload: dict[str, Any]) -> None:
         encoded = json.dumps(payload, separators=(",", ":")).encode()

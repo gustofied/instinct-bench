@@ -1,52 +1,52 @@
 {
   "task_id": "instinct-bench/ca-dev-011",
-  "task_data_version": "0.3.0",
-  "evidence_cost_table_version": "0.3.0",
-  "question": "Which tenant credential controlled access event evt-ymkkbtd6?",
-  "initial_context": "The signed decision register for evt-ymkkbtd6 establishes cred-843e22bv as the controlling tenant credential.",
+  "task_data_version": "0.3.1",
+  "evidence_cost_table_version": "0.3.1",
+  "question": "Which tenant credential controlled access event evt-884vrmqf?",
+  "initial_context": "The signed decision register for evt-884vrmqf establishes cred-95h445eb as the controlling tenant credential.",
   "initial_context_metadata": {
     "authority_class": "signed-decision-register",
     "declared_reliability": 0.995,
-    "lineage_group": "initial-eqcyu9"
+    "lineage_group": "initial-8xagxh"
   },
   "source_order": [
-    "src-rkkna4b",
-    "src-ezuq92q",
-    "src-9g9qeuh",
-    "src-3mjc3jw"
+    "src-sumgk2e",
+    "src-shvg2bu",
+    "src-d7h764c",
+    "src-cvs4k9h"
   ],
   "sources": {
-    "src-3mjc3jw": {
+    "src-cvs4k9h": {
       "evidence_cost": 2,
-      "description": "Tenant Credential record b2pap",
+      "description": "Tenant Credential record zb8wu",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-extpvw",
-      "content": "The final control record independently confirms cred-843e22bv for evt-ymkkbtd6. The surrounding status checks remained within their ordinary operating range."
+      "lineage_group": "lin-4kcaz3",
+      "content": "The final control record independently confirms cred-95h445eb for evt-884vrmqf."
     },
-    "src-ezuq92q": {
+    "src-shvg2bu": {
       "evidence_cost": 4,
-      "description": "Tenant Credential record knjc6",
+      "description": "Tenant Credential record m8jrz",
       "authority_class": "primary-control-record",
       "declared_reliability": 0.99,
-      "lineage_group": "lin-gy97ap",
-      "content": "A prior unrelated event was controlled by cred-jhc3qkzh; it is not evt-ymkkbtd6. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-8xnkkr",
+      "content": "A prior unrelated event was controlled by cred-2kamnp4z; it is not evt-884vrmqf. A duplicate bookkeeping line was removed before this record was finalized. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-rkkna4b": {
+    "src-sumgk2e": {
       "evidence_cost": 8,
-      "description": "Tenant Credential record 4ftfy",
+      "description": "Tenant Credential record 9gs55",
       "authority_class": "signed-operational-log",
       "declared_reliability": 0.98,
-      "lineage_group": "lin-yvyr6y",
-      "content": "The timeline confirms when evt-ymkkbtd6 closed but contains no tenant credential identifier."
+      "lineage_group": "lin-xqfhy6",
+      "content": "The timeline confirms when evt-884vrmqf closed but contains no tenant credential identifier. The surrounding status checks remained within their ordinary operating range."
     },
-    "src-9g9qeuh": {
+    "src-d7h764c": {
       "evidence_cost": 1,
-      "description": "Tenant Credential record n6qs9",
+      "description": "Tenant Credential record 4kbg3",
       "authority_class": "derived-summary",
       "declared_reliability": 0.74,
-      "lineage_group": "lin-9yu56g",
-      "content": "A desk summary refers to the tenant credential already named in the signed decision record. Administrative fields were reconciled independently and add no attribution claim. A duplicate bookkeeping line was removed before this record was finalized."
+      "lineage_group": "lin-jwx7q7",
+      "content": "A desk summary refers to the tenant credential already named in the signed decision record."
     }
   }
 }

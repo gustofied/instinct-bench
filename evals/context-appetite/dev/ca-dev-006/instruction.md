@@ -1,13 +1,13 @@
 # Decision Record
 
-Which capacity feed controlled quote correction evt-7ucfmrv5?
+Which capacity feed controlled quote correction evt-kvxv7smf?
 
-Initial context: The signed decision register for evt-7ucfmrv5 establishes feed-jqzjhm4v as the controlling capacity feed.
+Initial context: The signed decision register for evt-kvxv7smf establishes feed-ad6czgh6 as the controlling capacity feed.
 
 Initial-context provenance:
 - authority class: `signed-decision-register`
 - declared reliability: `0.995`
-- lineage group: `initial-nj9he8`
+- lineage group: `initial-jjxyjr`
 
 The evidence catalog is optional. Inspect it with `evidence list`, open one
 source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
@@ -15,10 +15,11 @@ source with `evidence open SOURCE_ID`, and inspect spend with `evidence status`.
 Submit exactly one final decision:
 
 ```text
-evidence submit answer ENTITY_ID --confidence 0.84
-evidence submit insufficient --confidence 0.84
+evidence submit answer ENTITY_ID --confidence PROBABILITY
+evidence submit insufficient --confidence PROBABILITY
 ```
 
+Replace `PROBABILITY` with your confidence from `0` to `1`.
 Your submission is final. Evidence cannot be opened afterward.
 
 Payoff used as a diagnostic:

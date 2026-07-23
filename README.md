@@ -48,15 +48,19 @@ The complete build and pilot review lives in
 separates task decisions, evidence acquisition, harness completion, and
 infrastructure before proposing the next experiment.
 
-## Context Appetite v0.3.0
+## Context Appetite
 
-The first frozen release contains 30 public development tasks and 75 private
-held-out tasks across five matched evidence-necessity conditions. Its official
-one-configuration run completed all 75 tasks: GLM 5.2 with Terminus 2 made the
-correct semantic decision on 75/75 and acquired sufficient proof on 71/75.
+The first frozen release ran 75 private held-out tasks across five matched
+evidence-necessity conditions. Its immutable verifier result was 71/75; a later
+material-proof audit found 74/75 supported decisions and identified an
+over-specified abstention proof path.
 
 Read the [v0.3.0 result and audit](results/reports/context-appetite-v0.3.0/README.md)
 or the full [preregistered protocol](docs/context-appetite-v0.3.0-plan.md).
-The generated [public development dataset](evals/context-appetite/dev) and its
-[domain runbook](evals/context-appetite/README.md) are versioned in this repo;
-the held-out evaluation contracts remain private.
+
+Context Appetite v0.3.1 aligns that proof path with the written task, removes
+the confidence anchor, and hardens private generation. Its generated
+[public development dataset](evals/context-appetite/dev),
+[release note](docs/context-appetite-v0.3.1.md), and
+[domain runbook](evals/context-appetite/README.md) are ready for Harbor agent
+testing. Official comparisons still use fresh private contracts.
