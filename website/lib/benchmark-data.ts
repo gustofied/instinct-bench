@@ -1,5 +1,23 @@
 import type { BenchmarkManifest } from "@/lib/benchmark-schema";
 
+export const benchmarkTelemetry = {
+  source: "v0.3.0",
+  cost: {
+    lowerBoundPerTask: "$0.0106",
+    inferencePerTask: "$0.0106",
+    servicesPerTask: null,
+    runtimePerTask: null,
+  },
+  latency: {
+    p50Seconds: 61,
+    p95Seconds: 101,
+    inferenceShare: 88,
+    servicesShare: null,
+    runtimeShare: null,
+    unattributedShare: 12,
+  },
+} as const;
+
 export const benchmarkSource = {
   name: "instinct-bench",
   version: "0.1",
@@ -33,11 +51,12 @@ export const benchmarkSource = {
               task: "context-short-014",
               model: "laguna-xs-2.1",
               harness: "pool",
+              runtime: "modal",
               variant: "4k context",
               result: "pass",
               reward: 0.92,
               steps: 7,
-              cost: "$0.03",
+              cost: "~$0.0106 inference",
               artifacts: 4,
             },
           ],

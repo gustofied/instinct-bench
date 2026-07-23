@@ -19,6 +19,7 @@ export const Trajectory = Schema.Struct({
   task: Schema.String,
   model: Schema.String,
   harness: Schema.String,
+  runtime: Schema.String,
   variant: Schema.String,
   result: TrajectoryResult,
   reward: Schema.Number,

@@ -2,19 +2,56 @@ import { ArrowUpRight } from "lucide-react";
 
 import { DomainDrawer } from "@/components/domain-drawer";
 import { Reveal } from "@/components/reveal";
+import { benchmarkTelemetry } from "@/lib/benchmark-data";
 import { benchmark, benchmarkSummary } from "@/lib/benchmark";
 import { cn } from "@/lib/utils";
 
-const mockCostMix = [
-  { label: "Model", value: 76 },
-  { label: "Harness", value: 9 },
-  { label: "Sandbox", value: 15 },
+const costResources = [
+  {
+    label: "Inference",
+    value: benchmarkTelemetry.cost.inferencePerTask,
+    status: "measured",
+    tooltip:
+      "All model execution on the agent path, including the main model, subagents, routing, compaction, summarization, embeddings, and rerankers where applicable. Judge and verifier inference is evaluation overhead.",
+  },
+  {
+    label: "Services",
+    value: benchmarkTelemetry.cost.servicesPerTask ?? "—",
+    status: "unknown",
+    tooltip:
+      "Metered external APIs used during agent execution, such as search, hosted browser, retrieval, and data APIs.",
+  },
+  {
+    label: "Runtime",
+    value: benchmarkTelemetry.cost.runtimePerTask ?? "—",
+    status: "unknown",
+    tooltip:
+      "Sandbox or container compute, storage, and execution. Runtime includes local harness and tool work; environment provisioning is tracked separately.",
+  },
 ] as const;
 
-const mockLatencyMix = [
-  { label: "Model", value: 76 },
-  { label: "Harness", value: 9 },
-  { label: "Sandbox", value: 15 },
+const latencyResources = [
+  {
+    label: "Inference",
+    value: `${benchmarkTelemetry.latency.inferenceShare}%`,
+    status: "measured",
+    tooltip:
+      "Client-observed model request time, including network, provider queueing, model execution, generation, and response transfer.",
+  },
+  {
+    label: "Services",
+    value: benchmarkTelemetry.latency.servicesShare ?? "—",
+    status: "unknown",
+    tooltip:
+      "Time waiting for external APIs and hosted tools during agent execution.",
+  },
+  {
+    label: "Runtime",
+    value: benchmarkTelemetry.latency.runtimeShare ?? "—",
+    status: "unknown",
+    tooltip:
+      "Local agent, harness, and tool execution inside the runtime. Environment provisioning is excluded.",
+  },
 ] as const;
 
 function InfoTooltip({
@@ -25,7 +62,7 @@ function InfoTooltip({
   text,
   triggerText,
 }: {
-  align?: "left" | "responsive" | "right";
+  align?: "center" | "left" | "responsive" | "right";
   className?: string;
   id: string;
   label: string;
@@ -54,6 +91,7 @@ function InfoTooltip({
         className={cn(
           "pointer-events-none invisible absolute bottom-[calc(100%+0.5rem)] z-40 w-56 max-w-[calc(100vw-1.5rem)] border border-ink bg-ink px-3 py-2.5 text-left font-sans text-[11px] leading-[1.5] font-normal whitespace-normal text-paper normal-case opacity-0 transition-opacity group-hover/info:visible group-hover/info:opacity-100 group-focus-within/info:visible group-focus-within/info:opacity-100",
           align === "left" && "left-0",
+          align === "center" && "left-1/2 -translate-x-1/2",
           align === "right" && "right-0",
           align === "responsive" &&
             "left-0 min-[560px]:right-0 min-[560px]:left-auto",
@@ -72,11 +110,16 @@ function MetricMix({
   items,
 }: {
   idPrefix: string;
-  items: ReadonlyArray<{ label: string; value: number }>;
+  items: ReadonlyArray<{
+    label: string;
+    status: string;
+    tooltip: string;
+    value: string;
+  }>;
 }) {
   return (
     <span className="grid min-w-0 grid-cols-3 border-t border-line pt-2.5">
-      {items.map(({ label, value }, index) => (
+      {items.map(({ label, status, tooltip, value }, index) => (
         <span
           className={cn(
             "grid min-w-0 gap-1 px-2 font-mono",
@@ -85,20 +128,18 @@ function MetricMix({
           )}
           key={label}
         >
-          {label === "Sandbox" ? (
-            <InfoTooltip
-              className="text-[8px] text-muted"
-              id={`${idPrefix}-sandbox-tooltip`}
-              label="What Sandbox includes"
-              text="Sandbox includes runtime and agent-invoked tool execution."
-              triggerText={label}
-            />
-          ) : (
-            <span className="text-[8px] text-muted">{label}</span>
-          )}
+          <InfoTooltip
+            align={index === 0 ? "left" : index === 1 ? "center" : "right"}
+            className="text-[8px] text-muted"
+            id={`${idPrefix}-${label.toLowerCase()}-tooltip`}
+            label={`What ${label} means for ${idPrefix}`}
+            text={tooltip}
+            triggerText={label}
+          />
           <strong className="text-[10px] font-medium tabular-nums">
-            {value}%
+            {value}
           </strong>
+          <span className="text-[7px] text-muted uppercase">{status}</span>
         </span>
       ))}
     </span>
@@ -111,19 +152,28 @@ function TaskMetric({
   label,
   tooltip,
   value,
+  valueMarker,
+  valueNote,
 }: {
   idPrefix: string;
-  items: ReadonlyArray<{ label: string; value: number }>;
+  items: ReadonlyArray<{
+    label: string;
+    status: string;
+    tooltip: string;
+    value: string;
+  }>;
   label: string;
   tooltip?: {
     label: string;
     text: string;
   };
   value: string;
+  valueMarker?: string;
+  valueNote: string;
 }) {
   return (
-    <div className="flex min-h-[112px] flex-col justify-between border border-line px-3 py-3">
-      <div className="flex min-h-6 items-center justify-between gap-4">
+    <div className="flex min-h-[128px] flex-col justify-between border border-line px-3 py-3">
+      <div className="flex min-h-[34px] items-start justify-between gap-4">
         {tooltip ? (
           <InfoTooltip
             align="responsive"
@@ -138,9 +188,17 @@ function TaskMetric({
             {label}
           </span>
         )}
-        <strong className="inline-flex min-h-6 items-center text-right font-mono text-[16px] leading-none font-medium tabular-nums">
-          {value}
-        </strong>
+        <span className="grid justify-items-end font-mono">
+          <span className="inline-flex min-h-6 items-center gap-1.5">
+            <strong className="text-right text-[16px] leading-none font-medium tabular-nums">
+              {value}
+            </strong>
+            {valueMarker && (
+              <span className="text-[8px] text-muted">{valueMarker}</span>
+            )}
+          </span>
+          <span className="text-[7px] text-muted uppercase">{valueNote}</span>
+        </span>
       </div>
       <MetricMix idPrefix={idPrefix} items={items} />
     </div>
@@ -329,13 +387,17 @@ export default function Home() {
                     best agent
                   </span>
                   <span className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-x-1.5 gap-y-0.5 text-right font-mono md:text-left">
+                    <span className="text-[8px] text-muted">Model:</span>
+                    <strong className="truncate text-[9px] font-medium">
+                      {benchmarkSummary.bestRun?.model ?? "—"}
+                    </strong>
                     <span className="text-[8px] text-muted">Harness:</span>
                     <strong className="truncate text-[9px] font-medium">
                       {benchmarkSummary.bestRun?.harness ?? "—"}
                     </strong>
-                    <span className="text-[8px] text-muted">Model:</span>
+                    <span className="text-[8px] text-muted">Runtime:</span>
                     <strong className="truncate text-[9px] font-medium">
-                      {benchmarkSummary.bestRun?.model ?? "—"}
+                      {benchmarkSummary.bestRun?.runtime ?? "—"}
                     </strong>
                   </span>
                 </div>
@@ -344,19 +406,26 @@ export default function Home() {
               <div className="grid gap-2.5 min-[560px]:grid-cols-2">
                 <TaskMetric
                   idPrefix="cost"
-                  items={mockCostMix}
+                  items={costResources}
                   label="$ / task"
-                  value={benchmarkSummary.bestRun?.cost ?? "—"}
+                  tooltip={{
+                    label: "How cost per task is measured",
+                    text: "Lower bound from v0.3.0: approximately $0.0106 per task for agent-path inference only. Services, runtime, judge, and verifier costs are not included. Cost and latency shares are independent because runtime can continue billing while inference is in flight.",
+                  }}
+                  value={`≥${benchmarkTelemetry.cost.lowerBoundPerTask}`}
+                  valueNote="inference only"
                 />
                 <TaskMetric
                   idPrefix="latency"
-                  items={mockLatencyMix}
-                  label="latency / task"
+                  items={latencyResources}
+                  label="s / task"
                   tooltip={{
                     label: "How latency per task is measured",
-                    text: "Agent run only. Median (p50): 61s; p95: 101s. Excludes environment setup and grading. Mix is illustrative.",
+                    text: "Agent run only. Median (p50): 61s; p95: 101s. Excludes environment setup and verifier/grading. The measured mix is 88% inference and 12% unattributed agent time.",
                   }}
-                  value="61s"
+                  value={`${benchmarkTelemetry.latency.p50Seconds}s`}
+                  valueMarker="p50"
+                  valueNote={`${benchmarkTelemetry.latency.unattributedShare}% unattributed`}
                 />
               </div>
             </div>
@@ -395,7 +464,7 @@ export default function Home() {
         <Reveal delay={0.2}>
           <footer className="mt-10 flex flex-col items-start justify-between gap-8 border-t border-line py-5 md:flex-row md:items-center">
             <span className="font-mono text-[9px] text-muted uppercase">
-              instinct-bench / mock interface
+              instinct-bench
             </span>
             <a
               className="inline-flex items-center gap-1 text-[12px] hover:underline"
