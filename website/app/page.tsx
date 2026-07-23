@@ -19,28 +19,40 @@ const mockLatencyMix = [
 
 function InfoTooltip({
   align = "right",
+  className,
   id,
   label,
   text,
+  triggerText,
 }: {
   align?: "left" | "responsive" | "right";
+  className?: string;
   id: string;
   label: string;
   text: string;
+  triggerText: string;
 }) {
   return (
-    <span className="group/info relative inline-flex">
-      <button
-        aria-describedby={id}
-        aria-label={label}
-        className="inline-flex size-3 cursor-help items-center justify-center font-mono text-[8px] text-muted underline decoration-dotted underline-offset-2 hover:text-ink"
-        type="button"
-      >
-        ?
-      </button>
+    <span
+      className={cn(
+        "group/info relative inline-flex min-w-0 items-center gap-0.5",
+        className,
+      )}
+    >
+      <span>{triggerText}</span>
+      <span className="relative inline-flex size-3 shrink-0">
+        <button
+          aria-describedby={id}
+          aria-label={label}
+          className="absolute top-1/2 left-1/2 inline-flex size-6 -translate-x-1/2 -translate-y-1/2 cursor-help items-center justify-center font-mono text-[8px] leading-none text-muted underline decoration-dotted underline-offset-2 outline-none hover:text-ink focus-visible:text-ink focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-ink"
+          type="button"
+        >
+          ?
+        </button>
+      </span>
       <span
         className={cn(
-          "pointer-events-none invisible absolute bottom-full z-30 mb-2 w-56 border border-line bg-paper px-2.5 py-2 text-left font-sans text-[11px] leading-[1.4] font-normal text-copy normal-case opacity-0 shadow-sm transition-opacity group-hover/info:visible group-hover/info:opacity-100 group-focus-within/info:visible group-focus-within/info:opacity-100",
+          "pointer-events-none invisible absolute bottom-[calc(100%+0.5rem)] z-40 w-56 max-w-[calc(100vw-1.5rem)] border border-ink bg-ink px-3 py-2.5 text-left font-sans text-[11px] leading-[1.5] font-normal whitespace-normal text-paper normal-case opacity-0 transition-opacity group-hover/info:visible group-hover/info:opacity-100 group-focus-within/info:visible group-focus-within/info:opacity-100",
           align === "left" && "left-0",
           align === "right" && "right-0",
           align === "responsive" &&
@@ -73,17 +85,20 @@ function MetricMix({
           )}
           key={label}
         >
-          <span className="inline-flex min-w-0 items-center gap-0.5 text-[8px] text-muted">
-            <span>{label}</span>
-            {label === "Sandbox" && (
-              <InfoTooltip
-                id={`${idPrefix}-sandbox-tooltip`}
-                label="What Sandbox includes"
-                text="Includes sandbox runtime and agent-invoked tool execution."
-              />
-            )}
-          </span>
-          <strong className="text-[10px] font-medium">{value}%</strong>
+          {label === "Sandbox" ? (
+            <InfoTooltip
+              className="text-[8px] text-muted"
+              id={`${idPrefix}-sandbox-tooltip`}
+              label="What Sandbox includes"
+              text="Sandbox includes runtime and agent-invoked tool execution."
+              triggerText={label}
+            />
+          ) : (
+            <span className="text-[8px] text-muted">{label}</span>
+          )}
+          <strong className="text-[10px] font-medium tabular-nums">
+            {value}%
+          </strong>
         </span>
       ))}
     </span>
@@ -108,19 +123,24 @@ function TaskMetric({
 }) {
   return (
     <div className="flex min-h-[112px] flex-col justify-between border border-line px-3 py-3">
-      <div className="flex items-baseline justify-between gap-4">
-        <span className="inline-flex items-center gap-1 font-mono text-[9px] text-muted">
-          {label}
-          {tooltip && (
-            <InfoTooltip
-              align="responsive"
-              id={`${idPrefix}-tooltip`}
-              label={tooltip.label}
-              text={tooltip.text}
-            />
-          )}
-        </span>
-        <strong className="font-mono text-[16px] font-medium">{value}</strong>
+      <div className="flex min-h-6 items-center justify-between gap-4">
+        {tooltip ? (
+          <InfoTooltip
+            align="responsive"
+            className="min-h-6 gap-1 font-mono text-[9px] text-muted"
+            id={`${idPrefix}-tooltip`}
+            label={tooltip.label}
+            text={tooltip.text}
+            triggerText={label}
+          />
+        ) : (
+          <span className="inline-flex min-h-6 items-center font-mono text-[9px] text-muted">
+            {label}
+          </span>
+        )}
+        <strong className="inline-flex min-h-6 items-center text-right font-mono text-[16px] leading-none font-medium tabular-nums">
+          {value}
+        </strong>
       </div>
       <MetricMix idPrefix={idPrefix} items={items} />
     </div>
@@ -334,7 +354,7 @@ export default function Home() {
                   label="latency / task"
                   tooltip={{
                     label: "How latency per task is measured",
-                    text: "Agent-run latency per task. 61s is p50; p95 is 101s. Excludes environment setup and verifier/grading. Component mix is illustrative.",
+                    text: "Agent run only. Median (p50): 61s; p95: 101s. Excludes environment setup and grading. Mix is illustrative.",
                   }}
                   value="61s"
                 />
