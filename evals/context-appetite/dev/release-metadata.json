@@ -7,7 +7,7 @@
     "generator_version": "0.3.1",
     "seed_commitment": "sha256:ad5702bb180664416efce763f4886b6f5b9e270ae4a323373742e303aba0dc93",
     "dataset_commitment": "sha256:10b7b545f9f55939df67667a986bbdfb1a7fb3d12be90b02450a6a3da7889f71",
-    "package_set_commitment": "sha256:c816f8c5c2d2a2f623420c97eca1e19b2a4c7bffc9ec11e8f9ef864bb8ce94fe",
+    "package_set_commitment": "sha256:8f97446affa53419155969d970d055fe416b580fc594e64ff6f9f5fce15deb18",
     "expected_task_count": 30,
     "expected_block_count": 6,
     "matrix_complete": true,

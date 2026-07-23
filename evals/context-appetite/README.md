@@ -68,9 +68,12 @@ uv run python tools/generate_context_appetite.py \
   --commitment-output evals/context-appetite/release-v0.3.1.json
 ```
 
-The generator creates private directories as mode `0700` and private files as
-mode `0600` or owner-executable `0700`. It refuses group/world-readable release
-secrets and refuses to replace an older private release directory.
+The generator creates the private root and task directories as mode `0700`,
+data files as `0600`, and each Oracle `solution/` path as `0755` so Harbor can
+execute it as the configured non-root agent after transport. The private root
+prevents host traversal. Package digests commit to file and directory modes as
+well as contents. The generator refuses group/world-readable release secrets
+and refuses to replace an older private release directory.
 
 Validate every generated package and print the complete matched-block mapping:
 

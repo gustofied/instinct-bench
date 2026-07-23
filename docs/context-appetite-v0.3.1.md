@@ -28,8 +28,9 @@ task is one generated decision problem.
    future terminal schema explicitly asks the agent to identify candidates.
 2. The instruction uses `PROBABILITY` rather than supplying `0.84`, preserving
    confidence as a usable diagnostic.
-3. Private output directories are mode `0700`; private files are mode `0600`
-   or owner-executable `0700`.
+3. Private output roots and task directories are mode `0700`; data files are
+   `0600`, while each Oracle `solution/` path is `0755` for Harbor's non-root
+   execution contract. Package commitments include file and directory modes.
 4. Public development instances use a new versioned seed and package digests.
 5. Manifest normalizer 2.1 validates release metadata against the requested
    implementation version. The exact 2.0 source used by v0.3.0 is archived.

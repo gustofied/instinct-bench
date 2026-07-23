@@ -384,11 +384,11 @@ class GeneratorTests(unittest.TestCase):
             self.assertNotIn(self.eval_specs[0].condition, encoded)
             for path in (output_dir, *output_dir.rglob("*")):
                 mode = path.stat().st_mode & 0o777
-                self.assertEqual(mode & 0o077, 0, path)
                 if path.is_dir():
-                    self.assertEqual(mode, 0o700, path)
+                    expected_mode = 0o755 if path.name == "solution" else 0o700
+                    self.assertEqual(mode, expected_mode, path)
                 elif mode & 0o111:
-                    self.assertEqual(mode, 0o700, path)
+                    self.assertEqual(mode, 0o755, path)
                 else:
                     self.assertEqual(mode, 0o600, path)
 
@@ -442,6 +442,25 @@ class GeneratorTests(unittest.TestCase):
             link.symlink_to(output_dir / "README.md")
             with self.assertRaisesRegex(ValueError, "must not contain symlinks"):
                 validator.validate_permissions(output_dir)
+
+    def test_package_digest_commits_to_executable_state(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output_dir = Path(temporary) / "dev"
+            generator.generate(
+                split="dev",
+                secret=generator.DEV_SECRET,
+                output_dir=output_dir,
+                replace=False,
+            )
+            task_dir = output_dir / self.dev_specs[0].task_id
+            solve_path = task_dir / "solution" / "solve.sh"
+            executable_digest = generator.task_digest(task_dir)
+            solve_path.chmod(0o644)
+            self.assertNotEqual(generator.task_digest(task_dir), executable_digest)
+            solve_path.chmod(0o755)
+            executable_digest = generator.task_digest(task_dir)
+            solve_path.parent.chmod(0o700)
+            self.assertNotEqual(generator.task_digest(task_dir), executable_digest)
 
     def test_static_runtime_templates_do_not_drift(self) -> None:
         relative_files = [

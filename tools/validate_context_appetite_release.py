@@ -43,9 +43,12 @@ def validate_permissions(dataset_dir: Path) -> None:
         if path.is_symlink():
             raise ValueError(f"private release must not contain symlinks: {path}")
         mode = path.stat().st_mode & 0o777
-        if mode & 0o077:
-            raise ValueError(f"private path is accessible by group or others: {path}")
-        expected = 0o700 if path.is_dir() or mode & 0o111 else 0o600
+        if path.is_dir():
+            expected = 0o755 if path.name == "solution" else 0o700
+        elif mode & 0o111:
+            expected = 0o755
+        else:
+            expected = 0o600
         if mode != expected:
             raise ValueError(
                 f"unexpected private mode for {path}: {mode:04o}, expected {expected:04o}"

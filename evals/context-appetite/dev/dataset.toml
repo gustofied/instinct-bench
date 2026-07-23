@@ -8,120 +8,120 @@ keywords = ["instinct-bench", "context-appetite", "agent-evaluation"]
 
 [[tasks]]
 name = "instinct-bench/ca-dev-001"
-digest = "sha256:49c0d9c1903db07964e8443a046aa9768d8ed5cbee427b0393f02ccf20cf4fdb"
+digest = "sha256:8d3cc0d813355b7b2bcf0c3d4bc4548256ace23c6bf71ecc606969d3850907a6"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-002"
-digest = "sha256:31f2c23955cff68bf64b128f94f869590887b4e737a17a5a0d530891b670d356"
+digest = "sha256:21e6a8b1ddcb689fbd6e6863cf4429d746e127be6129ae56d28e02189a9757aa"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-003"
-digest = "sha256:3d8e219c1a67d256f98aec2051ff951a6231d38f92d55146b057b29d4bb12d4a"
+digest = "sha256:310e002d18eb20297acbfbf1748816b34281a6e14994b9522d178a8cf80309ce"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-004"
-digest = "sha256:fcebdd04fd5ac0f3bb115d4c4d111e1376f417fed785192d6ad2d451660b52b5"
+digest = "sha256:09b733a33860cc891ab2edb11e03fc2a5711b6806e4f5f346a5593de434b9c73"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-005"
-digest = "sha256:c2bf4585fbb761738eed6368e7a7ca35eedc0002b7b266cbfb6372d4bca9318a"
+digest = "sha256:b2f0253c07e93cb51db487d4d597060f5d8d0b09e104c442967a29c62d6dbcb0"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-006"
-digest = "sha256:221bd97e25e4a05a75149be78ee0d4a9f7fd8fa56eb26e5f9bab984734dbf439"
+digest = "sha256:b0f386f9dd579003e5ecb5743acd1b771110fe576a5cccffff7516196ab54f32"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-007"
-digest = "sha256:322d92730e0975115a7f498c69de5dd25b57a882255c46984718eff37bc0ea1b"
+digest = "sha256:bb146796d7553a72c76af1e79524aec0bcfd86a6eb926c47de5e502f6b805020"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-008"
-digest = "sha256:d00aedfb751b31c51da4094325c911e054d25513dd96373b6295e5e25f106df9"
+digest = "sha256:892768774b8ffe0122a3a3bcf44ad278e315a1799f1181d9adfedf8d78a19576"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-009"
-digest = "sha256:706af4c94598e74b1b90fe77110f539416ad7998436d485a3d0c02906004f692"
+digest = "sha256:27af151ad34e8527424cd35e46cbf0eafd24b6402e44b99020d55e53d29dfd47"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-010"
-digest = "sha256:b7c081861161b63f56ce7cd8a2050361add1fc5cf386fc57266a37e4ee851050"
+digest = "sha256:2afcdacf20d5fcd4df8949c084fb979feb41479809baa1be6e7516e7665371e3"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-011"
-digest = "sha256:c38cd4dba3ff9fc00f35577b9df4c809f742fc366fb8551049a95c6d2ee2fe31"
+digest = "sha256:9edac8f4f8e8256778cfbe3e80948fe6b528f82109554e38bf44a552ffbfef79"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-012"
-digest = "sha256:a6a1f7a4b249e956eec7030d92ba27fac81cbb229ad874a3d9af14a2e4041a09"
+digest = "sha256:f9ba118bc2daa623117ce5e5b8be2540e88bf40938984e952c89726fdfbdd1a7"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-013"
-digest = "sha256:965f2882f88a1381f05c617476c7b6a9515ec05fb7e17db575fb7a1fb3101b9a"
+digest = "sha256:1574514d0a377baa1702b39b9eaa410df337dfa2e7915398004bb8b4d4840dd4"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-014"
-digest = "sha256:c458779a6f4cff96b68b6b15eaedd5e7365ab4fc60f36f59a8725885cf7b98a0"
+digest = "sha256:11621a3b90343199ec6362b3d83dd1266ab1772cad18c14f1ce6912ba32d72c3"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-015"
-digest = "sha256:a6b0389bb1ede61bb75daa1758776e225eae7a540caf129968ff58d5f2258ac5"
+digest = "sha256:2f999d8f25989b8af432742ac10e42c78b7ac859ad9eef27ced8b6f79927a553"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-016"
-digest = "sha256:3f4bb8e9e71f3c7ea19d3c21e5550220bf18d59d902348af2c11c06ea1920586"
+digest = "sha256:7b64630f4adabdc0f184e4653c197d540687e852fa27b2883770130838a2cdd2"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-017"
-digest = "sha256:323094865bf68b0b20a764d46f18383d01326de823971d40b3e1faa07d023243"
+digest = "sha256:a7da05647cb3daae75e0420aa9a3df5cf309db650e17e03132f3417e351a4aab"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-018"
-digest = "sha256:d3e480cb03ea5bff7d70ee794b5eb57fe23576bbaf29b2160c6f7d645a3d3fa3"
+digest = "sha256:19259ed32c78475e82e66d7863db63032056dfdbf265aa4fdb13bd34e5fa5225"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-019"
-digest = "sha256:9daf04d02460538b76c353a3a56709945954fc16eafba4241669f68e8fce87f0"
+digest = "sha256:abaab88c413b6b0a28fab6a00a1fcb233758f133227494372d26f95739ff6f72"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-020"
-digest = "sha256:9f7dd055b9765115afe3a09a757840af40083e8ed60b601ab03b37904584cf92"
+digest = "sha256:0cde0c68c26493c3f4ca7a4c97daa26206ffaf83ae39473a5bcaec9efac6acf8"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-021"
-digest = "sha256:b2fba4b831e67cb84adbaf5f3ba0aceea1a31612f2944304397406aac45e1a62"
+digest = "sha256:c9aaf6b5922f26c16e8810d21d49bf18805f235f38ccb8825e82dd4f32919921"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-022"
-digest = "sha256:0ba7bfb6825332025253c968c91df448e0d217fad8a0d86b0ed39db4d355d1d1"
+digest = "sha256:1b2346cd6dd29a5640e1ca0c13119275c52de1deec7dd9dbe442ec1754a53b9a"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-023"
-digest = "sha256:36fd57b7014555c51da0405623a79cf69a20f9587ecc584e362fcecae0d44cc6"
+digest = "sha256:a9ab0de74a6d22dd78abbd20956ff85e45ff02f057ce59d5986eace5802c7212"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-024"
-digest = "sha256:a97d66c14bacb10ed4e49db58448c01f711756b4a27bd73c891467c2319e54ed"
+digest = "sha256:a86bb3559cc9447a0242461ba8294e47f56fb1d652b29ff0b35c12bcc8f197d0"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-025"
-digest = "sha256:a27be6ee1456187c775be116a0ad590929d4f6d4df1d5b8d085cfa731dced3d3"
+digest = "sha256:3ad99e4525dbb20cd6a723bd2df8d9e99b3c89d9a681c392ddbcd206da22105b"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-026"
-digest = "sha256:f2954197bb0023afbb0bfc6c0d9e79504a8bb3f976b38f4c97c426549a602a2b"
+digest = "sha256:f39b39cad57496d549053fac1f200572fef4d2a92193be731e7adb8885b7e000"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-027"
-digest = "sha256:9de8e77a4b64241016f500fb8f5594176d17e002ff385e00c55753e1a0d22772"
+digest = "sha256:6c79856db055bb1734247a9b7d6d6405b50a5d5783dbcf053a54274d1bd21134"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-028"
-digest = "sha256:cbf5a987574ae030ae12fe4a06f073d3eefc235cc800bceb0f6a238688fd1348"
+digest = "sha256:c6f23a9bff3fded6931104200818c5027b504b0c7a09601da946658b23cd9796"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-029"
-digest = "sha256:47674f3f15874562ef77551846ee8fed2da03a6d0dae0c7517384a2cd214ed8a"
+digest = "sha256:d1e5ebeb4d0fe55a343c90bc1d710f609f1678b0b02c030240ce6a2ed8d38af5"
 
 [[tasks]]
 name = "instinct-bench/ca-dev-030"
-digest = "sha256:e5df5a71dac9f0e6e5cfd941aa61d952290554cd82923c7a37b3a08b0a10a4c8"
+digest = "sha256:81896fc11b8285ab24510ed60cdff123a9c009bf539adea47d4f586a30c9e1f7"

@@ -609,26 +609,29 @@ def write_task(output_dir: Path, spec: TaskSpec) -> None:
 
 
 def task_digest(task_dir: Path) -> str:
-    files: list[Path] = []
+    paths: set[Path] = set()
     for name in ("task.toml", "instruction.md", "README.md"):
         path = task_dir / name
         if path.is_file():
-            files.append(path)
+            paths.add(path)
     for name in ("environment", "tests", "solution", "steps"):
         directory = task_dir / name
         if directory.is_dir():
-            files.extend(
+            paths.add(directory)
+            paths.update(
                 path
                 for path in directory.rglob("*")
-                if path.is_file()
-                and "__pycache__" not in path.parts
-                and path.suffix != ".pyc"
+                if "__pycache__" not in path.parts and path.suffix != ".pyc"
             )
     outer = hashlib.sha256()
-    for path in sorted(files, key=lambda item: item.relative_to(task_dir).as_posix()):
+    for path in sorted(paths, key=lambda item: item.relative_to(task_dir).as_posix()):
         relative = path.relative_to(task_dir).as_posix()
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        outer.update(f"{relative}\0{digest}\n".encode())
+        mode = stat.S_IMODE(path.stat().st_mode)
+        if path.is_dir():
+            outer.update(f"directory\0{relative}\0{mode:04o}\n".encode())
+        elif path.is_file():
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            outer.update(f"file\0{relative}\0{mode:04o}\0{digest}\n".encode())
     return "sha256:" + outer.hexdigest()
 
 
@@ -763,10 +766,25 @@ def secure_private_tree(output_dir: Path) -> None:
         if path.is_symlink():
             raise ValueError(f"private output must not contain symlinks: {path}")
         if path.is_dir():
-            path.chmod(0o700)
+            path.chmod(0o755 if path.name == "solution" else 0o700)
         elif path.is_file():
             executable = bool(stat.S_IMODE(path.stat().st_mode) & 0o111)
-            path.chmod(0o700 if executable else 0o600)
+            # Harbor executes the Oracle solution as the configured non-root agent.
+            # The private root remains 0700, while the transported solution path
+            # must be traversable and executable after Harbor places it at /solution.
+            path.chmod(0o755 if executable else 0o600)
+
+
+def normalize_public_tree(output_dir: Path) -> None:
+    output_dir.chmod(0o755)
+    for path in output_dir.rglob("*"):
+        if path.is_symlink():
+            raise ValueError(f"public output must not contain symlinks: {path}")
+        if path.is_dir():
+            path.chmod(0o755)
+        elif path.is_file():
+            executable = bool(stat.S_IMODE(path.stat().st_mode) & 0o111)
+            path.chmod(0o755 if executable else 0o644)
 
 
 def generate(
@@ -788,6 +806,10 @@ def generate(
     )
     for spec in specs:
         write_task(output_dir, spec)
+    if private:
+        secure_private_tree(output_dir)
+    else:
+        normalize_public_tree(output_dir)
     write_json(
         output_dir / "release-metadata.json",
         release_metadata(secret, specs, output_dir),
@@ -800,6 +822,8 @@ def generate(
     )
     if private:
         secure_private_tree(output_dir)
+    else:
+        normalize_public_tree(output_dir)
     return specs
 
 
