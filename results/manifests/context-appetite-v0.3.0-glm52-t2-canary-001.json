@@ -1,0 +1,653 @@
+{
+  "schema_version": "2.0",
+  "normalizer": {
+    "name": "normalize_harbor_job_v2",
+    "version": "2.0.0",
+    "source_sha256": "sha256:b2b025a6a10113b84e5b18b0e2372a5af01b7e2f1b7cd286647da9a1ae20838e"
+  },
+  "derived_from": null,
+  "run_id": "context-appetite-v0.3.0-glm52-t2-canary-001",
+  "harbor_job_uuid": "f52e0af8-a732-4724-8ee7-f93d4956840f",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001",
+  "hub_url": null,
+  "run_kind": "model-canary",
+  "lifecycle": "completed",
+  "publication": "review",
+  "supersedes": [],
+  "status_reason": "Five-condition paid canary; reviewed after the official run was sealed.",
+  "started_at": "2026-07-23T02:57:23.422702",
+  "finished_at": "2026-07-23T03:02:05.761731",
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.3.0",
+    "git_commit": "b68a419",
+    "task_checksums": {
+      "ca-eval-016": "sha256:0b21215084b9cd9d521ccbe762fdac0f6b2d39146da521977a6fa2a9b763be2b",
+      "ca-eval-026": "sha256:8c6780f12d8090ab224f9b2f2e9bd428c04cc7457e7495e9248f4274801ad1e7",
+      "ca-eval-010": "sha256:0262346416c40cd91bf6c70f72e7f47277d4a0c68442c2aa760e173582a152a9",
+      "ca-eval-050": "sha256:a47e888b9681426d7fea93558dc8b0eb5aedbe1126a28a56904654a028c7bc98",
+      "ca-eval-065": "sha256:07c5a1cd37a5646f583b10e72242aab548a23af00d6ce15375b8b0a12dbaca67"
+    },
+    "release_metadata_digest": "sha256:386b21f0a09f8a7d278fa71c8e0dd0b2a6919de4be454c259cb482fccdbe92f3",
+    "release_name": "Instinct Bench: Context Appetite v0.3.0",
+    "release_version": "0.3.0",
+    "split": "eval",
+    "generator_version": "0.3.0",
+    "seed_commitment": "sha256:dc4362d0d7575ae59c4215811e2bbccf2a0c54bd2ab067708717b3c397316ff5",
+    "dataset_commitment": "sha256:70bb1939f22f84e092fd8ce56788ce7e35d7e6cf7b29b9621640e9d11da6cde6",
+    "package_set_commitment": "sha256:fa3e8869e5166a924e2ba912ff1a27a3d885edca29d0c932f81d1eed51f1c672"
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": "sha256:e6794ed5222445d522a800f3fc70ec258776cbcb09731d43a0028c5c7f0137fc",
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {
+        "temperature": 0,
+        "llm_call_kwargs": {
+          "extra_body": {
+            "provider": {
+              "order": [
+                "z-ai/fp8"
+              ],
+              "allow_fallbacks": false,
+              "require_parameters": true
+            }
+          }
+        }
+      },
+      "extra_allowed_hosts": []
+    },
+    "model": "openrouter/z-ai/glm-5.2",
+    "effort": null,
+    "temperature": 0,
+    "n_attempts": 1,
+    "n_concurrent": 4,
+    "command": "harbor run -p evals/context-appetite/eval-private -i ca-eval-050 -i ca-eval-016 -i ca-eval-010 -i ca-eval-065 -i ca-eval-026 -a terminus-2 -m openrouter/z-ai/glm-5.2 -e modal -o jobs-scratch --job-name context-appetite-v0.3.0-glm52-t2-canary-001 -k 1 -n 4 --n-concurrent-agents 4 --max-retries 0 --ek modal_vm_runtime=true --ak temperature=0 --ak 'llm_call_kwargs={extra_body:{provider:{order:[z-ai/fp8],allow_fallbacks:false,require_parameters:true}}}' --env-file .env -y"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 5,
+    "result_records": 5,
+    "completed": 5,
+    "benchmark_valid": 5,
+    "strict_pass": 5,
+    "domain_pass": 5,
+    "deadline": 0,
+    "infrastructure_error": 0,
+    "verifier_invalid": 0,
+    "verifier_error": 0,
+    "cancelled": 0,
+    "not_started": 0,
+    "verifier_evaluated": 5,
+    "recovered_strict_pass": 5,
+    "recovered_domain_pass": 5,
+    "answer_observed": 5,
+    "harness_confirmed": 5
+  },
+  "costs_usd": {
+    "model": 0.0535302,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "7429371d-9652-4d41-beed-8e40a29583cb",
+      "trial_name": "ca-eval-010__LLTaEoV",
+      "task_name": "ca-eval-010",
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-block-001",
+      "instance_commitment": "sha256:03ba52399a684e3d0395c758541265288170a60d85ce5da5a34347e56126f4bc",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "sampling_seed": null,
+      "execution_status": "completed",
+      "failure_stage": null,
+      "failure_detail": null,
+      "answer_observed": true,
+      "verifier_status": "pass",
+      "semantic_outcome": "pass",
+      "proof_outcome": "pass",
+      "format_outcome": "pass",
+      "verifier_integrity": 1,
+      "harness_completion": "confirmed",
+      "benchmark_valid": true,
+      "strict_task_success": 1,
+      "domain_success": 1,
+      "diagnostics": {
+        "recovered_strict_task_success": 1,
+        "recovered_domain_success": 1,
+        "semantic_resolution_method": "verifier_explicit",
+        "semantic_exact_disagreement": false,
+        "agent_phase_returned": true
+      },
+      "trajectory_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-010__LLTaEoV/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-010__LLTaEoV/verifier/details.json",
+      "evidence_state_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-010__LLTaEoV/artifacts/evidence-artifacts/state.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "abstained": 0,
+        "abstention_mode_match": 1,
+        "agent_requests": 5,
+        "confidence": 0.84,
+        "correctness": 1,
+        "duplicate_open_attempts": 0,
+        "evidence_payload_bytes": 356,
+        "evidence_sufficient": 1,
+        "evidence_token_proxy": 89,
+        "format_contract_met": 1,
+        "hindsight_minimum_cost": 5,
+        "list_calls": 1,
+        "observed_evidence_cost": 5,
+        "policy_utility": 95,
+        "proof_sufficient": 1,
+        "harbor_reward": 1,
+        "semantic_success": 1,
+        "sources_opened": 2,
+        "status_calls": 1,
+        "supported_abstention": 0,
+        "verifier_task_success": 1,
+        "unjustified_abstention": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1,
+        "zero_cost_tool_calls": 2,
+        "signed_cost_delta": 0,
+        "successful_excess_cost": 0
+      },
+      "telemetry": {
+        "trial_duration_seconds": 153.426806,
+        "model_calls": {
+          "count": 5,
+          "total_latency_ms": 44547.62768745422,
+          "mean_latency_ms": 8909.525537490845,
+          "max_latency_ms": 11248.91209602356
+        },
+        "model_tokens": {
+          "input": 8370,
+          "output": 1267,
+          "cached_input": 6336,
+          "total": 9637
+        },
+        "evidence": {
+          "credits": 5,
+          "payload_bytes": 356,
+          "token_proxy": 89,
+          "source_sequence": [
+            "src-b4uzpas",
+            "src-ugjeeq9"
+          ],
+          "list_calls": 1,
+          "status_calls": 1
+        },
+        "harness": {
+          "episodes": 5,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 5,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.01006976,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "b1edcf04-6962-4280-9d76-24ba1c408528",
+      "trial_name": "ca-eval-016__Nyi2Lm7",
+      "task_name": "ca-eval-016",
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-block-006",
+      "instance_commitment": "sha256:d122d4889c1ec5e28ba44d40add038d2706d2f5d576f899f6d94ffc514b1e1b7",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "sampling_seed": null,
+      "execution_status": "completed",
+      "failure_stage": null,
+      "failure_detail": null,
+      "answer_observed": true,
+      "verifier_status": "pass",
+      "semantic_outcome": "pass",
+      "proof_outcome": "pass",
+      "format_outcome": "pass",
+      "verifier_integrity": 1,
+      "harness_completion": "confirmed",
+      "benchmark_valid": true,
+      "strict_task_success": 1,
+      "domain_success": 1,
+      "diagnostics": {
+        "recovered_strict_task_success": 1,
+        "recovered_domain_success": 1,
+        "semantic_resolution_method": "verifier_explicit",
+        "semantic_exact_disagreement": false,
+        "agent_phase_returned": true
+      },
+      "trajectory_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-016__Nyi2Lm7/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-016__Nyi2Lm7/verifier/details.json",
+      "evidence_state_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-016__Nyi2Lm7/artifacts/evidence-artifacts/state.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "abstained": 1,
+        "abstention_mode_match": 1,
+        "agent_requests": 7,
+        "confidence": 0.84,
+        "correctness": 1,
+        "duplicate_open_attempts": 0,
+        "evidence_payload_bytes": 801,
+        "evidence_sufficient": 1,
+        "evidence_token_proxy": 202,
+        "format_contract_met": 1,
+        "hindsight_minimum_cost": 15,
+        "list_calls": 1,
+        "observed_evidence_cost": 15,
+        "policy_utility": 85,
+        "proof_sufficient": 1,
+        "harbor_reward": 1,
+        "semantic_success": 1,
+        "sources_opened": 4,
+        "status_calls": 1,
+        "supported_abstention": 1,
+        "verifier_task_success": 1,
+        "unjustified_abstention": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1,
+        "zero_cost_tool_calls": 2,
+        "signed_cost_delta": 0,
+        "successful_excess_cost": 0
+      },
+      "telemetry": {
+        "trial_duration_seconds": 178.639801,
+        "model_calls": {
+          "count": 7,
+          "total_latency_ms": 67967.18001365662,
+          "mean_latency_ms": 9709.597144808087,
+          "max_latency_ms": 17089.05601501465
+        },
+        "model_tokens": {
+          "input": 13864,
+          "output": 2316,
+          "cached_input": 9920,
+          "total": 16180
+        },
+        "evidence": {
+          "credits": 15,
+          "payload_bytes": 801,
+          "token_proxy": 202,
+          "source_sequence": [
+            "src-5fvxhyr",
+            "src-hakpbhn",
+            "src-mkxjqc7",
+            "src-3a9w656"
+          ],
+          "list_calls": 1,
+          "status_calls": 1
+        },
+        "harness": {
+          "episodes": 7,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 7,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0182912,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "da8c4995-38f8-4bf2-8442-1235a57d40d7",
+      "trial_name": "ca-eval-026__P5KdeBy",
+      "task_name": "ca-eval-026",
+      "condition": "answer-now",
+      "scenario_block": "ca-block-009",
+      "instance_commitment": "sha256:a9dd9d02bf82151832455cfd70105bf7d1fd15b3ceddd53a00fad7658ab9ef82",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "sampling_seed": null,
+      "execution_status": "completed",
+      "failure_stage": null,
+      "failure_detail": null,
+      "answer_observed": true,
+      "verifier_status": "pass",
+      "semantic_outcome": "pass",
+      "proof_outcome": "pass",
+      "format_outcome": "pass",
+      "verifier_integrity": 1,
+      "harness_completion": "confirmed",
+      "benchmark_valid": true,
+      "strict_task_success": 1,
+      "domain_success": 1,
+      "diagnostics": {
+        "recovered_strict_task_success": 1,
+        "recovered_domain_success": 1,
+        "semantic_resolution_method": "verifier_explicit",
+        "semantic_exact_disagreement": false,
+        "agent_phase_returned": true
+      },
+      "trajectory_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-026__P5KdeBy/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-026__P5KdeBy/verifier/details.json",
+      "evidence_state_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-026__P5KdeBy/artifacts/evidence-artifacts/state.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "abstained": 0,
+        "abstention_mode_match": 1,
+        "agent_requests": 1,
+        "confidence": 0.84,
+        "correctness": 1,
+        "duplicate_open_attempts": 0,
+        "evidence_payload_bytes": 0,
+        "evidence_sufficient": 1,
+        "evidence_token_proxy": 0,
+        "format_contract_met": 1,
+        "hindsight_minimum_cost": 0,
+        "list_calls": 0,
+        "observed_evidence_cost": 0,
+        "policy_utility": 100,
+        "proof_sufficient": 1,
+        "harbor_reward": 1,
+        "semantic_success": 1,
+        "sources_opened": 0,
+        "status_calls": 0,
+        "supported_abstention": 0,
+        "verifier_task_success": 1,
+        "unjustified_abstention": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1,
+        "zero_cost_tool_calls": 0,
+        "signed_cost_delta": 0,
+        "successful_excess_cost": 0
+      },
+      "telemetry": {
+        "trial_duration_seconds": 118.281044,
+        "model_calls": {
+          "count": 2,
+          "total_latency_ms": 19573.213815689087,
+          "mean_latency_ms": 9786.606907844543,
+          "max_latency_ms": 13658.761978149414
+        },
+        "model_tokens": {
+          "input": 2149,
+          "output": 610,
+          "cached_input": 896,
+          "total": 2759
+        },
+        "evidence": {
+          "credits": 0,
+          "payload_bytes": 0,
+          "token_proxy": 0,
+          "source_sequence": [],
+          "list_calls": 0,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": 2,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 1,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.004671160000000001,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "780f77e8-e1fc-458e-853b-84078107ad5c",
+      "trial_name": "ca-eval-050__8dLF7oJ",
+      "task_name": "ca-eval-050",
+      "condition": "single-source",
+      "scenario_block": "ca-block-006",
+      "instance_commitment": "sha256:79c50b605bce4a6df112b5c6ea9d500eae2b8bdc371ee35ab83bf062a1456dde",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "sampling_seed": null,
+      "execution_status": "completed",
+      "failure_stage": null,
+      "failure_detail": null,
+      "answer_observed": true,
+      "verifier_status": "pass",
+      "semantic_outcome": "pass",
+      "proof_outcome": "pass",
+      "format_outcome": "pass",
+      "verifier_integrity": 1,
+      "harness_completion": "confirmed",
+      "benchmark_valid": true,
+      "strict_task_success": 1,
+      "domain_success": 1,
+      "diagnostics": {
+        "recovered_strict_task_success": 1,
+        "recovered_domain_success": 1,
+        "semantic_resolution_method": "verifier_explicit",
+        "semantic_exact_disagreement": false,
+        "agent_phase_returned": true
+      },
+      "trajectory_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-050__8dLF7oJ/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-050__8dLF7oJ/verifier/details.json",
+      "evidence_state_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-050__8dLF7oJ/artifacts/evidence-artifacts/state.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "abstained": 0,
+        "abstention_mode_match": 1,
+        "agent_requests": 4,
+        "confidence": 0.84,
+        "correctness": 1,
+        "duplicate_open_attempts": 0,
+        "evidence_payload_bytes": 176,
+        "evidence_sufficient": 1,
+        "evidence_token_proxy": 44,
+        "format_contract_met": 1,
+        "hindsight_minimum_cost": 1,
+        "list_calls": 1,
+        "observed_evidence_cost": 1,
+        "policy_utility": 99,
+        "proof_sufficient": 1,
+        "harbor_reward": 1,
+        "semantic_success": 1,
+        "sources_opened": 1,
+        "status_calls": 1,
+        "supported_abstention": 0,
+        "verifier_task_success": 1,
+        "unjustified_abstention": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1,
+        "zero_cost_tool_calls": 2,
+        "signed_cost_delta": 0,
+        "successful_excess_cost": 0
+      },
+      "telemetry": {
+        "trial_duration_seconds": 118.377709,
+        "model_calls": {
+          "count": 4,
+          "total_latency_ms": 23680.493116378784,
+          "mean_latency_ms": 5920.123279094696,
+          "max_latency_ms": 6530.699014663696
+        },
+        "model_tokens": {
+          "input": 6073,
+          "output": 793,
+          "cached_input": 3200,
+          "total": 6866
+        },
+        "evidence": {
+          "credits": 1,
+          "payload_bytes": 176,
+          "token_proxy": 44,
+          "source_sequence": [
+            "src-ucpyfgv"
+          ],
+          "list_calls": 1,
+          "status_calls": 1
+        },
+        "harness": {
+          "episodes": 4,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 4,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.0083434,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    },
+    {
+      "trial_id": "d85d4bea-49ac-460a-bb4c-964d98f5fbf1",
+      "trial_name": "ca-eval-065__b6QpU9W",
+      "task_name": "ca-eval-065",
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-block-015",
+      "instance_commitment": "sha256:a268ec6c947b68e0cd12659762d8726c11e761c4030bcd44bc44811b946359ea",
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "sampling_seed": null,
+      "execution_status": "completed",
+      "failure_stage": null,
+      "failure_detail": null,
+      "answer_observed": true,
+      "verifier_status": "pass",
+      "semantic_outcome": "pass",
+      "proof_outcome": "pass",
+      "format_outcome": "pass",
+      "verifier_integrity": 1,
+      "harness_completion": "confirmed",
+      "benchmark_valid": true,
+      "strict_task_success": 1,
+      "domain_success": 1,
+      "diagnostics": {
+        "recovered_strict_task_success": 1,
+        "recovered_domain_success": 1,
+        "semantic_resolution_method": "verifier_explicit",
+        "semantic_exact_disagreement": false,
+        "agent_phase_returned": true
+      },
+      "trajectory_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-065__b6QpU9W/agent/trajectory.json",
+      "verifier_details_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-065__b6QpU9W/verifier/details.json",
+      "evidence_state_path": "jobs-scratch/context-appetite-v0.3.0-glm52-t2-canary-001/ca-eval-065__b6QpU9W/artifacts/evidence-artifacts/state.json",
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "abstained": 0,
+        "abstention_mode_match": 1,
+        "agent_requests": 6,
+        "confidence": 0.84,
+        "correctness": 1,
+        "duplicate_open_attempts": 0,
+        "evidence_payload_bytes": 478,
+        "evidence_sufficient": 1,
+        "evidence_token_proxy": 121,
+        "format_contract_met": 1,
+        "hindsight_minimum_cost": 5,
+        "list_calls": 1,
+        "observed_evidence_cost": 13,
+        "policy_utility": 87,
+        "proof_sufficient": 1,
+        "harbor_reward": 1,
+        "semantic_success": 1,
+        "sources_opened": 3,
+        "status_calls": 1,
+        "supported_abstention": 0,
+        "verifier_task_success": 1,
+        "unjustified_abstention": 0,
+        "unknown_source_attempts": 0,
+        "verifier_integrity": 1,
+        "zero_cost_tool_calls": 2,
+        "signed_cost_delta": 8,
+        "successful_excess_cost": 8
+      },
+      "telemetry": {
+        "trial_duration_seconds": 162.62212,
+        "model_calls": {
+          "count": 6,
+          "total_latency_ms": 57907.169580459595,
+          "mean_latency_ms": 9651.1949300766,
+          "max_latency_ms": 12508.161783218384
+        },
+        "model_tokens": {
+          "input": 11003,
+          "output": 1699,
+          "cached_input": 9408,
+          "total": 12702
+        },
+        "evidence": {
+          "credits": 13,
+          "payload_bytes": 478,
+          "token_proxy": 121,
+          "source_sequence": [
+            "src-84atkrz",
+            "src-98u9gwh",
+            "src-zkp5d6r"
+          ],
+          "list_calls": 1,
+          "status_calls": 1
+        },
+        "harness": {
+          "episodes": 6,
+          "summarizations": 0,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 2,
+          "bash_command_calls": 6,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": 0.01215468,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

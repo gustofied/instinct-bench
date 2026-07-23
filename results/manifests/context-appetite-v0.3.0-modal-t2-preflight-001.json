@@ -1,0 +1,190 @@
+{
+  "schema_version": "2.0",
+  "normalizer": {
+    "name": "normalize_harbor_job_v2",
+    "version": "2.0.0",
+    "source_sha256": "sha256:b2b025a6a10113b84e5b18b0e2372a5af01b7e2f1b7cd286647da9a1ae20838e"
+  },
+  "derived_from": null,
+  "run_id": "context-appetite-v0.3.0-modal-t2-preflight-001",
+  "harbor_job_uuid": "bb07bff9-dd8f-4f9b-9e93-bde03d451fde",
+  "raw_job_path": "jobs-scratch/context-appetite-v0.3.0-modal-t2-preflight-001",
+  "hub_url": null,
+  "run_kind": "preflight",
+  "lifecycle": "completed",
+  "publication": "excluded",
+  "supersedes": [],
+  "status_reason": "Install-only Modal/Terminus setup check; no task or verifier run.",
+  "started_at": "2026-07-23T02:21:54.895531",
+  "finished_at": "2026-07-23T02:22:50.446712",
+  "benchmark": {
+    "name": "instinct-bench",
+    "domain": "context-appetite",
+    "implementation_version": "0.3.0",
+    "git_commit": "b68a419",
+    "task_checksums": {
+      "ca-eval-001": "sha256:8085956c16193476624fd6c29aa2bcef2ea7e3f9b926ac541b9c3ffe80789739"
+    },
+    "release_metadata_digest": null,
+    "release_name": null,
+    "release_version": null,
+    "split": null,
+    "generator_version": null,
+    "seed_commitment": null,
+    "dataset_commitment": null,
+    "package_set_commitment": null
+  },
+  "runner": {
+    "harbor_version": "0.20.0",
+    "agent": "terminus-2",
+    "harness_version": "2.0.0",
+    "skills": [],
+    "prompt_digest": null,
+    "environment": "modal",
+    "sandbox_config": {
+      "type": "modal",
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "extra_docker_compose": [],
+      "kwargs": {
+        "modal_vm_runtime": true
+      },
+      "extra_allowed_hosts": []
+    },
+    "provider": "openrouter",
+    "provider_routing": {
+      "agent_kwargs": {
+        "temperature": 0,
+        "llm_call_kwargs": {
+          "extra_body": {
+            "provider": {
+              "order": [
+                "z-ai/fp8"
+              ],
+              "allow_fallbacks": false,
+              "require_parameters": true
+            }
+          }
+        }
+      },
+      "extra_allowed_hosts": []
+    },
+    "model": "openrouter/z-ai/glm-5.2",
+    "effort": null,
+    "temperature": 0,
+    "n_attempts": 1,
+    "n_concurrent": 1,
+    "command": "harbor run -p evals/context-appetite/eval-private -i ca-eval-001 -a terminus-2 -m openrouter/z-ai/glm-5.2 -e modal -o jobs-scratch --job-name context-appetite-v0.3.0-modal-t2-preflight-001 -k 1 -n 1 --n-concurrent-agents 1 --max-retries 0 --ek modal_vm_runtime=true --ak temperature=0 --ak 'llm_call_kwargs={extra_body:{provider:{order:[z-ai/fp8],allow_fallbacks:false,require_parameters:true}}}' --env-file .env --install-only -y"
+  },
+  "agent_egress": "public",
+  "contract_visibility": "private",
+  "counts": {
+    "planned": 1,
+    "result_records": 1,
+    "completed": 1,
+    "benchmark_valid": 0,
+    "strict_pass": 0,
+    "domain_pass": 0,
+    "deadline": 0,
+    "infrastructure_error": 0,
+    "verifier_invalid": 0,
+    "verifier_error": 0,
+    "cancelled": 0,
+    "not_started": 0,
+    "verifier_evaluated": 0,
+    "recovered_strict_pass": 0,
+    "recovered_domain_pass": 0,
+    "answer_observed": 0,
+    "harness_confirmed": 0
+  },
+  "costs_usd": {
+    "model": null,
+    "harness": null,
+    "sandbox": null,
+    "total": null
+  },
+  "trials": [
+    {
+      "trial_id": "aa4c38e5-1085-4f3f-9063-5437ee4cb27a",
+      "trial_name": "ca-eval-001__KSVLaCT",
+      "task_name": "ca-eval-001",
+      "condition": null,
+      "scenario_block": null,
+      "instance_commitment": null,
+      "model": "openrouter/z-ai/glm-5.2",
+      "attempt": 1,
+      "sampling_seed": null,
+      "execution_status": "completed",
+      "failure_stage": null,
+      "failure_detail": null,
+      "answer_observed": false,
+      "verifier_status": "not_run",
+      "semantic_outcome": "not_evaluated",
+      "proof_outcome": "not_evaluated",
+      "format_outcome": "not_evaluated",
+      "verifier_integrity": null,
+      "harness_completion": "not_evaluated",
+      "benchmark_valid": false,
+      "strict_task_success": null,
+      "domain_success": null,
+      "diagnostics": {
+        "recovered_strict_task_success": null,
+        "recovered_domain_success": null,
+        "semantic_resolution_method": "none",
+        "semantic_exact_disagreement": false,
+        "agent_phase_returned": false
+      },
+      "trajectory_path": null,
+      "verifier_details_path": null,
+      "evidence_state_path": null,
+      "provider_route": {
+        "name": "z-ai/glm-5.2",
+        "provider": "openrouter"
+      },
+      "metrics": {
+        "signed_cost_delta": null,
+        "successful_excess_cost": null
+      },
+      "telemetry": {
+        "trial_duration_seconds": 54.028812,
+        "model_calls": {
+          "count": 0,
+          "total_latency_ms": null,
+          "mean_latency_ms": null,
+          "max_latency_ms": null
+        },
+        "model_tokens": {
+          "input": null,
+          "output": null,
+          "cached_input": null,
+          "total": null
+        },
+        "evidence": {
+          "credits": null,
+          "payload_bytes": null,
+          "token_proxy": null,
+          "source_sequence": [],
+          "list_calls": 0,
+          "status_calls": 0
+        },
+        "harness": {
+          "episodes": null,
+          "summarizations": null,
+          "invalid_json_turns": 0,
+          "extra_text_warning_lines": 0,
+          "mark_task_complete_calls": 0,
+          "bash_command_calls": 0,
+          "non_evidence_shell_calls": 0
+        }
+      },
+      "costs_usd": {
+        "model": null,
+        "harness": null,
+        "sandbox": null,
+        "total": null
+      }
+    }
+  ]
+}

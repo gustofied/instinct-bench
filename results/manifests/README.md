@@ -52,6 +52,21 @@ The first completed model-pilot analysis is
 Its fuller post-run audit and next-experiment design are indexed in
 [`our-first-harbor`](../reports/our-first-harbor/README.md).
 
+Context Appetite v0.3.0 has separate normalized records for its
+[`preflight`](context-appetite-v0.3.0-modal-t2-preflight-001.json),
+[`Oracle`](context-appetite-v0.3.0-oracle-smoke-001.json),
+[`paid canary`](context-appetite-v0.3.0-glm52-t2-canary-001.json), and
+[`official evaluation`](context-appetite-v0.3.0-glm52-t2-eval-001.json).
+The preflight and Oracle are publication-excluded. The canary is diagnostic;
+only the official 75-task manifest is eligible as model-performance evidence.
+The post-run [`release index`](context-appetite-v0.3.0-release-index.json)
+exposes condition, matched block, and instance commitments without answer
+truth; the [`canary index`](context-appetite-v0.3.0-canary-index.json) preserves
+the exact five-cell subset used to normalize that scratch run.
+
+The complete analysis is
+[`results/reports/context-appetite-v0.3.0`](../reports/context-appetite-v0.3.0/README.md).
+
 `jobs-archive/` is an ignored local provenance store for superseded smoke,
 canary, repair, and abandoned setup jobs. It is kept outside `jobs/` and
 `jobs-scratch/` so Harbor View remains an active-work surface. Archiving a raw

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "release": {
+    "name": "Instinct Bench: Context Appetite v0.3.0",
+    "version": "0.3.0",
+    "split": "eval",
+    "generator_version": "0.3.0",
+    "seed_commitment": "sha256:dc4362d0d7575ae59c4215811e2bbccf2a0c54bd2ab067708717b3c397316ff5",
+    "dataset_commitment": "sha256:70bb1939f22f84e092fd8ce56788ce7e35d7e6cf7b29b9621640e9d11da6cde6",
+    "package_set_commitment": "sha256:fa3e8869e5166a924e2ba912ff1a27a3d885edca29d0c932f81d1eed51f1c672",
+    "expected_task_count": 5,
+    "expected_block_count": 4,
+    "matrix_complete": false,
+    "conditions": [
+      "answer-now",
+      "single-source",
+      "complementary-evidence",
+      "insufficient-evidence",
+      "reliability-conflict"
+    ]
+  },
+  "tasks": {
+    "ca-eval-050": {
+      "condition": "single-source",
+      "scenario_block": "ca-block-006",
+      "instance_commitment": "sha256:79c50b605bce4a6df112b5c6ea9d500eae2b8bdc371ee35ab83bf062a1456dde"
+    },
+    "ca-eval-016": {
+      "condition": "insufficient-evidence",
+      "scenario_block": "ca-block-006",
+      "instance_commitment": "sha256:d122d4889c1ec5e28ba44d40add038d2706d2f5d576f899f6d94ffc514b1e1b7"
+    },
+    "ca-eval-010": {
+      "condition": "reliability-conflict",
+      "scenario_block": "ca-block-001",
+      "instance_commitment": "sha256:03ba52399a684e3d0395c758541265288170a60d85ce5da5a34347e56126f4bc"
+    },
+    "ca-eval-065": {
+      "condition": "complementary-evidence",
+      "scenario_block": "ca-block-015",
+      "instance_commitment": "sha256:a268ec6c947b68e0cd12659762d8726c11e761c4030bcd44bc44811b946359ea"
+    },
+    "ca-eval-026": {
+      "condition": "answer-now",
+      "scenario_block": "ca-block-009",
+      "instance_commitment": "sha256:a9dd9d02bf82151832455cfd70105bf7d1fd15b3ceddd53a00fad7658ab9ef82"
+    }
+  }
+}

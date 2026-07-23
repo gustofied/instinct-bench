@@ -32,6 +32,13 @@ V1_MANIFEST = (
 )
 V2_MANIFEST = V1_MANIFEST.with_suffix(".v2.json")
 RAW_JOB = REPO_ROOT / "jobs" / "context-appetite-v0.2.1-model-pilot-3x-001"
+V03_MANIFEST_DIR = REPO_ROOT / "results" / "manifests"
+V03_MANIFESTS = (
+    "context-appetite-v0.3.0-modal-t2-preflight-001.json",
+    "context-appetite-v0.3.0-oracle-smoke-001.json",
+    "context-appetite-v0.3.0-glm52-t2-canary-001.json",
+    "context-appetite-v0.3.0-glm52-t2-eval-001.json",
+)
 
 
 class ClassificationTests(unittest.TestCase):
@@ -522,6 +529,126 @@ class HistoricalReconciliationTests(unittest.TestCase):
         rebuilt = NORMALIZER.build_manifest(args)
         self.assertEqual(rebuilt["counts"], self.v2["counts"])
         self.assertEqual(rebuilt["trials"], self.v2["trials"])
+
+
+class ContextAppetiteV03ReleaseArtifactTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.schema = json.loads((V03_MANIFEST_DIR / "schema-v2.json").read_text())
+        cls.validator = Draft202012Validator(cls.schema)
+        cls.manifests = {
+            name: json.loads((V03_MANIFEST_DIR / name).read_text())
+            for name in V03_MANIFESTS
+        }
+        cls.release_index = json.loads(
+            (
+                V03_MANIFEST_DIR / "context-appetite-v0.3.0-release-index.json"
+            ).read_text()
+        )
+        cls.canary_index = json.loads(
+            (V03_MANIFEST_DIR / "context-appetite-v0.3.0-canary-index.json").read_text()
+        )
+
+    def test_all_committed_v03_manifests_validate(self) -> None:
+        Draft202012Validator.check_schema(self.schema)
+        for name, manifest in self.manifests.items():
+            with self.subTest(name=name):
+                self.validator.validate(manifest)
+                self.assertEqual(
+                    manifest["normalizer"]["source_sha256"],
+                    NORMALIZER.sha256_file(TOOLS_DIR / "normalize_harbor_job_v2.py"),
+                )
+
+    def test_official_manifest_preserves_release_denominators(self) -> None:
+        manifest = self.manifests["context-appetite-v0.3.0-glm52-t2-eval-001.json"]
+        self.assertEqual(manifest["publication"], "eligible")
+        self.assertEqual(
+            manifest["benchmark"]["release_metadata_digest"],
+            NORMALIZER.sha256_file(
+                V03_MANIFEST_DIR / "context-appetite-v0.3.0-release-index.json"
+            ),
+        )
+        self.assertEqual(
+            manifest["counts"],
+            {
+                "planned": 75,
+                "result_records": 75,
+                "completed": 75,
+                "benchmark_valid": 75,
+                "strict_pass": 71,
+                "domain_pass": 71,
+                "deadline": 0,
+                "infrastructure_error": 0,
+                "verifier_invalid": 0,
+                "verifier_error": 0,
+                "cancelled": 0,
+                "not_started": 0,
+                "verifier_evaluated": 75,
+                "recovered_strict_pass": 71,
+                "recovered_domain_pass": 71,
+                "answer_observed": 75,
+                "harness_confirmed": 75,
+            },
+        )
+        self.assertEqual(
+            sum(trial["semantic_outcome"] == "pass" for trial in manifest["trials"]),
+            75,
+        )
+        self.assertEqual(
+            sum(trial["proof_outcome"] == "pass" for trial in manifest["trials"]),
+            71,
+        )
+
+    def test_post_run_indices_are_truth_free_and_consistent(self) -> None:
+        release = self.release_index["release"]
+        tasks = self.release_index["tasks"]
+        canary_tasks = self.canary_index["tasks"]
+        public_release = json.loads(
+            (REPO_ROOT / "evals/context-appetite/release-v0.3.0.json").read_text()
+        )["release"]
+
+        self.assertEqual(len(tasks), 75)
+        self.assertEqual(
+            set(canary_tasks),
+            {"ca-eval-010", "ca-eval-016", "ca-eval-026", "ca-eval-050", "ca-eval-065"},
+        )
+        self.assertEqual(canary_tasks, {name: tasks[name] for name in canary_tasks})
+        canary_manifest = self.manifests[
+            "context-appetite-v0.3.0-glm52-t2-canary-001.json"
+        ]
+        self.assertEqual(
+            canary_manifest["benchmark"]["release_metadata_digest"],
+            NORMALIZER.sha256_file(
+                V03_MANIFEST_DIR / "context-appetite-v0.3.0-canary-index.json"
+            ),
+        )
+        for commitment in (
+            "seed_commitment",
+            "dataset_commitment",
+            "package_set_commitment",
+        ):
+            self.assertEqual(release[commitment], public_release[commitment])
+
+        serialized = json.dumps(self.release_index)
+        for private_field in (
+            '"expected_answer"',
+            '"proof_paths"',
+            '"source_contents"',
+            '"master_seed"',
+        ):
+            self.assertNotIn(private_field, serialized)
+
+        condition_counts = {
+            condition: sum(task["condition"] == condition for task in tasks.values())
+            for condition in NORMALIZER.LOCKED_CONDITIONS
+        }
+        block_counts = {
+            block: sum(task["scenario_block"] == block for task in tasks.values())
+            for block in {task["scenario_block"] for task in tasks.values()}
+        }
+        self.assertEqual(set(condition_counts.values()), {15})
+        self.assertEqual(len(block_counts), 15)
+        self.assertEqual(set(block_counts.values()), {5})
 
 
 if __name__ == "__main__":

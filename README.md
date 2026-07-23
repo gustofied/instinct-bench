@@ -50,12 +50,13 @@ infrastructure before proposing the next experiment.
 
 ## Context Appetite v0.3.0
 
-The next release is preregistered as 30 public development tasks and 75 private
-held-out tasks across five matched evidence-necessity conditions. It fixes one
-model-harness configuration so the experiment measures answer, look, abstain,
-and stop behavior without turning the result into a model leaderboard.
+The first frozen release contains 30 public development tasks and 75 private
+held-out tasks across five matched evidence-necessity conditions. Its official
+one-configuration run completed all 75 tasks: GLM 5.2 with Terminus 2 made the
+correct semantic decision on 75/75 and acquired sufficient proof on 71/75.
 
-Read the full [v0.3.0 protocol](docs/context-appetite-v0.3.0-plan.md).
+Read the [v0.3.0 result and audit](results/reports/context-appetite-v0.3.0/README.md)
+or the full [preregistered protocol](docs/context-appetite-v0.3.0-plan.md).
 The generated [public development dataset](evals/context-appetite/dev) and its
 [domain runbook](evals/context-appetite/README.md) are versioned in this repo;
-the held-out evaluation tasks remain private through the official run.
+the held-out evaluation contracts remain private.

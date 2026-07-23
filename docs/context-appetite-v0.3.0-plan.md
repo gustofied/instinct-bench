@@ -2,10 +2,12 @@
 
 ## Status
 
-This document preregisters the v0.3.0 development and evaluation protocol. It
-is the implementation contract for the next release and supersedes the earlier
-72-trial presentation-control proposal. The frozen v0.2.1 pilot and its raw
-results remain unchanged.
+This document preregistered the v0.3.0 development and evaluation protocol. The
+official run is complete; its result and trace audit are published in
+[`results/reports/context-appetite-v0.3.0`](../results/reports/context-appetite-v0.3.0/README.md).
+This file remains the pre-run contract and is not rewritten around the outcome.
+It superseded the earlier 72-trial presentation-control proposal; the frozen
+v0.2.1 pilot and its raw results remain unchanged.
 
 ## Naming And Scope
 

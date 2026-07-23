@@ -122,3 +122,5 @@ harbor run \
 The full preregistered protocol, release gates, fixed model-harness setup, and
 reporting contract are in
 [`docs/context-appetite-v0.3.0-plan.md`](../../docs/context-appetite-v0.3.0-plan.md).
+The completed 75-task result and trace audit are in
+[`results/reports/context-appetite-v0.3.0`](../../results/reports/context-appetite-v0.3.0/README.md).
