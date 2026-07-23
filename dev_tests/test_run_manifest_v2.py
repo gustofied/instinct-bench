@@ -6,6 +6,7 @@ import json
 import sys
 import tempfile
 import unittest
+from collections import Counter
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
@@ -39,6 +40,7 @@ V03_MANIFESTS = (
     "context-appetite-v0.3.0-glm52-t2-canary-001.json",
     "context-appetite-v0.3.0-glm52-t2-eval-001.json",
 )
+V031_MANIFEST = V03_MANIFEST_DIR / "context-appetite-v0.3.1-glm52-t2-eval-001.json"
 
 
 class ClassificationTests(unittest.TestCase):
@@ -434,6 +436,54 @@ class ReleaseContractTests(unittest.TestCase):
         self.assertEqual(telemetry["mean_latency_ms"], 15.25)
         self.assertEqual(telemetry["max_latency_ms"], 20.5)
 
+    def test_phase_telemetry_preserves_harbor_boundaries(self) -> None:
+        telemetry = NORMALIZER.phase_telemetry(
+            {
+                "started_at": "2026-01-01T00:00:00Z",
+                "finished_at": "2026-01-01T00:01:40Z",
+                "environment_setup": {
+                    "started_at": "2026-01-01T00:00:01Z",
+                    "finished_at": "2026-01-01T00:00:11Z",
+                },
+                "agent_setup": {
+                    "started_at": "2026-01-01T00:00:12Z",
+                    "finished_at": "2026-01-01T00:00:17Z",
+                },
+                "agent_execution": {
+                    "started_at": "2026-01-01T00:00:17Z",
+                    "finished_at": "2026-01-01T00:01:02Z",
+                },
+                "verifier": {
+                    "started_at": "2026-01-01T00:01:22Z",
+                    "finished_at": "2026-01-01T00:01:40Z",
+                },
+            }
+        )
+        self.assertEqual(
+            telemetry,
+            {
+                "environment_setup_seconds": 10,
+                "agent_setup_seconds": 5,
+                "agent_execution_seconds": 45,
+                "post_agent_pre_verifier_seconds": 20,
+                "verifier_seconds": 18,
+                "whole_trial_seconds": 100,
+            },
+        )
+
+    def test_phase_telemetry_fails_closed_on_invalid_intervals(self) -> None:
+        telemetry = NORMALIZER.phase_telemetry(
+            {
+                "started_at": "2026-01-01T00:00:02Z",
+                "finished_at": "2026-01-01T00:00:01Z",
+                "agent_execution": {
+                    "started_at": "invalid",
+                    "finished_at": "2026-01-01T00:00:01Z",
+                },
+            }
+        )
+        self.assertTrue(all(value is None for value in telemetry.values()))
+
 
 class HistoricalReconciliationTests(unittest.TestCase):
     @classmethod
@@ -530,6 +580,7 @@ class HistoricalReconciliationTests(unittest.TestCase):
         self.assertIn("trial_duration_seconds", trial["telemetry"])
         self.assertIn("model_calls", trial["telemetry"])
         self.assertGreater(trial["telemetry"]["model_calls"]["count"], 0)
+        self.assertNotIn("phases", trial["telemetry"])
 
     def test_schema_names_every_required_independent_axis(self) -> None:
         schema = json.loads(
@@ -598,7 +649,12 @@ class HistoricalReconciliationTests(unittest.TestCase):
         )
         rebuilt = NORMALIZER.build_manifest(args)
         self.assertEqual(rebuilt["counts"], self.v2["counts"])
-        self.assertEqual(rebuilt["trials"], self.v2["trials"])
+        rebuilt_trials = json.loads(json.dumps(rebuilt["trials"]))
+        historical_trials = json.loads(json.dumps(self.v2["trials"]))
+        for trial in rebuilt_trials:
+            self.assertIn("phases", trial["telemetry"])
+            trial["telemetry"].pop("phases")
+        self.assertEqual(rebuilt_trials, historical_trials)
 
 
 class ContextAppetiteV03ReleaseArtifactTests(unittest.TestCase):
@@ -763,6 +819,113 @@ class ContextAppetiteV03ReleaseArtifactTests(unittest.TestCase):
         official = self.manifests[official_name]
         self.assertEqual(official["counts"]["strict_pass"], 71)
         self.assertEqual(official["counts"]["domain_pass"], 71)
+
+
+class ContextAppetiteV031ResultArtifactTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.schema = json.loads((V03_MANIFEST_DIR / "schema-v2.json").read_text())
+        cls.manifest = json.loads(V031_MANIFEST.read_text())
+
+    def test_manifest_is_schema_valid_and_reproducibly_normalized(self) -> None:
+        Draft202012Validator(self.schema).validate(self.manifest)
+        archived_normalizer = TOOLS_DIR / "archive" / "normalize_harbor_job_v2_3_0.py"
+        self.assertEqual(self.manifest["normalizer"]["version"], "2.3.0")
+        self.assertEqual(
+            self.manifest["normalizer"]["source_sha256"],
+            NORMALIZER.sha256_file(archived_normalizer),
+        )
+
+    def test_official_result_preserves_the_complete_denominator(self) -> None:
+        counts = self.manifest["counts"]
+        self.assertEqual(counts["planned"], 75)
+        self.assertEqual(counts["result_records"], 75)
+        self.assertEqual(counts["benchmark_valid"], 75)
+        self.assertEqual(counts["strict_pass"], 75)
+        self.assertEqual(counts["domain_pass"], 75)
+        self.assertEqual(counts["deadline"], 0)
+        self.assertEqual(counts["infrastructure_error"], 0)
+        self.assertEqual(
+            {trial["condition"] for trial in self.manifest["trials"]},
+            set(NORMALIZER.LOCKED_CONDITIONS),
+        )
+        condition_counts = Counter(
+            trial["condition"] for trial in self.manifest["trials"]
+        )
+        block_counts = Counter(
+            trial["scenario_block"] for trial in self.manifest["trials"]
+        )
+        self.assertEqual(set(condition_counts.values()), {15})
+        self.assertEqual(len(block_counts), 15)
+        self.assertEqual(set(block_counts.values()), {5})
+
+    def test_manifest_preserves_phase_and_cost_telemetry_without_invention(
+        self,
+    ) -> None:
+        trials = self.manifest["trials"]
+        for trial in trials:
+            phases = trial["telemetry"]["phases"]
+            self.assertEqual(
+                phases["whole_trial_seconds"],
+                trial["telemetry"]["trial_duration_seconds"],
+            )
+            self.assertTrue(all(value is not None for value in phases.values()))
+            self.assertIsNone(trial["costs_usd"]["harness"])
+            self.assertIsNone(trial["costs_usd"]["sandbox"])
+            self.assertIsNone(trial["costs_usd"]["total"])
+
+        self.assertAlmostEqual(
+            sum(trial["costs_usd"]["model"] for trial in trials),
+            0.75592892,
+        )
+        self.assertEqual(
+            sum(trial["telemetry"]["model_tokens"]["input"] for trial in trials),
+            666_979,
+        )
+        self.assertEqual(
+            sum(trial["telemetry"]["model_tokens"]["cached_input"] for trial in trials),
+            535_872,
+        )
+        self.assertEqual(
+            sum(trial["telemetry"]["model_tokens"]["output"] for trial in trials),
+            98_421,
+        )
+        self.assertEqual(
+            sum(trial["telemetry"]["evidence"]["credits"] for trial in trials),
+            474,
+        )
+
+    def test_manifest_excludes_exact_answers_and_proof_payloads(
+        self,
+    ) -> None:
+        serialized = json.dumps(self.manifest)
+        for private_field in (
+            '"expected_answer"',
+            '"proof_paths"',
+            '"source_contents"',
+            '"master_seed"',
+            '"release_secret"',
+        ):
+            self.assertNotIn(private_field, serialized)
+        self.assertNotIn("OPENROUTER_API_KEY", serialized)
+
+    def test_published_manifest_records_private_run_and_route_disclosure(self) -> None:
+        self.assertEqual(self.manifest["publication"], "published")
+        self.assertEqual(self.manifest["contract_visibility"], "private")
+        self.assertTrue(all(trial["condition"] for trial in self.manifest["trials"]))
+        self.assertTrue(
+            any(
+                trial["telemetry"]["evidence"]["source_sequence"]
+                for trial in self.manifest["trials"]
+            )
+        )
+        self.assertEqual(
+            sum(
+                trial["telemetry"]["harness"]["non_evidence_shell_calls"]
+                for trial in self.manifest["trials"]
+            ),
+            1,
+        )
 
 
 if __name__ == "__main__":

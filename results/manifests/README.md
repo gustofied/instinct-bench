@@ -30,9 +30,13 @@ records. `template.json` is a v1 starting record, not a completed result.
 
 Normalize a completed Harbor 0.20 job with
 `tools/normalize_harbor_job_v2.py`. Pass the exact launch command and Git commit;
-the tool records a sanitized command, allowlisted public metrics, task digests,
+the tool records a sanitized command, allowlisted verifier metrics, task digests,
 provider configuration, trace paths, independent classifications, model-call
-latency, token telemetry, and costs without dropping failed cells. Pass
+latency, Harbor phase durations, token telemetry, and costs without dropping
+failed cells. Normalizer 2.3 and later preserve environment setup, agent setup,
+agent execution, the post-agent/pre-verifier interval, verifier time, and
+whole-trial time in `telemetry.phases`; older v2 records remain valid without
+that optional object. Pass
 `--derived-from` when correcting a historical manifest; the tool records its
 path and digest instead of rewriting it. v0.3 task runs also require complete
 release metadata with a non-secret seed commitment, dataset and package-set
@@ -68,6 +72,18 @@ The complete analysis is
 [`results/reports/context-appetite-v0.3.0`](../reports/context-appetite-v0.3.0/README.md).
 The frozen official manifest remains 71/75. A separate post-hoc material-proof
 audit records 74/75 without rewriting that manifest or the raw Harbor job.
+
+Context Appetite v0.3.1's locked one-configuration baseline is recorded in the
+[`official evaluation manifest`](context-appetite-v0.3.1-glm52-t2-eval-001.json).
+It contains 75/75 benchmark-valid strict/domain passes, phase-level Harbor
+telemetry, answer/proof-redacted trace data, and model-only cost. Per-trial
+condition labels and successful source sequences reveal the acquisition
+contract for the still-unpublished task IDs. Publishing this record closes the
+hidden-comparison phase for v0.3.1; later internet-enabled runs must be labeled
+public-set protocol results. Its
+[`release report`](../reports/context-appetite-v0.3.1/README.md) keeps binary
+success separate from acquisition, raw runtime, and cost diagnostics. The 75
+task packages remain local and unpublished until Adam requests registry upload.
 
 `jobs-archive/` is an ignored local provenance store for superseded smoke,
 canary, repair, and abandoned setup jobs. It is kept outside `jobs/` and

@@ -450,6 +450,26 @@
       "required": ["trial_duration_seconds", "model_calls", "model_tokens", "evidence", "harness"],
       "properties": {
         "trial_duration_seconds": {"type": ["number", "null"], "minimum": 0},
+        "phases": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "environment_setup_seconds",
+            "agent_setup_seconds",
+            "agent_execution_seconds",
+            "post_agent_pre_verifier_seconds",
+            "verifier_seconds",
+            "whole_trial_seconds"
+          ],
+          "properties": {
+            "environment_setup_seconds": {"type": ["number", "null"], "minimum": 0},
+            "agent_setup_seconds": {"type": ["number", "null"], "minimum": 0},
+            "agent_execution_seconds": {"type": ["number", "null"], "minimum": 0},
+            "post_agent_pre_verifier_seconds": {"type": ["number", "null"], "minimum": 0},
+            "verifier_seconds": {"type": ["number", "null"], "minimum": 0},
+            "whole_trial_seconds": {"type": ["number", "null"], "minimum": 0}
+          }
+        },
         "model_calls": {
           "type": "object",
           "additionalProperties": false,
