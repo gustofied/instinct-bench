@@ -5,10 +5,10 @@
     "release_commitment_file": "evals/context-appetite/release-v0.3.1.json",
     "release_metadata_file": "evals/context-appetite/eval-private-v0.3.1/release-metadata.json",
     "dataset_path": "evals/context-appetite/eval-private-v0.3.1",
-    "task_release_commit": "4458249",
+    "task_release_commit": "9341d23",
     "seed_commitment": "sha256:889fb173b85078bb004c1af559612df075fc3717b2de0a7624af31b8568b0e27",
-    "dataset_commitment": "sha256:46d31fc7b83df596b68190309489946eb28ab09de7f653a565450949192f9ccd",
-    "package_set_commitment": "sha256:d45f374f1d0f26cf852ff47d0bf350d05d76dc5ac42ca144c7143b9d14d2ba17",
+    "dataset_commitment": "sha256:ba114f75664f4569dccd570afd36df9855dee23e7aaf8e1abc4aa0a280c92866",
+    "package_set_commitment": "sha256:8e8f80239d0232b76ece0f2d2d67da34863aa130acd458d603cfe7ae91f75f70",
     "contract_visibility_at_run": "unpublished",
     "publication_lifecycle": "publish the complete 75-task benchmark after the first locked run"
   },
@@ -48,7 +48,7 @@
     "max_retries": 0,
     "selective_retries": false,
     "canary": {
-      "job_name": "context-appetite-v0.3.1-glm52-t2-canary-001",
+      "job_name": "context-appetite-v0.3.1-glm52-t2-canary-002",
       "jobs_dir": "jobs-scratch",
       "expected_trials": 5,
       "task_ids": [
