@@ -389,10 +389,10 @@ export default function Home() {
                 </TaskMetric>
                 <TaskMetric
                   idPrefix="latency"
-                  label="s / task"
+                  label="latency"
                   tooltip={{
-                    label: "How latency per task is measured",
-                    text: "The time customers will wait for a draft.",
+                    label: "How latency is measured",
+                    text: "Agent execution time, from instruction received to final submission.",
                   }}
                   value={`${benchmarkTelemetry.latency.p50Seconds}s`}
                   valueMarker="p50"
